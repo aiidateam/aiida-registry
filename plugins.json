@@ -1,0 +1,10 @@
+{
+    [
+        {
+            "name": "aiida-quantumespresso",
+            "entry_point": "quantumespresso",
+            "pip_url": "git+https://github.com/DropD/aiida-quantumespresso#egg=aiida-quantumespresso-0.7.1b0",
+            "plugin_info": "https://raw.github.com/DropD/aiida-quantumespresso/master/setup.json"
+        }
+    ]
+}
