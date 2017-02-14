@@ -1,5 +1,5 @@
 {
-    [
+    "list": [
         {
             "name": "aiida-quantumespresso",
             "entry_point": "quantumespresso",
