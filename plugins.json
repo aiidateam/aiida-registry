@@ -2,6 +2,7 @@
     "quantumespresso": {
         "name": "aiida-quantumespresso",
         "entry_point": "quantumespresso",
+        "state": "development",
         "pip_url": "git+https://github.com/DropD/aiida-quantumespresso#egg=aiida-quantumespresso-0.7.1b0",
         "plugin_info": "https://raw.github.com/DropD/aiida-quantumespresso/master/setup.json",
         "code_home": "www.quantum-espresso.org"
@@ -9,8 +10,15 @@
     "mul": {
         "name": "aiida-mul",
         "entry_point": "mul",
+        "state": "stable",
         "pip_url": "git+https://github.com/DropD/aiida-mul#egg=aiida-mul-0.1",
         "plugin_info": "https://raw.github.com/DropD/aiida-mul/master/setup.json",
         "code_home": "https://github.com/DropD/aiida-mul"
+    },
+    "vasp": {
+       "name": "aiida-vasp",
+       "entry_point": "vasp",
+       "state": "registered",
+       "code_home": https://github.com/DropD/aiida-vasp/develop"
     }
 }
