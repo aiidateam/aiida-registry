@@ -19,6 +19,6 @@
        "name": "aiida-vasp",
        "entry_point": "vasp",
        "state": "registered",
-       "code_home": "https://github.com/DropD/aiida-vasp/develop"
+       "code_home": "https://github.com/DropD/aiida-vasp/tree/develop"
     }
 }
