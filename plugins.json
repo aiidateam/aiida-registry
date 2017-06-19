@@ -27,5 +27,12 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/cp2k/aiida-cp2k/master/setup.json",
         "code_home": "https://www.cp2k.org"
+    },
+    "uscf": {
+        "name": "aiida-uscf",
+        "entry_point": "uscf",
+        "state": "registered",
+        "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-uscf/master/setup.json",
+        "code_home": "https://github.com/sphuber/aiida-uscf/tree/develop"
     }
 }
