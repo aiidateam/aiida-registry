@@ -3,8 +3,8 @@
         "name": "aiida-quantumespresso",
         "entry_point": "quantumespresso",
         "state": "development",
-        "pip_url": "git+https://github.com/DropD/aiida-quantumespresso#egg=aiida-quantumespresso-0.7.1b0",
-        "plugin_info": "https://raw.github.com/DropD/aiida-quantumespresso/master/setup.json",
+        "pip_url": "git+https://github.com/aiidateam/aiida-quantumespresso#egg=aiida-quantumespresso-0.1.0",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json",
         "code_home": "www.quantum-espresso.org"
     },
     "mul": {
