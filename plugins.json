@@ -34,5 +34,11 @@
         "state": "registered",
         "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-uscf/master/setup.json",
         "code_home": "https://github.com/sphuber/aiida-uscf/tree/develop"
+    },
+    "wannier90": {
+        "name": "aiida-wannier90",
+        "entry_point": "wannier90",
+        "state": "registered",
+        "code_home": "https://github.com/aiidateam/aiida-wannier90"
     }
 }
