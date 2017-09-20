@@ -7,6 +7,14 @@
         "plugin_info": "https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json",
         "code_home": "www.quantum-espresso.org"
     },
+    "wannier90": {
+        "name": "aiida-wannier90",
+        "entry_point": "wannier90",
+        "state": "development",
+        "pip_url": "git+https://github.com/aiidateam/aiida-wannier90",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90/master/setup.json",
+        "code_home": "www.wannier.org"
+    },
     "mul": {
         "name": "aiida-mul",
         "entry_point": "mul",
