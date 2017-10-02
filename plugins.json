@@ -13,7 +13,7 @@
         "state": "development",
         "pip_url": "git+https://github.com/aiidateam/aiida-wannier90",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90/master/setup.json",
-        "code_home": "www.wannier.org"
+        "code_home": "https://github.com/aiidateam/aiida-wannier90"
     },
     "mul": {
         "name": "aiida-mul",
