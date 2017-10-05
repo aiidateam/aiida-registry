@@ -6,18 +6,12 @@
 <dl>
 <dt>Author:</dt><dd>The AiiDA team</dd>
 <dt>Version:</dt><dd>0.1.0</dd>
+<dt>Plugin home page:</dt><dd>[](http://www.aiida.net)</dd>
+<dt>Base entry point:</dt><dd>quantumespresso</dd>
+<dt>Install command:</dt><dd>`pip install git+https://github.com/aiidateam/aiida-quantumespresso#egg=aiida-quantumespresso-0.1.0``</dd>
+<dt>Plugin code repository:</dt><dd>[]()</dd>
+<dt>Description:</dt><dd>The official AiiDA plugin for Quantum ESPRESSO</dd>
 </dl>
-
-* Plugin home page: [](http://www.aiida.net)
-* Base entry point: quantumespresso
-
-Install command: `pip install git+https://github.com/aiidateam/aiida-quantumespresso#egg=aiida-quantumespresso-0.1.0``
-
-Plugin code repository: []()
-
-### Description: 
-
-The official AiiDA plugin for Quantum ESPRESSO
 
 
 
@@ -26,18 +20,12 @@ The official AiiDA plugin for Quantum ESPRESSO
 <dl>
 <dt>Author:</dt><dd>Sebastiaan P. Huber</dd>
 <dt>Version:</dt><dd>0.1.0</dd>
+<dt>Plugin home page:</dt><dd>[](https://github.com/sphuber/aiida-quantumespresso-uscf)</dd>
+<dt>Base entry point:</dt><dd>quantumespresso.uscf</dd>
+<dt>Install command:</dt><dd>`pip install None``</dd>
+<dt>Plugin code repository:</dt><dd>[]()</dd>
+<dt>Description:</dt><dd>The AiiDA plugin for the Uscf module of Quantum ESPRESSO</dd>
 </dl>
-
-* Plugin home page: [](https://github.com/sphuber/aiida-quantumespresso-uscf)
-* Base entry point: quantumespresso.uscf
-
-Install command: `pip install None``
-
-Plugin code repository: []()
-
-### Description: 
-
-The AiiDA plugin for the Uscf module of Quantum ESPRESSO
 
 
 
@@ -46,18 +34,12 @@ The AiiDA plugin for the Uscf module of Quantum ESPRESSO
 <dl>
 <dt>Author:</dt><dd>Rico Haeuselmann</dd>
 <dt>Version:</dt><dd>0.1</dd>
+<dt>Plugin home page:</dt><dd>[](https://github.com/DropD/aiida-mul)</dd>
+<dt>Base entry point:</dt><dd>mul</dd>
+<dt>Install command:</dt><dd>`pip install git+https://github.com/DropD/aiida-mul#egg=aiida-mul-0.1``</dd>
+<dt>Plugin code repository:</dt><dd>[]()</dd>
+<dt>Description:</dt><dd>Simple, useless plugin for testing and demonstration</dd>
 </dl>
-
-* Plugin home page: [](https://github.com/DropD/aiida-mul)
-* Base entry point: mul
-
-Install command: `pip install git+https://github.com/DropD/aiida-mul#egg=aiida-mul-0.1``
-
-Plugin code repository: []()
-
-### Description: 
-
-Simple, useless plugin for testing and demonstration
 
 
 
@@ -66,18 +48,12 @@ Simple, useless plugin for testing and demonstration
 <dl>
 <dt>Author:</dt><dd>Ole Schütt, Aliaksandr Yakutovich, Patrick Seewald, Tiziano Müller, Andreas Glöss, Leonid Kahle</dd>
 <dt>Version:</dt><dd>0.2.2</dd>
+<dt>Plugin home page:</dt><dd>[](https://github.com/cp2k/aiida-cp2k)</dd>
+<dt>Base entry point:</dt><dd>cp2k</dd>
+<dt>Install command:</dt><dd>`pip install None``</dd>
+<dt>Plugin code repository:</dt><dd>[]()</dd>
+<dt>Description:</dt><dd>A plugin to run CP2K calculations and workflows</dd>
 </dl>
-
-* Plugin home page: [](https://github.com/cp2k/aiida-cp2k)
-* Base entry point: cp2k
-
-Install command: `pip install None``
-
-Plugin code repository: []()
-
-### Description: 
-
-A plugin to run CP2K calculations and workflows
 
 
 
@@ -86,18 +62,12 @@ A plugin to run CP2K calculations and workflows
 <dl>
 <dt>Author:</dt><dd>Daniel Marchand, Antimo Marrazzo, Dominik Gresch, Giovanni Pizzi & The AiiDA Team.</dd>
 <dt>Version:</dt><dd>0.1.0</dd>
+<dt>Plugin home page:</dt><dd>[](MISSING INFORMATION!)</dd>
+<dt>Base entry point:</dt><dd>wannier90</dd>
+<dt>Install command:</dt><dd>`pip install git+https://github.com/aiidateam/aiida-wannier90``</dd>
+<dt>Plugin code repository:</dt><dd>[]()</dd>
+<dt>Description:</dt><dd>AiiDA Plugin for Wannier90</dd>
 </dl>
-
-* Plugin home page: [](MISSING INFORMATION!)
-* Base entry point: wannier90
-
-Install command: `pip install git+https://github.com/aiidateam/aiida-wannier90``
-
-Plugin code repository: []()
-
-### Description: 
-
-AiiDA Plugin for Wannier90
 
 
 
@@ -106,18 +76,12 @@ AiiDA Plugin for Wannier90
 <dl>
 <dt>Author:</dt><dd>Jens Broeder</dd>
 <dt>Version:</dt><dd>0.5.0</dd>
+<dt>Plugin home page:</dt><dd>[](https://github.com/broeder-j/aiida-fleur)</dd>
+<dt>Base entry point:</dt><dd>fleur</dd>
+<dt>Install command:</dt><dd>`pip install git+https://github.com/broeder-j/aiida_fleur/#egg=aiida-fleur-0.5.0``</dd>
+<dt>Plugin code repository:</dt><dd>[]()</dd>
+<dt>Description:</dt><dd>Python FLEUR simulation package containing an AiiDA Plugin for running the FLEUR-code and its input generator. Plus some workflows and utility</dd>
 </dl>
-
-* Plugin home page: [](https://github.com/broeder-j/aiida-fleur)
-* Base entry point: fleur
-
-Install command: `pip install git+https://github.com/broeder-j/aiida_fleur/#egg=aiida-fleur-0.5.0``
-
-Plugin code repository: []()
-
-### Description: 
-
-Python FLEUR simulation package containing an AiiDA Plugin for running the FLEUR-code and its input generator. Plus some workflows and utility
 
 
 
@@ -126,17 +90,11 @@ Python FLEUR simulation package containing an AiiDA Plugin for running the FLEUR
 <dl>
 <dt>Author:</dt><dd>MISSING INFORMATION!</dd>
 <dt>Version:</dt><dd>MISSING INFORMATION!</dd>
+<dt>Plugin home page:</dt><dd>[](MISSING INFORMATION!)</dd>
+<dt>Base entry point:</dt><dd>vasp</dd>
+<dt>Install command:</dt><dd>`pip install None``</dd>
+<dt>Plugin code repository:</dt><dd>[]()</dd>
+<dt>Description:</dt><dd>MISSING INFORMATION!</dd>
 </dl>
-
-* Plugin home page: [](MISSING INFORMATION!)
-* Base entry point: vasp
-
-Install command: `pip install None``
-
-Plugin code repository: []()
-
-### Description: 
-
-MISSING INFORMATION!
 
 
