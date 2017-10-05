@@ -3,13 +3,13 @@
 {% for plugin in plugins %}
 ## {{plugin.name}}
 
-Author: {{plugin.author}}
+<dl>
+<dt>Author:</dt><dd>{{plugin.author}}</dd>
+<dt>Version:</dt><dd>{{plugin.version}}</dd>
+</dl>
 
-Version: {{plugin.version}}
-
-Plugin home page: []({{plugin.home_url}})
-
-Base entry point: {{plugin.entry_point}}
+* Plugin home page: []({{plugin.home_url}})
+* Base entry point: {{plugin.entry_point}}
 
 Install command: `pip install {{plugin.pip_url}}``
 
