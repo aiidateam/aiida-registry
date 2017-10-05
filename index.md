@@ -19,89 +19,6 @@ Plugin code repository: []()
 
 The official AiiDA plugin for Quantum ESPRESSO
 
-### Plugin classes:
-
-
-#### calculations
-
-* quantumespresso.cp
-
-* quantumespresso.dos
-
-* quantumespresso.matdyn
-
-* quantumespresso.namelists
-
-* quantumespresso.neb
-
-* quantumespresso.ph
-
-* quantumespresso.pp
-
-* quantumespresso.pw
-
-* quantumespresso.projwfc
-
-* quantumespresso.pw2wannier90
-
-* quantumespresso.q2r
-
-* quantumespresso.pwimmigrant
-
-
-
-#### parsers
-
-* quantumespresso.basicpw
-
-* quantumespresso.cp
-
-* quantumespresso.dos
-
-* quantumespresso.matdyn
-
-* quantumespresso.neb
-
-* quantumespresso.ph
-
-* quantumespresso.projwfc
-
-* quantumespresso.pw
-
-* quantumespresso.q2r
-
-
-
-#### data
-
-* quantumespresso.forceconstants
-
-
-
-#### aiida_quantumespresso.workflows.error_handlers
-
-
-
-#### workflows
-
-* quantumespresso.ph.base
-
-* quantumespresso.pw.base
-
-* quantumespresso.pw.relax
-
-* quantumespresso.pw.bands
-
-* quantumespresso.pw.band_structure
-
-
-
-#### tools.dbexporters.tcod_plugins
-
-* quantumespresso.cp
-
-* quantumespresso.pw
-
 
 
 ## aiida-quantumespresso-uscf
@@ -121,29 +38,6 @@ Plugin code repository: []()
 ### Description: 
 
 The AiiDA plugin for the Uscf module of Quantum ESPRESSO
-
-### Plugin classes:
-
-
-#### calculations
-
-* quantumespresso.uscf
-
-
-
-#### parsers
-
-* quantumespresso.uscf
-
-
-
-#### workflows
-
-* quantumespresso.uscf.main
-
-* quantumespresso.uscf.parallelize_atoms
-
-* quantumespresso.uscf.base
 
 
 
@@ -165,19 +59,6 @@ Plugin code repository: []()
 
 Simple, useless plugin for testing and demonstration
 
-### Plugin classes:
-
-
-#### calculations
-
-* mul
-
-
-
-#### parsers
-
-* mul
-
 
 
 ## aiida-cp2k
@@ -197,19 +78,6 @@ Plugin code repository: []()
 ### Description: 
 
 A plugin to run CP2K calculations and workflows
-
-### Plugin classes:
-
-
-#### calculations
-
-* cp2k
-
-
-
-#### parsers
-
-* cp2k
 
 
 
@@ -231,23 +99,6 @@ Plugin code repository: []()
 
 AiiDA Plugin for Wannier90
 
-### Plugin classes:
-
-
-#### calculations
-
-* wannier90.wannier90
-
-
-
-#### parsers
-
-* wannier90.wannier90
-
-
-
-#### data
-
 
 
 ## aiida-fleur
@@ -267,53 +118,6 @@ Plugin code repository: []()
 ### Description: 
 
 Python FLEUR simulation package containing an AiiDA Plugin for running the FLEUR-code and its input generator. Plus some workflows and utility
-
-### Plugin classes:
-
-
-#### calculations
-
-* fleur.fleur
-
-* fleur.inpgen
-
-
-
-#### parsers
-
-* fleur.fleurparser
-
-* fleur.fleurinpgenparser
-
-
-
-#### data
-
-* fleur.fleurinp
-
-* fleur.fleurinpmodifier
-
-
-
-#### workflows
-
-* fleur.scf
-
-* fleur.dos
-
-* fleur.band
-
-* fleur.eos
-
-* fleur.dummy
-
-* fleur.sub_dummy
-
-* fleur.init_cls
-
-* fleur.corehole
-
-* fleur.corelevel
 
 
 
@@ -335,5 +139,4 @@ Plugin code repository: []()
 
 MISSING INFORMATION!
 
-### Plugin classes:
 

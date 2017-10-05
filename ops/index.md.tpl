@@ -19,6 +19,7 @@ Plugin code repository: []({{plugin.code_home}})
 
 {{plugin.description}}
 
+{# too much information?
 ### Plugin classes:
 {% for category in plugin.entry_point_categories %}
 
@@ -27,4 +28,5 @@ Plugin code repository: []({{plugin.code_home}})
 * {{entry_point}}
 {% endfor %}
 {% endfor %}
+#}
 {% endfor %}
