@@ -3,15 +3,15 @@
 {% for plugin in plugins %}
 ## {{plugin.name}}
 
-<dl>
-<dt>Author:</dt><dd>{{plugin.author}}</dd>
-<dt>Version:</dt><dd>{{plugin.version}}</dd>
-<dt>Plugin home page:</dt><dd>[]({{plugin.home_url}})</dd>
-<dt>Base entry point:</dt><dd>{{plugin.entry_point}}</dd>
-<dt>Install command:</dt><dd>`pip install {{plugin.pip_url}}``</dd>
-<dt>Plugin code repository:</dt><dd>[]({{plugin.code_home}})</dd>
-<dt>Description:</dt><dd>{{plugin.description}}</dd>
-</dl>
+{{plugin.description}}
+
+* Author: {{plugin.author}}
+* Version: {{plugin.version}}
+* Plugin home page: []({{plugin.home_url}})
+* Base entry point: {{plugin.entry_point}}
+* Install command: `pip install {{plugin.pip_url}}``
+* Plugin code repository: []({{plugin.code_home}})
+
 
 {# too much information?
 ### Plugin classes:
