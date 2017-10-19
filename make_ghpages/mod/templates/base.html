@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    {% block css %}
+    <link rel="stylesheet" href="static/css/style.css">
+    {% endblock css %}
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    {% block body %} {% endblock body %}
+    {% block footer %}
+    <footer class="footer">
+    <hr>
+      This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    </footer>    
+    {% endblock footer %}
+</body>
+
+</html>
