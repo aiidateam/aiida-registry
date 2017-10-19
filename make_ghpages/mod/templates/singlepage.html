@@ -1,0 +1,88 @@
+{% extends "base.html" %} 
+
+{% block css %}
+    <link rel="stylesheet" href="../static/css/style.css">
+{% endblock css %}
+
+{% block body %}
+<main>
+    <div id='entrytitle'>
+        <h1>
+            Details for AiiDA plugin &quot;<a href="{{code_home}}">{{name}}</a>&quot;
+        </h1>
+    </div>
+        <p><a href="../index.html">Go back to the aiida-registry plugin summary</a></p>
+
+    <h2>General information</h2>
+    <div>
+        <p>
+            Current state: <emph>{{ state }}</emph>
+        </p>
+
+        <p>
+            <a href="{{ code_home }}">Go to the plugin code homepage</a> 
+        </p>
+        </div>
+
+        {% if documentation_url %}
+            <p>
+                <strong>Documentation</strong>: <a href="{{ documentation_url }}">Go to plugin documentation</a>
+            <p>
+        {% else %}
+            <p>
+                <strong>Documentation</strong>: Documentation not provided by the plugin author
+            <p>
+        {% endif %}
+
+    </div>
+
+    <h2>
+        Detailed information
+    </h2>
+    {% if setupinfo %}
+    <div id='description'>
+        <p>
+            <strong>Author(s)</strong>: {{ setupinfo.author }}
+        </p>
+        <p>
+            <strong>Short description</strong>: {{ setupinfo.description }}
+        </p>
+        <p>
+            <strong>Package name (for pip)</strong>: <code>{{ name }}</code>
+        </p>
+        <p>
+            <strong>How to use from python</strong>: <code>import {{ setupinfo.name }}</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: {{ setupinfo.version }}
+        </p>
+        <h3>Available entrypoints</h3>
+        {% if setupinfo.entry_points %}
+            {% for entrypointtype, entrypointlist in setupinfo.entry_points.iteritems() %}
+                <h4>{{ entrypointtype }}</h4>
+                <ul>
+                {% for entrypoint in entrypointlist %}
+                <li><code>{{ entrypoint.split('=')[0].strip() }}</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        {{ entrypoint.split('=')[1].strip() }}
+                    </span></li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+        {% else %}
+        <p>No entrypoints defined for this plugin.</p>
+        {% endif %}
+    </div>
+    {% else %}
+    <div id='description'>
+        <p>
+            Detailed info for this package could not be obtained.
+            Ask the plugin developers to check their <code>setup.json</code> file
+            in the plugin source code.
+        </p>
+    </div>
+    {% endif %}
+
+</main>
+
+{% endblock body %}

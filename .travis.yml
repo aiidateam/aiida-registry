@@ -1,0 +1,41 @@
+language: python
+
+python:
+    - "2.7"
+
+cache: pip
+
+env: 
+  global: 
+  - ENCRYPTION_LABEL: "7712d5cd71ad"
+  - COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
+
+before_install:
+    # This is needed for the SSH tests (being able to ssh to localhost)
+    # And will also be used for the docker test
+    - cd make_ghpages
+
+install:
+    # Install needed dependencies
+    - pip install -r requirements.txt
+
+script: 
+  - ./make_pages.py  
+  - cd ../.travis-data && ./deploy.sh
+
+## See docs here: https://docs.travis-ci.com/user/deployment/pages/
+## This works, but we're not using it to avoid to have global tokens.
+## We use instead deployment keys as described here:
+## https://gist.github.com/domenic/ec8b0fc8ab45f39403dd
+
+#deploy:
+#  provider: pages
+#  skip_cleanup: true
+#  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+#  on:
+#    branch: master
+#  target_branch: gh-pages
+#  local_dir: out
+
+git:
+  depth: 3

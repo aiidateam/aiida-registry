@@ -1,0 +1,197 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    font-family: 'Noto Sans', sans-serif;
+    padding: 0px;
+    margin: 0px;
+    /*position: relative;*/
+    /*padding-bottom: 100px;*/
+    /* display: table; */
+}
+
+/* * {-moz-box-sizing: border-box; box-sizing: border-box;} */
+
+main {
+    padding-left: 16px;
+    margin-left: 16px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-right: 16px; 
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #00a;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #00a;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+// Needs to be there to activate elements
+span {
+}
+
+.keyword {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    color: #000;
+    border-radius: .25em;
+    background-color: #A2CBFF;
+}
+
+#entrytitle {
+    color: #a00;
+}
+
+#entrytitle a {
+    color: #a00;
+}
+
+h2 {
+    padding-top: 16px;
+    margin: 0;
+    font-size: 140%;
+    color: #005;
+}
+
+.description {
+    color: #333;
+}
+
+.details {
+    margin-top: 12px;
+}
+
+.currentstate {
+    color: #666;
+    font-size: 90%;
+    margin-bottom: 12px;
+}
+
+#entrylist .authors {
+    color: #666;
+    font-size: 90%;
+    margin-bottom: 9px;
+}
+
+
+#description p {
+    margin-left: 0px;
+}
+
+
+h3 {
+    margin-bottom: 3px;
+    margin-top: 21px;
+    font-size: 120%;
+    color: #005;
+}
+
+
+table {
+    background-color: transparent;
+    display: table;
+    border-color: grey;
+    line-height: 1.5;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    padding-right: 16px;
+    padding-left: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+td {
+    vertical-align: top;
+    padding-right: 16px;
+    padding-left: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.footer {
+    display: table;
+    width: calc(100% - 64px);
+    /* Distance with other content */
+    margin-top: 16px;
+    /*background-color: #a00;*/
+    /* internal margin */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 32px;
+    padding-left: 32px;
+    color: #555;
+
+    font-size: 90%;
+}
+
+.submenu-entry {
+    width:90%;
+    min-height:140px;
+    padding:10px;
+    margin: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color:rgba(245,245,245,.19);
+    border:1px solid rgba(227,227,227,.31);
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.classbox {
+    display: inline-block;
+    background-color: #777;
+    padding: 0em .2em 0em;
+    font-size: 75%;
+    color: #fff;
+    border-radius: .25em
+}
+
+/* Tooltip text */
+.classbox .tooltiptext {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 3px;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.classbox:hover .tooltiptext {
+    visibility: visible;
+}
+
