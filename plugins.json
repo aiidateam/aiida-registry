@@ -58,5 +58,13 @@
         "pip_url": "git+https://github.com/vdikan/aiida_siesta_plugin/#egg=aiida-siesta-0.9.7",
         "plugin_info": "https://raw.github.com/albgar/aiida_siesta_plugin/master/setup.json",
         "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master"
+    },
+        "yambo": {
+        "name": "yambo-aiida",
+        "entry_point": "yambo",
+        "state": "development",
+        "pip_url": "git+https://github.com/yambo-code/yambo-aiida/",
+        "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/develop/setup.json",
+        "code_home": "https://github.com/yambo-code/yambo-aiida/"
     }
 }
