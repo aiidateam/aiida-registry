@@ -2,10 +2,11 @@
     "quantumespresso": {
         "name": "aiida-quantumespresso",
         "entry_point": "quantumespresso",
-        "state": "development",
+        "state": "stable",
         "pip_url": "git+https://github.com/aiidateam/aiida-quantumespresso#egg=aiida-quantumespresso-0.1.0",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json",
-        "code_home": "https://github.com/aiidateam/aiida-quantumespresso"
+        "code_home": "https://github.com/aiidateam/aiida-quantumespresso",
+        "documentation_url": "http://aiida-quantumespresso.readthedocs.io/"
     },
     "wannier90": {
         "name": "aiida-wannier90",
@@ -13,7 +14,8 @@
         "state": "development",
         "pip_url": "git+https://github.com/aiidateam/aiida-wannier90",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90/master/setup.json",
-        "code_home": "https://github.com/aiidateam/aiida-wannier90"
+        "code_home": "https://github.com/aiidateam/aiida-wannier90",
+        "documentation_url": "http://aiida-wannier90.readthedocs.io/"
     },
     "mul": {
         "name": "aiida-mul",
@@ -39,7 +41,7 @@
     "quantumespresso-uscf": {
         "name": "aiida-quantumespresso-uscf",
         "entry_point": "quantumespresso.uscf",
-        "state": "registered",
+        "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-uscf/master/setup.json",
         "code_home": "https://github.com/sphuber/aiida-uscf/tree/develop"
     },
@@ -49,7 +51,8 @@
         "state": "development",
         "pip_url": "git+https://github.com/broeder-j/aiida_fleur/#egg=aiida-fleur-0.5.0",
         "plugin_info": "https://raw.github.com/broeder-j/aiida_fleur/develop/setup.json",
-        "code_home": "https://github.com/broeder-j/aiida-fleur/tree/develop"
+        "code_home": "https://github.com/broeder-j/aiida-fleur/tree/develop",
+        "documentation_url": "http://aiida-fleur.readthedocs.io/"
     },
     "siesta": {
         "name": "aiida-siesta",
@@ -57,7 +60,8 @@
         "state": "development",
         "pip_url": "git+https://github.com/vdikan/aiida_siesta_plugin/#egg=aiida-siesta-0.9.7",
         "plugin_info": "https://raw.github.com/albgar/aiida_siesta_plugin/master/setup.json",
-        "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master"
+        "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master",
+        "documentation_url": "http://aiida-siesta-plugin.readthedocs.io/"
     },
         "yambo": {
         "name": "yambo-aiida",
