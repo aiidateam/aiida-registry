@@ -33,7 +33,7 @@ One of
 A url that can be used to directly install the most recent ('development') or most recent stable ('stable') version with pip.
 
 #### plugin_info
-A url pointing to a JSON file which holds all keyword args as given to the setuptools.setup function at install (see also the example in the (aiida-plugin-template repository)[http://github.com/aiidateam/aiida-plugin-template].
+A url pointing to a JSON file which holds all keyword args as given to the setuptools.setup function at install (see also the example in the [aiida-plugin-template repository](http://github.com/aiidateam/aiida-plugin-template).
 
 #### code_home
 The link to the homepage of your plugin (e.g. your website, or the github repository it is hosted on).
