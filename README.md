@@ -3,6 +3,9 @@
 This is the official registry of AiiDA plugins, 
 available at http://github.com/aiidateam/aiida-registry
 
+To browse the plugins graphically without reading directly the
+JSON, you can use [the automatically-compiled page](http://aiidateam.github.io/aiida-registry).
+
 If you are starting developing a new plugin or already have one,
 please register it here.
 It is a good idea to register your plugin as soon as you have a
