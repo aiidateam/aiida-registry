@@ -29,4 +29,8 @@ A url that can be used to directly install the most recent ('development') or mo
 A url pointing to a JSON file which holds all keyword args as given to the setuptools.setup function at install.
 
 #### code_home
-The homepage of your plugin.
+The link to the homepage of your plugin.
+
+#### documentation_url
+The link to the online documentation for your plugin.
+
