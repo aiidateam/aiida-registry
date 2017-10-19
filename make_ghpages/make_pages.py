@@ -7,6 +7,7 @@ import re
 import shutil
 import sys
 from urlparse import urlparse
+from collections import OrderedDict
 
 ## Requires jinja2 >= 2.9
 import jinja2
@@ -148,7 +149,7 @@ if __name__ == "__main__":
         plugins_raw_data = json.load(f)
 
     all_data = {}
-    all_data['plugins'] = {}
+    all_data['plugins'] = OrderedDict()
 
     html_subfolder_abs = os.path.join(outdir_abs, html_subfolder_name)
     os.mkdir(html_subfolder_abs)
