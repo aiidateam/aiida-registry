@@ -38,7 +38,7 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/**/* || exit 0
+rm -rf out/* || exit 0
 #
 ## Run our compile script
 #doCompile
@@ -48,6 +48,8 @@ cd out
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
+cp -r ../../make_ghpages/out/* .
+
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 if git diff --quiet; then
     echo "No changes to the output on this push; exiting."
@@ -56,7 +58,6 @@ fi
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
-cp -r ../../make_ghpages/out/* .
 git add -A .
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
