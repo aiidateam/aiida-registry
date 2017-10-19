@@ -114,7 +114,7 @@ def get_setup_info(json_url):
 	except Exception as e:
 		import traceback
 		print "  >> UNABLE TO RETRIEVE THE JSON URL: {}".format(json_url)
-		print traceback.print_exc()
+		print traceback.print_exc(file=sys.stdout)
 		return None
 	try:
 		json_data = json.loads(json_txt)
