@@ -42,5 +42,29 @@
         "state": "registered",
         "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-uscf/master/setup.json",
         "code_home": "https://github.com/sphuber/aiida-uscf/tree/develop"
+    },
+    "fleur": {
+        "name": "aiida-fleur",
+        "entry_point": "fleur",
+        "state": "development",
+        "pip_url": "git+https://github.com/broeder-j/aiida_fleur/#egg=aiida-fleur-0.5.0",
+        "plugin_info": "https://raw.github.com/broeder-j/aiida_fleur/develop/setup.json",
+        "code_home": "https://github.com/broeder-j/aiida-fleur/tree/develop"
+    },
+    "siesta": {
+        "name": "aiida-siesta",
+        "entry_point": "siesta",
+        "state": "development",
+        "pip_url": "git+https://github.com/vdikan/aiida_siesta_plugin/#egg=aiida-siesta-0.9.7",
+        "plugin_info": "https://raw.github.com/albgar/aiida_siesta_plugin/master/setup.json",
+        "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master"
+    },
+        "yambo": {
+        "name": "yambo-aiida",
+        "entry_point": "yambo",
+        "state": "development",
+        "pip_url": "git+https://github.com/yambo-code/yambo-aiida/",
+        "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/develop/setup.json",
+        "code_home": "https://github.com/yambo-code/yambo-aiida/"
     }
 }
