@@ -17,13 +17,14 @@
         "code_home": "https://github.com/aiidateam/aiida-wannier90",
         "documentation_url": "http://aiida-wannier90.readthedocs.io/"
     },
-    "mul": {
-        "name": "aiida-mul",
-        "entry_point": "mul",
+    "plugin-template": {
+        "name": "aiida-plugin-template",
+        "entry_point": "template",
         "state": "stable",
-        "pip_url": "git+https://github.com/DropD/aiida-mul#egg=aiida-mul-0.1",
-        "plugin_info": "https://raw.github.com/DropD/aiida-mul/master/setup.json",
-        "code_home": "https://github.com/DropD/aiida-mul"
+        "pip_url": "git+https://github.com/aiidateam/aiida-plugin-template#egg=aiida-plugin-template-0.1.0",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-plugin-template/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-plugin-template",
+        "documentation_url": "http://aiida-plugin-template.readthedocs.io/"
     },
     "vasp": {
         "name": "aiida-vasp",
@@ -63,12 +64,39 @@
         "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master",
         "documentation_url": "http://aiida-siesta-plugin.readthedocs.io/"
     },
-        "yambo": {
+    "yambo": {
         "name": "yambo-aiida",
         "entry_point": "yambo",
         "state": "development",
         "pip_url": "git+https://github.com/yambo-code/yambo-aiida/",
         "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/develop/setup.json",
         "code_home": "https://github.com/yambo-code/yambo-aiida/"
+    },
+    "ase": {
+        "name": "aiida-ase",
+        "entry_point": "ase",
+        "state": "stable",
+        "pip_url": "git+https://github.com/aiidateam/aiida-ase#egg=aiida-ase-0.1.0",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-ase/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-ase",
+        "documentation_url": "http://aiida-ase.readthedocs.io/"
+    },
+    "codtools": {
+        "name": "aiida-codtools",
+        "entry_point": "codtools",
+        "state": "stable",
+        "pip_url": "git+https://github.com/aiidateam/aiida-codtools#egg=aiida-codtools-0.1.0",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-codtools/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-codtools",
+        "documentation_url": "http://aiida-codtools.readthedocs.io/"
+    },  
+    "nwchem": {
+        "name": "aiida-nwchem",
+        "entry_point": "nwchem",
+        "state": "stable",
+        "pip_url": "git+https://github.com/aiidateam/aiida-nwchem#egg=aiida-nwchem-0.1.0",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-nwchem/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-nwchem",
+        "documentation_url": "http://aiida-nwchem.readthedocs.io/"
     }
 }
