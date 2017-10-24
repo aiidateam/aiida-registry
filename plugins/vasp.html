@@ -54,10 +54,124 @@
     
     <div id='description'>
         <p>
-            Detailed info for this package could not be obtained.
-            Ask the plugin developers to check their <code>setup.json</code> file
-            in the plugin source code.
+            <strong>Author(s)</strong>: Rico Häuselmann
         </p>
+        <p>
+            <strong>Short description</strong>: AiiDA Plugin for running VASP calculations.
+        </p>
+        <p>
+            <strong>Package name (for pip)</strong>: <code>aiida-vasp</code>
+        </p>
+        <p>
+            <strong>How to use from python</strong>: <code>import aiida-vasp</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: 0.1.0
+        </p>
+        <h3>Available entrypoints</h3>
+        
+            
+                <h4>aiida.calculations</h4>
+                <ul>
+                
+                <li><code>vasp.vasp</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.calcs.vasp:VaspCalculation
+                    </span></li>
+                
+                <li><code>vasp.vasp2w90</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.calcs.vasp2w90:Vasp2w90Calculation
+                    </span></li>
+                
+                </ul>
+            
+                <h4>aiida.parsers</h4>
+                <ul>
+                
+                <li><code>vasp.vasp</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.parsers.vasp:VaspParser
+                    </span></li>
+                
+                <li><code>vasp.vasp2w90</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.parsers.vasp2w90:Vasp2w90Parser
+                    </span></li>
+                
+                </ul>
+            
+                <h4>aiida.data</h4>
+                <ul>
+                
+                <li><code>vasp.archive</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.data.archive:ArchiveData
+                    </span></li>
+                
+                <li><code>vasp.chargedensity</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.data.chargedensity:ChargedensityData
+                    </span></li>
+                
+                <li><code>vasp.paw</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.data.paw:PawData
+                    </span></li>
+                
+                <li><code>vasp.wavefun</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.data.wavefun:WavefunData
+                    </span></li>
+                
+                </ul>
+            
+                <h4>aiida.cmdline.data</h4>
+                <ul>
+                
+                <li><code>vasp.paw</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.commands.paw:_Paw
+                    </span></li>
+                
+                </ul>
+            
+                <h4>aiida.workflows</h4>
+                <ul>
+                
+                <li><code>vasp.scf</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.workflows.scf:ScfWorkflow
+                    </span></li>
+                
+                <li><code>vasp.nscf</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.workflows.nscf:NscfWorkflow
+                    </span></li>
+                
+                <li><code>vasp.projections</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.workflows.projections:ProjectionsWorkflow
+                    </span></li>
+                
+                <li><code>vasp.autowindows</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.workflows.autowindows:AutowindowsWorkflow
+                    </span></li>
+                
+                <li><code>vasp.wannier</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.workflows.wannier:WannierWorkflow
+                    </span></li>
+                
+                <li><code>vasp.windows</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.workflows.windows:WindowsWorkflow
+                    </span></li>
+                
+                </ul>
+            
+        
     </div>
     
 
