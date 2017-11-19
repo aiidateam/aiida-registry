@@ -91,7 +91,7 @@
         "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-codtools/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-codtools",
         "documentation_url": "http://aiida-codtools.readthedocs.io/"
-    },  
+    },
     "nwchem": {
         "name": "aiida-nwchem",
         "entry_point": "nwchem",
@@ -100,5 +100,12 @@
         "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-nwchem/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-nwchem",
         "documentation_url": "http://aiida-nwchem.readthedocs.io/"
+    },
+    "castep": {
+        "name": "aiida-castep",
+        "entry_point": "castep",
+        "state": "registered",
+        "plugin_info": "https://gitlab.com/bz1/aiida-castep/raw/master/setup.json",
+        "code_home": "https://gitlab.com/bz1/aiida-castep"
     }
 }
