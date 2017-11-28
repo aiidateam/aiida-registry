@@ -24,7 +24,7 @@
 <main>
     <div id='entrytitle'>
         <h1>
-            Details for AiiDA plugin &quot;<a href="https://github.com/yambo-code/yambo-aiida/">yambo-aiida</a>&quot;
+            Details for AiiDA plugin &quot;<a href="https://gitlab.com/bz1/aiida-castep">aiida-castep</a>&quot;
         </h1>
     </div>
         <p><a href="../index.html">Go back to the aiida-registry plugin summary</a></p>
@@ -32,11 +32,11 @@
     <h2>General information</h2>
     <div>
         <p>
-            Current state: <emph>development</emph>
+            Current state: <emph>registered</emph>
         </p>
 
         <p>
-            <a href="https://github.com/yambo-code/yambo-aiida/">Go to the plugin code homepage</a> 
+            <a href="https://gitlab.com/bz1/aiida-castep">Go to the plugin code homepage</a> 
         </p>
         </div>
 
@@ -54,19 +54,19 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Michael Atambo, Antimo Marrazzo, Prandini Gianluca
+            <strong>Author(s)</strong>: Bonan Zhu
         </p>
         <p>
-            <strong>Short description</strong>: YAMBO code Plugin for AiiDA
+            <strong>Short description</strong>: AiiDA plugin template for CASTEP
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>yambo-aiida</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-castep</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida-yambo</code>
+            <strong>How to use from python</strong>: <code>import aiida-castep</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.2-beta
+            <strong>Most recent version</strong>: 0.1.0
         </p>
         <h3>Available entrypoints</h3>
         
@@ -74,9 +74,9 @@
                 <h4>aiida.calculations</h4>
                 <ul>
                 
-                <li><code>yambo.yambo</code>
+                <li><code>castep.castep</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_yambo.calculations.gw:YamboCalculation
+                        aiida_castep.calculations.castep:CastepCalculation
                     </span></li>
                 
                 </ul>
@@ -84,15 +84,25 @@
                 <h4>aiida.parsers</h4>
                 <ul>
                 
-                <li><code>yambo.yambo</code>
+                <li><code>castep.castep</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_yambo.parsers.parsers:YamboParser
+                        aiida_castep.parsers.castep:CastepParser
                     </span></li>
                 
                 </ul>
             
                 <h4>aiida.data</h4>
                 <ul>
+                
+                <li><code>castep.uspdata</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.data.usp:UspData
+                    </span></li>
+                
+                <li><code>castep.otfgdata</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.data.otfg:OTFGData
+                    </span></li>
                 
                 </ul>
             
