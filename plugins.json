@@ -101,8 +101,8 @@
         "code_home": "https://github.com/aiidateam/aiida-nwchem",
         "documentation_url": "http://aiida-nwchem.readthedocs.io/"
     },
-        "phonopy": {
-	"name": "aiida-phonopy",
+    "phonopy": {
+	    "name": "aiida-phonopy",
         "entry_point": "phonopy",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/development/setup.json",
