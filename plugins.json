@@ -107,5 +107,12 @@
         "state": "registered",
         "plugin_info": "https://gitlab.com/bz1/aiida-castep/raw/master/setup.json",
         "code_home": "https://gitlab.com/bz1/aiida-castep"
+    },
+    "raspa": {
+        "name": "aiida-raspa",
+        "entry_point": "raspa",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json",
+        "code_home": "https://github.com/yakutovicha/aiida-raspa"
     }
 }
