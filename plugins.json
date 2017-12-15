@@ -91,7 +91,7 @@
         "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-codtools/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-codtools",
         "documentation_url": "http://aiida-codtools.readthedocs.io/"
-    },  
+    },
     "nwchem": {
         "name": "aiida-nwchem",
         "entry_point": "nwchem",
@@ -114,5 +114,19 @@
         "entry_point": "lammps",
         "state": "development",
         "code_home": "https://github.com/abelcarreras/aiida-lammps"
+    },
+    "castep": {
+        "name": "aiida-castep",
+        "entry_point": "castep",
+        "state": "registered",
+        "plugin_info": "https://gitlab.com/bz1/aiida-castep/raw/master/setup.json",
+        "code_home": "https://gitlab.com/bz1/aiida-castep"
+    },
+    "raspa": {
+        "name": "aiida-raspa",
+        "entry_point": "raspa",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json",
+        "code_home": "https://github.com/yakutovicha/aiida-raspa"
     }
 }
