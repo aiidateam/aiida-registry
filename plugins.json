@@ -31,8 +31,8 @@
         "entry_point": "vasp",
         "state": "registered",
         "code_home": "https://github.com/DropD/aiida-vasp/tree/develop",
-	"plugin_info": "https://raw.githubusercontent.com/DropD/aiida-vasp/develop/setup.json",
-	"pip_url": "git+https://github.com/DropD/aiida-vasp/tree/master#egg=aiida-vasp-0.1.0"
+        "plugin_info": "https://raw.githubusercontent.com/DropD/aiida-vasp/develop/setup.json",
+        "pip_url": "git+https://github.com/DropD/aiida-vasp/tree/master#egg=aiida-vasp-0.1.0"
     },
     "cp2k": {
         "name": "aiida-cp2k",
@@ -41,12 +41,12 @@
         "plugin_info": "https://raw.githubusercontent.com/cp2k/aiida-cp2k/master/setup.json",
         "code_home": "https://github.com/cp2k/aiida-cp2k"
     },
-    "quantumespresso-uscf": {
-        "name": "aiida-quantumespresso-uscf",
-        "entry_point": "quantumespresso.uscf",
+    "quantumespresso-hp": {
+        "name": "aiida-quantumespresso-hp",
+        "entry_point": "quantumespresso.hp",
         "state": "development",
-        "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-uscf/master/setup.json",
-        "code_home": "https://github.com/sphuber/aiida-uscf/tree/develop"
+        "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-hp/master/setup.json",
+        "code_home": "https://github.com/sphuber/aiida-hp/tree/develop"
     },
     "fleur": {
         "name": "aiida-fleur",
