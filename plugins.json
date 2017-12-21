@@ -46,7 +46,7 @@
         "entry_point": "quantumespresso.hp",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-hp/master/setup.json",
-        "code_home": "https://github.com/sphuber/aiida-hp/tree/develop"
+        "code_home": "https://github.com/sphuber/aiida-quantumespresso-hp"
     },
     "fleur": {
         "name": "aiida-fleur",
