@@ -1,10 +1,7 @@
 # Registry for aiida plugins
 
 This is the official registry of AiiDA plugins, 
-available at http://github.com/aiidateam/aiida-registry
-
-To browse the plugins graphically without reading directly the
-JSON, you can use [the automatically-compiled page](http://aiidateam.github.io/aiida-registry).
+available at http://aiidateam.github.io/aiida-registry.
 
 If you are starting developing a new plugin or already have one,
 please register it here.
@@ -28,19 +25,19 @@ The name which is at the beginning of all entry points exposed by the plugin
 
 #### state
 One of
-* registered: designates plugins which are not in a working state and may or may not have any code written. Use this to secure a specific name
-* development: plugins which work partially but may not be stable yet
-* stable: plugins which can be used in production. 
+* `registered`: designates plugins which are not in a working state and may or may not have any code written. Use this to secure a specific name
+* `development`: plugins which work partially but may not be stable yet
+* `stable`: plugins which can be used in production. 
 
 #### pip_url
 A url that can be used to directly install the most recent ('development') or most recent stable ('stable') version with pip.
 
 #### plugin_info
-A url pointing to a JSON file which holds all keyword args as given to the setuptools.setup function at install (see also the example in the [aiida-plugin-template repository](http://github.com/aiidateam/aiida-plugin-template).
+A URL pointing to a JSON file which holds all keyword args, as given to the setuptools.setup function at install.
+See, for example, the [aiida-plugin-template repository](http://github.com/aiidateam/aiida-plugin-template).
 
 #### code_home
 The link to the homepage of your plugin (e.g. your website, or the github repository it is hosted on).
 
 #### documentation_url
 The link to the online documentation for your plugin (e.g. on Read The Docs).
-
