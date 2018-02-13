@@ -32,7 +32,8 @@
         "state": "development",
         "code_home": "https://github.com/DropD/aiida-vasp/tree/develop",
         "plugin_info": "https://raw.githubusercontent.com/DropD/aiida-vasp/develop/setup.json",
-        "pip_url": "git+https://github.com/DropD/aiida-vasp/tree/master#egg=aiida-vasp-0.1.0"
+        "pip_url": "git+https://github.com/DropD/aiida-vasp/tree/master#egg=aiida-vasp-0.1.1",
+        "documentation_url": "http://aiida-vasp.readthedocs.io/"
     },
     "cp2k": {
         "name": "aiida-cp2k",
