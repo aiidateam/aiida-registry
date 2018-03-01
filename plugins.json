@@ -3,7 +3,7 @@
         "name": "aiida-quantumespresso",
         "entry_point": "quantumespresso",
         "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-quantumespresso#egg=aiida-quantumespresso-0.1.0",
+        "pip_url": "git+https://github.com/aiidateam/aiida-quantumespresso",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-quantumespresso",
         "documentation_url": "http://aiida-quantumespresso.readthedocs.io/"
@@ -11,7 +11,7 @@
     "wannier90": {
         "name": "aiida-wannier90",
         "entry_point": "wannier90",
-        "state": "development",
+        "state": "stable",
         "pip_url": "git+https://github.com/aiidateam/aiida-wannier90",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-wannier90",
