@@ -31,7 +31,7 @@ html_subfolder_name = 'plugins'
 
 # def escape_except_newline(string):
 #     """
-#     Custom jinja2 filter to escape a string, and afterwards replace newlines 
+#     Custom jinja2 filter to escape a string, and afterwards replace newlines
 #     with
 #     (unescaped) <br> tags.
 #     """
@@ -55,7 +55,7 @@ html_subfolder_name = 'plugins'
 
 #     # Each element is a tuple with a string and a boolean;
 #     # the second says True if it is a string to further consider, split and then
-#     # eventually escape, or False if it only contains 
+#     # eventually escape, or False if it only contains
 #     string_pieces = [(string, True)]
 
 #     for tagname in whitelist:
@@ -122,6 +122,8 @@ def get_setup_info(json_url):
 		print "  >> WARNING! Unable to parse JSON"
 		return None
 
+    json_data['package_name'] = json_data['name'].replace('-', '_')
+
 	return json_data
 
 if __name__ == "__main__":
@@ -161,7 +163,7 @@ if __name__ == "__main__":
         thisplugin_data = {}
 
         html_plugin_fname = get_html_plugin_fname(plugin_name)
-        subpage_name = os.path.join(html_subfolder_name, 
+        subpage_name = os.path.join(html_subfolder_name,
             get_html_plugin_fname(plugin_name))
         subpage_abspath = os.path.join(outdir_abs, subpage_name)
         hosted_on = get_hosted_on(plugin_data['code_home'])
