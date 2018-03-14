@@ -122,8 +122,6 @@ def get_setup_info(json_url):
 		print "  >> WARNING! Unable to parse JSON"
 		return None
 
-    json_data['package_name'] = json_data['name'].replace('-', '_')
-
 	return json_data
 
 if __name__ == "__main__":
@@ -181,6 +179,8 @@ if __name__ == "__main__":
         plugin_data['setupinfo'] = setupinfo
         plugin_data['subpage'] = subpage_name
         plugin_data['hosted_on'] = hosted_on
+        if plugin_data['setupinfo']:
+            plugin_data['setupinfo']['package_name'] = plugin_data['setupinfo']['name'].replace('-', '_')
 
         all_data['plugins'][plugin_name] = plugin_data
 
