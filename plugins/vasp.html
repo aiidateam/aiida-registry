@@ -66,7 +66,7 @@
             <strong>How to use from python</strong>: <code>import aiida-vasp</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.1.0
+            <strong>Most recent version</strong>: 0.2.1
         </p>
         <h3>Available entrypoints</h3>
         
@@ -119,14 +119,24 @@
                         aiida_vasp.data.chargedensity:ChargedensityData
                     </span></li>
                 
-                <li><code>vasp.paw</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.data.paw:PawData
-                    </span></li>
-                
                 <li><code>vasp.wavefun</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_vasp.data.wavefun:WavefunData
+                    </span></li>
+                
+                <li><code>vasp.potcar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.data.potcar:PotcarData
+                    </span></li>
+                
+                <li><code>vasp.potcar_file</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.data.potcar:PotcarFileData
+                    </span></li>
+                
+                <li><code>vasp.paw</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_vasp.data.paw:LegacyPawData
                     </span></li>
                 
                 </ul>
@@ -134,9 +144,9 @@
                 <h4>aiida.cmdline.data</h4>
                 <ul>
                 
-                <li><code>vasp.paw</code>
+                <li><code>vasp-potcar</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.commands.paw:_Paw
+                        aiida_vasp.commands.potcar:potcar
                     </span></li>
                 
                 </ul>
