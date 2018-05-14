@@ -119,7 +119,7 @@
     "castep": {
         "name": "aiida-castep",
         "entry_point": "castep",
-        "state": "registered",
+        "state": "development",
         "plugin_info": "https://gitlab.com/bz1/aiida-castep/raw/master/setup.json",
         "code_home": "https://gitlab.com/bz1/aiida-castep"
     },
