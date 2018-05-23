@@ -30,8 +30,8 @@
         "name": "aiida-vasp",
         "entry_point": "vasp",
         "state": "development",
-        "code_home": "https://github.com/DropD/aiida-vasp/tree/develop",
-        "plugin_info": "https://raw.githubusercontent.com/DropD/aiida-vasp/develop/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-vasp",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-vasp/develop/setup.json",
         "pip_url": "aiida-vasp",
         "documentation_url": "http://aiida-vasp.readthedocs.io/"
     },
