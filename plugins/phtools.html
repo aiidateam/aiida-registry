@@ -24,7 +24,7 @@
 <main>
     <div id='entrytitle'>
         <h1>
-            Details for AiiDA plugin &quot;<a href="https://github.com/ltalirz/aiida-zeopp">aiida-zeopp</a>&quot;
+            Details for AiiDA plugin &quot;<a href="https://github.com/ltalirz/aiida-phtools">aiida-phtools</a>&quot;
         </h1>
     </div>
         <p><a href="../index.html">Go back to the aiida-registry plugin summary</a></p>
@@ -36,7 +36,7 @@
         </p>
 
         <p>
-            <a href="https://github.com/ltalirz/aiida-zeopp">Go to the plugin code homepage</a> 
+            <a href="https://github.com/ltalirz/aiida-phtools">Go to the plugin code homepage</a> 
         </p>
         </div>
 
@@ -57,16 +57,16 @@
             <strong>Author(s)</strong>: Leopold Talirz
         </p>
         <p>
-            <strong>Short description</strong>: AiiDA plugin for zeo++
+            <strong>Short description</strong>: AiiDA plugin for persistence homology tools, used to analyze nanoporous materials.
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>aiida-zeopp</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-phtools</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_zeopp</code>
+            <strong>How to use from python</strong>: <code>import aiida_phtools</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.1.0
+            <strong>Most recent version</strong>: 0.1-alpha
         </p>
         <h3>Available entrypoints</h3>
         
@@ -74,9 +74,14 @@
                 <h4>aiida.calculations</h4>
                 <ul>
                 
-                <li><code>zeopp.network</code>
+                <li><code>phtools.surface</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.calculations.network:NetworkCalculation
+                        aiida_phtools.calculations.pore_surface:PoreSurfaceCalculation
+                    </span></li>
+                
+                <li><code>phtools.dmatrix</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phtools.calculations.distance_matrix:DistanceMatrixCalculation
                     </span></li>
                 
                 </ul>
@@ -84,9 +89,14 @@
                 <h4>aiida.parsers</h4>
                 <ul>
                 
-                <li><code>zeopp.network</code>
+                <li><code>phtools.surface</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.parsers.network:NetworkParser
+                        aiida_phtools.parsers.pore_surface:PoreSurfaceParser
+                    </span></li>
+                
+                <li><code>phtools.dmatrix</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phtools.parsers.distance_matrix:DistanceMatrixParser
                     </span></li>
                 
                 </ul>
@@ -94,19 +104,9 @@
                 <h4>aiida.data</h4>
                 <ul>
                 
-                <li><code>zeopp.parameters</code>
+                <li><code>phtools.surface</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.data.parameters:NetworkParameters
-                    </span></li>
-                
-                </ul>
-            
-                <h4>console_scripts</h4>
-                <ul>
-                
-                <li><code>aiida-template-factors</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.console_scripts.data_cli:cli
+                        aiida_phtools.data.pore_surface:PoreSurfaceParameters
                     </span></li>
                 
                 </ul>
