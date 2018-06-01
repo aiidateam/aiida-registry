@@ -133,9 +133,23 @@
     "zeopp": {
         "name": "aiida-zeopp",
         "entry_point": "zeopp",
-        "state": "registered",
+        "state": "development",
         "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
         "code_home": "https://github.com/ltalirz/aiida-zeopp"
+    },
+    "gudhi": {
+        "name": "aiida-gudhi",
+        "entry_point": "gudhi",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/ltalirz/aiida-gudhi/master/setup.json",
+        "code_home": "https://github.com/ltalirz/aiida-gudhi"
+    },
+    "phtools": {
+        "name": "aiida-phtools",
+        "entry_point": "phtools",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/ltalirz/aiida-phtools/master/setup.json",
+        "code_home": "https://github.com/ltalirz/aiida-phtools"
     },
     "kkr": {
         "name": "aiida-kkr",
