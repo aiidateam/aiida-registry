@@ -163,8 +163,8 @@
         "name": "aiida-gollum",
         "entry_point": "gollum",
         "state": "development",
-        "plugin_info": "https://github.com/garsua/aiida_gollum_plugin/setup.json",
-        "code_home": "http://www.physics.lancs.ac.uk/gollum/",
+        "plugin_info": "https://raw.github.com/garsua/aiida-gollum/master/setup.json",
+        "code_home": "http://github.com/garsua/aiida-gollum/",
         "documentation_url": "http://aiida-gollum.readthedocs.io/"
     }
 }
