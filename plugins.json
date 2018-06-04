@@ -121,7 +121,8 @@
         "entry_point": "castep",
         "state": "development",
         "plugin_info": "https://gitlab.com/bz1/aiida-castep/raw/master/setup.json",
-        "code_home": "https://gitlab.com/bz1/aiida-castep"
+        "code_home": "https://gitlab.com/bz1/aiida-castep",
+        "documentation_url": "http://aiida-castep.readthedocs.io/"
     },
     "raspa": {
         "name": "aiida-raspa",
