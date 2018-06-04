@@ -159,5 +159,13 @@
         "plugin_info": "https://raw.github.com/broeder-j/aiida_kkr/develop/setup.json",
         "code_home": "https://github.com/broeder-j/aiida-kkr/tree/develop",
         "documentation_url": "http://aiida-kkr.readthedocs.io/"
+    },
+    "gollum": {
+        "name": "aiida-gollum",
+        "entry_point": "gollum",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/garsua/aiida-gollum/master/setup.json",
+        "code_home": "http://github.com/garsua/aiida-gollum/",
+        "documentation_url": "http://aiida-gollum.readthedocs.io/"
     }
 }
