@@ -152,6 +152,12 @@
         "plugin_info": "https://raw.github.com/ltalirz/aiida-phtools/master/setup.json",
         "code_home": "https://github.com/ltalirz/aiida-phtools"
     },
+    "widgets": {
+        "name": "aiida-widgets",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/materialscloud-org/mc-aiida-widgets/master/setup.json",
+        "code_home": "https://github.com/ltalirz/aiida-phtools"
+    },
     "kkr": {
         "name": "aiida-kkr",
         "entry_point": "kkr",
