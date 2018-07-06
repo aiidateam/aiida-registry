@@ -173,5 +173,12 @@
         "plugin_info": "https://raw.github.com/garsua/aiida-gollum/master/setup.json",
         "code_home": "http://github.com/garsua/aiida-gollum/",
         "documentation_url": "http://aiida-gollum.readthedocs.io/"
+    },
+    "ddec": {
+        "name": "aiida-ddec",
+        "entry_point": "ddec",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/yakutovicha/aiida-ddec/master/setup.json",
+        "code_home": "http://github.com/yakutovicha/aiida-ddec"
     }
 }
