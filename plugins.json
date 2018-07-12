@@ -121,7 +121,8 @@
         "entry_point": "castep",
         "state": "development",
         "plugin_info": "https://gitlab.com/bz1/aiida-castep/raw/master/setup.json",
-        "code_home": "https://gitlab.com/bz1/aiida-castep"
+        "code_home": "https://gitlab.com/bz1/aiida-castep",
+        "documentation_url": "http://aiida-castep.readthedocs.io/"
     },
     "raspa": {
         "name": "aiida-raspa",
@@ -133,9 +134,29 @@
     "zeopp": {
         "name": "aiida-zeopp",
         "entry_point": "zeopp",
-        "state": "registered",
+        "state": "development",
         "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
         "code_home": "https://github.com/ltalirz/aiida-zeopp"
+    },
+    "gudhi": {
+        "name": "aiida-gudhi",
+        "entry_point": "gudhi",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/ltalirz/aiida-gudhi/master/setup.json",
+        "code_home": "https://github.com/ltalirz/aiida-gudhi"
+    },
+    "phtools": {
+        "name": "aiida-phtools",
+        "entry_point": "phtools",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/ltalirz/aiida-phtools/master/setup.json",
+        "code_home": "https://github.com/ltalirz/aiida-phtools"
+    },
+    "widgets": {
+        "name": "aiida-widgets",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/materialscloud-org/mc-aiida-widgets/master/setup.json",
+        "code_home": "https://github.com/ltalirz/aiida-phtools"
     },
     "kkr": {
         "name": "aiida-kkr",
@@ -144,5 +165,20 @@
         "plugin_info": "https://raw.github.com/broeder-j/aiida-kkr/develop/setup.json",
         "code_home": "https://github.com/broeder-j/aiida-kkr/tree/develop",
         "documentation_url": "http://aiida-kkr.readthedocs.io/"
+    },
+    "gollum": {
+        "name": "aiida-gollum",
+        "entry_point": "gollum",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/garsua/aiida-gollum/master/setup.json",
+        "code_home": "http://github.com/garsua/aiida-gollum/",
+        "documentation_url": "http://aiida-gollum.readthedocs.io/"
+    },
+    "ddec": {
+        "name": "aiida-ddec",
+        "entry_point": "ddec",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/yakutovicha/aiida-ddec/master/setup.json",
+        "code_home": "http://github.com/yakutovicha/aiida-ddec"
     }
 }
