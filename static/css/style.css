@@ -90,6 +90,13 @@ h2 {
     margin-bottom: 12px;
 }
 
+.summaryinfo {
+    color: #666;
+    font-size: 90%;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+
 #entrylist .authors {
     color: #666;
     font-size: 90%;
@@ -195,3 +202,6 @@ td {
     visibility: visible;
 }
 
+.entrypointraw {
+    color: #777;
+}
