@@ -28,6 +28,17 @@ static_folder = 'static'
 # Name for subfolder where HTMLs for plugins are going to be sitting
 html_subfolder_name = 'plugins'
 
+## dictionary of human-readable entrypointtypes
+entrypointtypes = {
+    'aiida.calculations': "Calculation plugins",
+    'aiida.parsers': "Calculation parsers",
+    'aiida.data': "Data types",
+    'aiida.tests': "Development test modules",
+    'console_scripts': "Command-line script utilities",
+    'aiida.workflows': "Workflows and WorkChains",
+    'aiida.tools.dbexporters.tcod_plugins': "Exporter plugins for the TCOD database",
+}
+
 
 # def escape_except_newline(string):
 #     """
@@ -181,6 +192,73 @@ if __name__ == "__main__":
         plugin_data['hosted_on'] = hosted_on
         if plugin_data['setupinfo']:
             plugin_data['setupinfo']['package_name'] = plugin_data['setupinfo']['name'].replace('-', '_')
+
+        ## add a static entrypointtypes dictionary
+        plugin_data['entrypointtypes'] = entrypointtypes
+
+        ## Summary info section
+        plugin_data['summaryinfo'] = ""
+        summary_info_pieces = []
+        if setupinfo:
+            if 'entry_points' in setupinfo:
+                ep = setupinfo['entry_points'].copy()
+                try:
+                    num = len(ep.pop('aiida.calculations'))
+                    if num > 0:
+                        summary_info_pieces.append("{} calculation{}".format(
+                            num, "" if num == 1 else "s"
+                        ))
+                except KeyError:
+                    #No specific entrypoints, pass
+                    pass
+                try:
+                    num = len(ep.pop('aiida.parsers'))
+                    if num > 0:
+                        summary_info_pieces.append("{} parser{}".format(
+                            num, "" if num == 1 else "s"
+                        ))
+                except KeyError:
+                    #No specific entrypoints, pass
+                    pass
+                
+                try:
+                    num = len(ep.pop('aiida.data'))
+                    if num > 0:
+                        summary_info_pieces.append("{} data type{}".format(
+                            num, "" if num == 1 else "s"
+                        ))
+                except KeyError:
+                    #No specific entrypoints, pass
+                    pass
+
+                try:
+                    num = len(ep.pop('aiida.workflows'))
+                    if num > 0:
+                        summary_info_pieces.append("{} workflow{}".format(
+                            num, "" if num == 1 else "s"
+                        ))
+                except KeyError:
+                    #No specific entrypoints, pass
+                    pass
+                
+                # Check remaining non-empty entrypoints
+                remaining = [ep_name for ep_name in ep if len(ep[ep_name]) > 0 ]
+                if remaining:
+                    summary_info_pieces.append('various additions (like {})'.format(
+                        ", ".join(
+                            ep_name.rpartition('.')[2].replace('_', ' ')
+                            for ep_name in remaining
+                        )
+                    ))
+        if summary_info_pieces:
+            if len(summary_info_pieces) >= 2:
+                pre = summary_info_pieces[:-1]
+                last = summary_info_pieces[-1]
+                plugin_data['summaryinfo'] = "{} and {}.".format(
+                    ", ".join(pre), last
+                )
+            else:
+                plugin_data['summaryinfo'] = "{}.".format(summary_info_pieces[0])
 
         all_data['plugins'][plugin_name] = plugin_data
 

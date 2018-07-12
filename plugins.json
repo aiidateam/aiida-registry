@@ -141,7 +141,7 @@
         "name": "aiida-kkr",
         "entry_point": "kkr",
         "state": "development",
-        "plugin_info": "https://raw.github.com/broeder-j/aiida_kkr/develop/setup.json",
+        "plugin_info": "https://raw.github.com/broeder-j/aiida-kkr/develop/setup.json",
         "code_home": "https://github.com/broeder-j/aiida-kkr/tree/develop",
         "documentation_url": "http://aiida-kkr.readthedocs.io/"
     }

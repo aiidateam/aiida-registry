@@ -21,13 +21,13 @@
         </p>
 
         <p>
-            <a href="{{ code_home }}">Go to the plugin code homepage</a> 
+            <a href="{{ code_home }}" target="_blank">Go to the plugin code homepage</a> 
         </p>
         </div>
 
         {% if documentation_url %}
             <p>
-                <strong>Documentation</strong>: <a href="{{ documentation_url }}">Go to plugin documentation</a>
+                <strong>Documentation</strong>: <a href="{{ documentation_url }}" target="_blank">Go to plugin documentation</a>
             <p>
         {% else %}
             <p>
@@ -57,10 +57,22 @@
         <p>
             <strong>Most recent version</strong>: {{ setupinfo.version }}
         </p>
+        {% if summaryinfo %}
+        <h3>Summary of the entrypoints</h3>
+        This plugin contains: {{ summaryinfo }}
+        {% endif %}
+
         <h3>Available entrypoints</h3>
         {% if setupinfo.entry_points %}
+
             {% for entrypointtype, entrypointlist in setupinfo.entry_points.iteritems() %}
-                <h4>{{ entrypointtype }}</h4>
+                <h4>
+                    {% if entrypointtype in entrypointtypes %}
+                      {{ entrypointtypes[entrypointtype]}} <span class="entrypointraw">({{ entrypointtype }})</span>
+                    {% else %}
+                      {{ entrypointtype }}
+                    {% endif %}
+                </h4>
                 <ul>
                 {% for entrypoint in entrypointlist %}
                 <li><code>{{ entrypoint.split('=')[0].strip() }}</code>
