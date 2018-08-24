@@ -17,14 +17,14 @@
         "code_home": "https://github.com/aiidateam/aiida-wannier90",
         "documentation_url": "http://aiida-wannier90.readthedocs.io/"
     },
-    "plugin-template": {
-        "name": "aiida-plugin-template",
-        "entry_point": "template",
-        "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-plugin-template#egg=aiida-plugin-template-0.1.0",
-        "plugin_info": "https://raw.github.com/aiidateam/aiida-plugin-template/master/setup.json",
-        "code_home": "https://github.com/aiidateam/aiida-plugin-template",
-        "documentation_url": "http://aiida-plugin-template.readthedocs.io/"
+    "diff": {
+        "name": "aiida-diff",
+        "entry_point": "diff",
+        "state": "development",
+        "pip_url": "git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-diff/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-diff",
+        "documentation_url": "http://aiida-diff.readthedocs.io/"
     },
     "vasp": {
         "name": "aiida-vasp",
