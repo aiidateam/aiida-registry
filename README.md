@@ -15,7 +15,7 @@ community of your ongoing work.
 1. Fork the repository
 2. Add your plugin to the `plugins.json` file, e.g. 
     ```
-    "diff": {
+    "new": {
         "name": "aiida-new",
         "entry_point": "new",
         "state": "development",
