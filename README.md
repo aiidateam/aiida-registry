@@ -1,19 +1,30 @@
-# Registry for aiida plugins
+# AiiDA plugin registry
 
-This is the official registry of AiiDA plugins, 
-available at http://aiidateam.github.io/aiida-registry.
+This repository contains the official registry of AiiDA plugins, 
+as displayed on http://aiidateam.github.io/aiida-registry.
 
-If you are starting developing a new plugin or already have one,
-please register it here.
-It is a good idea to register your plugin as soon as you have a
-clear plan of developing it, so you can "reserve" the name. 
+If you are starting to develop a new plugin
+(e.g. using the [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter))
+ or if you already have one, please register it here.
+We strongly encourage to **register at early stages of development**,
+since this both "reserves" the name of your plugin and informs the developer
+community of your ongoing work.
 
-## How To register a new plugin
+## How to register a plugin
 
 1. Fork the repository
-2. Add your plugin to the setup.json, with all needed information 
-   specified (see below for the list of keys)
-3. Create a Pull Request to this repository
+2. Add your plugin to the `plugins.json` file, e.g. 
+    ```
+    "diff": {
+        "name": "aiida-new",
+        "entry_point": "new",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-new/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-new",
+        "documentation_url": "http://aiida-new.readthedocs.io/"
+    },
+    ```
+3. Create a [Pull Request](https://github.com/aiidateam/aiida-registry/pulls) to this repository
 
 ### Valid keys for each plugin
 
