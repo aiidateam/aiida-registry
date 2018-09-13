@@ -156,7 +156,7 @@
         "name": "aiida-widgets",
         "state": "development",
         "plugin_info": "https://raw.github.com/materialscloud-org/mc-aiida-widgets/master/setup.json",
-        "code_home": "https://github.com/ltalirz/aiida-phtools"
+        "code_home": "https://github.com/materialscloud-org/mc-aiida-widgets"
     },
     "kkr": {
         "name": "aiida-kkr",
