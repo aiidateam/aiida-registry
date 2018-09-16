@@ -1,0 +1,185 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" type="image/png" href="../static/favicon.png">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    
+<main>
+    <div id='entrytitle'>
+        <h1>
+            Details for AiiDA plugin &quot;<a href="http://github.com/chrisjsewell/aiida-crystal17">aiida-crystal17</a>&quot;
+        </h1>
+    </div>
+        <p><a href="../index.html">Go back to the aiida-registry plugin summary</a></p>
+
+    <h2>General information</h2>
+    <div>
+        <p>
+            Current state: <emph>development</emph>
+        </p>
+
+        <p>
+            <a href="http://github.com/chrisjsewell/aiida-crystal17" target="_blank">Go to the plugin code homepage</a> 
+        </p>
+        </div>
+
+        
+            <p>
+                <strong>Documentation</strong>: <a href="https://aiida-crystal17.readthedocs.io" target="_blank">Go to plugin documentation</a>
+            <p>
+        
+
+    </div>
+
+    <h2>
+        Detailed information
+    </h2>
+    
+    <div id='description'>
+        <p>
+            <strong>Author(s)</strong>: Chris Sewell
+        </p>
+        <p>
+            <strong>Short description</strong>: AiiDA plugin for running the CRYSTAL17 code
+        </p>
+        <p>
+            <strong>Package name (for pip)</strong>: <code>aiida-crystal17</code>
+        </p>
+        <p>
+            <strong>How to use from python</strong>: <code>import aiida_crystal17</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: 0.3.2a1
+        </p>
+        
+        <h3>Summary of the entrypoints</h3>
+        This plugin contains: 3 calculations, 1 parser, 2 data types, 1 workflow and various additions (like data).
+        
+
+        <h3>Available entrypoints</h3>
+        
+
+            
+                <h4>
+                    
+                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.basic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_basic:CryBasicCalculation
+                    </span></li>
+                
+                <li><code>crystal17.main</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_main:CryMainCalculation
+                    </span></li>
+                
+                <li><code>crystal17.immigrant</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_main_immigrant:CryMainImmigrantCalculation
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.basic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.parsers.cry_basic:CryBasicParser
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Data types <span class="entrypointraw">(aiida.data)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.basisset</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.basis_set:BasisSetData
+                    </span></li>
+                
+                <li><code>crystal17.structsettings</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.struct_settings:StructSettingsData
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      aiida.cmdline.data
+                    
+                </h4>
+                <ul>
+                
+                <li><code>cry17-settings</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.structsettings:structsettings
+                    </span></li>
+                
+                <li><code>cry17-basis</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.basis_set:basisset
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.sym3d</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+                    </span></li>
+                
+                </ul>
+            
+        
+    </div>
+    
+
+</main>
+
+
+    
+    <footer class="footer">
+    <hr>
+      This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    </footer>    
+    
+</body>
+
+</html>
