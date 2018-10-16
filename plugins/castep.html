@@ -66,11 +66,11 @@
             <strong>How to use from python</strong>: <code>import aiida_castep</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.2.0
+            <strong>Most recent version</strong>: 0.2.1
         </p>
         
         <h3>Summary of the entrypoints</h3>
-        This plugin contains: 3 calculations, 1 parser, 2 data types and various additions (like tests, data).
+        This plugin contains: 5 calculations, 2 parsers, 2 data types and various additions (like tests, data).
         
 
         <h3>Available entrypoints</h3>
@@ -99,6 +99,16 @@
                         aiida_castep.calculations.castep:CastepSpectralCalculation
                     </span></li>
                 
+                <li><code>castep.pot1d</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.calculations.castep:Pot1dCalculation
+                    </span></li>
+                
+                <li><code>castep.ts</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.calculations.castep:CastepTSCalculation
+                    </span></li>
+                
                 </ul>
             
                 <h4>
@@ -111,6 +121,11 @@
                 <li><code>castep.castep</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_castep.parsers.castep:CastepParser
+                    </span></li>
+                
+                <li><code>castep.pot1d</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.parsers.castep:Pot1dParser
                     </span></li>
                 
                 </ul>
