@@ -62,7 +62,7 @@
         "name": "aiida-siesta",
         "entry_point": "siesta",
         "state": "development",
-        "pip_url": "git+https://github.com/vdikan/aiida_siesta_plugin/#egg=aiida-siesta-0.9.7",
+        "pip_url": "git+https://github.com/albgar/aiida_siesta_plugin",
         "plugin_info": "https://raw.github.com/albgar/aiida_siesta_plugin/master/setup.json",
         "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master",
         "documentation_url": "http://aiida-siesta-plugin.readthedocs.io/"
