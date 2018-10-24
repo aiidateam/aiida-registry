@@ -59,7 +59,13 @@
         </p>
         {% if summaryinfo %}
         <h3>Summary of the entrypoints</h3>
-        This plugin contains: {{ summaryinfo }}
+        This plugin contains: <br>
+        {% for summaryinfoelem in summaryinfo %}
+        <span class="badge"> 
+            <span class="badge-left {{summaryinfoelem.colorclass}}">{{summaryinfoelem.text}}</span>
+            <span class="badge-right">{{summaryinfoelem.count}}</span>
+        </span>
+        {% endfor %}
         {% endif %}
 
         <h3>Available entrypoints</h3>

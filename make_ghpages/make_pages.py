@@ -165,6 +165,13 @@ if __name__ == "__main__":
     html_subfolder_abs = os.path.join(outdir_abs, html_subfolder_name)
     os.mkdir(html_subfolder_abs)
 
+    calculations_summary = []
+    parsers_summary = []
+    data_summary = []
+    workflows_summary = []
+    other_summary = []
+    other_summary_names = set()
+
     for plugin_name in sorted(plugins_raw_data.keys()):
         print "  - {}".format(plugin_name)
         plugin_data = plugins_raw_data[plugin_name]
@@ -205,18 +212,24 @@ if __name__ == "__main__":
                 try:
                     num = len(ep.pop('aiida.calculations'))
                     if num > 0:
-                        summary_info_pieces.append("{} calculation{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
+                        summary_info_pieces.append({
+                            "colorclass": "blue",
+                            "text": "Calculation plugins",
+                            "count": num
+                            })
+                        calculations_summary.append(num)
                 except KeyError:
                     #No specific entrypoints, pass
                     pass
                 try:
                     num = len(ep.pop('aiida.parsers'))
                     if num > 0:
-                        summary_info_pieces.append("{} parser{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
+                        summary_info_pieces.append({
+                            "colorclass": "brown",
+                            "text": "Parsers",
+                            "count": num
+                            })
+                    parsers_summary.append(num)
                 except KeyError:
                     #No specific entrypoints, pass
                     pass
@@ -224,9 +237,12 @@ if __name__ == "__main__":
                 try:
                     num = len(ep.pop('aiida.data'))
                     if num > 0:
-                        summary_info_pieces.append("{} data type{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
+                        summary_info_pieces.append({
+                            "colorclass": "red",
+                            "text": "Data types",
+                            "count": num
+                            })
+                        data_summary.append(num)
                 except KeyError:
                     #No specific entrypoints, pass
                     pass
@@ -234,40 +250,78 @@ if __name__ == "__main__":
                 try:
                     num = len(ep.pop('aiida.workflows'))
                     if num > 0:
-                        summary_info_pieces.append("{} workflow{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
+                        summary_info_pieces.append({
+                            "colorclass": "green",
+                            "text": "Workflows",
+                            "count": num
+                            })
+                        workflows_summary.append(num)
                 except KeyError:
                     #No specific entrypoints, pass
                     pass
                 
                 # Check remaining non-empty entrypoints
                 remaining = [ep_name for ep_name in ep if len(ep[ep_name]) > 0 ]
-                if remaining:
-                    summary_info_pieces.append('various additions (like {})'.format(
-                        ", ".join(
-                            ep_name.rpartition('.')[2].replace('_', ' ')
-                            for ep_name in remaining
-                        )
-                    ))
-        if summary_info_pieces:
-            if len(summary_info_pieces) >= 2:
-                pre = summary_info_pieces[:-1]
-                last = summary_info_pieces[-1]
-                plugin_data['summaryinfo'] = "{} and {}.".format(
-                    ", ".join(pre), last
-                )
-            else:
-                plugin_data['summaryinfo'] = "{}.".format(summary_info_pieces[0])
+                remaining_count = [len(ep[ep_name]) for ep_name in ep if len(ep[ep_name]) > 0 ]
+                total_count = sum(remaining_count)
+                if total_count:
+                    other_elements = [ep_name.rpartition('.')[2].replace('_', ' ')
+                                for ep_name in remaining]
+                    summary_info_pieces.append({
+                        "colorclass": "orange",
+                        "text": 'Other ({})'.format(
+                            ", ".join(
+                                other_elements
+                            )),
+                        "count": total_count
+                        })
+                    other_summary.append(total_count)
+                    other_summary_names.update(other_elements)
+
+        plugin_data['summaryinfo'] = summary_info_pieces
 
         all_data['plugins'][plugin_name] = plugin_data
 
-        plugin_data
         plugin_html = singlepage_template.render(**plugin_data)
 
         with codecs.open(subpage_abspath, 'w', 'utf-8') as f:
             f.write(plugin_html)
         print "    - Page {} generated.".format(subpage_name)
+
+    global_summary = [
+        {
+            'name': "Calculation plugins",
+            'colorclass': 'blue',
+            'num_entries': len(calculations_summary),
+            'total_num': sum(calculations_summary)
+        },
+        {
+            'name': "Parsers",
+            'colorclass': 'brown',
+            'num_entries': len(parsers_summary),
+            'total_num': sum(parsers_summary)
+        },
+        {
+            'name': "Data types",
+            'colorclass': 'red',
+            'num_entries': len(data_summary),
+            'total_num': sum(data_summary)
+        },
+        {
+            'name': "Workflows",
+            'colorclass': 'green',
+            'num_entries': len(workflows_summary),
+            'total_num': sum(workflows_summary)
+        },        
+        {
+            'name': "Other plugins",
+            'tooltip': ", ".join(sorted(other_summary_names)),
+            'colorclass': 'orange',
+            'num_entries': len(other_summary),
+            'total_num': sum(other_summary)
+        },        
+    ]
+    all_data['globalsummary'] = global_summary
 
     print "[main index]"
     # print all_data

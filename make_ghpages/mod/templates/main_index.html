@@ -15,6 +15,19 @@
 
     <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry">[View on GitHub/register your plugin]</a> </p>
 
+    <h2>Global summary of the AiiDA plugin registry</h2>
+    <div class='globalsummary-box'>
+        <div style="display: table;">
+        {% for summaryentry in globalsummary %}
+            <span class="badge" style="display: table-row; line-height: 2;"> 
+                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left {{summaryentry.colorclass}} tooltip" style="float: none; display: inline; text-align: right; border: none">{{summaryentry.name}}{% if summaryentry.tooltip %}<span class="tooltiptext">{{ summaryentry.tooltip}}</span>{% endif %}</span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">{{ summaryentry.total_num }} plugin{% if summaryentry.total_num != 1 %}s{% endif %} in {{ summaryentry.num_entries }} entr{% if summaryentry.num_entries != 1 %}ies{%else%}y{% endif %} </span></span>
+            </span>
+        {% endfor %}
+        </div>
+
+    </div>
+
     <h2>
         Available plugins (alphabetically sorted)
     </h2>
@@ -42,7 +55,14 @@
             <p>
         {% endif %}
 	{% if plugin.summaryinfo %}
-        <p class="summaryinfo">Contains: {{ plugin.summaryinfo }}</p>
+        <p class="summaryinfo"><strong>Contains</strong>:<br> 
+            {% for summaryinfoelem in plugin.summaryinfo %}
+            <span class="badge"> 
+                <span class="badge-left {{summaryinfoelem.colorclass}}">{{summaryinfoelem.text}}</span>
+                <span class="badge-right">{{summaryinfoelem.count}}</span>
+            </span>
+            {% endfor %}
+        </p>
 	{% endif %}
         <p class='details'><a href="{{ plugin.subpage }}">Show plugin details</a></p>
         </div>
