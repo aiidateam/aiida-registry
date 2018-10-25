@@ -7,7 +7,7 @@ import re
 import shutil
 import sys
 from urlparse import urlparse
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 
 ## Requires jinja2 >= 2.9
 import jinja2
@@ -28,17 +28,51 @@ static_folder = 'static'
 # Name for subfolder where HTMLs for plugins are going to be sitting
 html_subfolder_name = 'plugins'
 
-## dictionary of human-readable entrypointtypes
-entrypointtypes = {
-    'aiida.calculations': "Calculation plugins",
-    'aiida.parsers': "Calculation parsers",
-    'aiida.data': "Data types",
-    'aiida.tests': "Development test modules",
-    'console_scripts': "Command-line script utilities",
-    'aiida.workflows': "Workflows and WorkChains",
-    'aiida.tools.dbexporters.tcod_plugins': "Exporter plugins for the TCOD database",
+# These are the main entrypoints, the other will fall under 'other'
+main_entrypoints = ['aiida.calculations', 'aiida.parsers', 'aiida.data', 'aiida.workflows']
+# Color class of the 'other' category
+othercolorclass = 'orange'
+
+entrypoint_metainfo = {
+    'aiida.calculations': {
+        'shortname': "Calculations",
+        'longname': "Calculation plugins",
+        'colorclass': 'blue'
+    },
+    'aiida.parsers': {
+        'shortname': "Parsers",
+        'longname': "Calculation parsers",
+        'colorclass': 'brown',
+    },
+    'aiida.data': {
+        'shortname': "Data",
+        'longname': "Data types",
+        'colorclass': 'red',
+    },
+    'aiida.workflows': {
+        'shortname': "Workflows",
+        'longname': "Workflows and WorkChains",
+        'colorclass': 'green'
+    },
+    'aiida.tests': {
+        'shortname': "Tests",
+        'longname': "Development test modules",
+        'colorclass': othercolorclass,
+    },
+    'console_scripts': {
+        'shortname': "Console scripts",
+        'longname': "Command-line script utilities",
+        'colorclass': othercolorclass,
+    },
+    'aiida.tools.dbexporters.tcod_plugins': {
+        'shortname': "TCOD plugins",
+        'longname':  "Exporter plugins for the TCOD database",
+        'colorclass': othercolorclass
+    },
 }
 
+## dictionary of human-readable entrypointtypes
+entrypointtypes = {k: v['longname'] for k, v in entrypoint_metainfo.items()}
 
 # def escape_except_newline(string):
 #     """
@@ -165,6 +199,14 @@ if __name__ == "__main__":
     html_subfolder_abs = os.path.join(outdir_abs, html_subfolder_name)
     os.mkdir(html_subfolder_abs)
 
+    summaries = defaultdict(list)
+#    calculations_summary = []
+#    parsers_summary = []
+#    data_summary = []
+#    workflows_summary = []
+    other_summary = []
+    other_summary_names = set()
+
     for plugin_name in sorted(plugins_raw_data.keys()):
         print "  - {}".format(plugin_name)
         plugin_data = plugins_raw_data[plugin_name]
@@ -202,72 +244,154 @@ if __name__ == "__main__":
         if setupinfo:
             if 'entry_points' in setupinfo:
                 ep = setupinfo['entry_points'].copy()
-                try:
-                    num = len(ep.pop('aiida.calculations'))
-                    if num > 0:
-                        summary_info_pieces.append("{} calculation{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
-                except KeyError:
-                    #No specific entrypoints, pass
-                    pass
-                try:
-                    num = len(ep.pop('aiida.parsers'))
-                    if num > 0:
-                        summary_info_pieces.append("{} parser{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
-                except KeyError:
-                    #No specific entrypoints, pass
-                    pass
-                
-                try:
-                    num = len(ep.pop('aiida.data'))
-                    if num > 0:
-                        summary_info_pieces.append("{} data type{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
-                except KeyError:
-                    #No specific entrypoints, pass
-                    pass
 
-                try:
-                    num = len(ep.pop('aiida.workflows'))
-                    if num > 0:
-                        summary_info_pieces.append("{} workflow{}".format(
-                            num, "" if num == 1 else "s"
-                        ))
-                except KeyError:
-                    #No specific entrypoints, pass
-                    pass
+                for entrypoint_name in main_entrypoints:
+                    try:
+                        num = len(ep.pop(entrypoint_name))
+                        if num > 0:
+                            summary_info_pieces.append({
+                                "colorclass": entrypoint_metainfo[entrypoint_name]['colorclass'],
+                                "text": entrypoint_metainfo[entrypoint_name]['shortname'],
+                                "count": num
+                                })
+                            summaries[entrypoint_name].append(num)
+                    except KeyError:
+                        #No specific entrypoints, pass
+                        pass
+
+
+                # try:
+                #     num = len(ep.pop('aiida.calculations'))
+                #     if num > 0:
+                #         summary_info_pieces.append({
+                #             "colorclass": "blue",
+                #             "text": "Calculations",
+                #             "count": num
+                #             })
+                #         calculations_summary.append(num)
+                # except KeyError:
+                #     #No specific entrypoints, pass
+                #     pass
+                # try:
+                #     num = len(ep.pop('aiida.parsers'))
+                #     if num > 0:
+                #         summary_info_pieces.append({
+                #             "colorclass": "brown",
+                #             "text": "Parsers",
+                #             "count": num
+                #             })
+                #     parsers_summary.append(num)
+                # except KeyError:
+                #     #No specific entrypoints, pass
+                #     pass
+                
+                # try:
+                #     num = len(ep.pop('aiida.data'))
+                #     if num > 0:
+                #         summary_info_pieces.append({
+                #             "colorclass": "red",
+                #             "text": "Data",
+                #             "count": num
+                #             })
+                #         data_summary.append(num)
+                # except KeyError:
+                #     #No specific entrypoints, pass
+                #     pass
+
+                # try:
+                #     num = len(ep.pop('aiida.workflows'))
+                #     if num > 0:
+                #         summary_info_pieces.append({
+                #             "colorclass": "green",
+                #             "text": "Workflows",
+                #             "count": num
+                #             })
+                #         workflows_summary.append(num)
+                # except KeyError:
+                #     #No specific entrypoints, pass
+                #     pass
                 
                 # Check remaining non-empty entrypoints
                 remaining = [ep_name for ep_name in ep if len(ep[ep_name]) > 0 ]
-                if remaining:
-                    summary_info_pieces.append('various additions (like {})'.format(
-                        ", ".join(
-                            ep_name.rpartition('.')[2].replace('_', ' ')
-                            for ep_name in remaining
-                        )
-                    ))
-        if summary_info_pieces:
-            if len(summary_info_pieces) >= 2:
-                pre = summary_info_pieces[:-1]
-                last = summary_info_pieces[-1]
-                plugin_data['summaryinfo'] = "{} and {}.".format(
-                    ", ".join(pre), last
-                )
-            else:
-                plugin_data['summaryinfo'] = "{}.".format(summary_info_pieces[0])
+                remaining_count = [len(ep[ep_name]) for ep_name in ep if len(ep[ep_name]) > 0 ]
+                total_count = sum(remaining_count)
+                if total_count:
+                    other_elements = []
+                    for ep_name in remaining:
+                        try:
+                            other_elements.append(entrypoint_metainfo[ep_name]['shortname'])
+                        except KeyError:
+                            for strip_prefix in ['aiida.']:
+                                if ep_name.startswith(strip_prefix):
+                                    ep_name = ep_name[len(strip_prefix):]
+                                    break
+                            other_elements.append(ep_name.replace('_', ' ').replace('.', ' ').capitalize())
+
+                    summary_info_pieces.append({
+                        "colorclass": othercolorclass,
+                        "text": 'Other ({})'.format(
+                            ", ".join(
+                                other_elements
+                            )),
+                        "count": total_count
+                        })
+                    other_summary.append(total_count)
+                    other_summary_names.update(other_elements)
+
+        plugin_data['summaryinfo'] = summary_info_pieces
 
         all_data['plugins'][plugin_name] = plugin_data
 
-        plugin_data
         plugin_html = singlepage_template.render(**plugin_data)
 
         with codecs.open(subpage_abspath, 'w', 'utf-8') as f:
             f.write(plugin_html)
         print "    - Page {} generated.".format(subpage_name)
+
+    global_summary = []
+    for entrypoint_name in main_entrypoints:
+        global_summary.append(
+            {
+                'name': entrypoint_metainfo[entrypoint_name]['shortname'],
+                'colorclass': entrypoint_metainfo[entrypoint_name]['colorclass'],
+                'num_entries': len(summaries[entrypoint_name]),
+                'total_num': sum(summaries[entrypoint_name]),
+            })
+
+    # {
+    #     'name': "Calculations",
+    #     'colorclass': 'blue',
+    #     'num_entries': len(calculations_summary),
+    #     'total_num': sum(calculations_summary)
+    # },
+    # {
+    #     'name': "Parsers",
+    #     'colorclass': 'brown',
+    #     'num_entries': len(parsers_summary),
+    #     'total_num': sum(parsers_summary)
+    # },
+    # {
+    #     'name': "Data",
+    #     'colorclass': 'red',
+    #     'num_entries': len(data_summary),
+    #     'total_num': sum(data_summary)
+    # },
+    # {
+    #     'name': "Workflows",
+    #     'colorclass': 'green',
+    #     'num_entries': len(workflows_summary),
+    #     'total_num': sum(workflows_summary)
+    # }, 
+    global_summary.append(       
+        {
+            'name': "Other",
+            'tooltip': ", ".join(sorted(other_summary_names)),
+            'colorclass': othercolorclass,
+            'num_entries': len(other_summary),
+            'total_num': sum(other_summary)
+        })      
+
+    all_data['globalsummary'] = global_summary
 
     print "[main index]"
     # print all_data
