@@ -20,24 +20,60 @@
 </head>
 
 <body>
-    
-<main>
-    <div id='entrytitle'>
+     
+    <header id='entrytitle' style="background-color: #000; margin: 0; padding: 5px 20px 25px 20px;">
         <h1>
             <a href="http://www.aiida.net/">AiiDA</a> registry of plugins
         </h1>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your plugin]</a> </p>
+      </header>
+
+    
+  <div style="max-width: 1200px; margin: auto;">
+    
+<main>
+    <h1>Global summary of the AiiDA plugin registry</h1>
+    <h2 style="padding-top: 0px">Total number of entries: 24</h2>
+    <div class='globalsummary-box'>
+        <div style="display: table;">
+            
+            <span class="badge" style="display: table-row; line-height: 2;"> 
+                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left blue tooltip" style="float: none; display: inline; text-align: right; border: none">Calculations</span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">53 plugins in 22 entries </span></span>
+            </span>
+        
+            <span class="badge" style="display: table-row; line-height: 2;"> 
+                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left brown tooltip" style="float: none; display: inline; text-align: right; border: none">Parsers</span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">48 plugins in 22 entries </span></span>
+            </span>
+        
+            <span class="badge" style="display: table-row; line-height: 2;"> 
+                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left red tooltip" style="float: none; display: inline; text-align: right; border: none">Data</span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">24 plugins in 12 entries </span></span>
+            </span>
+        
+            <span class="badge" style="display: table-row; line-height: 2;"> 
+                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left green tooltip" style="float: none; display: inline; text-align: right; border: none">Workflows</span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">48 plugins in 9 entries </span></span>
+            </span>
+        
+            <span class="badge" style="display: table-row; line-height: 2;"> 
+                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left orange tooltip" style="float: none; display: inline; text-align: right; border: none">Other<span class="tooltiptext">Cmdline data, Console scripts, TCOD plugins, Tests</span></span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">40 plugins in 11 entries </span></span>
+            </span>
+        
+        </div>
+
     </div>
 
-    <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry">[View on GitHub/register your plugin]</a> </p>
-
-    <h2>
+    <h1>
         Available plugins (alphabetically sorted)
-    </h2>
+    </h1>
 
     <div id='entrylist'>
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/ase.html">ase: aiida-ase package</a></h3>
+        <h2><a href="plugins/ase.html">ase: aiida-ase package</a></h2>
         
         <p class=description>The official AiiDA plugin for ASE</p>
         
@@ -53,7 +89,19 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation and 1 parser.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/ase.html">Show plugin details</a></p>
         </div>
@@ -61,7 +109,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/castep.html">castep: aiida-castep package</a></h3>
+        <h2><a href="plugins/castep.html">castep: aiida-castep package</a></h2>
         
         <p class=description>AiiDA plugin for CASTEP</p>
         
@@ -77,7 +125,29 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 5 calculations, 2 parsers, 2 data types and various additions (like tests, data).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">5</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Tests, Cmdline data)</span>
+                <span class="badge-right">6</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/castep.html">Show plugin details</a></p>
         </div>
@@ -85,7 +155,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/codtools.html">codtools: aiida-codtools package</a></h3>
+        <h2><a href="plugins/codtools.html">codtools: aiida-codtools package</a></h2>
         
         <p class=description>The official AiiDA plugin for COD tools</p>
         
@@ -101,7 +171,19 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 6 calculations and 6 parsers.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">6</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">6</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/codtools.html">Show plugin details</a></p>
         </div>
@@ -109,7 +191,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/cp2k.html">cp2k: aiida-cp2k package</a></h3>
+        <h2><a href="plugins/cp2k.html">cp2k: aiida-cp2k package</a></h2>
         
         <p class=description>The CP2K plugin for the AiiDA workflow and provenance engine.</p>
         
@@ -125,7 +207,19 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation and 1 parser.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/cp2k.html">Show plugin details</a></p>
         </div>
@@ -133,7 +227,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/crystal17.html">crystal17: aiida-crystal17 package</a></h3>
+        <h2><a href="plugins/crystal17.html">crystal17: aiida-crystal17 package</a></h2>
         
         <p class=description>AiiDA plugin for running the CRYSTAL17 code</p>
         
@@ -149,7 +243,34 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 3 calculations, 1 parser, 2 data types, 1 workflow and various additions (like data).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">3</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Cmdline data)</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/crystal17.html">Show plugin details</a></p>
         </div>
@@ -157,7 +278,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/ddec.html">ddec: aiida-ddec package</a></h3>
+        <h2><a href="plugins/ddec.html">ddec: aiida-ddec package</a></h2>
         
         <p class=description>AiiDA plugin DDEC code</p>
         
@@ -173,7 +294,19 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation and 1 parser.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/ddec.html">Show plugin details</a></p>
         </div>
@@ -181,7 +314,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/diff.html">diff: aiida-diff package</a></h3>
+        <h2><a href="plugins/diff.html">diff: aiida-diff package</a></h2>
         
         <p class=description>AiiDA demo plugin that computes the difference between two files.</p>
         
@@ -197,7 +330,29 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation, 1 parser, 1 data type and various additions (like console scripts, data).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Console scripts, Cmdline data)</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/diff.html">Show plugin details</a></p>
         </div>
@@ -205,7 +360,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/fleur.html">fleur: aiida-fleur package</a></h3>
+        <h2><a href="plugins/fleur.html">fleur: aiida-fleur package</a></h2>
         
         <p class=description>Python FLEUR simulation package containing an AiiDA Plugin for running the FLEUR-code and its input generator. Plus some workflows and utility</p>
         
@@ -221,7 +376,29 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 2 calculations, 2 parsers, 2 data types and 9 workflows.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">9</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/fleur.html">Show plugin details</a></p>
         </div>
@@ -229,7 +406,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/gollum.html">gollum: aiida-gollum package</a></h3>
+        <h2><a href="plugins/gollum.html">gollum: aiida-gollum package</a></h2>
         
         <p class=description>A plugin for Gollum functionality within AiiDA framework.</p>
         
@@ -245,7 +422,19 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation and 1 parser.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/gollum.html">Show plugin details</a></p>
         </div>
@@ -253,7 +442,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/gudhi.html">gudhi: aiida-gudhi package</a></h3>
+        <h2><a href="plugins/gudhi.html">gudhi: aiida-gudhi package</a></h2>
         
         <p class=description>AiiDA plugin for the [GUDHI](http://gudhi.gforge.inria.fr/) library for topological data analysis.</p>
         
@@ -269,7 +458,24 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation, 1 parser and 1 data type.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/gudhi.html">Show plugin details</a></p>
         </div>
@@ -277,7 +483,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/kkr.html">kkr: aiida-kkr package</a></h3>
+        <h2><a href="plugins/kkr.html">kkr: aiida-kkr package</a></h2>
         
         <p class=description>AiiDA plugin for the KKR code</p>
         
@@ -293,7 +499,34 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 4 calculations, 4 parsers, 1 data type, 8 workflows and various additions (like console scripts).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">4</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">4</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">8</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Console scripts)</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/kkr.html">Show plugin details</a></p>
         </div>
@@ -301,7 +534,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/lammps.html">lammps: aiida-lammps package</a></h3>
+        <h2><a href="plugins/lammps.html">lammps: aiida-lammps package</a></h2>
         
         <p class="currentstate">Current state: development</p>
         <p><a href="https://github.com/abelcarreras/aiida-lammps" target="_blank">Plugin code homepage</a> 
@@ -321,7 +554,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/nwchem.html">nwchem: aiida-nwchem package</a></h3>
+        <h2><a href="plugins/nwchem.html">nwchem: aiida-nwchem package</a></h2>
         
         <p class=description>The official AiiDA plugin for NWChem</p>
         
@@ -337,7 +570,24 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 2 calculations, 3 parsers and various additions (like tcod plugins, tests).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">3</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (TCOD plugins, Tests)</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/nwchem.html">Show plugin details</a></p>
         </div>
@@ -345,7 +595,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/phonopy.html">phonopy: aiida-phonopy package</a></h3>
+        <h2><a href="plugins/phonopy.html">phonopy: aiida-phonopy package</a></h2>
         
         <p class=description>AiiDA plugin for running phonon calculations using phonopy</p>
         
@@ -361,7 +611,29 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 2 calculations, 2 parsers, 5 data types and 7 workflows.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">5</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">7</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/phonopy.html">Show plugin details</a></p>
         </div>
@@ -369,7 +641,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/phtools.html">phtools: aiida-phtools package</a></h3>
+        <h2><a href="plugins/phtools.html">phtools: aiida-phtools package</a></h2>
         
         <p class=description>AiiDA plugin for persistence homology tools, used to analyze nanoporous materials.</p>
         
@@ -385,7 +657,24 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 2 calculations, 2 parsers and 1 data type.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/phtools.html">Show plugin details</a></p>
         </div>
@@ -393,7 +682,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/quantumespresso.html">quantumespresso: aiida-quantumespresso package</a></h3>
+        <h2><a href="plugins/quantumespresso.html">quantumespresso: aiida-quantumespresso package</a></h2>
         
         <p class=description>The official AiiDA plugin for Quantum ESPRESSO</p>
         
@@ -409,7 +698,34 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 12 calculations, 10 parsers, 1 data type, 7 workflows and various additions (like tests, console scripts, tcod plugins).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">12</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">10</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">7</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Tests, Console scripts, TCOD plugins)</span>
+                <span class="badge-right">15</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/quantumespresso.html">Show plugin details</a></p>
         </div>
@@ -417,7 +733,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/quantumespresso-hp.html">quantumespresso-hp: aiida-quantumespresso-hp package</a></h3>
+        <h2><a href="plugins/quantumespresso-hp.html">quantumespresso-hp: aiida-quantumespresso-hp package</a></h2>
         
         <p class=description>The AiiDA plugin for the Hubbard module of Quantum ESPRESSO</p>
         
@@ -433,7 +749,29 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation, 1 parser, 4 workflows and various additions (like console scripts).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">4</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Console scripts)</span>
+                <span class="badge-right">4</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/quantumespresso-hp.html">Show plugin details</a></p>
         </div>
@@ -441,7 +779,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/raspa.html">raspa: aiida-raspa package</a></h3>
+        <h2><a href="plugins/raspa.html">raspa: aiida-raspa package</a></h2>
         
         <p class=description>AiiDA plugin for RASPA code</p>
         
@@ -457,7 +795,24 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation, 1 parser and 1 workflow.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/raspa.html">Show plugin details</a></p>
         </div>
@@ -465,7 +820,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/siesta.html">siesta: aiida-siesta package</a></h3>
+        <h2><a href="plugins/siesta.html">siesta: aiida-siesta package</a></h2>
         
         <p class=description>A plugin for Siesta&#39;s basic functionality within AiiDA framework.</p>
         
@@ -481,7 +836,29 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 2 calculations, 2 parsers, 1 data type and various additions (like data).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Cmdline data)</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/siesta.html">Show plugin details</a></p>
         </div>
@@ -489,7 +866,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/vasp.html">vasp: aiida-vasp package</a></h3>
+        <h2><a href="plugins/vasp.html">vasp: aiida-vasp package</a></h2>
         
         <p class=description>AiiDA Plugin for running VASP calculations.</p>
         
@@ -505,7 +882,34 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 2 calculations, 3 parsers, 6 data types, 8 workflows and various additions (like console scripts, data).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">3</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">6</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">10</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Console scripts, Cmdline data)</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/vasp.html">Show plugin details</a></p>
         </div>
@@ -513,7 +917,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/wannier90.html">wannier90: aiida-wannier90 package</a></h3>
+        <h2><a href="plugins/wannier90.html">wannier90: aiida-wannier90 package</a></h2>
         
         <p class=description>AiiDA Plugin for Wannier90</p>
         
@@ -529,7 +933,19 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation and 1 parser.</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/wannier90.html">Show plugin details</a></p>
         </div>
@@ -537,7 +953,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/widgets.html">widgets: aiida-widgets package</a></h3>
+        <h2><a href="plugins/widgets.html">widgets: aiida-widgets package</a></h2>
         
         <p class=description>AiiDA Lab widgets for the [AiiDA Lab](aiidalab.materialscloud.org).</p>
         
@@ -559,7 +975,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/yambo.html">yambo: yambo-aiida package</a></h3>
+        <h2><a href="plugins/yambo.html">yambo: yambo-aiida package</a></h2>
         
         <p class=description>YAMBO code Plugin for AiiDA</p>
         
@@ -575,7 +991,24 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation, 1 parser and various additions (like console scripts).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Console scripts)</span>
+                <span class="badge-right">4</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/yambo.html">Show plugin details</a></p>
         </div>
@@ -583,7 +1016,7 @@
         
         
         <div class='submenu-entry'>
-        <h3><a href="plugins/zeopp.html">zeopp: aiida-zeopp package</a></h3>
+        <h2><a href="plugins/zeopp.html">zeopp: aiida-zeopp package</a></h2>
         
         <p class=description>AiiDA plugin for zeo++</p>
         
@@ -599,7 +1032,34 @@
             <p>
         
 	
-        <p class="summaryinfo">Contains: 1 calculation, 1 parser, 1 data type and various additions (like console scripts).</p>
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Console scripts)</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="plugins/zeopp.html">Show plugin details</a></p>
         </div>
@@ -610,10 +1070,19 @@
 
 </main>
 
+  </div>
     
     <footer class="footer">
     <hr>
       This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    <br>
+    This work is supported by the <a href="http://nccr-marvel.ch" target="_blank">MARVEL National Centre for Competency in Research</a> 
+    funded by the <a href="http://www.snf.ch/en" target="_blank">Swiss National Science Foundation</a>, as well as by the 
+    <a href="http://www.max-centre.eu" target="_blank">MaX European Centre of Excellence</a> 
+    funded bythe Horizon 2020 EINFRA-5 program, Grant No. 676598.<br>
+    
+    <div style="text-align: center;"><img src="static/img/MARVEL.png" height="70px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="static/img/MaX.png" height="70px"></div>
+    
     </footer>    
     
 </body>

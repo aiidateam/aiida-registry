@@ -20,14 +20,22 @@
 </head>
 
 <body>
+     
+    <header id='entrytitle' style="background-color: #000; margin: 0; padding: 5px 20px 25px 20px;">
+        <h1>
+            <a href="http://www.aiida.net/">AiiDA</a> registry of plugins
+        </h1>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your plugin]</a> </p>
+      </header>
+
+    
+  <div style="max-width: 1200px; margin: auto;">
     
 <main>
-    <div id='entrytitle'>
-        <h1>
+        <h1 class="plugin-header">
             Details for AiiDA plugin &quot;<a href="http://github.com/garsua/aiida-gollum/">aiida-gollum</a>&quot;
         </h1>
-    </div>
-        <p><a href="../index.html">Go back to the aiida-registry plugin summary</a></p>
+        <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
     <h2>General information</h2>
     <div>
@@ -38,15 +46,14 @@
         <p>
             <a href="http://github.com/garsua/aiida-gollum/" target="_blank">Go to the plugin code homepage</a> 
         </p>
-        </div>
-
-        
-            <p>
-                <strong>Documentation</strong>: <a href="http://aiida-gollum.readthedocs.io/" target="_blank">Go to plugin documentation</a>
-            <p>
-        
-
     </div>
+
+    
+        <p>
+            <strong>Documentation</strong>: <a href="http://aiida-gollum.readthedocs.io/" target="_blank">Go to plugin documentation</a>
+        <p>
+    
+
 
     <h2>
         Detailed information
@@ -70,7 +77,18 @@
         </p>
         
         <h3>Summary of the entrypoints</h3>
-        This plugin contains: 1 calculation and 1 parser.
+        This plugin contains: <br>
+        
+        <span class="badge"> 
+            <span class="badge-left blue">Calculations</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">1</span>
+        </span>
+        
         
 
         <h3>Available entrypoints</h3>
@@ -112,10 +130,19 @@
 </main>
 
 
+  </div>
     
     <footer class="footer">
     <hr>
       This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    <br>
+    This work is supported by the <a href="http://nccr-marvel.ch" target="_blank">MARVEL National Centre for Competency in Research</a> 
+    funded by the <a href="http://www.snf.ch/en" target="_blank">Swiss National Science Foundation</a>, as well as by the 
+    <a href="http://www.max-centre.eu" target="_blank">MaX European Centre of Excellence</a> 
+    funded bythe Horizon 2020 EINFRA-5 program, Grant No. 676598.<br>
+    
+<div style="text-align: center;"><img src="../static/img/MARVEL.png" height="70px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="../static/img/MaX.png" height="70px"></div>
+
     </footer>    
     
 </body>
