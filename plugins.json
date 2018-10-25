@@ -114,6 +114,7 @@
         "name": "aiida-lammps",
         "entry_point": "lammps",
         "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-lammps/master/setup.json",
         "code_home": "https://github.com/abelcarreras/aiida-lammps"
     },
     "castep": {
