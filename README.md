@@ -1,7 +1,12 @@
 # AiiDA plugin registry
 
-This repository contains the official registry of AiiDA plugins, 
-as displayed on http://aiidateam.github.io/aiida-registry.
+This repository contains the source of the official registry of AiiDA plugins.
+
+To visit the registry, pleas click on the button below.
+
+<div class="bigGreenButton"> <a href="http://aiidateam.github.io/aiida-registry" style="display: inline-block; font-family: Verdana, sans-serif; font-size:18px; background-color:#60a74a; color:white; padding-bottom:10px; padding-top:10px; padding-left:25px; padding-right:25px; text-decoration:none; height:auto; width:auto; text-align:center; border-radius: 6px;">Go to the AiiDA plugin registry!<br />
+<span style="font-size: 80%; text-color='#9f9';">http://aiidateam.github.io/aiida-registry</span>
+</a></div>
 
 If you are starting to develop a new plugin
 (e.g. using the [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter))
