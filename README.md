@@ -1,7 +1,12 @@
 # AiiDA plugin registry
 
-This repository contains the official registry of AiiDA plugins, 
-as displayed on http://aiidateam.github.io/aiida-registry.
+This repository contains the **source** of the official registry of AiiDA plugins.
+
+<p align="center">
+ <a href="http://aiidateam.github.io/aiida-registry" rel="Go to the AiiDA plugin registry">
+  <img src="make_ghpages/static/gotobutton.svg">
+ </a>
+ </p>
 
 If you are starting to develop a new plugin
 (e.g. using the [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter))
