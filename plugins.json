@@ -53,9 +53,9 @@
         "name": "aiida-fleur",
         "entry_point": "fleur",
         "state": "development",
-        "pip_url": "git+https://github.com/broeder-j/aiida_fleur/#egg=aiida-fleur-0.5.0",
-        "plugin_info": "https://raw.github.com/broeder-j/aiida_fleur/develop/setup.json",
-        "code_home": "https://github.com/broeder-j/aiida-fleur/tree/develop",
+        "pip_url": "git+https://github.com/juDFTteam/aiida_fleur/#egg=aiida-fleur-0.5.0",
+        "plugin_info": "https://raw.github.com/juDFTteam/aiida_fleur/develop/setup.json",
+        "code_home": "https://github.com/juDFTteam/aiida-fleur/tree/develop",
         "documentation_url": "http://aiida-fleur.readthedocs.io/"
     },
     "siesta": {
@@ -163,8 +163,8 @@
         "name": "aiida-kkr",
         "entry_point": "kkr",
         "state": "development",
-        "plugin_info": "https://raw.github.com/broeder-j/aiida-kkr/develop/setup.json",
-        "code_home": "https://github.com/broeder-j/aiida-kkr/tree/develop",
+        "plugin_info": "https://raw.github.com/JuDFTteam/aiida-kkr/develop/setup.json",
+        "code_home": "https://github.com/JuDFTteam/aiida-kkr/tree/develop",
         "documentation_url": "http://aiida-kkr.readthedocs.io/"
     },
     "gollum": {
