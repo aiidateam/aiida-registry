@@ -190,10 +190,16 @@
         "documentation_url": "https://aiida-crystal17.readthedocs.io",
         "code_home": "http://github.com/chrisjsewell/aiida-crystal17"
     },
-   "z2pack": {
+    "z2pack": {
         "name":"aiida-z2pack",
         "entry_point":"z2pack",
         "state":"registered",
         "code_home":"http://github.com/AntimoMarrazzo/aiida-z2pack"
+    },
+    "spex": {
+        "name": "aiida-spex",
+        "entry_point": "spex",
+        "state": "registered",
+        "code_home": "http://github.com/JuDFTteam/aiida-spex"
     }
 }
