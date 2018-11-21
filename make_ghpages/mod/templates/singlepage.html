@@ -7,12 +7,10 @@
 
 {% block body %}
 <main>
-    <div id='entrytitle'>
-        <h1>
+        <h1 class="plugin-header">
             Details for AiiDA plugin &quot;<a href="{{code_home}}">{{name}}</a>&quot;
         </h1>
-    </div>
-        <p><a href="../index.html">Go back to the aiida-registry plugin summary</a></p>
+        <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
     <h2>General information</h2>
     <div>
@@ -23,19 +21,18 @@
         <p>
             <a href="{{ code_home }}" target="_blank">Go to the plugin code homepage</a> 
         </p>
-        </div>
-
-        {% if documentation_url %}
-            <p>
-                <strong>Documentation</strong>: <a href="{{ documentation_url }}" target="_blank">Go to plugin documentation</a>
-            <p>
-        {% else %}
-            <p>
-                <strong>Documentation</strong>: Documentation not provided by the plugin author
-            <p>
-        {% endif %}
-
     </div>
+
+    {% if documentation_url %}
+        <p>
+            <strong>Documentation</strong>: <a href="{{ documentation_url }}" target="_blank">Go to plugin documentation</a>
+        <p>
+    {% else %}
+        <p>
+            <strong>Documentation</strong>: Documentation not provided by the plugin author
+        <p>
+    {% endif %}
+
 
     <h2>
         Detailed information
@@ -59,7 +56,13 @@
         </p>
         {% if summaryinfo %}
         <h3>Summary of the entrypoints</h3>
-        This plugin contains: {{ summaryinfo }}
+        This plugin contains: <br>
+        {% for summaryinfoelem in summaryinfo %}
+        <span class="badge"> 
+            <span class="badge-left {{summaryinfoelem.colorclass}}">{{summaryinfoelem.text}}</span>
+            <span class="badge-right">{{summaryinfoelem.count}}</span>
+        </span>
+        {% endfor %}
         {% endif %}
 
         <h3>Available entrypoints</h3>
@@ -99,3 +102,8 @@
 </main>
 
 {% endblock body %}
+
+{# Needed because of the different relative path #}
+{% block footer_images %}
+<div style="text-align: center;"><img src="../static/img/MARVEL.png" height="70px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="../static/img/MaX.png" height="70px"></div>
+{% endblock footer_images %}
