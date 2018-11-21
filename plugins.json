@@ -180,5 +180,12 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/yakutovicha/aiida-ddec/master/setup.json",
         "code_home": "http://github.com/yakutovicha/aiida-ddec"
+    },
+    "qeq": {
+        "name": "aiida-qeq",
+        "entry_point": "qeq",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/ltalirz/aiida-qeq/master/setup.json",
+        "code_home": "http://github.com/ltalirz/aiida-qeq"
     }
 }
