@@ -33,7 +33,7 @@
     
 <main>
         <h1 class="plugin-header">
-            Details for AiiDA plugin &quot;<a href="https://github.com/ltalirz/aiida-zeopp">aiida-zeopp</a>&quot;
+            Details for AiiDA plugin &quot;<a href="http://github.com/ltalirz/aiida-qeq">aiida-qeq</a>&quot;
         </h1>
         <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
@@ -44,7 +44,7 @@
         </p>
 
         <p>
-            <a href="https://github.com/ltalirz/aiida-zeopp" target="_blank">Go to the plugin code homepage</a> 
+            <a href="http://github.com/ltalirz/aiida-qeq" target="_blank">Go to the plugin code homepage</a> 
         </p>
     </div>
 
@@ -61,19 +61,19 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Leopold Talirz
+            <strong>Author(s)</strong>: Leopold Talirz, Daniele Ongari
         </p>
         <p>
-            <strong>Short description</strong>: AiiDA plugin for zeo++
+            <strong>Short description</strong>: AiiDA plugin for computing electronic charges on atoms using equilibration-type models (QEq, EQEq, ...).
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>aiida-zeopp</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-qeq</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_zeopp</code>
+            <strong>How to use from python</strong>: <code>import aiida_qeq</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.2.0
+            <strong>Most recent version</strong>: 0.1.0a0
         </p>
         
         <h3>Summary of the entrypoints</h3>
@@ -81,27 +81,17 @@
         
         <span class="badge"> 
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">2</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">2</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left red">Data</span>
-            <span class="badge-right">1</span>
-        </span>
-        
-        <span class="badge"> 
-            <span class="badge-left green">Workflows</span>
-            <span class="badge-right">1</span>
-        </span>
-        
-        <span class="badge"> 
-            <span class="badge-left orange">Other (Console scripts)</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">2</span>
         </span>
         
         
@@ -117,9 +107,14 @@
                 </h4>
                 <ul>
                 
-                <li><code>zeopp.network</code>
+                <li><code>qeq.eqeq</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.calculations.network:NetworkCalculation
+                        aiida_qeq.calculations.eqeq:EQeqCalculation
+                    </span></li>
+                
+                <li><code>qeq.qeq</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_qeq.calculations.qeq:QeqCalculation
                     </span></li>
                 
                 </ul>
@@ -131,9 +126,14 @@
                 </h4>
                 <ul>
                 
-                <li><code>zeopp.network</code>
+                <li><code>qeq.eqeq</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.parsers.network:NetworkParser
+                        aiida_qeq.parsers.eqeq:EQeqParser
+                    </span></li>
+                
+                <li><code>qeq.qeq</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_qeq.parsers.qeq:QeqParser
                     </span></li>
                 
                 </ul>
@@ -145,37 +145,14 @@
                 </h4>
                 <ul>
                 
-                <li><code>zeopp.parameters</code>
+                <li><code>qeq.eqeq</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.data.parameters:NetworkParameters
+                        aiida_qeq.data.eqeq:EQeqParameters
                     </span></li>
                 
-                </ul>
-            
-                <h4>
-                    
-                      Command-line script utilities <span class="entrypointraw">(console_scripts)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>zeopp-submit</code>
+                <li><code>qeq.qeq</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.console_scripts.data_cli:cli
-                    </span></li>
-                
-                </ul>
-            
-                <h4>
-                    
-                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>zeopp.blockpockets</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_zeopp.workflows:ZeoppBlockPocketsWorkChain
+                        aiida_qeq.data.qeq:QeqParameters
                     </span></li>
                 
                 </ul>
