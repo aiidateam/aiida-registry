@@ -53,8 +53,8 @@
         "name": "aiida-fleur",
         "entry_point": "fleur",
         "state": "development",
-        "pip_url": "git+https://github.com/JuDFTteam/aiida_fleur/#egg=aiida-fleur-0.5.0",
-        "plugin_info": "https://raw.github.com/JuDFTteam/aiida_fleur/develop/setup.json",
+        "pip_url": "aiida-fleur",
+        "plugin_info": "https://raw.github.com/JuDFTteam/aiida-fleur/develop/setup.json",
         "code_home": "https://github.com/JuDFTteam/aiida-fleur/tree/develop",
         "documentation_url": "http://aiida-fleur.readthedocs.io/"
     },
