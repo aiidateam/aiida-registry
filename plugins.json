@@ -215,7 +215,7 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-optimize/master/setup.json",
         "code_home": "https://github.com/greschd/aiida-optimize",
-        "documentation_url": "https://aiida-strain.readthedocs.io",
+        "documentation_url": "https://aiida-optimize.readthedocs.io",
         "pip_url": "aiida-strain"
     },
     "bands-inspect": {
