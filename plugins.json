@@ -216,7 +216,7 @@
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-optimize/master/setup.json",
         "code_home": "https://github.com/greschd/aiida-optimize",
         "documentation_url": "https://aiida-optimize.readthedocs.io",
-        "pip_url": "aiida-strain"
+        "pip_url": "aiida-optimize"
     },
     "bands-inspect": {
         "name": "aiida-bands-inspect",
@@ -234,7 +234,7 @@
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida_symmetry_representation/master/setup.json",
         "code_home": "https://github.com/greschd/aiida_symmetry_representation",
         "documentation_url": "https://aiida-symmetry-representation.readthedocs.io",
-        "pip_url": "aiida-strain"
+        "pip_url": "aiida-symmetry-representation"
     },
     "strain": {
         "name": "aiida-strain",
