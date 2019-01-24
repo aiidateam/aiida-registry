@@ -208,5 +208,59 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/ltalirz/aiida-qeq/master/setup.json",
         "code_home": "http://github.com/ltalirz/aiida-qeq"
+    },
+    "optimize": {
+        "name": "aiida-optimize",
+        "entry_point": "optimize",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-optimize/master/setup.json",
+        "code_home": "https://github.com/greschd/aiida-optimize",
+        "documentation_url": "https://aiida-strain.readthedocs.io",
+        "pip_url": "aiida-strain"
+    },
+    "bands-inspect": {
+        "name": "aiida-bands-inspect",
+        "entry_point": "bands_inspect",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-bands-inspect/master/setup.json",
+        "code_home": "https://github.com/greschd/aiida-bands-inspect",
+        "documentation_url": "https://aiida-bands-inspect.readthedocs.io",
+        "pip_url": "aiida-bands-inspect"
+    },
+    "symmetry-representation": {
+        "name": "aiida-symmetry-representation",
+        "entry_point": "symmetry_representation",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida_symmetry_representation/master/setup.json",
+        "code_home": "https://github.com/greschd/aiida_symmetry_representation",
+        "documentation_url": "https://aiida-symmetry-representation.readthedocs.io",
+        "pip_url": "aiida-strain"
+    },
+    "strain": {
+        "name": "aiida-strain",
+        "entry_point": "strain",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-strain/master/setup.json",
+        "code_home": "https://github.com/greschd/aiida-strain",
+        "documentation_url": "https://aiida-strain.readthedocs.io",
+        "pip_url": "aiida-strain"
+    },
+    "tbmodels": {
+        "name": "aiida-tbmodels",
+        "entry_point": "tbmodels",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-tbmodels/master/setup.json",
+        "code_home": "https://github.com/greschd/aiida-tbmodels",
+        "documentation_url": "https://aiida-tbmodels.readthedocs.io",
+        "pip_url": "aiida-tbmodels"
+    },
+    "tbextraction": {
+        "name": "aiida-tbextraction",
+        "entry_point": "tbextraction",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-tbextraction/master/setup.json",
+        "code_home": "https://github.com/greschd/aiida-tbextraction",
+        "documentation_url": "https://aiida-tbextraction.readthedocs.io/",
+        "pip_url": "aiida-tbextraction"
     }
 }
