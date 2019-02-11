@@ -33,7 +33,7 @@
     
 <main>
         <h1 class="plugin-header">
-            Details for AiiDA plugin &quot;<a href="https://github.com/yakutovicha/aiida-raspa">aiida-raspa</a>&quot;
+            Details for AiiDA plugin &quot;<a href="https://github.com/greschd/aiida-tbmodels">aiida-tbmodels</a>&quot;
         </h1>
         <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
@@ -44,13 +44,13 @@
         </p>
 
         <p>
-            <a href="https://github.com/yakutovicha/aiida-raspa" target="_blank">Go to the plugin code homepage</a> 
+            <a href="https://github.com/greschd/aiida-tbmodels" target="_blank">Go to the plugin code homepage</a> 
         </p>
     </div>
 
     
         <p>
-            <strong>Documentation</strong>: Documentation not provided by the plugin author
+            <strong>Documentation</strong>: <a href="https://aiida-tbmodels.readthedocs.io" target="_blank">Go to plugin documentation</a>
         <p>
     
 
@@ -61,19 +61,19 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Aliaksandr Yakutovich
+            <strong>Author(s)</strong>: Dominik Gresch
         </p>
         <p>
-            <strong>Short description</strong>: AiiDA plugin for RASPA code
+            <strong>Short description</strong>: AiiDA Plugin for running TBmodels
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>aiida-raspa</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-tbmodels</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_raspa</code>
+            <strong>How to use from python</strong>: <code>import aiida_tbmodels</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.3.1
+            <strong>Most recent version</strong>: 
         </p>
         
         <h3>Summary of the entrypoints</h3>
@@ -81,16 +81,11 @@
         
         <span class="badge"> 
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">4</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">1</span>
-        </span>
-        
-        <span class="badge"> 
-            <span class="badge-left green">Workflows</span>
             <span class="badge-right">1</span>
         </span>
         
@@ -107,9 +102,24 @@
                 </h4>
                 <ul>
                 
-                <li><code>raspa</code>
+                <li><code>tbmodels.eigenvals</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_raspa.calculations:RaspaCalculation
+                        aiida_tbmodels.calculations.eigenvals:EigenvalsCalculation
+                    </span></li>
+                
+                <li><code>tbmodels.parse</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_tbmodels.calculations.parse:ParseCalculation
+                    </span></li>
+                
+                <li><code>tbmodels.slice</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_tbmodels.calculations.slice:SliceCalculation
+                    </span></li>
+                
+                <li><code>tbmodels.symmetrize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_tbmodels.calculations.symmetrize:SymmetrizeCalculation
                     </span></li>
                 
                 </ul>
@@ -121,23 +131,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>raspa</code>
+                <li><code>tbmodels.model</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_raspa.parsers:RaspaParser
-                    </span></li>
-                
-                </ul>
-            
-                <h4>
-                    
-                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>raspa.converge</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_raspa.workflows:RaspaConvergeWorkChain
+                        aiida_tbmodels.parsers.model:ModelParser
                     </span></li>
                 
                 </ul>
