@@ -262,5 +262,14 @@
         "code_home": "https://github.com/greschd/aiida-tbextraction",
         "documentation_url": "https://aiida-tbextraction.readthedocs.io/",
         "pip_url": "aiida-tbextraction"
+    },
+    "tcod": {
+        "name": "aiida-tcod",
+        "entry_point": "tcod",
+        "state": "development",
+        "pip_url": "git+https://github.com/aiidateam/aiida-tcod",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-tcod/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-tcod",
+        "documentation_url": "http://aiida-tcod.readthedocs.io/"
     }
 }
