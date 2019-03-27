@@ -271,5 +271,14 @@
         "plugin_info": "https://raw.github.com/aiidateam/aiida-tcod/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-tcod",
         "documentation_url": "http://aiida-tcod.readthedocs.io/"
+    },
+    "gaussian-datatypes": {
+        "name": "aiida-gaussian-datatypes",
+        "entry_point": "gaussian",
+        "state": "development",
+        "pip_url": "git+https://github.com/dev-zero/aiida-gaussian-datatypes",
+        "plugin_info": "https://raw.github.com/dev-zero/aiida-gaussian-datatypes/master/setup.json",
+        "code_home": "https://github.com/dev-zero/aiida-gaussian-datatypes",
+        "documentation_url": "https://github.com/dev-zero/aiida-gaussian-datatypes/blob/master/README.md"
     }
 }
