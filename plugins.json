@@ -35,6 +35,13 @@
         "pip_url": "aiida-vasp",
         "documentation_url": "http://aiida-vasp.readthedocs.io/"
     },
+    "alloy":{
+        "name": "aiida-alloy",
+        "entry_point": "alloy",
+        "state": "development",
+        "code_home": "https://github.com/DanielMarchand/aiida-alloy",
+        "pip_url": "aiida-alloy"
+    },
     "cp2k": {
         "name": "aiida-cp2k",
         "entry_point": "cp2k",
