@@ -1,20 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
 import codecs
 import json
 import os
-import re
 import shutil
 import sys
-from urlparse import urlparse
+from six.moves import urllib
 from collections import OrderedDict, defaultdict
 
 ## Requires jinja2 >= 2.9
-import jinja2
 from jinja2 import Environment, PackageLoader, select_autoescape
 from kitchen.text.converters import getwriter
-# see https://pythonhosted.org/kitchen/unicode-frustrations.html
-from kitchen.text.converters import to_bytes
 
 UTF8Writer = getwriter('utf8')
 sys.stdout = UTF8Writer(sys.stdout)
@@ -88,10 +86,11 @@ def get_html_plugin_fname(plugin_name):
 
 def get_hosted_on(url):
     try:
-        netloc = urlparse(plugin_data['code_home']).netloc
-    except Exception as e:
-        print e
-        return None
+        urllib.request.urlopen(url, timeout=30)
+    except Exception:
+        raise ValueError("Unable to open 'code_home' url: '{}'".format(url))
+
+    netloc = urllib.parse.urlparse(url).netloc
 
     # Remove port (if any)
     netloc = netloc.partition(':')[0]
@@ -104,25 +103,24 @@ def get_hosted_on(url):
 
 
 def get_setup_info(json_url):
-    import urllib2
     try:
-        response = urllib2.urlopen(json_url)
+        response = urllib.request.urlopen(json_url)
         json_txt = response.read()
-    except Exception as e:
+    except Exception:
         import traceback
-        print "  >> UNABLE TO RETRIEVE THE JSON URL: {}".format(json_url)
-        print traceback.print_exc(file=sys.stdout)
+        print("  >> UNABLE TO RETRIEVE THE JSON URL: {}".format(json_url))
+        print(traceback.print_exc(file=sys.stdout))
         return None
     try:
         json_data = json.loads(json_txt)
     except ValueError:
-        print "  >> WARNING! Unable to parse JSON"
+        print("  >> WARNING! Unable to parse JSON")
         return None
 
     return json_data
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # noqa: MC0001
     outdir_abs = os.path.join(pwd, out_folder)
     static_abs = os.path.join(pwd, static_folder)
 
@@ -158,7 +156,7 @@ if __name__ == "__main__":
     other_summary_names = set()
 
     for plugin_name in sorted(plugins_raw_data.keys()):
-        print "  - {}".format(plugin_name)
+        print("  - {}".format(plugin_name))
         plugin_data = plugins_raw_data[plugin_name]
 
         thisplugin_data = {}
@@ -175,7 +173,7 @@ if __name__ == "__main__":
         try:
             the_plugin_info = plugin_data['plugin_info']
         except KeyError:
-            print "  >> WARNING: Missing plugin_info!!!"
+            print("  >> WARNING: Missing plugin_info!!!")
             setupinfo = None
         else:
             setupinfo = get_setup_info(the_plugin_info)
@@ -216,9 +214,9 @@ if __name__ == "__main__":
                         pass
 
                 # Check remaining non-empty entrypoints
-                remaining = [ep_name for ep_name in ep if len(ep[ep_name]) > 0]
+                remaining = [ep_name for ep_name in ep if ep[ep_name]]
                 remaining_count = [
-                    len(ep[ep_name]) for ep_name in ep if len(ep[ep_name]) > 0
+                    len(ep[ep_name]) for ep_name in ep if ep[ep_name]
                 ]
                 total_count = sum(remaining_count)
                 if total_count:
@@ -256,7 +254,7 @@ if __name__ == "__main__":
 
         with codecs.open(subpage_abspath, 'w', 'utf-8') as f:
             f.write(plugin_html)
-        print "    - Page {} generated.".format(subpage_name)
+        print("    - Page {} generated.".format(subpage_name))
 
     global_summary = []
     for entrypoint_name in main_entrypoints:
@@ -281,10 +279,10 @@ if __name__ == "__main__":
 
     all_data['globalsummary'] = global_summary
 
-    print "[main index]"
+    print("[main index]")
     # print all_data
     rendered = main_index_template.render(**all_data)
     outfile = os.path.join(outdir_abs, 'index.html')
     with codecs.open(outfile, 'w', 'utf-8') as f:
         f.write(rendered)
-    print "  - index.html generated"
+    print("  - index.html generated")
