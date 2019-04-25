@@ -11,13 +11,13 @@ env:
   - COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
 
 before_install:
-    # This is needed for the SSH tests (being able to ssh to localhost)
-    # And will also be used for the docker test
-    - cd make_ghpages
+  # This is needed for the SSH tests (being able to ssh to localhost)
+  # And will also be used for the docker test
+  - cd make_ghpages
 
 install:
-    # Install needed dependencies
-    - pip install -r requirements.txt
+  # Install needed dependencies
+  - pip install -r requirements.txt
 
 script: 
   - ./make_pages.py  
