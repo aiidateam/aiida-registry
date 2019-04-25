@@ -33,7 +33,7 @@
     
 <main>
         <h1 class="plugin-header">
-            Details for AiiDA plugin &quot;<a href="https://github.com/cp2k/aiida-cp2k">aiida-cp2k</a>&quot;
+            Details for AiiDA plugin &quot;<a href="https://github.com/ltalirz/aiida-zeopp">aiida-zeopp</a>&quot;
         </h1>
         <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
@@ -44,7 +44,7 @@
         </p>
 
         <p>
-            <a href="https://github.com/cp2k/aiida-cp2k" target="_blank">Go to the plugin code homepage</a> 
+            <a href="https://github.com/ltalirz/aiida-zeopp" target="_blank">Go to the plugin code homepage</a> 
         </p>
     </div>
 
@@ -61,19 +61,19 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Ole Schütt, Edward Ditler, Aliaksandr Yakutovich, Patrick Seewald, Tiziano Müller, Andreas Glöss, Leonid Kahle
+            <strong>Author(s)</strong>: Leopold Talirz
         </p>
         <p>
-            <strong>Short description</strong>: The CP2K plugin for the AiiDA workflow and provenance engine.
+            <strong>Short description</strong>: AiiDA plugin for zeo++
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>aiida-cp2k</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-zeopp</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_cp2k</code>
+            <strong>How to use from python</strong>: <code>import aiida_zeopp</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.10
+            <strong>Most recent version</strong>: 1.0.0a2
         </p>
         
         <h3>Summary of the entrypoints</h3>
@@ -86,6 +86,21 @@
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left red">Data</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left orange">Other (Console scripts)</span>
             <span class="badge-right">1</span>
         </span>
         
@@ -102,9 +117,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>cp2k</code>
+                <li><code>zeopp.network</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_cp2k.calculations:Cp2kCalculation
+                        aiida_zeopp.calculations.network:NetworkCalculation
                     </span></li>
                 
                 </ul>
@@ -116,9 +131,51 @@
                 </h4>
                 <ul>
                 
-                <li><code>cp2k</code>
+                <li><code>zeopp.network</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_cp2k.parsers:Cp2kParser
+                        aiida_zeopp.parsers.network:NetworkParser
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Data types <span class="entrypointraw">(aiida.data)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>zeopp.parameters</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_zeopp.data.parameters:NetworkParameters
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Command-line script utilities <span class="entrypointraw">(console_scripts)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>zeopp-submit</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_zeopp.console_scripts.data_cli:cli
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>zeopp.blockpockets</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_zeopp.workflows:ZeoppBlockPocketsWorkChain
                     </span></li>
                 
                 </ul>

@@ -33,7 +33,7 @@
     
 <main>
         <h1 class="plugin-header">
-            Details for AiiDA plugin &quot;<a href="http://github.com/ltalirz/aiida-qeq">aiida-qeq</a>&quot;
+            Details for AiiDA plugin &quot;<a href="https://github.com/aiidateam/aiida-diff">aiida-diff</a>&quot;
         </h1>
         <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
@@ -44,13 +44,13 @@
         </p>
 
         <p>
-            <a href="http://github.com/ltalirz/aiida-qeq" target="_blank">Go to the plugin code homepage</a> 
+            <a href="https://github.com/aiidateam/aiida-diff" target="_blank">Go to the plugin code homepage</a> 
         </p>
     </div>
 
     
         <p>
-            <strong>Documentation</strong>: Documentation not provided by the plugin author
+            <strong>Documentation</strong>: <a href="http://aiida-diff.readthedocs.io/" target="_blank">Go to plugin documentation</a>
         <p>
     
 
@@ -61,19 +61,19 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Leopold Talirz, Daniele Ongari
+            <strong>Author(s)</strong>: The AiiDA developers group
         </p>
         <p>
-            <strong>Short description</strong>: AiiDA plugin for computing electronic charges on atoms using equilibration-type models (QEq, EQEq, ...).
+            <strong>Short description</strong>: AiiDA demo plugin that computes the difference between two files.
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>aiida-qeq</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-diff</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_qeq</code>
+            <strong>How to use from python</strong>: <code>import aiida_diff</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.1.0
+            <strong>Most recent version</strong>: 1.0.0a1
         </p>
         
         <h3>Summary of the entrypoints</h3>
@@ -81,17 +81,22 @@
         
         <span class="badge"> 
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">2</span>
+            <span class="badge-right">1</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">2</span>
+            <span class="badge-right">1</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left red">Data</span>
-            <span class="badge-right">2</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left orange">Other (Cmdline data)</span>
+            <span class="badge-right">1</span>
         </span>
         
         
@@ -107,14 +112,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>qeq.eqeq</code>
+                <li><code>diff</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_qeq.calculations.eqeq:EQeqCalculation
-                    </span></li>
-                
-                <li><code>qeq.qeq</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_qeq.calculations.qeq:QeqCalculation
+                        aiida_diff.calculations:DiffCalculation
                     </span></li>
                 
                 </ul>
@@ -126,14 +126,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>qeq.eqeq</code>
+                <li><code>diff</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_qeq.parsers.eqeq:EQeqParser
-                    </span></li>
-                
-                <li><code>qeq.qeq</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_qeq.parsers.qeq:QeqParser
+                        aiida_diff.parsers:DiffParser
                     </span></li>
                 
                 </ul>
@@ -145,14 +140,23 @@
                 </h4>
                 <ul>
                 
-                <li><code>qeq.eqeq</code>
+                <li><code>diff</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_qeq.data.eqeq:EQeqParameters
+                        aiida_diff.data:DiffParameters
                     </span></li>
                 
-                <li><code>qeq.qeq</code>
+                </ul>
+            
+                <h4>
+                    
+                      aiida.cmdline.data
+                    
+                </h4>
+                <ul>
+                
+                <li><code>diff</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_qeq.data.qeq:QeqParameters
+                        aiida_diff.cli:data_cli
                     </span></li>
                 
                 </ul>

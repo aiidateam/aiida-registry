@@ -33,7 +33,7 @@
     
 <main>
         <h1 class="plugin-header">
-            Details for AiiDA plugin &quot;<a href="http://github.com/chrisjsewell/aiida-crystal17">aiida-crystal17</a>&quot;
+            Details for AiiDA plugin &quot;<a href="https://github.com/abelcarreras/aiida-lammps">aiida-lammps</a>&quot;
         </h1>
         <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
@@ -44,13 +44,13 @@
         </p>
 
         <p>
-            <a href="http://github.com/chrisjsewell/aiida-crystal17" target="_blank">Go to the plugin code homepage</a> 
+            <a href="https://github.com/abelcarreras/aiida-lammps" target="_blank">Go to the plugin code homepage</a> 
         </p>
     </div>
 
     
         <p>
-            <strong>Documentation</strong>: <a href="https://aiida-crystal17.readthedocs.io" target="_blank">Go to plugin documentation</a>
+            <strong>Documentation</strong>: Documentation not provided by the plugin author
         <p>
     
 
@@ -61,19 +61,19 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Chris Sewell
+            <strong>Author(s)</strong>: Abel Carreras
         </p>
         <p>
-            <strong>Short description</strong>: AiiDA plugin for running the CRYSTAL17 code
+            <strong>Short description</strong>: AiiDA plugin for LAMMPS
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>aiida-crystal17</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-lammps</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_crystal17</code>
+            <strong>How to use from python</strong>: <code>import aiida_lammps</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.4.0
+            <strong>Most recent version</strong>: 0.1.0a1
         </p>
         
         <h3>Summary of the entrypoints</h3>
@@ -81,27 +81,17 @@
         
         <span class="badge"> 
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">3</span>
+            <span class="badge-right">5</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">4</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left red">Data</span>
-            <span class="badge-right">2</span>
-        </span>
-        
-        <span class="badge"> 
-            <span class="badge-left green">Workflows</span>
             <span class="badge-right">1</span>
-        </span>
-        
-        <span class="badge"> 
-            <span class="badge-left orange">Other (Console scripts, Cmdline data)</span>
-            <span class="badge-right">3</span>
         </span>
         
         
@@ -117,19 +107,29 @@
                 </h4>
                 <ul>
                 
-                <li><code>crystal17.basic</code>
+                <li><code>lammps.combinate</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.cry_basic:CryBasicCalculation
+                        aiida_lammps.calculations.lammps.combinate:CombinateCalculation
                     </span></li>
                 
-                <li><code>crystal17.main</code>
+                <li><code>lammps.force</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.cry_main:CryMainCalculation
+                        aiida_lammps.calculations.lammps.force:ForceCalculation
                     </span></li>
                 
-                <li><code>crystal17.immigrant</code>
+                <li><code>lammps.md</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.cry_main_immigrant:CryMainImmigrantCalculation
+                        aiida_lammps.calculations.lammps.md:MdCalculation
+                    </span></li>
+                
+                <li><code>lammps.optimize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_lammps.calculations.lammps.optimize:OptimizeCalculation
+                    </span></li>
+                
+                <li><code>dynaphopy</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_lammps.calculations.dynaphopy: DynaphopyCalculation
                     </span></li>
                 
                 </ul>
@@ -141,9 +141,24 @@
                 </h4>
                 <ul>
                 
-                <li><code>crystal17.basic</code>
+                <li><code>lammps.force</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.parsers.cry_basic:CryBasicParser
+                        aiida_lammps.parsers.lammps.force:ForceParser
+                    </span></li>
+                
+                <li><code>lammps.md</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_lammps.parsers.lammps.md:MdParser
+                    </span></li>
+                
+                <li><code>lammps.optimize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_lammps.parsers.lammps.optimize:OptimizeParser
+                    </span></li>
+                
+                <li><code>dynaphopy</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_lammps.parsers.dynaphopy: DynaphopyParser
                     </span></li>
                 
                 </ul>
@@ -155,61 +170,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>crystal17.basisset</code>
+                <li><code>lammps.potential</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.data.basis_set:BasisSetData
-                    </span></li>
-                
-                <li><code>crystal17.structsettings</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.data.struct_settings:StructSettingsData
-                    </span></li>
-                
-                </ul>
-            
-                <h4>
-                    
-                      aiida.cmdline.data
-                    
-                </h4>
-                <ul>
-                
-                <li><code>cry17-settings</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.cmndline.structsettings:structsettings
-                    </span></li>
-                
-                <li><code>cry17-basis</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.cmndline.basis_set:basisset
-                    </span></li>
-                
-                </ul>
-            
-                <h4>
-                    
-                      Command-line script utilities <span class="entrypointraw">(console_scripts)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>mock_runcry17</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.tests.mock_runcry17:main
-                    </span></li>
-                
-                </ul>
-            
-                <h4>
-                    
-                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>crystal17.sym3d</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+                        aiida_lammps.data.potential:EmpiricalPotential
                     </span></li>
                 
                 </ul>
