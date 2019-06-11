@@ -294,7 +294,7 @@
         "state": "development",
         "pip_url": "aiida-uppasd",
         "plugin_info": "https://raw.github.com/uppasd/aiida-uppasd/master/setup.json",
-        "code_home": ""https://github.com/uppasd/aiida-uppasd",
+        "code_home": "https://github.com/uppasd/aiida-uppasd",
         "documentation_url": "https://github.com/uppasd/aiida-uppasd/blob/master/README.md"
     }
 
