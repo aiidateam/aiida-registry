@@ -287,5 +287,15 @@
         "plugin_info": "https://raw.github.com/dev-zero/aiida-gaussian-datatypes/master/setup.json",
         "code_home": "https://github.com/dev-zero/aiida-gaussian-datatypes",
         "documentation_url": "https://github.com/dev-zero/aiida-gaussian-datatypes/blob/master/README.md"
+    },
+    "uppasd": {
+        "name": "aiida-uppasd",
+        "entry_point": "uppasd",
+        "state": "development",
+        "pip_url": "aiida-uppasd",
+        "plugin_info": "https://raw.github.com/uppasd/aiida-uppasd/master/setup.json",
+        "code_home": ""https://github.com/uppasd/aiida-uppasd",
+        "documentation_url": "https://github.com/uppasd/aiida-uppasd/blob/master/README.md"
     }
+
 }
