@@ -33,33 +33,33 @@
     
 <main>
     <h1>Global summary of the AiiDA plugin registry</h1>
-    <h2 style="padding-top: 0px">Total number of entries: 36</h2>
+    <h2 style="padding-top: 0px">Total number of entries: 37</h2>
     <div class='globalsummary-box'>
         <div style="display: table;">
             
             <span class="badge" style="display: table-row; line-height: 2;"> 
                 <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left blue tooltip" style="float: none; display: inline; text-align: right; border: none">Calculations</span></span>
-                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">62 plugins in 25 entries </span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">65 plugins in 27 entries </span></span>
             </span>
         
             <span class="badge" style="display: table-row; line-height: 2;"> 
                 <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left brown tooltip" style="float: none; display: inline; text-align: right; border: none">Parsers</span></span>
-                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">55 plugins in 25 entries </span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">58 plugins in 27 entries </span></span>
             </span>
         
             <span class="badge" style="display: table-row; line-height: 2;"> 
                 <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left red tooltip" style="float: none; display: inline; text-align: right; border: none">Data</span></span>
-                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">24 plugins in 13 entries </span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">27 plugins in 15 entries </span></span>
             </span>
         
             <span class="badge" style="display: table-row; line-height: 2;"> 
                 <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left green tooltip" style="float: none; display: inline; text-align: right; border: none">Workflows</span></span>
-                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">53 plugins in 11 entries </span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">62 plugins in 12 entries </span></span>
             </span>
         
             <span class="badge" style="display: table-row; line-height: 2;"> 
-                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left orange tooltip" style="float: none; display: inline; text-align: right; border: none">Other<span class="tooltiptext">Cmdline data, Console scripts, TCOD plugins, Tests</span></span></span>
-                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">40 plugins in 12 entries </span></span>
+                <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left orange tooltip" style="float: none; display: inline; text-align: right; border: none">Other<span class="tooltiptext">Cmdline data, Console scripts, TCOD plugins, Tests, Tools dbexporters</span></span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">43 plugins in 14 entries </span></span>
             </span>
         
         </div>
@@ -199,8 +199,8 @@
             </span>
             
             <span class="badge"> 
-                <span class="badge-left orange">Other (Tests, Cmdline data)</span>
-                <span class="badge-right">4</span>
+                <span class="badge-left orange">Other (Tests, Console scripts, Cmdline data)</span>
+                <span class="badge-right">5</span>
             </span>
             
         </p>
@@ -377,7 +377,7 @@
         <div class='submenu-entry'>
         <h2><a href="apps/diff.html">diff: aiida-diff package</a></h2>
         
-        <p class=description>AiiDA demo plugin that computes the difference between two files.</p>
+        <p class=description>AiiDA demo plugin that wraps the `diff` executable for computing the difference between two files.</p>
         
         <p class="currentstate">Current state: development</p>
         <p><a href="https://github.com/aiidateam/aiida-diff" target="_blank">Plugin code homepage</a> 
@@ -423,6 +423,8 @@
         <div class='submenu-entry'>
         <h2><a href="apps/fleur.html">fleur: aiida-fleur package</a></h2>
         
+        <p class=description>Python FLEUR simulation package containing an AiiDA Plugin for running the FLEUR-code and its input generator. Plus some workflows and utility</p>
+        
         <p class="currentstate">Current state: development</p>
         <p><a href="https://github.com/JuDFTteam/aiida-fleur/tree/develop" target="_blank">Plugin code homepage</a> 
         
@@ -434,6 +436,30 @@
                 <strong>Documentation</strong>: <a href="http://aiida-fleur.readthedocs.io/" target="_blank">Go to plugin documentation</a>
             <p>
         
+	
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">2</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left green">Workflows</span>
+                <span class="badge-right">9</span>
+            </span>
+            
+        </p>
 	
         <p class='details'><a href="apps/fleur.html">Show plugin details</a></p>
         </div>
@@ -1160,6 +1186,8 @@
         <div class='submenu-entry'>
         <h2><a href="apps/tcod.html">tcod: aiida-tcod package</a></h2>
         
+        <p class=description>AiiDA plugin to interact with the TCOD</p>
+        
         <p class="currentstate">Current state: development</p>
         <p><a href="https://github.com/aiidateam/aiida-tcod" target="_blank">Plugin code homepage</a> 
         
@@ -1172,7 +1200,62 @@
             <p>
         
 	
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Tools dbexporters)</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
+	
         <p class='details'><a href="apps/tcod.html">Show plugin details</a></p>
+        </div>
+        
+        
+        
+        <div class='submenu-entry'>
+        <h2><a href="apps/uppasd.html">uppasd: aiida-uppasd package</a></h2>
+        
+        <p class=description>AiiDA plugin for the atomistic spin dynamics code UppASD</p>
+        
+        <p class="currentstate">Current state: development</p>
+        <p><a href="https://github.com/uppasd/aiida-uppasd" target="_blank">Plugin code homepage</a> 
+        
+        <span style="font-size: 90%">(hosted on github.com)</span>
+        
+        </p>
+        
+            <p>
+                <strong>Documentation</strong>: <a href="https://github.com/uppasd/aiida-uppasd/blob/master/README.md" target="_blank">Go to plugin documentation</a>
+            <p>
+        
+	
+        <p class="summaryinfo">
+            
+            <span class="badge"> 
+                <span class="badge-left blue">Calculations</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left brown">Parsers</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left red">Data</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+            <span class="badge"> 
+                <span class="badge-left orange">Other (Cmdline data)</span>
+                <span class="badge-right">1</span>
+            </span>
+            
+        </p>
+	
+        <p class='details'><a href="apps/uppasd.html">Show plugin details</a></p>
         </div>
         
         
