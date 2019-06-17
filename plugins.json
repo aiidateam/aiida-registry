@@ -296,6 +296,14 @@
         "plugin_info": "https://raw.github.com/uppasd/aiida-uppasd/master/setup.json",
         "code_home": "https://github.com/uppasd/aiida-uppasd",
         "documentation_url": "https://github.com/uppasd/aiida-uppasd/blob/master/README.md"
+    },
+    "hea":{
+        "name": "aiida-hea",
+        "entry_point": "hea",
+        "state": "development",
+        "code_home": "https://github.com/unkcpz/aiida-hea",
+        "pip_url": "aiida-hea",
+        "documentation_url": "http://aiida-hea.readthedocs.io/"
     }
 
 }
