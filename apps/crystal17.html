@@ -73,7 +73,7 @@
             <strong>How to use from python</strong>: <code>import aiida_crystal17</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.5.0b2
+            <strong>Most recent version</strong>: 0.5.0b3
         </p>
         
         <h3>Summary of the entrypoints</h3>
@@ -81,12 +81,12 @@
         
         <span class="badge"> 
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">2</span>
+            <span class="badge-right">4</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">3</span>
         </span>
         
         <span class="badge"> 
@@ -100,8 +100,8 @@
         </span>
         
         <span class="badge"> 
-            <span class="badge-left orange">Other (Console scripts, Cmdline data)</span>
-            <span class="badge-right">3</span>
+            <span class="badge-left orange">Other (Console scripts, Gulp potentials, Cmdline data)</span>
+            <span class="badge-right">7</span>
         </span>
         
         
@@ -127,6 +127,16 @@
                         aiida_crystal17.calculations.cry_main:CryMainCalculation
                     </span></li>
                 
+                <li><code>gulp.single</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.calculations.gulp_single:GulpSingleCalculation
+                    </span></li>
+                
+                <li><code>gulp.optimize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.calculations.gulp_optimize:GulpOptCalculation
+                    </span></li>
+                
                 </ul>
             
                 <h4>
@@ -139,6 +149,16 @@
                 <li><code>crystal17.main</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_crystal17.parsers.cry_main:CryMainParser
+                    </span></li>
+                
+                <li><code>gulp.single</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.parsers.parse_main:GulpSingleParser
+                    </span></li>
+                
+                <li><code>gulp.optimize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.parsers.parse_main:GulpOptParser
                     </span></li>
                 
                 </ul>
@@ -189,6 +209,11 @@
                         aiida_crystal17.cmndline.basis_set:basisset
                     </span></li>
                 
+                <li><code>gulp.potentials</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.cmndline.potentials:potentials
+                    </span></li>
+                
                 </ul>
             
                 <h4>
@@ -203,6 +228,11 @@
                         aiida_crystal17.tests.mock_runcry17:main
                     </span></li>
                 
+                <li><code>mock_gulp</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.tests.mock_gulp:main
+                    </span></li>
+                
                 </ul>
             
                 <h4>
@@ -215,6 +245,25 @@
                 <li><code>crystal17.sym3d</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      gulp.potentials
+                    
+                </h4>
+                <ul>
+                
+                <li><code>reaxff</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.potentials.reaxff:PotentialWriterReaxff
+                    </span></li>
+                
+                <li><code>lj</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.potentials.lj:PotentialWriterLJ
                     </span></li>
                 
                 </ul>
