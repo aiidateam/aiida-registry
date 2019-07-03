@@ -140,7 +140,7 @@ def get_aiida_version(setup_json):
         aiida_specs = []
         for r in reqs:
             # note: this also catches aiida-core[extra1]
-            if r.name in ['aiida-core', 'aiida']:
+            if r.name in ['aiida-core', 'aiida_core', 'aiida']:
                 aiida_specs += r.specs
 
         if not aiida_specs:
