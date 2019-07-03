@@ -29,8 +29,8 @@
         {% for plugin_name, plugin in plugins.iteritems() %}
         <div class='submenu-entry'>
         <h2><a href="{{ plugin.subpage }}">{{ plugin_name}}: {{ plugin.name }} package</a></h2>
-        {% if plugin.setupinfo.description %}
-        <p class=description>{{plugin.setupinfo.description}}</p>
+        {% if plugin.setup_json.description %}
+        <p class=description>{{plugin.setup_json.description}}</p>
         {% endif %}
         <p class="currentstate">Current state: {{ plugin.state }}</p>
         <p><a href="{{ plugin.code_home }}" target="_blank">Plugin code homepage</a> 
