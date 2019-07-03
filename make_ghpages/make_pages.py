@@ -125,7 +125,40 @@ def get_setup_json(json_url):
     return json_data
 
 
+def get_aiida_version(setup_json):
+    """Get AiiDA version that this plugin is compatible with.
+    """
+    import requirements
+
+    if setup_json is None:
+        return None
+
+    try:
+        install_requires = setup_json["install_requires"]
+        reqs = requirements.parse("\n".join(install_requires))
+
+        aiida_specs = []
+        for r in reqs:
+            # note: this also catches aiida-core[extra1]
+            if r.name in ['aiida-core', 'aiida']:
+                aiida_specs += r.specs
+
+        if not aiida_specs:
+            print("  >> AIIDA VERSION NOT SPECIFIED")
+            return None
+
+        # first index: operator (e,g, '>=')
+        # second index: version (e.g. '0.12.0rc2')
+        # In the future, this can be used to e.g. display a banner for 1.0-compatible plugins
+        return ",".join([s[0] + s[1] for s in aiida_specs])
+
+    except AttributeError:
+        return None
+
+
 def get_summary_info_pieces(setup_json):
+    """Get info for plugin detail page.
+    """
     summary_info_pieces = []
 
     if setup_json is None:
@@ -235,6 +268,8 @@ if __name__ == "__main__":
         plugin_data[
             'entrypointtypes'] = entrypointtypes  # add a static entrypointtypes dictionary
         plugin_data['summaryinfo'] = get_summary_info_pieces(
+            plugin_data['setup_json'])
+        plugin_data['aiida_version'] = get_aiida_version(
             plugin_data['setup_json'])
 
         plugin_html = env.get_template("singlepage.html").render(**plugin_data)

@@ -32,7 +32,11 @@
         {% if plugin.setup_json.description %}
         <p class=description>{{plugin.setup_json.description}}</p>
         {% endif %}
-        <p class="currentstate">Current state: {{ plugin.state }}</p>
+        <p class="currentstate">Current state: {{ plugin.state }}
+            {% if plugin.aiida_version %}
+            <p class=aiida_version>, compatible with aiida-core{{plugin.aiida_version}}</p>
+            {% endif %}    
+        </p>
         <p><a href="{{ plugin.code_home }}" target="_blank">Plugin code homepage</a> 
         {% if plugin.hosted_on %}
         <span style="font-size: 90%">(hosted on {{ plugin.hosted_on }})</span>
