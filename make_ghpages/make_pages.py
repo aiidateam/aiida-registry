@@ -152,7 +152,7 @@ def get_aiida_version(setup_json):
         # In the future, this can be used to e.g. display a banner for 1.0-compatible plugins
         return ",".join([s[0] + s[1] for s in aiida_specs])
 
-    except AttributeError:
+    except KeyError:
         return None
 
 

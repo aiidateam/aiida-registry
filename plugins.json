@@ -114,7 +114,7 @@
         "name": "aiida-phonopy",
         "entry_point": "phonopy",
         "state": "development",
-        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/development/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/master/setup.json",
         "code_home": "https://github.com/abelcarreras/aiida-phonopy",
         "documentation_url": "http://aiida-phonopy.readthedocs.io/"
     },
