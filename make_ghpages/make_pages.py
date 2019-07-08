@@ -14,6 +14,7 @@ from collections import OrderedDict, defaultdict
 from jinja2 import Environment, PackageLoader, select_autoescape
 from kitchen.text.converters import getwriter
 import six
+from six.moves import range
 
 UTF8Writer = getwriter('utf8')
 sys.stdout = UTF8Writer(sys.stdout)
@@ -146,6 +147,11 @@ def get_aiida_version(setup_json):
         if not aiida_specs:
             print("  >> AIIDA VERSION NOT SPECIFIED")
             return None
+
+        # precedence of version specs, from high to low
+        precedence = ['==', '>=', '>', '<=', '<']
+        sort_order = {precedence[i]: i for i in range(len(precedence))}
+        aiida_specs = sorted(aiida_specs, key=lambda r: sort_order[r[0]])
 
         # first index: operator (e,g, '>=')
         # second index: version (e.g. '0.12.0rc2')

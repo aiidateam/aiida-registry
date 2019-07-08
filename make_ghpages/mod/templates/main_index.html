@@ -33,9 +33,9 @@
         <p class=description>{{plugin.setup_json.description}}</p>
         {% endif %}
         <p class="currentstate">Current state: {{ plugin.state }}
-            {% if plugin.aiida_version %}
+            {%- if plugin.aiida_version -%}
             <span class=aiida_version>, compatible with aiida-core{{plugin.aiida_version}}</span>
-            {% endif %}    
+            {%- endif -%}    
         </p>
         <p><a href="{{ plugin.code_home }}" target="_blank">Plugin code homepage</a> 
         {% if plugin.hosted_on %}
