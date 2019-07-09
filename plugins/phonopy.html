@@ -1,0 +1,252 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" type="image/png" href="../static/favicon.png">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+     
+    <header id='entrytitle' style="background-color: #000; margin: 0; padding: 5px 20px 25px 20px;">
+        <h1>
+            <a href="http://www.aiida.net/">AiiDA</a> registry of plugins
+        </h1>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your plugin]</a> </p>
+      </header>
+
+    
+  <div style="max-width: 1200px; margin: auto;">
+    
+<main>
+        <h1 class="plugin-header">
+            Details for AiiDA plugin &quot;<a href="https://github.com/abelcarreras/aiida-phonopy">aiida-phonopy</a>&quot;
+        </h1>
+        <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
+
+    <h2>General information</h2>
+    <div>
+        <p>
+            Current state: <emph>development</emph>
+        </p>
+
+        <p>
+            <a href="https://github.com/abelcarreras/aiida-phonopy" target="_blank">Go to the plugin code homepage</a> 
+        </p>
+    </div>
+
+    
+        <p>
+            <strong>Documentation</strong>: <a href="http://aiida-phonopy.readthedocs.io/" target="_blank">Go to plugin documentation</a>
+        <p>
+    
+
+
+    <h2>
+        Detailed information
+    </h2>
+    
+    <div id='description'>
+        <p>
+            <strong>Author(s)</strong>: Abel Carreras
+        </p>
+        <p>
+            <strong>Short description</strong>: AiiDA plugin for running phonon calculations using phonopy
+        </p>
+        <p>
+            <strong>Package name (for pip)</strong>: <code>aiida-phonopy</code>
+        </p>
+        <p>
+            <strong>How to use from python</strong>: <code>import aiida_phonopy</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: 0.1
+        </p>
+        <p>
+            <strong>Compatible with aiida-core</strong>: None
+        </p>
+
+        
+        <h3>Summary of the entrypoints</h3>
+        This plugin contains: <br>
+        
+        <span class="badge"> 
+            <span class="badge-left blue">Calculations</span>
+            <span class="badge-right">2</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">2</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left red">Data</span>
+            <span class="badge-right">5</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">7</span>
+        </span>
+        
+        
+
+        <h3>Available entrypoints</h3>
+        
+
+            
+                <h4>
+                    
+                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>phonopy.phonopy</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.calculations.phonopy.phonopy: PhonopyCalculation
+                    </span></li>
+                
+                <li><code>phonopy.phono3py</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.calculations.phonopy.phono3py: Phono3pyCalculation
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>phonopy</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.parsers.phonopy: PhonopyParser
+                    </span></li>
+                
+                <li><code>phono3py</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.parsers.phono3py: Phono3pyParser
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Data types <span class="entrypointraw">(aiida.data)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>phonopy.band_structure</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.data.band_structure: BandStructureData
+                    </span></li>
+                
+                <li><code>phonopy.force_constants</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.data.force_constants: ForceConstantsData
+                    </span></li>
+                
+                <li><code>phonopy.force_sets</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.data.force_sets: ForceSetsData
+                    </span></li>
+                
+                <li><code>phonopy.phonon_dos</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.data.phonon_dos: PhononDosData
+                    </span></li>
+                
+                <li><code>phonopy.nac</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.data.nac: NacData
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>phonopy.optimize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.workchains.optimize: OptimizeStructure
+                    </span></li>
+                
+                <li><code>phonopy.phonon</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.workchains.phonon: PhononPhonopy
+                    </span></li>
+                
+                <li><code>phonopy.phonon3</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.workchains.phonon3: PhononPhono3py
+                    </span></li>
+                
+                <li><code>phonopy.gruneisen</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.workchains.gruneisen: GruneisenPhonopy
+                    </span></li>
+                
+                <li><code>phonopy.phono3py_dist</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.workchains.phono3py_dist: Phono3pyDist
+                    </span></li>
+                
+                <li><code>phonopy.qha</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.workchains.qha: QHAPhonopy
+                    </span></li>
+                
+                <li><code>phonopy.thermal</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_phonopy.workchains.thermal_conductivity: ThermalPhono3py
+                    </span></li>
+                
+                </ul>
+            
+        
+    </div>
+    
+
+</main>
+
+
+  </div>
+    
+    <footer class="footer">
+    <hr>
+      This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    <br>
+    This work is supported by the <a href="http://nccr-marvel.ch" target="_blank">MARVEL National Centre for Competency in Research</a> 
+    funded by the <a href="http://www.snf.ch/en" target="_blank">Swiss National Science Foundation</a>, as well as by the 
+    <a href="http://www.max-centre.eu" target="_blank">MaX European Centre of Excellence</a> 
+    funded by the Horizon 2020 EINFRA-5 program, Grant No. 676598.<br><br>
+    
+<div style="text-align: center;"><img src="../static/img/MARVEL.png" height="70px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="../static/img/MaX.png" height="70px"></div>
+
+    </footer>    
+    
+</body>
+
+</html>
