@@ -40,6 +40,7 @@
         "entry_point": "alloy",
         "state": "development",
         "code_home": "https://github.com/DanielMarchand/aiida-alloy",
+        "plugin_info": "https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json",
         "pip_url": "aiida-alloy"
     },
     "cp2k": {
@@ -113,7 +114,7 @@
         "name": "aiida-phonopy",
         "entry_point": "phonopy",
         "state": "development",
-        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/development/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/master/setup.json",
         "code_home": "https://github.com/abelcarreras/aiida-phonopy",
         "documentation_url": "http://aiida-phonopy.readthedocs.io/"
     },
@@ -207,7 +208,8 @@
         "name": "aiida-spex",
         "entry_point": "spex",
         "state": "registered",
-        "code_home": "http://github.com/JuDFTteam/aiida-spex"
+        "code_home": "http://github.com/JuDFTteam/aiida-spex",
+        "plugin_info": "https://raw.githubusercontent.com/JuDFTteam/aiida-spex/master/setup.json"
     },
     "qeq": {
         "name": "aiida-qeq",
@@ -302,6 +304,7 @@
         "entry_point": "hea",
         "state": "development",
         "code_home": "https://github.com/unkcpz/aiida-hea",
+        "plugin_info": "https://raw.github.com/unkcpz/aiida-hea/master/setup.json",
         "pip_url": "aiida-hea",
         "documentation_url": "http://aiida-hea.readthedocs.io/"
     }

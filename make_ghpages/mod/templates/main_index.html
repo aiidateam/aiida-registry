@@ -29,10 +29,14 @@
         {% for plugin_name, plugin in plugins.iteritems() %}
         <div class='submenu-entry'>
         <h2><a href="{{ plugin.subpage }}">{{ plugin_name}}: {{ plugin.name }} package</a></h2>
-        {% if plugin.setupinfo.description %}
-        <p class=description>{{plugin.setupinfo.description}}</p>
+        {% if plugin.setup_json.description %}
+        <p class=description>{{plugin.setup_json.description}}</p>
         {% endif %}
-        <p class="currentstate">Current state: {{ plugin.state }}</p>
+        <p class="currentstate">Current state: {{ plugin.state }}
+            {%- if plugin.aiida_version -%}
+            <span class=aiida_version>, compatible with aiida-core{{plugin.aiida_version}}</span>
+            {%- endif -%}    
+        </p>
         <p><a href="{{ plugin.code_home }}" target="_blank">Plugin code homepage</a> 
         {% if plugin.hosted_on %}
         <span style="font-size: 90%">(hosted on {{ plugin.hosted_on }})</span>
