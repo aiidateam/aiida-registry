@@ -151,7 +151,8 @@ def get_aiida_version(setup_json):
         # precedence of version specs, from high to low
         precedence = ['==', '>=', '>', '<=', '<']
         sort_order = {precedence[i]: i for i in range(len(precedence))}
-        aiida_specs = sorted(aiida_specs, key=lambda r: sort_order[r[0]])
+        aiida_specs = sorted(aiida_specs,
+                             key=lambda r: sort_order.get(r[0], 10))
 
         # first index: operator (e,g, '>=')
         # second index: version (e.g. '0.12.0rc2')
