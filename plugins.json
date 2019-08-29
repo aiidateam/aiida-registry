@@ -307,6 +307,14 @@
         "plugin_info": "https://raw.github.com/unkcpz/aiida-hea/master/setup.json",
         "pip_url": "aiida-hea",
         "documentation_url": "http://aiida-hea.readthedocs.io/"
+    },
+    "defects": {
+        "name": "aiida-defects",
+        "entry_point": "defects",
+        "state": "development",
+        "code_home": "https://github.com/ConradJohnston/aiida-defects",
+        "plugin_info": "https://raw.github.com/ConradJohnston/aiida-defects/master/setup.json",
+        "pip_url": "git+https://github.com/ConradJohnston/aiida-defects",
+        "documentation_url": "http://aiida-defects.readthedocs.io/"
     }
-
 }
