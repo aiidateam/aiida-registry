@@ -318,7 +318,7 @@
     "plumed": {
         "name": "aiida-plumed",
         "entry_point": "plumed",
-        "state": "development",
+        "state": "registered",
         "code_home": "https://github.com/ConradJohnston/aiida-plumed",
         "plugin_info": "https://raw.github.com/ConradJohnston/aiida-plumed/AiiDA-v1.0-compatibility/setup.json",
         "pip_url": "aiida-plumed",
