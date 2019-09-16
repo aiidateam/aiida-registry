@@ -308,6 +308,13 @@
         "pip_url": "aiida-hea",
         "documentation_url": "http://aiida-hea.readthedocs.io/"
     },
+    "porousmaterials": {
+        "name": "aiida-porousmaterials",
+        "entry_point": "porousmaterials",
+        "state": "development",
+        "plugin_info": "https://github.com/pzarabadip/aiida-porousmaterials/blob/master/setup.json",
+        "code_home": "https://github.com/pzarabadip/aiida-porousmaterials"
+    },
     "plumed": {
         "name": "aiida-plumed",
         "entry_point": "plumed",
@@ -317,5 +324,4 @@
         "pip_url": "aiida-plumed",
         "documentation_url": "http://aiida-plumed.readthedocs.io/"
     }
-
 }
