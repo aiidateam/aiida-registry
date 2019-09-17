@@ -33,7 +33,7 @@
     
 <main>
         <h1 class="plugin-header">
-            Details for AiiDA plugin &quot;<a href="https://github.com/dev-zero/aiida-gaussian-datatypes">aiida-gaussian-datatypes</a>&quot;
+            Details for AiiDA plugin &quot;<a href="https://github.com/ConradJohnston/aiida-plumed">aiida-plumed</a>&quot;
         </h1>
         <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
 
@@ -44,13 +44,13 @@
         </p>
 
         <p>
-            <a href="https://github.com/dev-zero/aiida-gaussian-datatypes" target="_blank">Go to the plugin code homepage</a> 
+            <a href="https://github.com/ConradJohnston/aiida-plumed" target="_blank">Go to the plugin code homepage</a> 
         </p>
     </div>
 
     
         <p>
-            <strong>Documentation</strong>: <a href="https://github.com/dev-zero/aiida-gaussian-datatypes/blob/master/README.md" target="_blank">Go to plugin documentation</a>
+            <strong>Documentation</strong>: <a href="http://aiida-plumed.readthedocs.io/" target="_blank">Go to plugin documentation</a>
         <p>
     
 
@@ -61,22 +61,22 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Tiziano Müller
+            <strong>Author(s)</strong>: Conrad Johnston
         </p>
         <p>
-            <strong>Short description</strong>: AiiDA data plugin to manage gaussian datatypes (basis sets and pseudopotentials) as first-class citizens
+            <strong>Short description</strong>: AiiDA plugin providing support for Plumed2
         </p>
         <p>
-            <strong>Package name (for pip)</strong>: <code>aiida-gaussian-datatypes</code>
+            <strong>Package name (for pip)</strong>: <code>aiida-plumed</code>
         </p>
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_gaussian_datatypes</code>
+            <strong>How to use from python</strong>: <code>import aiida_plumed</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.3.0
+            <strong>Most recent version</strong>: 0.1.0a0
         </p>
         <p>
-            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0b6
+            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0b3,&lt;2.0.0
         </p>
 
         
@@ -84,13 +84,23 @@
         This plugin contains: <br>
         
         <span class="badge"> 
+            <span class="badge-left blue">Calculations</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
             <span class="badge-left red">Data</span>
-            <span class="badge-right">2</span>
+            <span class="badge-right">1</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left orange">Other (Cmdline data)</span>
-            <span class="badge-right">2</span>
+            <span class="badge-right">1</span>
         </span>
         
         
@@ -101,19 +111,42 @@
             
                 <h4>
                     
+                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>plumed</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_plumed.calculations:DiffCalculation
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>plumed</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_plumed.parsers:DiffParser
+                    </span></li>
+                
+                </ul>
+            
+                <h4>
+                    
                       Data types <span class="entrypointraw">(aiida.data)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>gaussian.basisset</code>
+                <li><code>plumed</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_gaussian_datatypes.basisset.data:BasisSet
-                    </span></li>
-                
-                <li><code>gaussian.pseudo</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_gaussian_datatypes.pseudopotential.data:Pseudopotential
+                        aiida_plumed.data:DiffParameters
                     </span></li>
                 
                 </ul>
@@ -125,14 +158,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>gaussian.basisset</code>
+                <li><code>plumed</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_gaussian_datatypes.basisset.cli:cli
-                    </span></li>
-                
-                <li><code>gaussian.pseudo</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_gaussian_datatypes.pseudopotential.cli:cli
+                        aiida_plumed.cli:data_cli
                     </span></li>
                 
                 </ul>
