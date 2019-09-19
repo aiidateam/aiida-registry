@@ -2,19 +2,25 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 from __future__ import print_function
+import six
+from six.moves import range
 import codecs
 import json
 import os
 import shutil
 import sys
-from six.moves import urllib
 from collections import OrderedDict, defaultdict
 
 ## Requires jinja2 >= 2.9
 from jinja2 import Environment, PackageLoader, select_autoescape
 from kitchen.text.converters import getwriter
-import six
-from six.moves import range
+import requests
+import requests_cache
+
+if os.environ.get('CACHE_REQUESTS'):
+    # Set environment variable CACHE_REQUESTS to cache requests for 1 day for faster testing
+    # e.g.: export CACHE_REQUESTS=1
+    requests_cache.install_cache('demo_cache', expire_after=60 * 60 * 24)
 
 UTF8Writer = getwriter('utf8')
 sys.stdout = UTF8Writer(sys.stdout)
@@ -91,8 +97,9 @@ def get_html_plugin_fname(plugin_name):
 
 
 def get_hosted_on(url):
+    from six.moves import urllib
     try:
-        urllib.request.urlopen(url, timeout=30)
+        requests.get(url, timeout=30)
     except Exception:
         raise ValueError("Unable to open 'code_home' url: '{}'".format(url))
 
@@ -110,8 +117,8 @@ def get_hosted_on(url):
 
 def get_setup_json(json_url):
     try:
-        response = urllib.request.urlopen(json_url)
-        json_txt = response.read()
+        response = requests.get(json_url)
+        json_txt = response.content
     except Exception:
         import traceback
         print("  >> UNABLE TO RETRIEVE THE JSON URL: {}".format(json_url))
@@ -163,13 +170,13 @@ def get_aiida_version(setup_json):
         return None
 
 
-def get_summary_info_pieces(setup_json):
+def get_summary_info(setup_json):
     """Get info for plugin detail page.
     """
-    summary_info_pieces = []
+    summary_info = []
 
     if setup_json is None:
-        return summary_info_pieces
+        return summary_info
 
     if 'entry_points' in setup_json:
         ep = setup_json['entry_points'].copy()
@@ -178,7 +185,7 @@ def get_summary_info_pieces(setup_json):
             try:
                 num = len(ep.pop(entrypoint_name))
                 if num > 0:
-                    summary_info_pieces.append({
+                    summary_info.append({
                         "colorclass":
                         entrypoint_metainfo[entrypoint_name]['colorclass'],
                         "text":
@@ -186,7 +193,7 @@ def get_summary_info_pieces(setup_json):
                         "count":
                         num
                     })
-                    summaries[entrypoint_name].append(num)
+                    entrypoints_count[entrypoint_name].append(num)
             except KeyError:
                 #No specific entrypoints, pass
                 pass
@@ -210,18 +217,86 @@ def get_summary_info_pieces(setup_json):
                         ep_name.replace('_', ' ').replace('.',
                                                           ' ').capitalize())
 
-            summary_info_pieces.append({
+            summary_info.append({
                 "colorclass":
                 othercolorclass,
                 "text":
-                'Other ({})'.format(", ".join(other_elements)),
+                'Other ({})'.format(format_entry_points_list(other_elements)),
                 "count":
                 total_count
             })
-            other_summary.append(total_count)
-            other_summary_names.update(other_elements)
+            entrypoints_count['other'].append(total_count)
+            other_entrypoint_names.update(other_elements)
 
-    return summary_info_pieces
+    return summary_info
+
+
+def format_entry_points_list(ep_list):
+    """Return string of entry points, respecting some limit."""
+    import copy
+    max_len = 5
+    tmp = sorted(copy.copy(ep_list))
+    if len(tmp) > max_len:
+        tmp = tmp[:max_len] + ['...']
+
+    return ", ".join(tmp)
+
+
+def complete_plugin_data(plugin_data, subpage_name):
+    """Update plugin data dictionary used for rendering."""
+
+    # Get link to setup.json file (set to None if not retrievable)
+    try:
+        setup_json_link = plugin_data['plugin_info']
+    except KeyError:
+        print("  >> WARNING: Missing plugin_info!!!")
+        plugin_data['setup_json'] = None
+    else:
+        plugin_data['setup_json'] = get_setup_json(setup_json_link)
+        if plugin_data['setup_json'] and 'package_name' not in list(
+                plugin_data['setup_json'].keys()):
+            plugin_data['setup_json']['package_name'] = plugin_data[
+                'setup_json']['name'].replace('-', '_')
+
+    plugin_data['subpage'] = subpage_name
+    plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
+    plugin_data[
+        'entrypointtypes'] = entrypointtypes  # add a static entrypointtypes dictionary
+    plugin_data['summaryinfo'] = get_summary_info(plugin_data['setup_json'])
+    plugin_data['aiida_version'] = get_aiida_version(plugin_data['setup_json'])
+
+    return plugin_data
+
+
+def global_summary():
+    """Compute summary of plugin registry."""
+    global_summary = []
+    for entrypoint_name in main_entrypoints:
+        global_summary.append({
+            'name':
+            entrypoint_metainfo[entrypoint_name]['shortname'],
+            'colorclass':
+            entrypoint_metainfo[entrypoint_name]['colorclass'],
+            'num_entries':
+            len(entrypoints_count[entrypoint_name]),
+            'total_num':
+            sum(entrypoints_count[entrypoint_name]),
+        })
+
+    global_summary.append({
+        'name':
+        "Other",
+        'tooltip':
+        format_entry_points_list(other_entrypoint_names),
+        'colorclass':
+        othercolorclass,
+        'num_entries':
+        len(entrypoints_count['other']),
+        'total_num':
+        sum(entrypoints_count['other'])
+    })
+
+    return global_summary
 
 
 if __name__ == "__main__":
@@ -242,43 +317,22 @@ if __name__ == "__main__":
     with open(PLUGINS_FILE_ABS) as f:
         plugins_raw_data = json.load(f)
 
+    # Note: These are *global* variables
     all_data = {}
     all_data['plugins'] = OrderedDict()
-    summaries = defaultdict(list)
-    other_summary = []
-    other_summary_names = set()
+    entrypoints_count = defaultdict(list)
+    other_entrypoint_names = set()
 
     # Create HTML view for each plugin
     for plugin_name, plugin_data in sorted(six.iteritems(plugins_raw_data)):
         print("  - {}".format(plugin_name))
 
-        thisplugin_data = {}
-
         subpage_name = os.path.join(HTML_FOLDER,
                                     get_html_plugin_fname(plugin_name))
         subpage_abspath = os.path.join(OUT_FOLDER_ABS, subpage_name)
+        plugin_data = complete_plugin_data(plugin_data, subpage_name)
 
-        # Get link to setup.json file (set to None if not retrievable)
-        try:
-            setup_json_link = plugin_data['plugin_info']
-        except KeyError:
-            print("  >> WARNING: Missing plugin_info!!!")
-            plugin_data['setup_json'] = None
-        else:
-            plugin_data['setup_json'] = get_setup_json(setup_json_link)
-            if plugin_data['setup_json']:
-                plugin_data['setup_json']['package_name'] = plugin_data[
-                    'setup_json']['name'].replace('-', '_')
-
-        plugin_data['subpage'] = subpage_name
-        plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
-        plugin_data[
-            'entrypointtypes'] = entrypointtypes  # add a static entrypointtypes dictionary
-        plugin_data['summaryinfo'] = get_summary_info_pieces(
-            plugin_data['setup_json'])
-        plugin_data['aiida_version'] = get_aiida_version(
-            plugin_data['setup_json'])
-
+        # Write plugin html
         plugin_html = env.get_template("singlepage.html").render(**plugin_data)
         with codecs.open(subpage_abspath, 'w', 'utf-8') as f:
             f.write(plugin_html)
@@ -286,29 +340,7 @@ if __name__ == "__main__":
 
         all_data['plugins'][plugin_name] = plugin_data
 
-    # Create HTML index page
-    global_summary = []
-    for entrypoint_name in main_entrypoints:
-        global_summary.append({
-            'name':
-            entrypoint_metainfo[entrypoint_name]['shortname'],
-            'colorclass':
-            entrypoint_metainfo[entrypoint_name]['colorclass'],
-            'num_entries':
-            len(summaries[entrypoint_name]),
-            'total_num':
-            sum(summaries[entrypoint_name]),
-        })
-
-    global_summary.append({
-        'name': "Other",
-        'tooltip': ", ".join(sorted(other_summary_names)),
-        'colorclass': othercolorclass,
-        'num_entries': len(other_summary),
-        'total_num': sum(other_summary)
-    })
-
-    all_data['globalsummary'] = global_summary
+    all_data['globalsummary'] = global_summary()
 
     print("[main index]")
     rendered = env.get_template("main_index.html").render(**all_data)

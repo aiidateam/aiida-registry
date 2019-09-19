@@ -1,4 +1,14 @@
 {
+    "core": {
+        "name": "aiida-core",
+        "package_name": "aiida_core",
+        "entry_point": "",
+        "state": "stable",
+        "pip_url": "git+https://github.com/aiidateam/aiida-core",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-core/v1.0.0b6/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-core",
+        "documentation_url": "http://aiida-core.readthedocs.io/"
+    },
     "quantumespresso": {
         "name": "aiida-quantumespresso",
         "entry_point": "quantumespresso",

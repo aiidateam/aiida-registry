@@ -6,3 +6,5 @@ yapf==0.27.0
 prospector==0.12.11
 pylint==1.9.4
 requirements-parser==0.2.0
+requests
+requests-cache
