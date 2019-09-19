@@ -61,7 +61,7 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Rico Häuselmann
+            <strong>Author(s)</strong>: Espen Flage-Larsen
         </p>
         <p>
             <strong>Short description</strong>: AiiDA Plugin for running VASP calculations.
@@ -76,7 +76,7 @@
             <strong>Most recent version</strong>: 0.2.4
         </p>
         <p>
-            <strong>Compatible with aiida-core</strong>: &gt;=0.11.0
+            <strong>Compatible with aiida-core</strong>: ==1.0.0b6
         </p>
 
         
@@ -90,21 +90,21 @@
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">3</span>
+            <span class="badge-right">2</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left red">Data</span>
-            <span class="badge-right">6</span>
+            <span class="badge-right">5</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left green">Workflows</span>
-            <span class="badge-right">12</span>
+            <span class="badge-right">6</span>
         </span>
         
         <span class="badge"> 
-            <span class="badge-left orange">Other (Console scripts, Cmdline data)</span>
+            <span class="badge-left orange">Other (Cmdline data, Console scripts)</span>
             <span class="badge-right">2</span>
         </span>
         
@@ -150,11 +150,6 @@
                         aiida_vasp.parsers.vasp2w90:Vasp2w90Parser
                     </span></li>
                 
-                <li><code>vasp.pymatgen</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.parsers.pymatgen_vasp:PymatgenParser
-                    </span></li>
-                
                 </ul>
             
                 <h4>
@@ -187,11 +182,6 @@
                 <li><code>vasp.potcar_file</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_vasp.data.potcar:PotcarFileData
-                    </span></li>
-                
-                <li><code>vasp.paw</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.data.paw:LegacyPawData
                     </span></li>
                 
                 </ul>
@@ -259,36 +249,6 @@
                 <li><code>vasp.relax</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_vasp.workchains.relax:RelaxWorkChain
-                    </span></li>
-                
-                <li><code>vasp.legacy.scf</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.workflows.scf:ScfWorkflow
-                    </span></li>
-                
-                <li><code>vasp.legacy.nscf</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.workflows.nscf:NscfWorkflow
-                    </span></li>
-                
-                <li><code>vasp.legacy.projections</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.workflows.projections:ProjectionsWorkflow
-                    </span></li>
-                
-                <li><code>vasp.legacy.autowindows</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.workflows.autowindows:AutowindowsWorkflow
-                    </span></li>
-                
-                <li><code>vasp.legacy.wannier</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.workflows.wannier:WannierWorkflow
-                    </span></li>
-                
-                <li><code>vasp.legacy.windows</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_vasp.workflows.windows:WindowsWorkflow
                     </span></li>
                 
                 </ul>
