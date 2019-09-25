@@ -23,7 +23,7 @@ community of your ongoing work.
     "new": {
         "name": "aiida-new",
         "entry_point": "new",
-        "state": "development",
+        "state": "registered",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-new/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-new",
         "documentation_url": "http://aiida-new.readthedocs.io/"
@@ -41,9 +41,9 @@ The name which is at the beginning of all entry points exposed by the plugin
 
 #### state
 One of
-* `registered`: designates plugins which are not in a working state and may or may not have any code written. Use this to secure a specific name
-* `development`: plugins which work partially but may not be stable yet
-* `stable`: plugins which can be used in production. 
+* `registered`: plugin is not yet in a working state. Use this to secure a specific name before starting development
+* `development`: plugin adds new functionality but isn't stable enough for production use
+* `stable`: plugin can be used in production
 
 #### pip_url
 A url that can be used to directly install the most recent ('development') or most recent stable ('stable') version with pip.

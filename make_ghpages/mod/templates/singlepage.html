@@ -15,7 +15,12 @@
     <h2>General information</h2>
     <div>
         <p>
-            Current state: <emph>{{ state }}</emph>
+            Current state:
+            <span class="classbox">{{  state }}
+                <span class="tooltiptext">
+                    {{ state_dict[state] }}
+                </span>
+            </span>
         </p>
 
         <p>
@@ -85,7 +90,7 @@
                 <li><code>{{ entrypoint.split('=')[0].strip() }}</code>
                     <div class="classbox">class<span class="tooltiptext">
                         {{ entrypoint.split('=')[1].strip() }}
-                    </span></li>
+                    </span></div></li>
                 {% endfor %}
                 </ul>
             {% endfor %}
