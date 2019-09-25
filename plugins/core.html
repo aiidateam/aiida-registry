@@ -40,7 +40,12 @@
     <h2>General information</h2>
     <div>
         <p>
-            Current state: <emph>stable</emph>
+            Current state:
+            <span class="classbox">stable
+                <span class="tooltiptext">
+                    Ready for production calculations. Bug reports welcome!
+                </span>
+            </span>
         </p>
 
         <p>
@@ -119,12 +124,12 @@
                 <li><code>arithmetic.add</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.calculations.plugins.arithmetic.add:ArithmeticAddCalculation
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>templatereplacer</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.calculations.plugins.templatereplacer:TemplatereplacerCalculation
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -138,12 +143,12 @@
                 <li><code>arithmetic.add</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.parsers.plugins.arithmetic.add:ArithmeticAddParser
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>templatereplacer.doubler</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.parsers.plugins.templatereplacer.doubler:TemplatereplacerDoublerParser
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -157,12 +162,12 @@
                 <li><code>local</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.transports.plugins.local:LocalTransport
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>ssh</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.transports.plugins.ssh:SshTransport
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -176,32 +181,32 @@
                 <li><code>direct</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.schedulers.plugins.direct:DirectScheduler
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>lsf</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.schedulers.plugins.lsf:LsfScheduler
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>pbspro</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.schedulers.plugins.pbspro:PbsproScheduler
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>sge</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.schedulers.plugins.sge:SgeScheduler
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>slurm</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.schedulers.plugins.slurm:SlurmScheduler
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>torque</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.schedulers.plugins.torque:TorqueScheduler
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -215,42 +220,42 @@
                 <li><code>data</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.data:Data
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>process</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.process.process:ProcessNode
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>process.calculation</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.process.calculation.calculation:CalculationNode
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>process.calculation.calcfunction</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.process.calculation.calcfunction:CalcFunctionNode
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>process.calculation.calcjob</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.process.calculation.calcjob:CalcJobNode
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>process.workflow</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.process.workflow.workflow:WorkflowNode
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>process.workflow.workchain</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.process.workflow.workchain:WorkChainNode
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>process.workflow.workfunction</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.process.workflow.workfunction:WorkFunctionNode
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -264,112 +269,112 @@
                 <li><code>array</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.array.array:ArrayData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>array.bands</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.array.bands:BandsData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>array.kpoints</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.array.kpoints:KpointsData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>array.projection</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.array.projection:ProjectionData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>array.trajectory</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.array.trajectory:TrajectoryData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>array.xy</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.array.xy:XyData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>base</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data:BaseType
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>bool</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.bool:Bool
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>cif</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.cif:CifData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>code</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.code:Code
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>dict</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.dict:Dict
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>float</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.float:Float
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>folder</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.folder:FolderData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>int</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.int:Int
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>list</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.list:List
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>numeric</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.numeric:NumericType
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>orbital</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.orbital:OrbitalData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>remote</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.remote:RemoteData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>singlefile</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.singlefile:SinglefileData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>str</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.str:Str
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>structure</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.structure:StructureData
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>upf</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.orm.nodes.data.upf:UpfData
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -383,47 +388,47 @@
                 <li><code>cod</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.cod:CodDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>icsd</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.icsd:IcsdDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>materialsproject</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.materialsproject:MaterialsProjectImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>mpds</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.mpds:MpdsDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>mpod</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.mpod:MpodDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>nninc</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.nninc:NnincDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>oqmd</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.oqmd:OqmdDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>pcod</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.pcod:PcodDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>tcod</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.dbimporters.plugins.tcod:TcodDbImporter
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -437,42 +442,42 @@
                 <li><code>array</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_array:array
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>bands</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_bands:bands
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>cif</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_cif:cif
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>dict</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_dict:dictionary
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>remote</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_remote:remote
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>structure</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_structure:structure
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>trajectory</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_trajectory:trajectory
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>upf</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_data.cmd_upf:upf
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -486,12 +491,12 @@
                 <li><code>orbital</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.data.orbital.orbital:Orbital
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>realhydrogen</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.tools.data.orbital.realhydrogen:RealhydrogenOrbital
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -505,7 +510,7 @@
                 <li><code>verdi</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.cmdline.commands.cmd_verdi:verdi
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
@@ -546,12 +551,12 @@
                 <li><code>local</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.transports.plugins.local:CONFIGURE_LOCAL_CMD
-                    </span></li>
+                    </span></div></li>
                 
                 <li><code>ssh</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida.transports.plugins.ssh:CONFIGURE_SSH_CMD
-                    </span></li>
+                    </span></div></li>
                 
                 </ul>
             
