@@ -83,6 +83,14 @@ entrypoint_metainfo = {
     },
 }
 
+# User-facing description of plugin development states
+state_dict = {
+    'registered': "Not yet usable, developers welcome.",
+    'development':
+    "Adds some functionality but not ready for prime-time. Testing welcome.",
+    'stable': "Ready for production calculations. Bug reports welcome.",
+}
+
 ## dictionary of human-readable entrypointtypes
 entrypointtypes = {k: v['longname'] for k, v in entrypoint_metainfo.items()}
 
@@ -264,6 +272,11 @@ def complete_plugin_data(plugin_data, subpage_name):
         'entrypointtypes'] = entrypointtypes  # add a static entrypointtypes dictionary
     plugin_data['summaryinfo'] = get_summary_info(plugin_data['setup_json'])
     plugin_data['aiida_version'] = get_aiida_version(plugin_data['setup_json'])
+
+    plugin_data['state_dict'] = state_dict
+    # note: for more validation, it might be sensible to switch to voluptuous
+    if plugin_data['state'] not in list(state_dict.keys()):
+        print("  >> WARNING: Invalid state {}".format(plugin_data['state']))
 
     return plugin_data
 

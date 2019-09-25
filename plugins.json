@@ -30,7 +30,7 @@
     "diff": {
         "name": "aiida-diff",
         "entry_point": "diff",
-        "state": "development",
+        "state": "stable",
         "pip_url": "git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-diff/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-diff",
@@ -48,7 +48,7 @@
     "alloy":{
         "name": "aiida-alloy",
         "entry_point": "alloy",
-        "state": "development",
+        "state": "registered",
         "code_home": "https://github.com/DanielMarchand/aiida-alloy",
         "plugin_info": "https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json",
         "pip_url": "aiida-alloy"
@@ -153,7 +153,7 @@
     "zeopp": {
         "name": "aiida-zeopp",
         "entry_point": "zeopp",
-        "state": "development",
+        "state": "stable",
         "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
         "code_home": "https://github.com/ltalirz/aiida-zeopp"
     },
@@ -224,7 +224,7 @@
     "qeq": {
         "name": "aiida-qeq",
         "entry_point": "qeq",
-        "state": "development",
+        "state": "stable",
         "plugin_info": "https://raw.githubusercontent.com/ltalirz/aiida-qeq/master/setup.json",
         "code_home": "http://github.com/ltalirz/aiida-qeq"
     },
@@ -303,7 +303,7 @@
     "uppasd": {
         "name": "aiida-uppasd",
         "entry_point": "uppasd",
-        "state": "development",
+        "state": "registered",
         "pip_url": "aiida-uppasd",
         "plugin_info": "https://raw.github.com/uppasd/aiida-uppasd/master/setup.json",
         "code_home": "https://github.com/uppasd/aiida-uppasd",
@@ -312,7 +312,7 @@
     "hea":{
         "name": "aiida-hea",
         "entry_point": "hea",
-        "state": "development",
+        "state": "registered",
         "code_home": "https://github.com/unkcpz/aiida-hea",
         "plugin_info": "https://raw.github.com/unkcpz/aiida-hea/master/setup.json",
         "pip_url": "aiida-hea",
