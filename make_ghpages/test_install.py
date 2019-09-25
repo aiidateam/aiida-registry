@@ -30,4 +30,5 @@ if __name__ == "__main__":
         try_cmd("pip install {}".format(v['pip_url']))
 
         print(" - Importing {}".format(v['name']))
-        try_cmd("python -c 'import {}'".format(v['package_name']))
+        try_cmd("python -c 'import {}'".format(
+            v['setup_json']['package_name']))
