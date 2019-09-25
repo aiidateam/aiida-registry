@@ -1,7 +1,7 @@
 {
     "core": {
         "name": "aiida-core",
-        "package_name": "aiida_core",
+        "package_name": "aiida",
         "entry_point": "",
         "state": "stable",
         "pip_url": "git+https://github.com/aiidateam/aiida-core",
