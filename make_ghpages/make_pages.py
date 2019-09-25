@@ -30,6 +30,7 @@ OUT_FOLDER = 'out'
 STATIC_FOLDER = 'static'
 HTML_FOLDER = 'plugins'  # Name for subfolder where HTMLs for plugins are going to be sitting
 TEMPLATES_FOLDER = 'templates'
+DATA_JSON = 'all_data.json'
 
 # Absolute paths
 pwd = os.path.split(os.path.abspath(__file__))[0]
@@ -361,3 +362,7 @@ if __name__ == "__main__":
     with codecs.open(outfile, 'w', 'utf-8') as f:
         f.write(rendered)
     print("  - index.html generated")
+
+    with open(DATA_JSON, 'w') as handle:
+        json.dump(all_data, handle, indent=2)
+    print("  - {} dumped".format(DATA_JSON))

@@ -21,6 +21,7 @@ install:
 
 script: 
   - ./make_pages.py  
+  - ./test_install.py
   - cd ../.travis-data && ./deploy.sh
 
 ## See docs here: https://docs.travis-ci.com/user/deployment/pages/
