@@ -4,28 +4,28 @@
         "package_name": "aiida",
         "entry_point": "",
         "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-core",
+        "pip_url": "aiida-core==1.0.0b6",
         "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-core/v1.0.0b6/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-core",
-        "documentation_url": "http://aiida-core.readthedocs.io/"
+        "documentation_url": "https://aiida-core.readthedocs.io/"
     },
     "quantumespresso": {
         "name": "aiida-quantumespresso",
         "entry_point": "quantumespresso",
         "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-quantumespresso",
+        "pip_url": "aiida-quantumespresso",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-quantumespresso",
-        "documentation_url": "http://aiida-quantumespresso.readthedocs.io/"
+        "documentation_url": "https://aiida-quantumespresso.readthedocs.io/"
     },
     "wannier90": {
         "name": "aiida-wannier90",
         "entry_point": "wannier90",
         "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-wannier90",
+        "pip_url": "aiida-wannier90",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-wannier90",
-        "documentation_url": "http://aiida-wannier90.readthedocs.io/"
+        "documentation_url": "https://aiida-wannier90.readthedocs.io/"
     },
     "diff": {
         "name": "aiida-diff",
@@ -34,16 +34,17 @@
         "pip_url": "git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-diff/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-diff",
-        "documentation_url": "http://aiida-diff.readthedocs.io/"
+        "documentation_url": "https://aiida-diff.readthedocs.io/"
     },
     "vasp": {
         "name": "aiida-vasp",
         "entry_point": "vasp",
         "state": "development",
+        "pip_url": "aiida-vasp",
         "code_home": "https://github.com/aiida-vasp/aiida-vasp",
         "plugin_info": "https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/develop/setup.json",
         "pip_url": "aiida-vasp",
-        "documentation_url": "http://aiida-vasp.readthedocs.io/"
+        "documentation_url": "https://aiida-vasp.readthedocs.io/"
     },
     "alloy":{
         "name": "aiida-alloy",
@@ -51,21 +52,23 @@
         "state": "registered",
         "code_home": "https://github.com/DanielMarchand/aiida-alloy",
         "plugin_info": "https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json",
-        "pip_url": "aiida-alloy"
+        "pip_url": "git+https://github.com/aiidateam/aiida-alloy"
     },
     "cp2k": {
         "name": "aiida-cp2k",
         "entry_point": "cp2k",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/cp2k/aiida-cp2k/master/setup.json",
-        "code_home": "https://github.com/cp2k/aiida-cp2k"
+        "code_home": "https://github.com/cp2k/aiida-cp2k",
+        "pip_url": "aiida-cp2k"
     },
     "quantumespresso-hp": {
         "name": "aiida-quantumespresso-hp",
         "entry_point": "quantumespresso.hp",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-hp/master/setup.json",
-        "code_home": "https://github.com/sphuber/aiida-quantumespresso-hp"
+        "code_home": "https://github.com/sphuber/aiida-quantumespresso-hp",
+        "pip_url": "git+https://github.com/aiidateam/aiida-quantumespresso-hp"
     },
     "fleur": {
         "name": "aiida-fleur",
@@ -74,22 +77,22 @@
         "pip_url": "aiida-fleur",
         "plugin_info": "https://raw.github.com/JuDFTteam/aiida-fleur/develop/setup.json",
         "code_home": "https://github.com/JuDFTteam/aiida-fleur/tree/develop",
-        "documentation_url": "http://aiida-fleur.readthedocs.io/"
+        "documentation_url": "https://aiida-fleur.readthedocs.io/"
     },
     "siesta": {
         "name": "aiida-siesta",
         "entry_point": "siesta",
         "state": "development",
-        "pip_url": "git+https://github.com/albgar/aiida_siesta_plugin",
+        "pip_url": "aiida-siesta",
         "plugin_info": "https://raw.github.com/albgar/aiida_siesta_plugin/master/setup.json",
         "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master",
-        "documentation_url": "http://aiida-siesta-plugin.readthedocs.io/"
+        "documentation_url": "https://aiida-siesta-plugin.readthedocs.io/"
     },
     "yambo": {
-        "name": "yambo-aiida",
+        "name": "aiida-yambo",
         "entry_point": "yambo",
         "state": "development",
-        "pip_url": "git+https://github.com/yambo-code/yambo-aiida/",
+        "pip_url": "aiida-yambo",
         "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/develop/setup.json",
         "code_home": "https://github.com/yambo-code/yambo-aiida/"
     },
@@ -97,28 +100,28 @@
         "name": "aiida-ase",
         "entry_point": "ase",
         "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-ase#egg=aiida-ase-0.1.0",
+        "pip_url": "aiida-ase",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-ase/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-ase",
-        "documentation_url": "http://aiida-ase.readthedocs.io/"
+        "documentation_url": "https://aiida-ase.readthedocs.io/"
     },
     "codtools": {
         "name": "aiida-codtools",
         "entry_point": "codtools",
         "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-codtools#egg=aiida-codtools-0.1.0",
+        "pip_url": "aiida-codtools",
         "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-codtools/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-codtools",
-        "documentation_url": "http://aiida-codtools.readthedocs.io/"
+        "documentation_url": "https://aiida-codtools.readthedocs.io/"
     },
     "nwchem": {
         "name": "aiida-nwchem",
         "entry_point": "nwchem",
         "state": "stable",
-        "pip_url": "git+https://github.com/aiidateam/aiida-nwchem#egg=aiida-nwchem-0.1.0",
+        "pip_url": "aiida-nwchem",
         "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-nwchem/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-nwchem",
-        "documentation_url": "http://aiida-nwchem.readthedocs.io/"
+        "documentation_url": "https://aiida-nwchem.readthedocs.io/"
     },
     "phonopy": {
         "name": "aiida-phonopy",
@@ -126,13 +129,15 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/master/setup.json",
         "code_home": "https://github.com/abelcarreras/aiida-phonopy",
-        "documentation_url": "http://aiida-phonopy.readthedocs.io/"
+        "pip_url": "git+https://github.com/abelcarreras/aiida-phonopy",
+        "documentation_url": "https://aiida-phonopy.readthedocs.io/"
     },
     "lammps": {
         "name": "aiida-lammps",
         "entry_point": "lammps",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-lammps/master/setup.json",
+        "pip_url": "git+https://github.com/abelcarreras/aiida-lammps",
         "code_home": "https://github.com/abelcarreras/aiida-lammps"
     },
     "castep": {
@@ -141,7 +146,8 @@
         "state": "development",
         "plugin_info": "https://gitlab.com/bz1/aiida-castep/raw/master/setup.json",
         "code_home": "https://gitlab.com/bz1/aiida-castep",
-        "documentation_url": "http://aiida-castep.readthedocs.io/"
+        "documentation_url": "https://aiida-castep.readthedocs.io/",
+        "pip_url": "aiida-castep"
     },
     "raspa": {
         "name": "aiida-raspa",
@@ -155,27 +161,31 @@
         "entry_point": "zeopp",
         "state": "stable",
         "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
-        "code_home": "https://github.com/ltalirz/aiida-zeopp"
+        "code_home": "https://github.com/ltalirz/aiida-zeopp",
+        "pip_url": "aiida-zeopp"
     },
     "gudhi": {
         "name": "aiida-gudhi",
         "entry_point": "gudhi",
         "state": "development",
         "plugin_info": "https://raw.github.com/ltalirz/aiida-gudhi/master/setup.json",
-        "code_home": "https://github.com/ltalirz/aiida-gudhi"
+        "code_home": "https://github.com/ltalirz/aiida-gudhi",
+        "pip_url": "aiida-zeopp"
     },
     "phtools": {
         "name": "aiida-phtools",
         "entry_point": "phtools",
         "state": "development",
         "plugin_info": "https://raw.github.com/ltalirz/aiida-phtools/master/setup.json",
-        "code_home": "https://github.com/ltalirz/aiida-phtools"
+        "code_home": "https://github.com/ltalirz/aiida-phtools",
+        "pip_url": "aiida-phtools"
     },
     "widgets": {
         "name": "aiida-widgets",
         "state": "development",
         "plugin_info": "https://raw.github.com/materialscloud-org/mc-aiida-widgets/master/setup.json",
-        "code_home": "https://github.com/materialscloud-org/mc-aiida-widgets"
+        "code_home": "https://github.com/materialscloud-org/mc-aiida-widgets",
+        "pip_url": "aiida-widgets"
     },
     "kkr": {
         "name": "aiida-kkr",
@@ -183,22 +193,25 @@
         "state": "development",
         "plugin_info": "https://raw.github.com/JuDFTteam/aiida-kkr/develop/setup.json",
         "code_home": "https://github.com/JuDFTteam/aiida-kkr/tree/develop",
-        "documentation_url": "http://aiida-kkr.readthedocs.io/"
+        "documentation_url": "https://aiida-kkr.readthedocs.io/",
+        "pip_url": "aiida-kkr"
     },
     "gollum": {
         "name": "aiida-gollum",
         "entry_point": "gollum",
         "state": "development",
         "plugin_info": "https://raw.github.com/garsua/aiida-gollum/master/setup.json",
-        "code_home": "http://github.com/garsua/aiida-gollum/",
-        "documentation_url": "http://aiida-gollum.readthedocs.io/"
+        "code_home": "https://github.com/garsua/aiida-gollum/",
+        "documentation_url": "https://aiida-gollum.readthedocs.io/",
+        "pip_url": "git+https://github.com/garsua/aiida-gollum"
     },
     "ddec": {
         "name": "aiida-ddec",
         "entry_point": "ddec",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/yakutovicha/aiida-ddec/master/setup.json",
-        "code_home": "http://github.com/yakutovicha/aiida-ddec"
+        "code_home": "https://github.com/yakutovicha/aiida-ddec",
+        "pip_url": "aiida-ddec"
     },
     "crystal17": {
         "name": "aiida-crystal17",
@@ -206,27 +219,31 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/chrisjsewell/aiida-crystal17/master/setup.json",
         "documentation_url": "https://aiida-crystal17.readthedocs.io",
-        "code_home": "http://github.com/chrisjsewell/aiida-crystal17"
+        "code_home": "https://github.com/chrisjsewell/aiida-crystal17",
+        "pip_url": "aiida-crystal17"
     },
     "z2pack": {
         "name":"aiida-z2pack",
         "entry_point":"z2pack",
         "state":"registered",
-        "code_home":"http://github.com/AntimoMarrazzo/aiida-z2pack"
+        "code_home":"https://github.com/AntimoMarrazzo/aiida-z2pack",
+        "pip_url":"git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
     "spex": {
         "name": "aiida-spex",
         "entry_point": "spex",
         "state": "registered",
-        "code_home": "http://github.com/JuDFTteam/aiida-spex",
-        "plugin_info": "https://raw.githubusercontent.com/JuDFTteam/aiida-spex/master/setup.json"
+        "code_home": "https://github.com/JuDFTteam/aiida-spex",
+        "plugin_info": "https://raw.githubusercontent.com/JuDFTteam/aiida-spex/master/setup.json",
+        "pip_url": "git+https://github.com/JuDFTteam/aiida-spex"
     },
     "qeq": {
         "name": "aiida-qeq",
         "entry_point": "qeq",
         "state": "stable",
         "plugin_info": "https://raw.githubusercontent.com/ltalirz/aiida-qeq/master/setup.json",
-        "code_home": "http://github.com/ltalirz/aiida-qeq"
+        "code_home": "https://github.com/ltalirz/aiida-qeq",
+        "pip_url": "aiida-qeq"
     },
     "optimize": {
         "name": "aiida-optimize",
@@ -289,13 +306,13 @@
         "pip_url": "git+https://github.com/aiidateam/aiida-tcod",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-tcod/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-tcod",
-        "documentation_url": "http://aiida-tcod.readthedocs.io/"
+        "documentation_url": "https://aiida-tcod.readthedocs.io/"
     },
     "gaussian-datatypes": {
         "name": "aiida-gaussian-datatypes",
         "entry_point": "gaussian",
         "state": "development",
-        "pip_url": "git+https://github.com/dev-zero/aiida-gaussian-datatypes",
+        "pip_url": "aiida-gaussian-datatypes",
         "plugin_info": "https://raw.github.com/dev-zero/aiida-gaussian-datatypes/master/setup.json",
         "code_home": "https://github.com/dev-zero/aiida-gaussian-datatypes",
         "documentation_url": "https://github.com/dev-zero/aiida-gaussian-datatypes/blob/master/README.md"
@@ -304,7 +321,7 @@
         "name": "aiida-uppasd",
         "entry_point": "uppasd",
         "state": "registered",
-        "pip_url": "aiida-uppasd",
+        "pip_url": "git+https://github.com/unkcpz/aiida-uppasd",
         "plugin_info": "https://raw.github.com/uppasd/aiida-uppasd/master/setup.json",
         "code_home": "https://github.com/uppasd/aiida-uppasd",
         "documentation_url": "https://github.com/uppasd/aiida-uppasd/blob/master/README.md"
@@ -315,15 +332,16 @@
         "state": "registered",
         "code_home": "https://github.com/unkcpz/aiida-hea",
         "plugin_info": "https://raw.github.com/unkcpz/aiida-hea/master/setup.json",
-        "pip_url": "aiida-hea",
-        "documentation_url": "http://aiida-hea.readthedocs.io/"
+        "pip_url": "git+https://github.com/unkcpz/aiida-hea",
+        "documentation_url": "https://aiida-hea.readthedocs.io/"
     },
     "porousmaterials": {
         "name": "aiida-porousmaterials",
         "entry_point": "porousmaterials",
         "state": "development",
         "plugin_info": "https://github.com/pzarabadip/aiida-porousmaterials/blob/master/setup.json",
-        "code_home": "https://github.com/pzarabadip/aiida-porousmaterials"
+        "code_home": "https://github.com/pzarabadip/aiida-porousmaterials",
+        "pip_url": "aiida-porousmaterials"
     },
     "plumed": {
         "name": "aiida-plumed",
@@ -332,6 +350,6 @@
         "code_home": "https://github.com/ConradJohnston/aiida-plumed",
         "plugin_info": "https://raw.github.com/ConradJohnston/aiida-plumed/AiiDA-v1.0-compatibility/setup.json",
         "pip_url": "aiida-plumed",
-        "documentation_url": "http://aiida-plumed.readthedocs.io/"
+        "documentation_url": "https://aiida-plumed.readthedocs.io/"
     }
 }

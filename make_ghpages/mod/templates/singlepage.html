@@ -50,9 +50,11 @@
         <p>
             <strong>Short description</strong>: {{ setup_json.description }}
         </p>
+        {%  if pip_url %}
         <p>
-            <strong>Package name (for pip)</strong>: <code>{{ name }}</code>
+            <strong>How to install</strong>: <code>pip install {{ pip_url }}</code>
         </p>
+        {% endif %}
         <p>
             <strong>How to use from python</strong>: <code>import {{ setup_json.package_name }}</code>
         </p>

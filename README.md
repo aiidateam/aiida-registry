@@ -18,7 +18,7 @@ community of your ongoing work.
 ## How to register a plugin
 
 1. Fork the repository
-2. Add your plugin to the `plugins.json` file, e.g. 
+2. Add your plugin to the `plugins.json` file, e.g.
     ```
     "new": {
         "name": "aiida-new",
@@ -46,7 +46,11 @@ One of
 * `stable`: plugin can be used in production
 
 #### pip_url
-A url that can be used to directly install the most recent ('development') or most recent stable ('stable') version with pip.
+A URL or PyPI package name for installing the most recent development (`state: 'development'`) or stable (`state: 'stable'`) version of the package with pip.
+
+Examples:
+ * `"pip_url": "aiida-quantumespresso"` for a package that is [registered on PyPI](https://pypi.org/project/aiida-quantumespresso/)
+ * `"pip_url": "git+https://github.com/aiidateam/aiida-wannier90"` for a package not registered on PyPI
 
 #### plugin_info
 A URL pointing to a JSON file which holds all keyword args, as given to the setuptools.setup function at install.
