@@ -262,10 +262,9 @@ def complete_plugin_data(plugin_data, subpage_name):
         plugin_data['setup_json'] = None
     else:
         plugin_data['setup_json'] = get_setup_json(setup_json_link)
-        if plugin_data['setup_json'] and 'package_name' not in list(
-                plugin_data.keys()):
-            plugin_data['setup_json']['package_name'] = plugin_data[
-                'setup_json']['name'].replace('-', '_')
+
+        if 'package_name' not in list(plugin_data.keys()):
+            plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
 
     plugin_data['subpage'] = subpage_name
     plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
