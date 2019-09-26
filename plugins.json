@@ -170,7 +170,7 @@
         "state": "development",
         "plugin_info": "https://raw.github.com/ltalirz/aiida-gudhi/master/setup.json",
         "code_home": "https://github.com/ltalirz/aiida-gudhi",
-        "pip_url": "aiida-zeopp"
+        "pip_url": "aiida-gudhi"
     },
     "phtools": {
         "name": "aiida-phtools",
@@ -181,11 +181,11 @@
         "pip_url": "aiida-phtools"
     },
     "widgets": {
-        "name": "aiida-widgets",
+        "name": "aiidalab-widgets",
         "state": "development",
-        "plugin_info": "https://raw.github.com/materialscloud-org/mc-aiida-widgets/master/setup.json",
-        "code_home": "https://github.com/materialscloud-org/mc-aiida-widgets",
-        "pip_url": "aiida-widgets"
+        "plugin_info": "https://raw.github.com/aiidalab/aiidalab-widgets-base/master/setup.json",
+        "code_home": "https://github.com/aiidalab/aiidalab-widgets-base",
+        "pip_url": "aiidalab-widgets-base"
     },
     "kkr": {
         "name": "aiida-kkr",
@@ -339,7 +339,7 @@
         "name": "aiida-porousmaterials",
         "entry_point": "porousmaterials",
         "state": "development",
-        "plugin_info": "https://github.com/pzarabadip/aiida-porousmaterials/blob/master/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-porousmaterials/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-porousmaterials",
         "pip_url": "aiida-porousmaterials"
     },

@@ -263,7 +263,7 @@ def complete_plugin_data(plugin_data, subpage_name):
     else:
         plugin_data['setup_json'] = get_setup_json(setup_json_link)
         if plugin_data['setup_json'] and 'package_name' not in list(
-                plugin_data['setup_json'].keys()):
+                plugin_data.keys()):
             plugin_data['setup_json']['package_name'] = plugin_data[
                 'setup_json']['name'].replace('-', '_')
 
