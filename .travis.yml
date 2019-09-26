@@ -10,6 +10,18 @@ env:
   - ENCRYPTION_LABEL: "7712d5cd71ad"
   - COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
 
+matrix:
+  include:
+  - name: Build HTML
+    env:
+    - JOB: HTML
+  - name: Install plugins
+    env:
+    - JOB: INSTALL
+
+  allow_failures:
+  - name: Install plugins
+
 before_install:
   # This is needed for the SSH tests (being able to ssh to localhost)
   # And will also be used for the docker test
@@ -20,9 +32,8 @@ install:
   - pip install -r requirements.txt
 
 script: 
-  - ./make_pages.py  
-  - ./test_install.py
-  - cd ../.travis-data && ./deploy.sh
+  - if [ "$JOB" == "HTML" ]; then ./make_pages.py; cd ../.travis-data && ./deploy.sh; fi
+  - if [ "$JOB" == "INSTALL" ]; then ./test_install.py; fi
 
 ## See docs here: https://docs.travis-ci.com/user/deployment/pages/
 ## This works, but we're not using it to avoid to have global tokens.
