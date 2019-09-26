@@ -11,12 +11,9 @@ import subprocess
 
 def try_cmd(cmd):
     try:
-        out = subprocess.check_output(cmd,
-                                      shell=True,
-                                      stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError:
-        print(out)
-        raise
+        subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as exc:
+        print(exc.output)
 
 
 with open('all_data.json', 'r') as handle:
@@ -26,6 +23,7 @@ if __name__ == "__main__":
 
     print("[test installing plugins]")
     for k, v in six.iteritems(data['plugins']):
+
         print(" - Installing {}".format(v['name']))
         try_cmd("pip install {}".format(v['pip_url']))
 
