@@ -68,7 +68,7 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-hp/master/setup.json",
         "code_home": "https://github.com/sphuber/aiida-quantumespresso-hp",
-        "pip_url": "git+https://github.com/aiidateam/aiida-quantumespresso-hp"
+        "pip_url": "git+https://github.com/sphuber/aiida-quantumespresso-hp"
     },
     "fleur": {
         "name": "aiida-fleur",
@@ -211,7 +211,7 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/yakutovicha/aiida-ddec/master/setup.json",
         "code_home": "https://github.com/yakutovicha/aiida-ddec",
-        "pip_url": "aiida-ddec"
+        "pip_url": "git+https://github.com/yakutovicha/aiida-ddec"
     },
     "crystal17": {
         "name": "aiida-crystal17",

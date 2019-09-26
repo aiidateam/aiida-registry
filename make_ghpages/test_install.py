@@ -24,9 +24,12 @@ if __name__ == "__main__":
     print("[test installing plugins]")
     for k, v in six.iteritems(data['plugins']):
 
-        print(" - Installing {}".format(v['name']))
-        try_cmd("pip install {}".format(v['pip_url']))
+        # 'registered' plugins aren't installed/tested
+        if v['state'] != 'registered':
 
-        print(" - Importing {}".format(v['name']))
-        try_cmd("python -c 'import {}'".format(
-            v['setup_json']['package_name']))
+            print(" - Installing {}".format(v['name']))
+            try_cmd("pip install {}".format(v['pip_url']))
+
+            print(" - Importing {}".format(v['name']))
+            try_cmd("python -c 'import {}'".format(
+                v['setup_json']['package_name']))
