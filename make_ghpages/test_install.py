@@ -31,14 +31,24 @@ if __name__ == "__main__":
     print("[test installing plugins]")
     for k, v in six.iteritems(data):
 
+        print(" - {}".format(v['name']))
+
         # 'registered' plugins aren't installed/tested
-        if v['state'] != 'registered':
+        if v['state'] == 'registered':
+            continue
 
-            print(" - Installing {}".format(v['name']))
-            is_installed = try_cmd("pip install {}".format(v['pip_url']))
+        if 'pip_url' not in list(v.keys()):
+            print("  >> WARNING: Missing pip_url key!")
+            continue
 
-            if is_installed:
-                if 'package_name' not in list(v.keys()):
-                    v['package_name'] = v['name'].replace('-', '_')
-                print(" - Importing {}".format(v['package_name']))
-                try_cmd("python -c 'import {}'".format(v['package_name']))
+        print(" - Installing {}".format(v['name']))
+        is_installed = try_cmd("pip install {}".format(v['pip_url']))
+
+        if not is_installed:
+            continue
+
+        if 'package_name' not in list(v.keys()):
+            v['package_name'] = v['name'].replace('-', '_')
+
+        print(" - Importing {}".format(v['package_name']))
+        try_cmd("python -c 'import {}'".format(v['package_name']))

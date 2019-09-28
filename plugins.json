@@ -154,7 +154,8 @@
         "entry_point": "raspa",
         "state": "development",
         "plugin_info": "https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json",
-        "code_home": "https://github.com/yakutovicha/aiida-raspa"
+        "code_home": "https://github.com/yakutovicha/aiida-raspa",
+        "pip_url": "aiida-raspa"
     },
     "zeopp": {
         "name": "aiida-zeopp",
