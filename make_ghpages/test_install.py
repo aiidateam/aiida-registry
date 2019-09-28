@@ -15,9 +15,12 @@ PLUGINS_FILE_ABS = os.path.join(pwd, os.pardir, 'plugins.json')
 
 def try_cmd(cmd):
     try:
-        subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+        return subprocess.check_output(cmd,
+                                       shell=True,
+                                       stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         print(exc.output)
+        return False
 
 
 with open(PLUGINS_FILE_ABS, 'r') as handle:
@@ -32,9 +35,10 @@ if __name__ == "__main__":
         if v['state'] != 'registered':
 
             print(" - Installing {}".format(v['name']))
-            try_cmd("pip install {}".format(v['pip_url']))
+            is_installed = try_cmd("pip install {}".format(v['pip_url']))
 
-            if 'package_name' not in list(v.keys()):
-                v['package_name'] = v['name'].replace('-', '_')
-            print(" - Importing {}".format(v['package_name']))
-            try_cmd("python -c 'import {}'".format(v['package_name']))
+            if is_installed:
+                if 'package_name' not in list(v.keys()):
+                    v['package_name'] = v['name'].replace('-', '_')
+                print(" - Importing {}".format(v['package_name']))
+                try_cmd("python -c 'import {}'".format(v['package_name']))

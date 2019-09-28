@@ -341,7 +341,7 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-porousmaterials/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-porousmaterials",
-        "pip_url": "aiida-porousmaterials"
+        "pip_url": "git+https://github.com/pzarabadip/aiida-porousmaterials"
     },
     "plumed": {
         "name": "aiida-plumed",
