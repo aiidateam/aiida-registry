@@ -182,7 +182,7 @@
         "pip_url": "aiida-phtools"
     },
     "widgets": {
-        "name": "aiidalab-widgets",
+        "name": "aiidalab-widgets-base",
         "state": "development",
         "plugin_info": "https://raw.github.com/aiidalab/aiidalab-widgets-base/master/setup.json",
         "code_home": "https://github.com/aiidalab/aiidalab-widgets-base",
