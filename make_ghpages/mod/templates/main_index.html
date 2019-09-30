@@ -7,14 +7,13 @@
 
 {% block body %}
 <main>
-    <h1>Global summary of the AiiDA plugin registry</h1>
-    <h2 style="padding-top: 0px">Total number of entries: {{ plugins | length }}</h2>
+    <h2>Registered packages: {{ plugins | length }}</h2>
     <div class='globalsummary-box'>
         <div style="display: table;">
             {% for summaryentry in globalsummary %}
             <span class="badge" style="display: table-row; line-height: 2;"> 
                 <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left {{summaryentry.colorclass}} tooltip" style="float: none; display: inline; text-align: right; border: none">{{summaryentry.name}}{% if summaryentry.tooltip %}<span class="tooltiptext">{{ summaryentry.tooltip}}</span>{% endif %}</span></span>
-                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">{{ summaryentry.total_num }} plugin{% if summaryentry.total_num != 1 %}s{% endif %} in {{ summaryentry.num_entries }} entr{% if summaryentry.num_entries != 1 %}ies{%else%}y{% endif %} </span></span>
+                <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">{{ summaryentry.total_num }} plugin{% if summaryentry.total_num != 1 %}s{% endif %} in {{ summaryentry.num_entries }} package{% if summaryentry.num_entries != 1 %}s{% endif %} </span></span>
             </span>
         {% endfor %}
         </div>
@@ -22,7 +21,7 @@
     </div>
 
     <h1>
-        Available plugins (alphabetically sorted)
+        Available plugins (alphabetical order)
     </h1>
 
     <div id='entrylist'>
@@ -41,21 +40,6 @@
             {%- if plugin.aiida_version -%}
             <span class=aiida_version>, compatible with aiida-core{{plugin.aiida_version}}</span>
             {%- endif -%}    
-        </p>
-        <p><a href="{{ plugin.code_home }}" target="_blank">Plugin code homepage</a> 
-        {% if plugin.hosted_on %}
-        <span style="font-size: 90%">(hosted on {{ plugin.hosted_on }})</span>
-        {% endif %}
-        </p>
-        {% if plugin.documentation_url %}
-            <p>
-                <strong>Documentation</strong>: <a href="{{ plugin.documentation_url }}" target="_blank">Go to plugin documentation</a>
-            <p>
-        {% else %}
-            <p>
-                <strong>Documentation</strong>: Documentation not provided by the plugin author
-            <p>
-        {% endif %}
 	{% if plugin.summaryinfo %}
         <p class="summaryinfo">
             {% for summaryinfoelem in plugin.summaryinfo %}
@@ -66,6 +50,22 @@
             {% endfor %}
         </p>
 	{% endif %}
+        </p>
+        <p><a href="{{ plugin.code_home }}" target="_blank">Code homepage</a>
+        {% if plugin.hosted_on %}
+        <span style="font-size: 90%">(hosted on {{ plugin.hosted_on }})</span>
+        {% endif %}
+        </p>
+        {% if plugin.documentation_url %}
+            <p>
+                <a href="{{ plugin.documentation_url }}" target="_blank">Documentation</a>
+            <p>
+        {% else %}
+            <p>
+                No documentation provided by plugin author.
+            <p>
+        {% endif %}
+
         <p class='details'><a href="{{ plugin.subpage }}">Show plugin details</a></p>
         </div>
         
