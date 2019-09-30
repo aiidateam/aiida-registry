@@ -13,7 +13,6 @@ from collections import OrderedDict, defaultdict
 
 ## Requires jinja2 >= 2.9
 from jinja2 import Environment, PackageLoader, select_autoescape
-from kitchen.text.converters import getwriter
 import requests
 import requests_cache
 
@@ -21,9 +20,6 @@ if os.environ.get('CACHE_REQUESTS'):
     # Set environment variable CACHE_REQUESTS to cache requests for 1 day for faster testing
     # e.g.: export CACHE_REQUESTS=1
     requests_cache.install_cache('demo_cache', expire_after=60 * 60 * 24)
-
-UTF8Writer = getwriter('utf8')
-sys.stdout = UTF8Writer(sys.stdout)
 
 # Subfolders
 OUT_FOLDER = 'out'

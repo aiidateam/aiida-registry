@@ -26,7 +26,7 @@
     </h1>
 
     <div id='entrylist'>
-        {% for plugin_name, plugin in plugins.iteritems() %}
+        {% for plugin_name, plugin in plugins.items() %}
         <div class='submenu-entry'>
         <h2><a href="{{ plugin.subpage }}">{{ plugin_name}}: {{ plugin.name }} package</a></h2>
         {% if plugin.setup_json.description %}
