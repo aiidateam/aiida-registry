@@ -1,8 +1,5 @@
 language: python
 
-python:
-  - "3.6"
-
 cache: pip
 
 env: 
@@ -13,14 +10,21 @@ env:
 matrix:
   include:
   - name: Build HTML
+    python: 3.6
     env:
     - JOB: HTML
-  - name: Install plugins
+  - name: Install plugins (py27)
+    python: 2.7
+    env:
+    - JOB: INSTALL
+  - name: Install plugins (py36)
+    python: 3.6
     env:
     - JOB: INSTALL
 
   allow_failures:
-  - name: Install plugins
+  - name: Install plugins (py27)
+  - name: Install plugins (py36)
 
 before_install:
   # This is needed for the SSH tests (being able to ssh to localhost)
