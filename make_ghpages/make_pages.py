@@ -30,6 +30,7 @@ OUT_FOLDER = 'out'
 STATIC_FOLDER = 'static'
 HTML_FOLDER = 'plugins'  # Name for subfolder where HTMLs for plugins are going to be sitting
 TEMPLATES_FOLDER = 'templates'
+DATA_JSON = 'all_data.json'
 
 # Absolute paths
 pwd = os.path.split(os.path.abspath(__file__))[0]
@@ -261,10 +262,9 @@ def complete_plugin_data(plugin_data, subpage_name):
         plugin_data['setup_json'] = None
     else:
         plugin_data['setup_json'] = get_setup_json(setup_json_link)
-        if plugin_data['setup_json'] and 'package_name' not in list(
-                plugin_data['setup_json'].keys()):
-            plugin_data['setup_json']['package_name'] = plugin_data[
-                'setup_json']['name'].replace('-', '_')
+
+        if 'package_name' not in list(plugin_data.keys()):
+            plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
 
     plugin_data['subpage'] = subpage_name
     plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
@@ -361,3 +361,7 @@ if __name__ == "__main__":
     with codecs.open(outfile, 'w', 'utf-8') as f:
         f.write(rendered)
     print("  - index.html generated")
+
+    with open(DATA_JSON, 'w') as handle:
+        json.dump(all_data, handle, indent=2)
+    print("  - {} dumped".format(DATA_JSON))
