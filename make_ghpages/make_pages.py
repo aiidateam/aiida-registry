@@ -259,8 +259,8 @@ def complete_plugin_data(plugin_data, subpage_name):
     else:
         plugin_data['setup_json'] = get_setup_json(setup_json_link)
 
-        if 'package_name' not in list(plugin_data.keys()):
-            plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
+    if 'package_name' not in list(plugin_data.keys()):
+        plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
 
     plugin_data['subpage'] = subpage_name
     plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
@@ -274,7 +274,36 @@ def complete_plugin_data(plugin_data, subpage_name):
     if plugin_data['state'] not in list(state_dict.keys()):
         print("  >> WARNING: Invalid state {}".format(plugin_data['state']))
 
+    validate_plugin_entry_points(plugin_data)
+
     return plugin_data
+
+
+def validate_plugin_entry_points(plugin_data):
+    """Validate that all registered entry points start with the registered entry point root."""
+
+    if 'entry_point' not in plugin_data:
+        # plugin should not specify entry points
+        entry_point_root = 'MISSING'
+    else:
+        entry_point_root = plugin_data['entry_point']
+
+    setup_json = plugin_data['setup_json']
+
+    if setup_json is None:
+        return
+
+    if 'entry_points' not in setup_json:
+        return
+
+    for ep_list in setup_json['entry_points'].values():
+        for ep in ep_list:
+            ep_string, _path = ep.split('=')
+            ep_string = ep_string.strip()
+            if not ep_string.startswith(entry_point_root):
+                print(
+                    "  >> WARNING: Entry point '{}' does not start with '{}'".
+                    format(ep_string, entry_point_root))
 
 
 def global_summary():

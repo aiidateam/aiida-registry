@@ -37,7 +37,9 @@ community of your ongoing work.
 the name by which you will distribute the plugin (repository name, PYPI distribution name)
 
 #### entry_point
-The name which is at the beginning of all entry points exposed by the plugin
+The name which is at the beginning of all entry points exposed by the plugin.
+
+Convention: A plugin `aiida-quantumespresso` should use `entry_point: 'quantumespresso'`.
 
 #### state
 One of
@@ -52,7 +54,7 @@ Expected for states `development` and `stable`.
 Examples:
  * `"pip_url": "aiida-quantumespresso"` for a package that is [registered on PyPI](https://pypi.org/project/aiida-quantumespresso/)
  * `"pip_url": "git+https://github.com/aiidateam/aiida-wannier90"` for a package not registered on PyPI
- 
+
 #### plugin_info
 A URL pointing to a JSON file which holds all keyword args, as given to the setuptools.setup function at install.
 See, for example, the [aiida-plugin-template repository](http://github.com/aiidateam/aiida-plugin-template).
