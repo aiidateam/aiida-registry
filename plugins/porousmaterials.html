@@ -66,10 +66,99 @@
     
     <div id='description'>
         <p>
-            Detailed info for this package could not be obtained.
-            Ask the plugin developers to check their <code>setup.json</code> file
-            in the plugin source code.
+            <strong>Author(s)</strong>: Pezhman Zarabadi-Poor
         </p>
+        <p>
+            <strong>Short description</strong>: AiiDA plugin for PorousMaterials code
+        </p>
+        
+        <p>
+            <strong>How to install</strong>: <code>pip install git+https://github.com/pzarabadip/aiida-porousmaterials</code>
+        </p>
+        
+        <p>
+            <strong>How to use from python</strong>: <code>import aiida_porousmaterials</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: 1.0.0a1
+        </p>
+        <p>
+            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0b5
+        </p>
+
+        
+        <h3>Summary of the entrypoints</h3>
+        This plugin contains: <br>
+        
+        <span class="badge"> 
+            <span class="badge-left blue">Calculations</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">2</span>
+        </span>
+        
+        
+
+        <h3>Available entrypoints</h3>
+        
+
+            
+                <h4>
+                    
+                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>porousmaterials</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_porousmaterials.calculations:PorousMaterialsCalculation
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>porousmaterials</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_porousmaterials.parser:PorousMaterialsParser
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>porousmaterials.base</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_porousmaterials.workchains:PorousMaterialsBaseWorkChain
+                    </span></div></li>
+                
+                <li><code>aiida_porousmaterials.workflows.voronoi_energy</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_porousmaterials.workflows.voronoi_energy:VoronoiEnergyWorkChain
+                    </span></div></li>
+                
+                </ul>
+            
+        
     </div>
     
 
