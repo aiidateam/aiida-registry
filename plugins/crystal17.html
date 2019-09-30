@@ -1,0 +1,361 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" type="image/png" href="../static/favicon.png">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+     
+    <header id='entrytitle' style="background-color: #000; margin: 0; padding: 5px 20px 25px 20px;">
+        <h1>
+            <a href="http://www.aiida.net/">AiiDA</a> registry of plugins
+        </h1>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your plugin]</a> </p>
+      </header>
+
+    
+  <div style="max-width: 1200px; margin: auto;">
+    
+<main>
+        <h1 class="plugin-header">
+            Details for AiiDA plugin &quot;<a href="https://github.com/chrisjsewell/aiida-crystal17">aiida-crystal17</a>&quot;
+        </h1>
+        <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
+
+    <h2>General information</h2>
+    <div>
+        <p>
+            Current state:
+            <span class="classbox">development
+                <span class="tooltiptext">
+                    Adds new functionality, not yet ready for production. Testing welcome!
+                </span>
+            </span>
+        </p>
+
+        <p>
+            <a href="https://github.com/chrisjsewell/aiida-crystal17" target="_blank">Go to the plugin code homepage</a> 
+        </p>
+    </div>
+
+    
+        <p>
+            <strong>Documentation</strong>: <a href="https://aiida-crystal17.readthedocs.io" target="_blank">Go to plugin documentation</a>
+        <p>
+    
+
+
+    <h2>
+        Detailed information
+    </h2>
+    
+    <div id='description'>
+        <p>
+            <strong>Author(s)</strong>: Chris Sewell
+        </p>
+        <p>
+            <strong>Short description</strong>: AiiDA plugin for running the CRYSTAL17 code
+        </p>
+        
+        <p>
+            <strong>How to install</strong>: <code>pip install aiida-crystal17</code>
+        </p>
+        
+        <p>
+            <strong>How to use from python</strong>: <code>import aiida_crystal17</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: 0.9.2b5
+        </p>
+        <p>
+            <strong>Compatible with aiida-core</strong>: ==1.0.0b5
+        </p>
+
+        
+        <h3>Summary of the entrypoints</h3>
+        This plugin contains: <br>
+        
+        <span class="badge"> 
+            <span class="badge-left blue">Calculations</span>
+            <span class="badge-right">7</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">6</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left red">Data</span>
+            <span class="badge-right">5</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">3</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left orange">Other (Cmdline data, Console scripts, Gulp potentials)</span>
+            <span class="badge-right">9</span>
+        </span>
+        
+        
+
+        <h3>Available entrypoints</h3>
+        
+
+            
+                <h4>
+                    
+                      Command-line script utilities <span class="entrypointraw">(console_scripts)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>mock_crystal17</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.tests.mock_crystal17:main
+                    </span></div></li>
+                
+                <li><code>mock_properties17</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.tests.mock_properties17:main
+                    </span></div></li>
+                
+                <li><code>mock_gulp</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.tests.mock_gulp:main
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Data types <span class="entrypointraw">(aiida.data)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.parameters</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.input_params:CryInputParamsData
+                    </span></div></li>
+                
+                <li><code>crystal17.basisset</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.basis_set:BasisSetData
+                    </span></div></li>
+                
+                <li><code>crystal17.symmetry</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.symmetry:SymmetryData
+                    </span></div></li>
+                
+                <li><code>crystal17.kinds</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.kinds:KindData
+                    </span></div></li>
+                
+                <li><code>gulp.potential</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.data.potential:EmpiricalPotential
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.basic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_basic:CryBasicCalculation
+                    </span></div></li>
+                
+                <li><code>crystal17.main</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_main:CryMainCalculation
+                    </span></div></li>
+                
+                <li><code>crystal17.doss</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_doss:CryDossCalculation
+                    </span></div></li>
+                
+                <li><code>crystal17.fermi</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_fermi:CryFermiCalculation
+                    </span></div></li>
+                
+                <li><code>gulp.single</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.calculations.gulp_single:GulpSingleCalculation
+                    </span></div></li>
+                
+                <li><code>gulp.optimize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.calculations.gulp_optimize:GulpOptCalculation
+                    </span></div></li>
+                
+                <li><code>gulp.fitting</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.calculations.gulp_fitting:GulpFittingCalculation
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.main</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.parsers.cry_main:CryMainParser
+                    </span></div></li>
+                
+                <li><code>crystal17.doss</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.parsers.cry_doss:CryDossParser
+                    </span></div></li>
+                
+                <li><code>crystal17.fermi</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.parsers.cry_fermi:CryFermiParser
+                    </span></div></li>
+                
+                <li><code>gulp.single</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.parsers.parse_single:GulpSingleParser
+                    </span></div></li>
+                
+                <li><code>gulp.optimize</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.parsers.parse_opt:GulpOptParser
+                    </span></div></li>
+                
+                <li><code>gulp.fitting</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.parsers.parse_fitting:GulpFittingParser
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.sym3d</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+                    </span></div></li>
+                
+                <li><code>crystal17.main.base</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.workflows.crystal_main.base:CryMainBaseWorkChain
+                    </span></div></li>
+                
+                <li><code>crystal17.properties</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.workflows.crystal_props.cry_doss:CryPropertiesWorkChain
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      aiida.cmdline.data
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.symmetry</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.symmetry:symmetry
+                    </span></div></li>
+                
+                <li><code>crystal17.basis</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.basis_set:basisset
+                    </span></div></li>
+                
+                <li><code>crystal17.parse</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.cmd_parser:parse
+                    </span></div></li>
+                
+                <li><code>gulp.potentials</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.cmndline.potentials:potentials
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      gulp.potentials
+                    
+                </h4>
+                <ul>
+                
+                <li><code>reaxff</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.potentials.reaxff:PotentialWriterReaxff
+                    </span></div></li>
+                
+                <li><code>lj</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.gulp.potentials.lj:PotentialWriterLJ
+                    </span></div></li>
+                
+                </ul>
+            
+        
+    </div>
+    
+
+</main>
+
+
+  </div>
+    
+    <footer class="footer">
+    <hr>
+      This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    <br>
+    This work is supported by the <a href="http://nccr-marvel.ch" target="_blank">MARVEL National Centre for Competency in Research</a> 
+    funded by the <a href="http://www.snf.ch/en" target="_blank">Swiss National Science Foundation</a>, as well as by the 
+    <a href="http://www.max-centre.eu" target="_blank">MaX European Centre of Excellence</a> 
+    funded by the Horizon 2020 EINFRA-5 program, Grant No. 676598.<br><br>
+    
+<div style="text-align: center;"><img src="../static/img/MARVEL.png" height="70px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="../static/img/MaX.png" height="70px"></div>
+
+    </footer>    
+    
+</body>
+
+</html>

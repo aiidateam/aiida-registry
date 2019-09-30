@@ -1,0 +1,209 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" type="image/png" href="../static/favicon.png">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+     
+    <header id='entrytitle' style="background-color: #000; margin: 0; padding: 5px 20px 25px 20px;">
+        <h1>
+            <a href="http://www.aiida.net/">AiiDA</a> registry of plugins
+        </h1>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your plugin]</a> </p>
+      </header>
+
+    
+  <div style="max-width: 1200px; margin: auto;">
+    
+<main>
+        <h1 class="plugin-header">
+            Details for AiiDA plugin &quot;<a href="https://github.com/aiidateam/aiida-nwchem">aiida-nwchem</a>&quot;
+        </h1>
+        <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
+
+    <h2>General information</h2>
+    <div>
+        <p>
+            Current state:
+            <span class="classbox">stable
+                <span class="tooltiptext">
+                    Ready for production calculations. Bug reports welcome!
+                </span>
+            </span>
+        </p>
+
+        <p>
+            <a href="https://github.com/aiidateam/aiida-nwchem" target="_blank">Go to the plugin code homepage</a> 
+        </p>
+    </div>
+
+    
+        <p>
+            <strong>Documentation</strong>: <a href="https://aiida-nwchem.readthedocs.io/" target="_blank">Go to plugin documentation</a>
+        <p>
+    
+
+
+    <h2>
+        Detailed information
+    </h2>
+    
+    <div id='description'>
+        <p>
+            <strong>Author(s)</strong>: The AiiDA team
+        </p>
+        <p>
+            <strong>Short description</strong>: The official AiiDA plugin for NWChem
+        </p>
+        
+        <p>
+            <strong>How to install</strong>: <code>pip install aiida-nwchem</code>
+        </p>
+        
+        <p>
+            <strong>How to use from python</strong>: <code>import aiida_nwchem</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: 1.0.2
+        </p>
+        <p>
+            <strong>Compatible with aiida-core</strong>: &gt;=0.10.0rc1
+        </p>
+
+        
+        <h3>Summary of the entrypoints</h3>
+        This plugin contains: <br>
+        
+        <span class="badge"> 
+            <span class="badge-left blue">Calculations</span>
+            <span class="badge-right">2</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">3</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left orange">Other (TCOD plugins, Tests)</span>
+            <span class="badge-right">2</span>
+        </span>
+        
+        
+
+        <h3>Available entrypoints</h3>
+        
+
+            
+                <h4>
+                    
+                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>nwchem.basic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nwchem.calculations.basic:BasicCalculation
+                    </span></div></li>
+                
+                <li><code>nwchem.pymatgen</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nwchem.calculations.nwcpymatgen:NwcpymatgenCalculation
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>nwchem.basic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nwchem.parsers.basic:BasicParser
+                    </span></div></li>
+                
+                <li><code>nwchem.basenwc</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nwchem.parsers.__init__:BasenwcParser
+                    </span></div></li>
+                
+                <li><code>nwchem.pymatgen</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nwchem.parsers.nwcpymatgen:NwcpymatgenParser
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Development test modules <span class="entrypointraw">(aiida.tests)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>nwchem.tcodexporter</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nwchem.tests.tcodexporter
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Exporter plugins for the TCOD database <span class="entrypointraw">(aiida.tools.dbexporters.tcod_plugins)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>nwchem.nwcpymatgen</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nwchem.tools.dbexporters.tcod_plugins.nwcpymatgen:NwcpymatgenTcodtranslator
+                    </span></div></li>
+                
+                </ul>
+            
+        
+    </div>
+    
+
+</main>
+
+
+  </div>
+    
+    <footer class="footer">
+    <hr>
+      This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    <br>
+    This work is supported by the <a href="http://nccr-marvel.ch" target="_blank">MARVEL National Centre for Competency in Research</a> 
+    funded by the <a href="http://www.snf.ch/en" target="_blank">Swiss National Science Foundation</a>, as well as by the 
+    <a href="http://www.max-centre.eu" target="_blank">MaX European Centre of Excellence</a> 
+    funded by the Horizon 2020 EINFRA-5 program, Grant No. 676598.<br><br>
+    
+<div style="text-align: center;"><img src="../static/img/MARVEL.png" height="70px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="../static/img/MaX.png" height="70px"></div>
+
+    </footer>    
+    
+</body>
+
+</html>
