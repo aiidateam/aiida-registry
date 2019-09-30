@@ -79,7 +79,7 @@
         <h3>Available entrypoints</h3>
         {% if setup_json.entry_points %}
 
-            {% for entrypointtype, entrypointlist in setup_json.entry_points.iteritems() %}
+            {% for entrypointtype, entrypointlist in setup_json.entry_points.items() %}
                 <h4>
                     {% if entrypointtype in entrypointtypes %}
                       {{ entrypointtypes[entrypointtype]}} <span class="entrypointraw">({{ entrypointtype }})</span>
