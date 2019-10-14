@@ -223,6 +223,15 @@
         "code_home": "https://github.com/chrisjsewell/aiida-crystal17",
         "pip_url": "aiida-crystal17"
     },
+    "crystal": {
+        "name": "aiida-crystal",
+        "entry_point": "crystal",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/tilde-lab/aiida-crystal/master/setup.json",
+        "documentation_url": "https://github.com/tilde-lab/aiida-crystal",
+        "code_home": "https://github.com/tilde-lab/aiida-crystal",
+        "pip_url": "https://github.com/tilde-lab/aiida-crystal"
+    },
     "z2pack": {
         "name":"aiida-z2pack",
         "entry_point":"z2pack",
