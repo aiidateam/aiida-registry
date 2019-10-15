@@ -230,7 +230,7 @@
         "plugin_info": "https://raw.githubusercontent.com/tilde-lab/aiida-crystal/master/setup.json",
         "documentation_url": "https://github.com/tilde-lab/aiida-crystal",
         "code_home": "https://github.com/tilde-lab/aiida-crystal",
-        "pip_url": "https://github.com/tilde-lab/aiida-crystal"
+        "pip_url": "git+https://github.com/tilde-lab/aiida-crystal"
     },
     "z2pack": {
         "name":"aiida-z2pack",
