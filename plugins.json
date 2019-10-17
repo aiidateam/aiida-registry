@@ -352,5 +352,12 @@
         "plugin_info": "https://raw.github.com/ConradJohnston/aiida-plumed/AiiDA-v1.0-compatibility/setup.json",
         "pip_url": "aiida-plumed",
         "documentation_url": "https://aiida-plumed.readthedocs.io/"
+    },
+    "graphql": {
+        "name": "aiida-graphql",
+        "entry_point": "graphql",
+        "state": "development",
+        "code_home": "https://github.com/dev-zero/aiida-graphql",
+        "pip_url": "aiida-graphql"
     }
 }
