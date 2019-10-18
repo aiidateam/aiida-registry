@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  schedule:
+  # run every at 2:00 UTC
+  - cron: "0 2 * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      ENCRYPTION_LABEL: "7712d5cd71ad"
+      COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install
+      run: cd make_ghpages && pip install -r requirements.txt
+    - name: deploy
+      run: |
+        ./make_pages.py
+        cd ../.travis-data && ./deploy.sh
