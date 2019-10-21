@@ -80,7 +80,7 @@
             <strong>How to use from python</strong>: <code>import aiida_crystal17</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.9.2b5
+            <strong>Most recent version</strong>: 0.10.0b5
         </p>
         <p>
             <strong>Compatible with aiida-core</strong>: ==1.0.0b5
@@ -92,17 +92,17 @@
         
         <span class="badge"> 
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">7</span>
+            <span class="badge-right">8</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">6</span>
+            <span class="badge-right">7</span>
         </span>
         
         <span class="badge"> 
             <span class="badge-left red">Data</span>
-            <span class="badge-right">5</span>
+            <span class="badge-right">6</span>
         </span>
         
         <span class="badge"> 
@@ -172,6 +172,11 @@
                         aiida_crystal17.data.kinds:KindData
                     </span></div></li>
                 
+                <li><code>crystal17.gcube</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.gcube:GaussianCube
+                    </span></div></li>
+                
                 <li><code>gulp.potential</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_crystal17.gulp.data.potential:EmpiricalPotential
@@ -198,12 +203,17 @@
                 
                 <li><code>crystal17.doss</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.cry_doss:CryDossCalculation
+                        aiida_crystal17.calculations.prop_doss:CryDossCalculation
                     </span></div></li>
                 
-                <li><code>crystal17.fermi</code>
+                <li><code>crystal17.ech3</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.cry_fermi:CryFermiCalculation
+                        aiida_crystal17.calculations.prop_ech3:CryEch3Calculation
+                    </span></div></li>
+                
+                <li><code>crystal17.newk</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.prop_newk:CryNewkCalculation
                     </span></div></li>
                 
                 <li><code>gulp.single</code>
@@ -240,9 +250,14 @@
                         aiida_crystal17.parsers.cry_doss:CryDossParser
                     </span></div></li>
                 
-                <li><code>crystal17.fermi</code>
+                <li><code>crystal17.ech3</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.parsers.cry_fermi:CryFermiParser
+                        aiida_crystal17.parsers.cry_ech3:CryEch3Parser
+                    </span></div></li>
+                
+                <li><code>crystal17.newk</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.parsers.cry_newk:CryNewkParser
                     </span></div></li>
                 
                 <li><code>gulp.single</code>
@@ -281,7 +296,7 @@
                 
                 <li><code>crystal17.properties</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.workflows.crystal_props.cry_doss:CryPropertiesWorkChain
+                        aiida_crystal17.workflows.crystal_props.base:CryPropertiesWorkChain
                     </span></div></li>
                 
                 </ul>

@@ -80,7 +80,7 @@
             <strong>How to use from python</strong>: <code>import aiida_cp2k</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 1.0.0b3
+            <strong>Most recent version</strong>: 1.0.0b4
         </p>
         <p>
             <strong>Compatible with aiida-core</strong>: &gt;=1.0.0b5
@@ -97,7 +97,12 @@
         
         <span class="badge"> 
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">2</span>
+        </span>
+        
+        <span class="badge"> 
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">2</span>
         </span>
         
         
@@ -127,9 +132,33 @@
                 </h4>
                 <ul>
                 
-                <li><code>cp2k</code>
+                <li><code>cp2k_base_parser</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_cp2k.parsers:Cp2kParser
+                        aiida_cp2k.parsers:Cp2kBaseParser
+                    </span></div></li>
+                
+                <li><code>cp2k_advanced_parser</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cp2k.parsers:Cp2kAdvancedParser
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>cp2k.base</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cp2k.workchains:Cp2kBaseWorkChain
+                    </span></div></li>
+                
+                <li><code>cp2k.multistage</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cp2k.workchains:Cp2kMultistageWorkChain
                     </span></div></li>
                 
                 </ul>
