@@ -34,12 +34,18 @@ community of your ongoing work.
 ### Valid keys for each plugin
 
 #### name (required)
-the name by which you will distribute the plugin (repository name, PYPI distribution name)
+The name under which your plugin will be distributed.
+By convention, names of AiiDA plugins are lowercase and prefixed by `aiida-`.
+
+Examples:
+ * `aiida-quantumespresso`
+ * `aiida-gaussian-datatypes`
 
 #### entry_point (required)
-The name which is at the beginning of all entry points exposed by the plugin.
+The prefix of all entry points provided by the plugin.
+By convention, a plugin `aiida-xxx` should use `entry_point: 'xxx'`.
 
-Convention: A plugin `aiida-quantumespresso` should use `entry_point: 'quantumespresso'`.
+Example: `aiida-quantumespresso` uses the entry point prefix `quantumespresso` and provides numerous entry points, all of which start with `quantumespresso.`.
 
 #### state (required)
 One of
