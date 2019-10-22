@@ -251,24 +251,37 @@ def get_plugin_info(plugin_info):
     if plugin_info is None:
         return infos
 
-    buildsystem, setup_json = plugin_info
-    if buildsystem != "setuptools":
-        print(f"  >> WARNING! Fetching required plugin details from"
-              f" buildsystem {buildsystem} not (yet) supported")
-        return infos
+    buildsystem, data = plugin_info
 
     try:
-        infos["entry_points"].update(
-            setup_json["entry_points"])  # updating it gives us a copy
+        if buildsystem == "setuptools":
+            infos["entry_points"].update(
+                data["entry_points"])  # updating it gives us a copy
+        elif buildsystem == "poetry":
+            infos["entry_points"].update({
+                group: [f"{k} = {v}" for k, v in entries.items()]
+                for group, entries in data["tool"]["poetry"]
+                ["plugins"].items()
+            })
+        elif buildsystem == "flit":
+            infos["entry_points"].update({
+                group: [f"{k} = {v}" for k, v in entries.items()]
+                for group, entries in data["tool"]["flit"]
+                ["entrypoints"].items()
+            })
     except KeyError:
         pass
 
-    infos["summaryinfo"] = get_summary_info(infos["entry_points"])
-    infos["aiida_version"] = get_aiida_version(setup_json)
+    if buildsystem != "setuptools":
+        print(f"  >> WARNING! Fetching required plugin details from"
+              f" buildsystem {buildsystem} not (yet) fully supported")
+        return infos
+
+    infos["aiida_version"] = get_aiida_version(data)
 
     METADATA_KEYS = ["author", "version", "description"]
     infos["metadata"] = {
-        k: setup_json[k] if k in setup_json else ""
+        k: data[k] if k in data else ""
         for k in METADATA_KEYS
     }
 
@@ -307,6 +320,7 @@ def complete_plugin_data(plugin_data, subpage_name):
         'entrypointtypes'] = entrypointtypes  # add a static entrypointtypes dictionary
 
     plugin_data.update(get_plugin_info(plugin_data['plugin_info']))
+    plugin_data["summaryinfo"] = get_summary_info(plugin_data["entry_points"])
 
     plugin_data['state_dict'] = state_dict
     # note: for more validation, it might be sensible to switch to voluptuous
