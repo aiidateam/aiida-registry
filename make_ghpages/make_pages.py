@@ -272,18 +272,41 @@ def get_plugin_info(plugin_info):
     except KeyError:
         pass
 
+    if buildsystem == "setuptools":
+        METADATA_KEYS = ["author", "version", "description"]
+        infos["metadata"] = {
+            k: data[k] if k in data else ""
+            for k in METADATA_KEYS
+        }
+    elif buildsystem == "poetry":
+        # all the following fields are mandatory in Poetry
+        infos["metadata"] = {
+            "version":
+            data["tool"]["poetry"]["version"],
+            "description":
+            data["tool"]["poetry"]["description"],
+            # the authors is a list of the strings of the form "name <email>"
+            "author":
+            ", ".join(
+                a.split("<")[0].strip()
+                for a in data["tool"]["poetry"]["authors"]),
+        }
+    elif buildsystem == "flit":
+        # version is not part of the metadata but expected to available in <module>/__init__.py:__version__
+        # description is available as a reference in `description-file` (requires another fetch)
+        # author is a mandatory field in Flit
+        infos["metadata"] = {
+            "author": data["tool"]["flit"]["metadata"]["author"],
+            "version": "",
+            "description": "",
+        }
+
     if buildsystem != "setuptools":
         print(f"  >> WARNING! Fetching required plugin details from"
               f" buildsystem {buildsystem} not (yet) fully supported")
         return infos
 
     infos["aiida_version"] = get_aiida_version(data)
-
-    METADATA_KEYS = ["author", "version", "description"]
-    infos["metadata"] = {
-        k: data[k] if k in data else ""
-        for k in METADATA_KEYS
-    }
 
     return infos
 
