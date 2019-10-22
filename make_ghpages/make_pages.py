@@ -151,7 +151,7 @@ def fetch_plugin_info(url):
     return None
 
 
-def get_aiida_version(setup_json):
+def get_aiida_version_setup_json(setup_json):
     """Get AiiDA version that this plugin is compatible with.
     """
     import requirements
@@ -183,6 +183,41 @@ def get_aiida_version(setup_json):
 
     except KeyError:
         return None
+
+
+def get_aiida_version_poetry(pyproject):
+    """Get AiiDA version that this plugin is compatible with from a pyproject.toml.
+    """
+
+    try:
+        deps = pyproject["tool"]["poetry"]["dependencies"]
+    except KeyError:
+        return None
+
+    for name, data in deps.items():
+        if name not in ["aiida-core", "aiida_core", "aiida"]:
+            continue
+
+        try:  # data is either a dict {"version": ..., "extras": ["..", ], }
+            version = data["version"]
+        except TypeError:  # or directly the version string
+            version = data
+
+        break
+    else:
+        print("  >> AIIDA VERSION NOT SPECIFIED")
+        return None
+
+    from poetry.semver import parse_constraint
+
+    try:
+        return str(parse_constraint(version))
+    except ValueError:
+        print(
+            "  >> WARNING: Invalid version encountered in Poetry pyproject.toml for aiida-core"
+        )
+
+    return None
 
 
 def get_summary_info(entry_points):
@@ -253,6 +288,10 @@ def get_plugin_info(plugin_info):
 
     buildsystem, data = plugin_info
 
+    if buildsystem not in ["setuptools", "poetry", "flit"]:
+        print(f"  >> WARNING! build system '{buildsystem}' is not supported")
+        return infos
+
     try:
         if buildsystem == "setuptools":
             infos["entry_points"].update(
@@ -278,6 +317,7 @@ def get_plugin_info(plugin_info):
             k: data[k] if k in data else ""
             for k in METADATA_KEYS
         }
+        infos["aiida_version"] = get_aiida_version_setup_json(data)
     elif buildsystem == "poetry":
         # all the following fields are mandatory in Poetry
         infos["metadata"] = {
@@ -291,6 +331,7 @@ def get_plugin_info(plugin_info):
                 a.split("<")[0].strip()
                 for a in data["tool"]["poetry"]["authors"]),
         }
+        infos["aiida_version"] = get_aiida_version_poetry(data)
     elif buildsystem == "flit":
         # version is not part of the metadata but expected to available in <module>/__init__.py:__version__
         # description is available as a reference in `description-file` (requires another fetch)
@@ -300,13 +341,8 @@ def get_plugin_info(plugin_info):
             "version": "",
             "description": "",
         }
-
-    if buildsystem != "setuptools":
-        print(f"  >> WARNING! Fetching required plugin details from"
-              f" buildsystem {buildsystem} not (yet) fully supported")
-        return infos
-
-    infos["aiida_version"] = get_aiida_version(data)
+        print("  >> WARNING! version & description metadata and AiiDA version"
+              " are not (yet) parsed from the Flit buildsystem pyproject.toml")
 
     return infos
 
