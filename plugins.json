@@ -358,6 +358,7 @@
         "entry_point": "graphql",
         "state": "development",
         "code_home": "https://github.com/dev-zero/aiida-graphql",
+        "plugin_info": "https://raw.github.com/dev-zero/aiida-graphql/develop/pyproject.toml",
         "pip_url": "aiida-graphql"
     }
 }

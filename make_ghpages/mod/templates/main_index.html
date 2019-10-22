@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block css %}
     <link rel="stylesheet" href="static/css/style.css">
@@ -11,7 +11,7 @@
     <div class='globalsummary-box'>
         <div style="display: table;">
             {% for summaryentry in globalsummary %}
-            <span class="badge" style="display: table-row; line-height: 2;"> 
+            <span class="badge" style="display: table-row; line-height: 2;">
                 <span style="display: table-cell; float: none; text-align: right;"><span class="badge-left {{summaryentry.colorclass}} tooltip" style="float: none; display: inline; text-align: right; border: none">{{summaryentry.name}}{% if summaryentry.tooltip %}<span class="tooltiptext">{{ summaryentry.tooltip}}</span>{% endif %}</span></span>
                 <span style="display: table-cell; float: none; text-align: left;"><span class="badge-right" style="float: none; display: inline; text-align: left; border: none">{{ summaryentry.total_num }} plugin{% if summaryentry.total_num != 1 %}s{% endif %} in {{ summaryentry.num_entries }} package{% if summaryentry.num_entries != 1 %}s{% endif %} </span></span>
             </span>
@@ -28,8 +28,8 @@
         {% for plugin_name, plugin in plugins.items() %}
         <div class='submenu-entry'>
         <h2><a href="{{ plugin.subpage }}">{{ plugin_name}}: {{ plugin.name }} package</a></h2>
-        {% if plugin.setup_json.description %}
-        <p class=description>{{plugin.setup_json.description}}</p>
+        {% if plugin.metadata.description %}
+        <p class=description>{{plugin.metadata.description}}</p>
         {% endif %}
         <p class="currentstate">Current state:
             <span class="classbox">{{  plugin.state }}
@@ -39,11 +39,11 @@
             </span>
             {%- if plugin.aiida_version -%}
             <span class=aiida_version>, compatible with aiida-core{{plugin.aiida_version}}</span>
-            {%- endif -%}    
+            {%- endif -%}
 	{% if plugin.summaryinfo %}
         <p class="summaryinfo">
             {% for summaryinfoelem in plugin.summaryinfo %}
-            <span class="badge"> 
+            <span class="badge">
                 <span class="badge-left {{summaryinfoelem.colorclass}}">{{summaryinfoelem.text}}</span>
                 <span class="badge-right">{{summaryinfoelem.count}}</span>
             </span>
@@ -68,11 +68,11 @@
 
         <p class='details'><a href="{{ plugin.subpage }}">Show plugin details</a></p>
         </div>
-        
+
         {#
             {% if not loop.last %}
             <hr>
-            {% endif %} 
+            {% endif %}
         #}
         {% endfor %}
     </div>

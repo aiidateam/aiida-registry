@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block css %}
     <link rel="stylesheet" href="../static/css/style.css">
@@ -24,7 +24,7 @@
         </p>
 
         <p>
-            <a href="{{ code_home }}" target="_blank">Go to the plugin code homepage</a> 
+            <a href="{{ code_home }}" target="_blank">Go to the plugin code homepage</a>
         </p>
     </div>
 
@@ -42,13 +42,13 @@
     <h2>
         Detailed information
     </h2>
-    {% if setup_json %}
+    {% if metadata %}
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: {{ setup_json.author }}
+            <strong>Author(s)</strong>: {{ metadata.author }}
         </p>
         <p>
-            <strong>Short description</strong>: {{ setup_json.description }}
+            <strong>Short description</strong>: {{ metadata.description }}
         </p>
         {%  if pip_url %}
         <p>
@@ -59,7 +59,7 @@
             <strong>How to use from python</strong>: <code>import {{ package_name }}</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: {{ setup_json.version }}
+            <strong>Most recent version</strong>: {{ metadata.version }}
         </p>
         <p>
             <strong>Compatible with aiida-core</strong>: {{ aiida_version }}
@@ -69,7 +69,7 @@
         <h3>Summary of the entry points</h3>
         This plugin contains: <br>
         {% for summaryinfoelem in summaryinfo %}
-        <span class="badge"> 
+        <span class="badge">
             <span class="badge-left {{summaryinfoelem.colorclass}}">{{summaryinfoelem.text}}</span>
             <span class="badge-right">{{summaryinfoelem.count}}</span>
         </span>
@@ -77,9 +77,9 @@
         {% endif %}
 
         <h3>Available entry points</h3>
-        {% if setup_json.entry_points %}
+        {% if entry_points %}
 
-            {% for entrypointtype, entrypointlist in setup_json.entry_points.items() %}
+            {% for entrypointtype, entrypointlist in entry_points.items() %}
                 <h4>
                     {% if entrypointtype in entrypointtypes %}
                       {{ entrypointtypes[entrypointtype]}} <span class="entrypointraw">({{ entrypointtype }})</span>
