@@ -2,8 +2,8 @@ name: CI
 
 on:
   schedule:
-  # run every at 2:00 UTC
-  - cron: "0 2 * * *"
+  # run every at 21:00 UTC
+  - cron: "0 21 * * *"
 
 jobs:
   update:
@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install
-      run: cd make_ghpages && pip install -r requirements.txt
+      run: cd make_ghpages/ && pip install -r requirements.txt
+    - name: make pages
+      run: cd make_ghpages/ && ./make_pages.py
     - name: deploy
-      run: |
-        ./make_pages.py
-        cd ../.travis-data && ./deploy.sh
+      run: cd .travis-data/ && ./deploy.sh
