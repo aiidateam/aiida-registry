@@ -47,9 +47,16 @@
         <p>
             <strong>Author(s)</strong>: {{ metadata.author }}
         </p>
+        {%  if metadata.author_email %}
+        <p>
+            <strong>Contact</strong>: <a href="mailto:{{ metadata.author_email }}">{{ metadata.author_email }}</a>
+        </p>
+        {% endif %}
+        {%  if metadata.description %}
         <p>
             <strong>Short description</strong>: {{ metadata.description }}
         </p>
+        {% endif %}
         {%  if pip_url %}
         <p>
             <strong>How to install</strong>: <code>pip install {{ pip_url }}</code>

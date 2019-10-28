@@ -181,7 +181,7 @@ def get_plugin_info(plugin_info):
         pass
 
     if buildsystem == "setuptools":
-        METADATA_KEYS = ["author", "version", "description"]
+        METADATA_KEYS = ["author", "author_email", "version", "description"]
         infos["metadata"] = {
             k: data[k] if k in data else ""
             for k in METADATA_KEYS
