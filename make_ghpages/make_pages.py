@@ -15,6 +15,7 @@ from collections import OrderedDict, defaultdict
 from jinja2 import Environment, PackageLoader, select_autoescape
 import requests
 import requests_cache
+import tomlkit
 
 if os.environ.get('CACHE_REQUESTS'):
     # Set environment variable CACHE_REQUESTS to cache requests for 1 day for faster testing
@@ -120,31 +121,40 @@ def get_hosted_on(url):
     return netloc
 
 
-def get_setup_json(json_url):
+def fetch_plugin_info(url):
     try:
-        response = requests.get(json_url)
-        json_txt = response.content
+        response = requests.get(url)
+        response.raise_for_status(
+        )  # raise an exception for all 4xx/5xx errors
     except Exception:
         import traceback
-        print("  >> UNABLE TO RETRIEVE THE JSON URL: {}".format(json_url))
+        print("  >> UNABLE TO RETRIEVE THE PLUGIN INFO URL: {}".format(url))
         print(traceback.print_exc(file=sys.stdout))
         return None
-    try:
-        json_data = json.loads(json_txt)
-    except ValueError:
-        print("  >> WARNING! Unable to parse JSON")
-        return None
 
-    return json_data
+    if 'pyproject.toml' in url:
+        try:
+            pyproject = tomlkit.parse(response.content)
+        except tomlkit.exceptions.TOMLKitError:
+            print("  >> WARNING! Unable to parse TOML")
+
+        for buildsystem in ("poetry", "flit"):
+            if buildsystem in pyproject["tool"]:
+                return (buildsystem, pyproject)
+        print("  >> WARNING! Unknown build system in pyproject.toml")
+    else:
+        try:
+            return ("setuptools", json.loads(response.content))
+        except ValueError:
+            print("  >> WARNING! Unable to parse JSON")
+
+    return None
 
 
-def get_aiida_version(setup_json):
+def get_aiida_version_setup_json(setup_json):
     """Get AiiDA version that this plugin is compatible with.
     """
     import requirements
-
-    if setup_json is None:
-        return None
 
     try:
         install_requires = setup_json["install_requires"]
@@ -175,65 +185,166 @@ def get_aiida_version(setup_json):
         return None
 
 
-def get_summary_info(setup_json):
+def get_aiida_version_poetry(pyproject):
+    """Get AiiDA version that this plugin is compatible with from a pyproject.toml.
+    """
+
+    try:
+        deps = pyproject["tool"]["poetry"]["dependencies"]
+    except KeyError:
+        return None
+
+    for name, data in deps.items():
+        if name not in ["aiida-core", "aiida_core", "aiida"]:
+            continue
+
+        try:  # data is either a dict {"version": ..., "extras": ["..", ], }
+            version = data["version"]
+        except TypeError:  # or directly the version string
+            version = data
+
+        break
+    else:
+        print("  >> AIIDA VERSION NOT SPECIFIED")
+        return None
+
+    from poetry.semver import parse_constraint
+
+    try:
+        return str(parse_constraint(version))
+    except ValueError:
+        print(
+            "  >> WARNING: Invalid version encountered in Poetry pyproject.toml for aiida-core"
+        )
+
+    return None
+
+
+def get_summary_info(entry_points):
     """Get info for plugin detail page.
     """
     summary_info = []
+    ep = entry_points.copy()
 
-    if setup_json is None:
-        return summary_info
+    for entrypoint_name in main_entrypoints:
+        try:
+            num = len(ep.pop(entrypoint_name))
+            if num > 0:
+                summary_info.append({
+                    "colorclass":
+                    entrypoint_metainfo[entrypoint_name]['colorclass'],
+                    "text":
+                    entrypoint_metainfo[entrypoint_name]['shortname'],
+                    "count":
+                    num
+                })
+                entrypoints_count[entrypoint_name].append(num)
+        except KeyError:
+            #No specific entrypoints, pass
+            pass
 
-    if 'entry_points' in setup_json:
-        ep = setup_json['entry_points'].copy()
-
-        for entrypoint_name in main_entrypoints:
+    # Check remaining non-empty entrypoints
+    remaining = [ep_name for ep_name in ep if ep[ep_name]]
+    remaining_count = [len(ep[ep_name]) for ep_name in ep if ep[ep_name]]
+    total_count = sum(remaining_count)
+    if total_count:
+        other_elements = []
+        for ep_name in remaining:
             try:
-                num = len(ep.pop(entrypoint_name))
-                if num > 0:
-                    summary_info.append({
-                        "colorclass":
-                        entrypoint_metainfo[entrypoint_name]['colorclass'],
-                        "text":
-                        entrypoint_metainfo[entrypoint_name]['shortname'],
-                        "count":
-                        num
-                    })
-                    entrypoints_count[entrypoint_name].append(num)
+                other_elements.append(
+                    entrypoint_metainfo[ep_name]['shortname'])
             except KeyError:
-                #No specific entrypoints, pass
-                pass
+                for strip_prefix in ['aiida.']:
+                    if ep_name.startswith(strip_prefix):
+                        ep_name = ep_name[len(strip_prefix):]
+                        break
+                other_elements.append(
+                    ep_name.replace('_', ' ').replace('.', ' ').capitalize())
 
-        # Check remaining non-empty entrypoints
-        remaining = [ep_name for ep_name in ep if ep[ep_name]]
-        remaining_count = [len(ep[ep_name]) for ep_name in ep if ep[ep_name]]
-        total_count = sum(remaining_count)
-        if total_count:
-            other_elements = []
-            for ep_name in remaining:
-                try:
-                    other_elements.append(
-                        entrypoint_metainfo[ep_name]['shortname'])
-                except KeyError:
-                    for strip_prefix in ['aiida.']:
-                        if ep_name.startswith(strip_prefix):
-                            ep_name = ep_name[len(strip_prefix):]
-                            break
-                    other_elements.append(
-                        ep_name.replace('_', ' ').replace('.',
-                                                          ' ').capitalize())
-
-            summary_info.append({
-                "colorclass":
-                othercolorclass,
-                "text":
-                'Other ({})'.format(format_entry_points_list(other_elements)),
-                "count":
-                total_count
-            })
-            entrypoints_count['other'].append(total_count)
-            other_entrypoint_names.update(other_elements)
+        summary_info.append({
+            "colorclass":
+            othercolorclass,
+            "text":
+            'Other ({})'.format(format_entry_points_list(other_elements)),
+            "count":
+            total_count
+        })
+        entrypoints_count['other'].append(total_count)
+        other_entrypoint_names.update(other_elements)
 
     return summary_info
+
+
+def get_plugin_info(plugin_info):
+    infos = {
+        "entry_points": {},
+        "summaryinfo": None,
+        "metadata": None,
+        "aiida_version": None,
+    }
+
+    if plugin_info is None:
+        return infos
+
+    buildsystem, data = plugin_info
+
+    if buildsystem not in ["setuptools", "poetry", "flit"]:
+        print(f"  >> WARNING! build system '{buildsystem}' is not supported")
+        return infos
+
+    try:
+        if buildsystem == "setuptools":
+            infos["entry_points"].update(
+                data["entry_points"])  # updating it gives us a copy
+        elif buildsystem == "poetry":
+            infos["entry_points"].update({
+                group: [f"{k} = {v}" for k, v in entries.items()]
+                for group, entries in data["tool"]["poetry"]
+                ["plugins"].items()
+            })
+        elif buildsystem == "flit":
+            infos["entry_points"].update({
+                group: [f"{k} = {v}" for k, v in entries.items()]
+                for group, entries in data["tool"]["flit"]
+                ["entrypoints"].items()
+            })
+    except KeyError:
+        pass
+
+    if buildsystem == "setuptools":
+        METADATA_KEYS = ["author", "version", "description"]
+        infos["metadata"] = {
+            k: data[k] if k in data else ""
+            for k in METADATA_KEYS
+        }
+        infos["aiida_version"] = get_aiida_version_setup_json(data)
+    elif buildsystem == "poetry":
+        # all the following fields are mandatory in Poetry
+        infos["metadata"] = {
+            "version":
+            data["tool"]["poetry"]["version"],
+            "description":
+            data["tool"]["poetry"]["description"],
+            # the authors is a list of the strings of the form "name <email>"
+            "author":
+            ", ".join(
+                a.split("<")[0].strip()
+                for a in data["tool"]["poetry"]["authors"]),
+        }
+        infos["aiida_version"] = get_aiida_version_poetry(data)
+    elif buildsystem == "flit":
+        # version is not part of the metadata but expected to available in <module>/__init__.py:__version__
+        # description is available as a reference in `description-file` (requires another fetch)
+        # author is a mandatory field in Flit
+        infos["metadata"] = {
+            "author": data["tool"]["flit"]["metadata"]["author"],
+            "version": "",
+            "description": "",
+        }
+        print("  >> WARNING! version & description metadata and AiiDA version"
+              " are not (yet) parsed from the Flit buildsystem pyproject.toml")
+
+    return infos
 
 
 def format_entry_points_list(ep_list):
@@ -252,12 +363,12 @@ def complete_plugin_data(plugin_data, subpage_name):
 
     # Get link to setup.json file (set to None if not retrievable)
     try:
-        setup_json_link = plugin_data['plugin_info']
+        plugin_info_link = plugin_data['plugin_info']
     except KeyError:
         print("  >> WARNING: Missing plugin_info!!!")
-        plugin_data['setup_json'] = None
+        plugin_data['plugin_info'] = None
     else:
-        plugin_data['setup_json'] = get_setup_json(setup_json_link)
+        plugin_data['plugin_info'] = fetch_plugin_info(plugin_info_link)
 
     if 'package_name' not in list(plugin_data.keys()):
         plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
@@ -266,8 +377,9 @@ def complete_plugin_data(plugin_data, subpage_name):
     plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
     plugin_data[
         'entrypointtypes'] = entrypointtypes  # add a static entrypointtypes dictionary
-    plugin_data['summaryinfo'] = get_summary_info(plugin_data['setup_json'])
-    plugin_data['aiida_version'] = get_aiida_version(plugin_data['setup_json'])
+
+    plugin_data.update(get_plugin_info(plugin_data['plugin_info']))
+    plugin_data["summaryinfo"] = get_summary_info(plugin_data["entry_points"])
 
     plugin_data['state_dict'] = state_dict
     # note: for more validation, it might be sensible to switch to voluptuous
@@ -282,21 +394,13 @@ def complete_plugin_data(plugin_data, subpage_name):
 def validate_plugin_entry_points(plugin_data):
     """Validate that all registered entry points start with the registered entry point root."""
 
-    if 'entry_point' not in plugin_data:
+    try:
+        entry_point_root = plugin_data['entry_point']
+    except KeyError:
         # plugin should not specify entry points
         entry_point_root = 'MISSING'
-    else:
-        entry_point_root = plugin_data['entry_point']
 
-    setup_json = plugin_data['setup_json']
-
-    if setup_json is None:
-        return
-
-    if 'entry_points' not in setup_json:
-        return
-
-    for ep_list in setup_json['entry_points'].values():
+    for ep_list in plugin_data['entry_points'].values():
         for ep in ep_list:
             ep_string, _path = ep.split('=')
             ep_string = ep_string.strip()
