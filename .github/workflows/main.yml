@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install
-      run: cd make_ghpages/ && pip install -r requirements.txt
+      run: cd aiida_registry/ && pip install -r requirements.txt
     - name: make pages
-      run: cd make_ghpages/ && ./make_pages.py
+      run: cd aiida_registry/ && ./make_pages.py
     - name: deploy
       run: cd .travis-data/ && ./deploy.sh

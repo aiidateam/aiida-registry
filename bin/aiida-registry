@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+import click
+
+@click.group()
+def cli():
+    pass
+
+@cli.command()
+def fetch():
+    from aiida_registry.fetch_metadata import fetch_metadata
+    fetch_metadata()
+
+@cli.command()
+def html():
+    from aiida_registry.make_pages import make_pages
+    make_pages()
+
+@cli.command()
+def test_install():
+    from aiida_registry.test_install import test_install
+    test_install()
+
+
+if __name__ == '__main__':
+    cli()

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Test installing all registered plugins."""
 from __future__ import absolute_import
@@ -7,10 +6,8 @@ from __future__ import print_function
 import json
 import six
 import subprocess
-import os
 
-pwd = os.path.split(os.path.abspath(__file__))[0]
-PLUGINS_FILE_ABS = os.path.join(pwd, os.pardir, 'plugins.json')
+from . import PLUGINS_METADATA
 
 
 def try_cmd(cmd):
@@ -23,13 +20,12 @@ def try_cmd(cmd):
         return False
 
 
-with open(PLUGINS_FILE_ABS, 'r') as handle:
-    data = json.load(handle)
-
-if __name__ == "__main__":
+def test_install():
+    with open(PLUGINS_METADATA, 'r') as handle:
+        data = json.load(handle)
 
     print("[test installing plugins]")
-    for k, v in six.iteritems(data):
+    for _k, v in six.iteritems(data):
 
         print(" - {}".format(v['name']))
 

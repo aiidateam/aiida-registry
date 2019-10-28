@@ -48,7 +48,7 @@ cd out
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
-cp -r ../../make_ghpages/out/* .
+cp -r ../../out/* .
 
 git add -A .
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
