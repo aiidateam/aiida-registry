@@ -46,6 +46,11 @@ def get_hosted_on(url):
 
 
 def fetch_plugin_info(url):
+    """Fetches plugin metadata in different formats.
+
+    setup.json (for pip/setuptools)
+    pyproject.toml (for poetry/flit)
+    """
     try:
         response = requests.get(url)
         response.raise_for_status(
@@ -186,7 +191,15 @@ def get_plugin_info(plugin_info):
             k: data[k] if k in data else ""
             for k in METADATA_KEYS
         }
+
+        # pylint: disable=unsupported-assignment-operation
         infos["aiida_version"] = get_aiida_version_setup_json(data)
+        infos["metadata"]["classifiers"] = data[
+            'classifiers'] if 'classifiers' in data else []
+
+        if 'Framework :: AiiDA' not in infos['metadata']["classifiers"]:  # pylint: disable=unsubscriptable-object
+            print("  >> WARNING: Missing classifier 'Framework :: AiiDA'")
+
     elif buildsystem == "poetry":
         # all the following fields are mandatory in Poetry
         infos["metadata"] = {
