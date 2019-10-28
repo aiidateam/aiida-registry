@@ -28,10 +28,10 @@ matrix:
 
 install:
   - pip install -e .[pre-commit]
-  - aiida-registry fetch
+  - aiida-registry fetch  # fetch plugin metadata
 
 script: 
-  - if [ "$JOB" == "HTML" ]; then aiida-registry html && ./deploy.sh; fi
+  - if [ "$JOB" == "HTML" ]; then aiida-registry html && cd .travis-data && ./deploy.sh; fi
   - if [ "$JOB" == "INSTALL" ]; then aiida-registry test-install; fi
 
 ## See docs here: https://docs.travis-ci.com/user/deployment/pages/

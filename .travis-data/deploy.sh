@@ -48,6 +48,7 @@ cd out
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
+# copy built HTML pages from top-level directory
 cp -r ../../out/* .
 
 git add -A .

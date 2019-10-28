@@ -163,7 +163,8 @@ def get_plugin_info(plugin_info):
     buildsystem, data = plugin_info
 
     if buildsystem not in ["setuptools", "poetry", "flit"]:
-        print(f"  >> WARNING! build system '{buildsystem}' is not supported")
+        print("  >> WARNING! build system '{}' is not supported".format(
+            buildsystem))
         return infos
 
     try:
@@ -172,13 +173,13 @@ def get_plugin_info(plugin_info):
                 data["entry_points"])  # updating it gives us a copy
         elif buildsystem == "poetry":
             infos["entry_points"].update({
-                group: [f"{k} = {v}" for k, v in entries.items()]
+                group: ["{} = {}".format(k, v) for k, v in entries.items()]
                 for group, entries in data["tool"]["poetry"]
                 ["plugins"].items()
             })
         elif buildsystem == "flit":
             infos["entry_points"].update({
-                group: [f"{k} = {v}" for k, v in entries.items()]
+                group: ["{} = {}".format(k, v) for k, v in entries.items()]
                 for group, entries in data["tool"]["flit"]
                 ["entrypoints"].items()
             })
