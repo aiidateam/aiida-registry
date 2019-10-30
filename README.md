@@ -4,7 +4,7 @@ This repository contains the **source** of the official registry of AiiDA plugin
 
 <p align="center">
  <a href="http://aiidateam.github.io/aiida-registry" rel="Go to the AiiDA plugin registry">
-  <img src="make_ghpages/static/gotobutton.svg">
+  <img src="aiida_registry/static/gotobutton.svg">
  </a>
  </p>
 
