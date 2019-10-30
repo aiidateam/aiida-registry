@@ -360,5 +360,14 @@
         "code_home": "https://github.com/dev-zero/aiida-graphql",
         "plugin_info": "https://raw.github.com/dev-zero/aiida-graphql/develop/pyproject.toml",
         "pip_url": "aiida-graphql"
+    },
+    "gulp": {
+        "name": "aiida-gulp",
+        "entry_point": "gulp",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/chrisjsewell/aiida-gulp/master/setup.json",
+        "documentation_url": "https://aiida-gulp.readthedocs.io",
+        "code_home": "https://github.com/chrisjsewell/aiida-gulp",
+        "pip_url": "aiida-gulp"
     }
 }
