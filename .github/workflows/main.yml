@@ -14,8 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install
-      run: cd aiida_registry/ && pip install -r requirements.txt
+      run: pip install -e .
+    - name: fetch metadata
+      run: aiida-registry fetch
     - name: make pages
-      run: cd aiida_registry/ && ./make_pages.py
+      run: aiida-registry htm
     - name: deploy
       run: cd .travis-data/ && ./deploy.sh
