@@ -42,7 +42,7 @@
         "state": "development",
         "pip_url": "aiida-vasp",
         "code_home": "https://github.com/aiida-vasp/aiida-vasp",
-        "plugin_info": "https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/develop/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/master/setup.json",
         "pip_url": "aiida-vasp",
         "documentation_url": "https://aiida-vasp.readthedocs.io/"
     },
