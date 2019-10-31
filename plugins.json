@@ -4,8 +4,8 @@
         "package_name": "aiida",
         "entry_point": "",
         "state": "stable",
-        "pip_url": "aiida-core==1.0.0b6",
-        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-core/v1.0.0b6/setup.json",
+        "pip_url": "aiida-core",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-core/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-core",
         "documentation_url": "https://aiida-core.readthedocs.io/"
     },
