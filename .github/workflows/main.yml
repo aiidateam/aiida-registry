@@ -13,6 +13,8 @@ jobs:
       COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
     steps:
     - uses: actions/checkout@v1
+    - name: Install prerequisites
+      run: pip install --upgrade wheel setuptools
     - name: Install
       run: pip install -e .
     - name: fetch metadata
