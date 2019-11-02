@@ -35,6 +35,7 @@ if __name__ == '__main__':
                 "prospector==1.1.7",
                 "pylint==1.9.4; python_version<'3.0'",
                 "pylint==2.3.1; python_version>='3.0'",
-            ]
+            ],
+            'testing': ['pytest'],
         },
     )

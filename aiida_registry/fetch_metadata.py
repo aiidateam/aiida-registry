@@ -57,7 +57,8 @@ def fetch_plugin_info(url):
         )  # raise an exception for all 4xx/5xx errors
     except Exception:
         import traceback
-        print("  >> UNABLE TO RETRIEVE THE PLUGIN INFO URL: {}".format(url))
+        print("  >> WARNING! Unable to retrieve plugin info from: {}".format(
+            url))
         print(traceback.print_exc(file=sys.stdout))
         return None
 
@@ -96,7 +97,7 @@ def get_aiida_version_setup_json(setup_json):
                 aiida_specs += r.specs
 
         if not aiida_specs:
-            print("  >> AIIDA VERSION NOT SPECIFIED")
+            print("  >> WARNING! AiiDA version not specified")
             return None
 
         # precedence of version specs, from high to low
@@ -134,7 +135,7 @@ def get_aiida_version_poetry(pyproject):
 
         break
     else:
-        print("  >> AIIDA VERSION NOT SPECIFIED")
+        print("  >> WARNING! AiiDA version not specified")
         return None
 
     from poetry.semver import parse_constraint
@@ -150,9 +151,16 @@ def get_aiida_version_poetry(pyproject):
 
 
 def get_plugin_info(plugin_info):
+    """Fetch metadata from plugin_info url.
+
+    This adds the keys:
+     * entry_points
+     * metadata
+     * aiida_version
+
+     """
     infos = {
         "entry_points": {},
-        "summaryinfo": None,
         "metadata": None,
         "aiida_version": None,
     }
@@ -230,25 +238,20 @@ def get_plugin_info(plugin_info):
     return infos
 
 
-def format_entry_points_list(ep_list):
-    """Return string of entry points, respecting some limit."""
-    import copy
-    max_len = 5
-    tmp = sorted(copy.copy(ep_list))
-    if len(tmp) > max_len:
-        tmp = tmp[:max_len] + ['...']
-
-    return ", ".join(tmp)
-
-
 def complete_plugin_data(plugin_data):
-    """Update plugin data dictionary used for rendering."""
+    """Update plugin data dictionary.
+
+      * add metadata, aiida_version and entrypoints from plugin_info
+      * add package_name if missing
+      * add hosted_on
+      & more
+     used for rendering."""
 
     # Get link to setup.json file (set to None if not retrievable)
     try:
         plugin_info_link = plugin_data['plugin_info']
     except KeyError:
-        print("  >> WARNING: Missing plugin_info!!!")
+        print("  >> WARNING: Missing plugin_info key!")
         plugin_data['plugin_info'] = None
     else:
         plugin_data['plugin_info'] = fetch_plugin_info(plugin_info_link)
@@ -262,7 +265,7 @@ def complete_plugin_data(plugin_data):
 
     # note: for more validation, it might be sensible to switch to voluptuous
     if plugin_data['state'] not in list(state_dict.keys()):
-        print("  >> WARNING: Invalid state {}".format(plugin_data['state']))
+        print("  >> WARNING: Invalid state '{}'".format(plugin_data['state']))
 
     validate_plugin_entry_points(plugin_data)
 
@@ -270,7 +273,7 @@ def complete_plugin_data(plugin_data):
 
 
 def validate_plugin_entry_points(plugin_data):
-    """Validate that all registered entry points start with the registered entry point root."""
+    """Validate that all entry points registered by the plugin start with the registered entry point root."""
 
     try:
         entry_point_root = plugin_data['entry_point']
@@ -278,7 +281,10 @@ def validate_plugin_entry_points(plugin_data):
         # plugin should not specify entry points
         entry_point_root = 'MISSING'
 
-    for ep_list in plugin_data['entry_points'].values():
+    for ep_group, ep_list in plugin_data['entry_points'].items():
+        # we only restrict aiida's entry point groups
+        if not ep_group.startswith('aiida.'):
+            continue
         for ep in ep_list:
             ep_string, _path = ep.split('=')
             ep_string = ep_string.strip()
