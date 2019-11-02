@@ -106,25 +106,6 @@ def format_entry_points_list(ep_list):
     return ", ".join(tmp)
 
 
-def validate_plugin_entry_points(plugin_data):
-    """Validate that all registered entry points start with the registered entry point root."""
-
-    try:
-        entry_point_root = plugin_data['entry_point']
-    except KeyError:
-        # plugin should not specify entry points
-        entry_point_root = 'MISSING'
-
-    for ep_list in plugin_data['entry_points'].values():
-        for ep in ep_list:
-            ep_string, _path = ep.split('=')
-            ep_string = ep_string.strip()
-            if not ep_string.startswith(entry_point_root):
-                print(
-                    "  >> WARNING: Entry point '{}' does not start with '{}'".
-                    format(ep_string, entry_point_root))
-
-
 def global_summary():
     """Compute summary of plugin registry."""
     global entrypoints_count, other_entrypoint_names
@@ -158,6 +139,23 @@ def global_summary():
     return global_summary
 
 
+def get_pip_install_cmd(plugin_data):
+
+    pip_url = plugin_data['pip_url']
+    if pip_url.startswith('http') or pip_url.startswith('git'):
+        return "pip install {}".format(pip_url)
+
+    # else, we assume it's a PyPI package and we would like to add the version
+    try:
+        version = plugin_data['metadata']['version']
+        pre_releases = ['a', 'b', 'rc']
+        if any([version.find(p_id) != -1 for p_id in pre_releases]):
+            return "pip install --pre {}".format(pip_url)
+        return "pip install {}".format(pip_url)
+    except KeyError:
+        return "pip install {}".format(pip_url)
+
+
 def make_pages():
 
     # Create output folder, copy static files
@@ -189,6 +187,7 @@ def make_pages():
         plugin_data["summaryinfo"] = get_summary_info(
             plugin_data["entry_points"])
         plugin_data['state_dict'] = state_dict
+        plugin_data['pip_install_cmd'] = get_pip_install_cmd(plugin_data)
 
         # Write plugin html
         plugin_html = env.get_template("singlepage.html").render(**plugin_data)
