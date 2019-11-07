@@ -49,7 +49,7 @@
         </p>
         
         <p>
-            <strong>Short description</strong>: The official AiiDA plugin for COD tools
+            <strong>Short description</strong>: The official AiiDA plugin for cod-tools
         </p>
         
         
@@ -87,10 +87,10 @@
             <strong>How to use from python</strong>: <code>import aiida_codtools</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 1.0.1
+            <strong>Most recent version</strong>: 2.0.0
         </p>
         <p>
-            <strong>Compatible with aiida-core</strong>: &gt;=0.10.0rc1
+            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0,&lt;2.0.0
         </p>
 
         
@@ -99,12 +99,22 @@
         
         <span class="badge">
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">6</span>
+            <span class="badge-right">9</span>
         </span>
         
         <span class="badge">
             <span class="badge-left brown">Parsers</span>
             <span class="badge-right">6</span>
+        </span>
+        
+        <span class="badge">
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        <span class="badge">
+            <span class="badge-left orange">Other (Console scripts)</span>
+            <span class="badge-right">1</span>
         </span>
         
         
@@ -118,34 +128,49 @@
                 </h4>
                 <ul>
                 
-                <li><code>codtools.ciffilter</code>
+                <li><code>codtools.primitive_structure_from_cif</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.calculations.ciffilter:CiffilterCalculation
+                        aiida_codtools.calculations.functions.primitive_structure_from_cif:primitive_structure_from_cif
                     </span></div></li>
                 
-                <li><code>codtools.cifcellcontents</code>
+                <li><code>codtools.cif_base</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.calculations.cifcellcontents:CifcellcontentsCalculation
+                        aiida_codtools.calculations.cif_base:CifBaseCalculation
                     </span></div></li>
                 
-                <li><code>codtools.cifcodcheck</code>
+                <li><code>codtools.cif_cell_contents</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.calculations.cifcodcheck:CifcodcheckCalculation
+                        aiida_codtools.calculations.cif_cell_contents:CifCellContentsCalculation
                     </span></div></li>
                 
-                <li><code>codtools.cifcoddeposit</code>
+                <li><code>codtools.cif_cod_check</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.calculations.cifcoddeposit:CifcoddepositCalculation
+                        aiida_codtools.calculations.cif_cod_check:CifCodCheckCalculation
                     </span></div></li>
                 
-                <li><code>codtools.cifcodnumbers</code>
+                <li><code>codtools.cif_cod_deposit</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.calculations.cifcodnumbers:CifcodnumbersCalculation
+                        aiida_codtools.calculations.cif_cod_deposit:CifCodDepositCalculation
                     </span></div></li>
                 
-                <li><code>codtools.cifsplitprimitive</code>
+                <li><code>codtools.cif_cod_numbers</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.calculations.cifsplitprimitive:CifsplitprimitiveCalculation
+                        aiida_codtools.calculations.cif_cod_numbers:CifCodNumbersCalculation
+                    </span></div></li>
+                
+                <li><code>codtools.cif_filter</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_codtools.calculations.cif_filter:CifFilterCalculation
+                    </span></div></li>
+                
+                <li><code>codtools.cif_select</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_codtools.calculations.cif_select:CifSelectCalculation
+                    </span></div></li>
+                
+                <li><code>codtools.cif_split_primitive</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_codtools.calculations.cif_split_primitive:CifSplitPrimitiveCalculation
                     </span></div></li>
                 
                 </ul>
@@ -157,34 +182,62 @@
                 </h4>
                 <ul>
                 
-                <li><code>codtools.cifcellcontents</code>
+                <li><code>codtools.cif_base</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.parsers.cifcellcontents:CifcellcontentsParser
+                        aiida_codtools.parsers.cif_base:CifBaseParser
                     </span></div></li>
                 
-                <li><code>codtools.cifcodcheck</code>
+                <li><code>codtools.cif_cell_contents</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.parsers.cifcodcheck:CifcodcheckParser
+                        aiida_codtools.parsers.cif_cell_contents:CifCellContentsParser
                     </span></div></li>
                 
-                <li><code>codtools.cifcoddeposit</code>
+                <li><code>codtools.cif_cod_check</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.parsers.cifcoddeposit:CifcoddepositParser
+                        aiida_codtools.parsers.cif_cod_check:CifCodCheckParser
                     </span></div></li>
                 
-                <li><code>codtools.cifcodnumbers</code>
+                <li><code>codtools.cif_cod_deposit</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.parsers.cifcodnumbers:CifcodnumbersParser
+                        aiida_codtools.parsers.cif_cod_deposit:CifCodDepositParser
                     </span></div></li>
                 
-                <li><code>codtools.ciffilter</code>
+                <li><code>codtools.cif_cod_numbers</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.parsers.ciffilter:CiffilterParser
+                        aiida_codtools.parsers.cif_cod_numbers:CifCodNumbersParser
                     </span></div></li>
                 
-                <li><code>codtools.cifsplitprimitive</code>
+                <li><code>codtools.cif_split_primitive</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_codtools.parsers.cifsplitprimitive:CifsplitprimitiveParser
+                        aiida_codtools.parsers.cif_split_primitive:CifSplitPrimitiveParser
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Workflows and WorkChains <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>codtools.cif_clean</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_codtools.workflows.cif_clean:CifCleanWorkChain
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Command-line script utilities <span class="entrypointraw">(console_scripts)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>aiida-codtools</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_codtools.cli:cmd_root
                     </span></div></li>
                 
                 </ul>
