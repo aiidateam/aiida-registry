@@ -93,7 +93,7 @@
         "entry_point": "yambo",
         "state": "development",
         "pip_url": "aiida-yambo",
-        "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/develop/setup.json",
+        "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/master/setup.json",
         "code_home": "https://github.com/yambo-code/yambo-aiida/"
     },
     "ase": {
