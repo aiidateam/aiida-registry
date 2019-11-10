@@ -127,9 +127,9 @@
         "name": "aiida-phonopy",
         "entry_point": "phonopy",
         "state": "development",
-        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/master/setup.json",
-        "code_home": "https://github.com/abelcarreras/aiida-phonopy",
-        "pip_url": "git+https://github.com/abelcarreras/aiida-phonopy",
+        "plugin_info": "https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/master/setup.json",
+        "code_home": "https://github.com/aiida-phonopy/aiida-phonopy",
+        "pip_url": "git+https://github.com/aiida-phonopy/aiida-phonopy",
         "documentation_url": "https://aiida-phonopy.readthedocs.io/"
     },
     "lammps": {
