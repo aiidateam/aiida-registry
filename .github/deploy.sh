@@ -20,6 +20,9 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 rm -rf * || exit 0
 cp -r ../page-build/* .
 
+git config user.name "$COMMIT_AUTHOR"
+git config user.email "$COMMIT_AUTHOR_EMAIL"
+
 git add -A .
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 if git diff --cached --quiet; then
@@ -55,7 +58,7 @@ git push
 
 ## Now let's go have some fun with the cloned repo
 #cd out
-#git config user.name "Travis CI"
+#git config user.name "$COMMIT_AUTHOR"
 #git config user.email "$COMMIT_AUTHOR_EMAIL"
 
 # copy built HTML pages from top-level directory

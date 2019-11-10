@@ -7,11 +7,11 @@ on: [push]
 #  - cron: "0 21 * * *"
 
 jobs:
-  update:
+  daily_build:
     runs-on: ubuntu-latest
     env:
-      ENCRYPTION_LABEL: "7712d5cd71ad"
-      COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
+      COMMIT_AUTHOR: Daily Deploy GitHub Workflow
+      COMMIT_AUTHOR_EMAIL: deploy@github-actions.org
     steps:
     - uses: actions/checkout@v1
     - name: Install prerequisites
