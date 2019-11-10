@@ -1,9 +1,10 @@
 name: CI
 
-on:
-  schedule:
-  # run every at 21:00 UTC
-  - cron: "0 21 * * *"
+on: [push]
+#on:
+#  schedule:
+#  # run every at 21:00 UTC
+#  - cron: "0 21 * * *"
 
 jobs:
   update:
@@ -15,11 +16,16 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install prerequisites
       run: pip install --upgrade wheel setuptools
+    - name: Display the path
+      shell: python
+      run: |
+        import os
+        print(os.environ['PATH'])
     - name: Install
-      run: pip install -e .
+      run: pip install -e . -v
     - name: fetch metadata
       run: aiida-registry fetch
     - name: make pages
       run: aiida-registry htm
     - name: deploy
-      run: cd .travis-data/ && ./deploy.sh
+      run: ./.github/deploy.sh
