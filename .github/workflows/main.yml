@@ -22,10 +22,16 @@ jobs:
         import os
         print(os.environ['PATH'])
     - name: Install
-      run: pip install -e . -v
+      run: |
+        echo "::add-path::/home/runner/.local/bin"
+        pip install -e . -v
     - name: fetch metadata
-      run: aiida-registry fetch
+      run: |
+        echo "::add-path::/home/runner/.local/bin"
+        aiida-registry fetch
     - name: make pages
-      run: aiida-registry htm
+      run: |
+        echo "::add-path::/home/runner/.local/bin"
+        aiida-registry html
     - name: deploy
       run: ./.github/deploy.sh
