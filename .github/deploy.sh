@@ -12,7 +12,7 @@ fi
 
 # Save some useful information
 REPO=$GITHUB_REPOSITORY
-SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+SSH_REPO="git@github.com:$REPO"
 SHA=$GITHUB_SHA
 
 mv out ../page-build
@@ -33,7 +33,7 @@ fi
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
 # Now that we're all set up, we can push.
-git push
+git push $SSH_REPO $TARGET_BRANCH
 
 ## Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 #ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"

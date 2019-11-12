@@ -14,24 +14,17 @@ jobs:
       COMMIT_AUTHOR_EMAIL: deploy@github-actions.org
     steps:
     - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
     - name: Install prerequisites
       run: pip install --upgrade wheel setuptools
-    - name: Display the path
-      shell: python
-      run: |
-        import os
-        print(os.environ['PATH'])
     - name: Install
-      run: |
-        echo "::add-path::/home/runner/.local/bin"
-        pip install -e . -v
+      run: pip install -e . -v
     - name: fetch metadata
-      run: |
-        echo "::add-path::/home/runner/.local/bin"
-        aiida-registry fetch
+      run: aiida-registry fetch
     - name: make pages
-      run: |
-        echo "::add-path::/home/runner/.local/bin"
-        aiida-registry html
+      run: aiida-registry html
     - name: deploy
       run: ./.github/deploy.sh
