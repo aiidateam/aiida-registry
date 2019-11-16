@@ -10,8 +10,8 @@ jobs:
   daily_build:
     runs-on: ubuntu-latest
     env:
-      COMMIT_AUTHOR: Daily Deploy GitHub Workflow
-      COMMIT_AUTHOR_EMAIL: deploy@github-actions.org
+      COMMIT_AUTHOR: Daily Deploy Action
+      COMMIT_AUTHOR_EMAIL: action@github.com
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.7
@@ -26,5 +26,10 @@ jobs:
       run: aiida-registry fetch
     - name: make pages
       run: aiida-registry html
-    - name: deploy
-      run: ./.github/deploy.sh
+    - name: commit to gh-pages
+      run: ./.github/commit.sh
+    - name: push changes
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        branch: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
