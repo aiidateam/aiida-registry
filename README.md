@@ -4,7 +4,7 @@ This repository contains the **source** of the official registry of AiiDA plugin
 
 <p align="center">
  <a href="http://aiidateam.github.io/aiida-registry" rel="Go to the AiiDA plugin registry">
-  <img src="make_ghpages/static/gotobutton.svg">
+  <img src="aiida_registry/static/gotobutton.svg">
  </a>
  </p>
 
@@ -33,34 +33,40 @@ community of your ongoing work.
 
 ### Valid keys for each plugin
 
-#### name
-the name by which you will distribute the plugin (repository name, PYPI distribution name)
+#### name (required)
+The name under which your plugin will be distributed.
+By convention, names of AiiDA plugins are lowercase and prefixed by `aiida-`.
 
-#### entry_point
-The name which is at the beginning of all entry points exposed by the plugin.
+Examples:
+ * `aiida-quantumespresso`
+ * `aiida-gaussian-datatypes`
 
-Convention: A plugin `aiida-quantumespresso` should use `entry_point: 'quantumespresso'`.
+#### entry_point (required)
+The prefix of all entry points provided by the plugin.
+By convention, a plugin `aiida-xxx` should use `entry_point: 'xxx'`.
 
-#### state
+Example: `aiida-quantumespresso` uses the entry point prefix `quantumespresso` and provides numerous entry points, all of which start with `quantumespresso.`.
+
+#### state (required)
 One of
 * `registered`: plugin is not yet in a working state. Use this to secure a specific name before starting development
 * `development`: plugin adds new functionality but isn't stable enough for production use
 * `stable`: plugin can be used in production
 
-#### pip_url
+#### pip_url (required for states `development` and `stable`)
 A URL or PyPI package name for installing the most recent development (`state: 'development'`) or stable (`state: 'stable'`) version of the package with pip.
-Expected for states `development` and `stable`.
 
 Examples:
  * `"pip_url": "aiida-quantumespresso"` for a package that is [registered on PyPI](https://pypi.org/project/aiida-quantumespresso/)
  * `"pip_url": "git+https://github.com/aiidateam/aiida-wannier90"` for a package not registered on PyPI
 
-#### plugin_info
-A URL pointing to a JSON file which holds all keyword args, as given to the setuptools.setup function at install.
-See, for example, the [aiida-plugin-template repository](http://github.com/aiidateam/aiida-plugin-template).
+#### plugin_info (required for state `stable`)
+URL pointing to a JSON file containing the keyword arguments passed to the `setuptools.setup` function when installing your package.
 
-#### code_home
-The link to the homepage of your plugin (e.g. your website, or the github repository it is hosted on).
+For an example, see the [`setup.json`](https://github.com/aiidateam/aiida-diff/blob/master/setup.json) file of the [aiida-diff demo plugin](http://github.com/aiidateam/aiida-diff).
 
-#### documentation_url
-The link to the online documentation for your plugin (e.g. on Read The Docs).
+#### code_home (optional)
+The link to the homepage of your plugin, for example its github repository.
+
+#### documentation_url (optional)
+The link to the online documentation for your plugin, for example on readthedocs.org .

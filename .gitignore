@@ -1,3 +1,9 @@
 *~
 .DS_Store
 *.pyc
+.idea
+.vscode
+*.egg-info
+*.sqlite
+out/
+plugins_metadata.json

@@ -4,8 +4,8 @@
         "package_name": "aiida",
         "entry_point": "",
         "state": "stable",
-        "pip_url": "aiida-core==1.0.0b6",
-        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-core/v1.0.0b6/setup.json",
+        "pip_url": "aiida-core",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-core/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-core",
         "documentation_url": "https://aiida-core.readthedocs.io/"
     },
@@ -42,7 +42,7 @@
         "state": "development",
         "pip_url": "aiida-vasp",
         "code_home": "https://github.com/aiida-vasp/aiida-vasp",
-        "plugin_info": "https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/develop/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/master/setup.json",
         "pip_url": "aiida-vasp",
         "documentation_url": "https://aiida-vasp.readthedocs.io/"
     },
@@ -93,7 +93,7 @@
         "entry_point": "yambo",
         "state": "development",
         "pip_url": "aiida-yambo",
-        "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/develop/setup.json",
+        "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/master/setup.json",
         "code_home": "https://github.com/yambo-code/yambo-aiida/"
     },
     "ase": {
@@ -127,9 +127,9 @@
         "name": "aiida-phonopy",
         "entry_point": "phonopy",
         "state": "development",
-        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-phonopy/master/setup.json",
-        "code_home": "https://github.com/abelcarreras/aiida-phonopy",
-        "pip_url": "git+https://github.com/abelcarreras/aiida-phonopy",
+        "plugin_info": "https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/master/setup.json",
+        "code_home": "https://github.com/aiida-phonopy/aiida-phonopy",
+        "pip_url": "git+https://github.com/aiida-phonopy/aiida-phonopy",
         "documentation_url": "https://aiida-phonopy.readthedocs.io/"
     },
     "lammps": {
@@ -361,5 +361,22 @@
         "plugin_info": "https://raw.github.com/ConradJohnston/aiida-plumed/AiiDA-v1.0-compatibility/setup.json",
         "pip_url": "aiida-plumed",
         "documentation_url": "https://aiida-plumed.readthedocs.io/"
+    },
+    "graphql": {
+        "name": "aiida-graphql",
+        "entry_point": "graphql",
+        "state": "development",
+        "code_home": "https://github.com/dev-zero/aiida-graphql",
+        "plugin_info": "https://raw.github.com/dev-zero/aiida-graphql/develop/pyproject.toml",
+        "pip_url": "aiida-graphql"
+    },
+    "gulp": {
+        "name": "aiida-gulp",
+        "entry_point": "gulp",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/chrisjsewell/aiida-gulp/master/setup.json",
+        "documentation_url": "https://aiida-gulp.readthedocs.io",
+        "code_home": "https://github.com/chrisjsewell/aiida-gulp",
+        "pip_url": "aiida-gulp"
     }
 }

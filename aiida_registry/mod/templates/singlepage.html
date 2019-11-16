@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block css %}
     <link rel="stylesheet" href="../static/css/style.css">
@@ -7,10 +7,10 @@
 
 {% block body %}
 <main>
-        <h1 class="plugin-header">
-            Details for AiiDA plugin &quot;<a href="{{code_home}}">{{name}}</a>&quot;
-        </h1>
-        <p><a href="../index.html">&lt; Go back to the aiida-registry plugin summary</a></p>
+    <h1 class="plugin-header">
+        AiiDA plugin &quot;<a href="{{code_home}}">{{name}}</a>&quot;
+    </h1>
+    <p><a href="../index.html">&lt; Go back to the plugin registry index</a></p>
 
     <h2>General information</h2>
     <div>
@@ -22,9 +22,19 @@
                 </span>
             </span>
         </p>
+        {%  if metadata.description %}
+        <p>
+            <strong>Short description</strong>: {{ metadata.description }}
+        </p>
+        {% endif %}
+        {%  if pip_url %}
+        <p>
+            <strong>How to install</strong>: <code>{{ pip_install_cmd }}</code>
+        </p>
+        {% endif %}
 
         <p>
-            <a href="{{ code_home }}" target="_blank">Go to the plugin code homepage</a> 
+            <strong>Source code</strong>: <a href="{{ code_home }}" target="_blank">Go to the source code repository</a>
         </p>
     </div>
 
@@ -34,7 +44,7 @@
         <p>
     {% else %}
         <p>
-            <strong>Documentation</strong>: Documentation not provided by the plugin author
+            <strong>Documentation</strong>: No documentation provided by the plugin author
         <p>
     {% endif %}
 
@@ -42,44 +52,39 @@
     <h2>
         Detailed information
     </h2>
-    {% if setup_json %}
+    {% if metadata %}
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: {{ setup_json.author }}
+            <strong>Author(s)</strong>: {{ metadata.author }}
         </p>
+        {%  if metadata.author_email %}
         <p>
-            <strong>Short description</strong>: {{ setup_json.description }}
-        </p>
-        {%  if pip_url %}
-        <p>
-            <strong>How to install</strong>: <code>pip install {{ pip_url }}</code>
+            <strong>Contact</strong>: <a href="mailto:{{ metadata.author_email }}">{{ metadata.author_email }}</a>
         </p>
         {% endif %}
         <p>
             <strong>How to use from python</strong>: <code>import {{ package_name }}</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: {{ setup_json.version }}
+            <strong>Most recent version</strong>: {{ metadata.version }}
         </p>
         <p>
             <strong>Compatible with aiida-core</strong>: {{ aiida_version }}
         </p>
 
         {% if summaryinfo %}
-        <h3>Summary of the entry points</h3>
-        This plugin contains: <br>
+        <h3>Entry points provided by the plugin</h3>
+
         {% for summaryinfoelem in summaryinfo %}
-        <span class="badge"> 
+        <span class="badge">
             <span class="badge-left {{summaryinfoelem.colorclass}}">{{summaryinfoelem.text}}</span>
             <span class="badge-right">{{summaryinfoelem.count}}</span>
         </span>
         {% endfor %}
         {% endif %}
+        {% if entry_points %}
 
-        <h3>Available entry points</h3>
-        {% if setup_json.entry_points %}
-
-            {% for entrypointtype, entrypointlist in setup_json.entry_points.items() %}
+            {% for entrypointtype, entrypointlist in entry_points.items() %}
                 <h4>
                     {% if entrypointtype in entrypointtypes %}
                       {{ entrypointtypes[entrypointtype]}} <span class="entrypointraw">({{ entrypointtype }})</span>
@@ -103,9 +108,9 @@
     {% else %}
     <div id='description'>
         <p>
-            Detailed info for this package could not be obtained.
-            Ask the plugin developers to check their <code>setup.json</code> file
-            in the plugin source code.
+            Detailed information for this package could not be obtained.
+            Ask the plugin author to add a <code>setup.json</code> file
+            to the plugin source code.
         </p>
     </div>
     {% endif %}
