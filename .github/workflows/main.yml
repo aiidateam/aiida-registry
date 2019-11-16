@@ -1,10 +1,11 @@
 name: CI
 
-on: [push]
-#on:
-#  schedule:
-#  # run every at 21:00 UTC
-#  - cron: "0 21 * * *"
+on:
+  schedule:
+  # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
+  # run every day at 21:00 UTC
+  #- cron: "0 21 * * *"
+  - cron: "0 21 * 10 *"  # disabled, only runs in october
 
 jobs:
   daily_build:

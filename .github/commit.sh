@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e # Exit with nonzero exit code if anything fails
 
+# commit sha of master branch
+SHA=`git rev-parse --verify HEAD`
 TARGET_BRANCH="gh-pages"
 
 if [ "$GITHUB_ACTIONS" != "true" ]; then
