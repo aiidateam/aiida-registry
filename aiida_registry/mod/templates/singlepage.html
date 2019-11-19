@@ -8,9 +8,9 @@
 {% block body %}
 <main>
     <h1 class="plugin-header">
-        AiiDA plugin &quot;<a href="{{code_home}}">{{name}}</a>&quot;
+        AiiDA plugin package &quot;<a href="{{code_home}}">{{name}}</a>&quot;
     </h1>
-    <p><a href="../index.html">&lt; Go back to the plugin registry index</a></p>
+    <p><a href="../index.html">&lt; back to the registry index</a></p>
 
     <h2>General information</h2>
     <div>
@@ -44,7 +44,7 @@
         <p>
     {% else %}
         <p>
-            <strong>Documentation</strong>: No documentation provided by the plugin author
+            <strong>Documentation</strong>: No documentation provided by the package author
         <p>
     {% endif %}
 
@@ -73,7 +73,7 @@
         </p>
 
         {% if summaryinfo %}
-        <h3>Entry points provided by the plugin</h3>
+        <h3>Plugins provided by the package</h3>
 
         {% for summaryinfoelem in summaryinfo %}
         <span class="badge">

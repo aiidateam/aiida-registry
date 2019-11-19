@@ -26,38 +26,48 @@ othercolorclass = 'orange'
 entrypoint_metainfo = {
     'aiida.calculations': {
         'shortname': "Calculations",
-        'longname': "Calculation plugins",
+        'longname': "CalcJobs and calculation functions",
         'colorclass': 'blue'
     },
     'aiida.parsers': {
         'shortname': "Parsers",
-        'longname': "Calculation parsers",
+        'longname': "CalcJob parsers",
         'colorclass': 'brown',
     },
     'aiida.data': {
         'shortname': "Data",
-        'longname': "Data types",
+        'longname': "Data node types",
         'colorclass': 'red',
+    },
+    'aiida.cmdline.data': {
+        'shortname': "Data commands",
+        'longname': "verdi data commands",
+        'colorclass': othercolorclass,
     },
     'aiida.workflows': {
         'shortname': "Workflows",
-        'longname': "Workflows and WorkChains",
+        'longname': "WorkChains and work functions",
         'colorclass': 'green'
+    },
+    'aiida.schedulers': {
+        'shortname': "Schedulers",
+        'longname': "Job scheduler support",
+        'colorclass': othercolorclass,
     },
     'aiida.tests': {
         'shortname': "Tests",
         'longname': "Development test modules",
         'colorclass': othercolorclass,
     },
-    'console_scripts': {
-        'shortname': "Console scripts",
-        'longname': "Command-line script utilities",
-        'colorclass': othercolorclass,
-    },
     'aiida.tools.dbexporters.tcod_plugins': {
         'shortname': "TCOD plugins",
         'longname': "Exporter plugins for the TCOD database",
         'colorclass': othercolorclass
+    },
+    'console_scripts': {
+        'shortname': "Console scripts",
+        'longname': "Command-line scripts",
+        'colorclass': othercolorclass,
     },
 }
 
