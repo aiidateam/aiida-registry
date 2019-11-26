@@ -223,8 +223,8 @@
         "code_home": "https://github.com/chrisjsewell/aiida-crystal17",
         "pip_url": "aiida-crystal17"
     },
-    "crystal": {
-        "name": "aiida-crystal",
+    "crystal-mpds": {
+        "name": "aiida-crystal-mpds",
         "entry_point": "crystal",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/tilde-lab/aiida-crystal/master/setup.json",
