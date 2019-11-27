@@ -2,24 +2,35 @@ name: CI
 
 on:
   schedule:
-  # run every at 21:00 UTC
-  - cron: "0 21 * * *"
+  # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
+  # run every day at 21:00 UTC
+  #- cron: "0 21 * * *"
+  - cron: "0 21 * 10 *"  # disabled, only runs in october
 
 jobs:
-  update:
+  daily_build:
     runs-on: ubuntu-latest
     env:
-      ENCRYPTION_LABEL: "7712d5cd71ad"
-      COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
+      COMMIT_AUTHOR: Daily Deploy Action
+      COMMIT_AUTHOR_EMAIL: action@github.com
     steps:
     - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
     - name: Install prerequisites
       run: pip install --upgrade wheel setuptools
     - name: Install
-      run: pip install -e .
+      run: pip install -e . -v
     - name: fetch metadata
       run: aiida-registry fetch
     - name: make pages
-      run: aiida-registry htm
-    - name: deploy
-      run: cd .travis-data/ && ./deploy.sh
+      run: aiida-registry html
+    - name: commit to gh-pages
+      run: ./.github/commit.sh
+    - name: push changes
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        branch: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
