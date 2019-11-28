@@ -25,7 +25,7 @@
         <h1>
             <a href="http://www.aiida.net/">AiiDA</a> plugin registry
         </h1>
-        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your plugin]</a> </p>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your package]</a> </p>
       </header>
 
     
@@ -33,9 +33,9 @@
     
 <main>
     <h1 class="plugin-header">
-        AiiDA plugin &quot;<a href="https://github.com/greschd/aiida-bands-inspect">aiida-bands-inspect</a>&quot;
+        AiiDA plugin package &quot;<a href="https://github.com/greschd/aiida-bands-inspect">aiida-bands-inspect</a>&quot;
     </h1>
-    <p><a href="../index.html">&lt; Go back to the plugin registry index</a></p>
+    <p><a href="../index.html">&lt; back to the registry index</a></p>
 
     <h2>General information</h2>
     <div>
@@ -87,24 +87,24 @@
             <strong>How to use from python</strong>: <code>import aiida_bands_inspect</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.2.0
+            <strong>Most recent version</strong>: 0.3.0
         </p>
         <p>
             <strong>Compatible with aiida-core</strong>: &gt;=1.0.0,&lt;2.0.0
         </p>
 
         
-        <h3>Entry points provided by the plugin</h3>
+        <h3>Plugins provided by the package</h3>
 
         
         <span class="badge">
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">2</span>
+            <span class="badge-right">3</span>
         </span>
         
         <span class="badge">
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">3</span>
+            <span class="badge-right">4</span>
         </span>
         
         
@@ -113,10 +113,15 @@
             
                 <h4>
                     
-                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                      CalcJobs and calculation functions <span class="entrypointraw">(aiida.calculations)</span>
                     
                 </h4>
                 <ul>
+                
+                <li><code>bands_inspect.align</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_bands_inspect.calculations.align:AlignCalculation
+                    </span></div></li>
                 
                 <li><code>bands_inspect.difference</code>
                     <div class="classbox">class<span class="tooltiptext">
@@ -132,7 +137,7 @@
             
                 <h4>
                     
-                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                      CalcJob parsers <span class="entrypointraw">(aiida.parsers)</span>
                     
                 </h4>
                 <ul>
@@ -145,6 +150,11 @@
                 <li><code>bands_inspect.difference</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_bands_inspect.parsers.difference:DifferenceParser
+                    </span></div></li>
+                
+                <li><code>bands_inspect.align</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_bands_inspect.parsers.align:AlignParser
                     </span></div></li>
                 
                 <li><code>bands_inspect.plot</code>

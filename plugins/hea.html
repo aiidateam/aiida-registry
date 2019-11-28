@@ -25,7 +25,7 @@
         <h1>
             <a href="http://www.aiida.net/">AiiDA</a> plugin registry
         </h1>
-        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your plugin]</a> </p>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your package]</a> </p>
       </header>
 
     
@@ -33,9 +33,9 @@
     
 <main>
     <h1 class="plugin-header">
-        AiiDA plugin &quot;<a href="https://github.com/unkcpz/aiida-hea">aiida-hea</a>&quot;
+        AiiDA plugin package &quot;<a href="https://github.com/unkcpz/aiida-hea">aiida-hea</a>&quot;
     </h1>
-    <p><a href="../index.html">&lt; Go back to the plugin registry index</a></p>
+    <p><a href="../index.html">&lt; back to the registry index</a></p>
 
     <h2>General information</h2>
     <div>
@@ -49,7 +49,7 @@
         </p>
         
         <p>
-            <strong>Short description</strong>: AiiDA plugin for generating special quasi-random structures by ATAT/sqs and enumerating derivative superstructures by enumlib.
+            <strong>Short description</strong>: Cluster Expansion
         </p>
         
         
@@ -76,7 +76,7 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Jason Eu
+            <strong>Author(s)</strong>: unkcpz
         </p>
         
         <p>
@@ -90,11 +90,11 @@
             <strong>Most recent version</strong>: 0.1.0a0
         </p>
         <p>
-            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0b3,&lt;2.0.0
+            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0,&lt;2.0.0
         </p>
 
         
-        <h3>Entry points provided by the plugin</h3>
+        <h3>Plugins provided by the package</h3>
 
         
         <span class="badge">
@@ -113,7 +113,7 @@
         </span>
         
         <span class="badge">
-            <span class="badge-left orange">Other (Cmdline data)</span>
+            <span class="badge-left orange">Other (Data commands)</span>
             <span class="badge-right">1</span>
         </span>
         
@@ -123,56 +123,56 @@
             
                 <h4>
                     
-                      Data types <span class="entrypointraw">(aiida.data)</span>
+                      Data node types <span class="entrypointraw">(aiida.data)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>hea</code>
+                <li><code>ce</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_hea.data:DiffParameters
+                        aiida_ce.data:DiffParameters
                     </span></div></li>
                 
                 </ul>
             
                 <h4>
                     
-                      Calculation plugins <span class="entrypointraw">(aiida.calculations)</span>
+                      CalcJobs and calculation functions <span class="entrypointraw">(aiida.calculations)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>hea</code>
+                <li><code>ce</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_hea.calculations:DiffCalculation
+                        aiida_ce.calculations:DiffCalculation
                     </span></div></li>
                 
                 </ul>
             
                 <h4>
                     
-                      Calculation parsers <span class="entrypointraw">(aiida.parsers)</span>
+                      CalcJob parsers <span class="entrypointraw">(aiida.parsers)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>hea</code>
+                <li><code>ce</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_hea.parsers:DiffParser
+                        aiida_ce.parsers:DiffParser
                     </span></div></li>
                 
                 </ul>
             
                 <h4>
                     
-                      aiida.cmdline.data
+                      verdi data commands <span class="entrypointraw">(aiida.cmdline.data)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>hea</code>
+                <li><code>ce</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_hea.cli:data_cli
+                        aiida_ce.cli:data_cli
                     </span></div></li>
                 
                 </ul>
