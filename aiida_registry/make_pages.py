@@ -98,7 +98,7 @@ def get_summary_info(entry_points):
 def format_entry_points_list(ep_list):
     """Return string of entry points, respecting some limit."""
     import copy
-    max_len = 5
+    max_len = 3
     tmp = sorted(copy.copy(ep_list))
     if len(tmp) > max_len:
         tmp = tmp[:max_len] + ['...']

@@ -7,7 +7,7 @@
 
 {% block body %}
 <main>
-    <h2>Registered packages: {{ plugins | length }}</h2>
+    <h2>Registered plugin packages: {{ plugins | length }}</h2>
     <div class='globalsummary-box'>
         <div style="display: table;">
             {% for summaryentry in globalsummary %}
@@ -21,7 +21,7 @@
     </div>
 
     <h1>
-        Available plugins (alphabetical order)
+        Plugin packages (alphabetical order)
     </h1>
 
     <div id='entrylist'>
@@ -59,10 +59,6 @@
         {% if plugin.documentation_url %}
             <p>
                 <a href="{{ plugin.documentation_url }}" target="_blank">Documentation</a>
-            <p>
-        {% else %}
-            <p>
-                No documentation provided by plugin author.
             <p>
         {% endif %}
 
