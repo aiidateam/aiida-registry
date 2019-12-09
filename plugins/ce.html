@@ -33,7 +33,7 @@
     
 <main>
     <h1 class="plugin-header">
-        AiiDA plugin package &quot;<a href="https://github.com/unkcpz/aiida-hea">aiida-hea</a>&quot;
+        AiiDA plugin package &quot;<a href="https://github.com/unkcpz/aiida-ce">aiida-ce</a>&quot;
     </h1>
     <p><a href="../index.html">&lt; back to the registry index</a></p>
 
@@ -41,9 +41,9 @@
     <div>
         <p>
             Current state:
-            <span class="classbox">registered
+            <span class="classbox">development
                 <span class="tooltiptext">
-                    Not yet ready to use. Developers welcome!
+                    Adds new functionality, not yet ready for production. Testing welcome!
                 </span>
             </span>
         </p>
@@ -54,18 +54,18 @@
         
         
         <p>
-            <strong>How to install</strong>: <code>pip install git+https://github.com/unkcpz/aiida-hea</code>
+            <strong>How to install</strong>: <code>pip install git+https://github.com/unkcpz/aiida-ce</code>
         </p>
         
 
         <p>
-            <strong>Source code</strong>: <a href="https://github.com/unkcpz/aiida-hea" target="_blank">Go to the source code repository</a>
+            <strong>Source code</strong>: <a href="https://github.com/unkcpz/aiida-ce" target="_blank">Go to the source code repository</a>
         </p>
     </div>
 
     
         <p>
-            <strong>Documentation</strong>: <a href="https://aiida-hea.readthedocs.io/" target="_blank">Go to plugin documentation</a>
+            <strong>Documentation</strong>: No documentation provided by the package author
         <p>
     
 
@@ -84,7 +84,7 @@
         </p>
         
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_hea</code>
+            <strong>How to use from python</strong>: <code>import aiida_ce</code>
         </p>
         <p>
             <strong>Most recent version</strong>: 0.1.0a0
@@ -99,17 +99,17 @@
         
         <span class="badge">
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">3</span>
         </span>
         
         <span class="badge">
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">3</span>
         </span>
         
         <span class="badge">
             <span class="badge-left red">Data</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">3</span>
         </span>
         
         <span class="badge">
@@ -133,6 +133,16 @@
                         aiida_ce.data:DiffParameters
                     </span></div></li>
                 
+                <li><code>ce.structures</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_ce.data.structure_set:StructureSet
+                    </span></div></li>
+                
+                <li><code>ce.cluster</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_ce.data.cluster:ClusterSpaceData
+                    </span></div></li>
+                
                 </ul>
             
                 <h4>
@@ -142,9 +152,19 @@
                 </h4>
                 <ul>
                 
-                <li><code>ce</code>
+                <li><code>ce.genenum</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.calculations:DiffCalculation
+                        aiida_ce.calculations.genenum:EnumCalculation
+                    </span></div></li>
+                
+                <li><code>ce.gensqs</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_ce.calculations.gensqs:SqsCalculation
+                    </span></div></li>
+                
+                <li><code>ce.train</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_ce.calculations.train:TrainCalculation
                     </span></div></li>
                 
                 </ul>
@@ -156,9 +176,19 @@
                 </h4>
                 <ul>
                 
-                <li><code>ce</code>
+                <li><code>ce.genenum</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.parsers:DiffParser
+                        aiida_ce.parsers.genenum:EnumParser
+                    </span></div></li>
+                
+                <li><code>ce.gensqs</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_ce.parsers.gensqs:SqsParser
+                    </span></div></li>
+                
+                <li><code>ce.train</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_ce.parsers.train:TrainParser
                     </span></div></li>
                 
                 </ul>

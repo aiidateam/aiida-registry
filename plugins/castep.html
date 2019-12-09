@@ -87,10 +87,10 @@
             <strong>How to use from python</strong>: <code>import aiida_castep</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.3.2
+            <strong>Most recent version</strong>: 1.0.0
         </p>
         <p>
-            <strong>Compatible with aiida-core</strong>: &gt;=0.11.0,&lt;1.0.0
+            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0b6,&lt;2.0.0
         </p>
 
         
@@ -99,7 +99,7 @@
         
         <span class="badge">
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">5</span>
+            <span class="badge-right">6</span>
         </span>
         
         <span class="badge">
@@ -113,8 +113,13 @@
         </span>
         
         <span class="badge">
-            <span class="badge-left orange">Other (Console scripts, Data commands, Tests)</span>
-            <span class="badge-right">5</span>
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">3</span>
+        </span>
+        
+        <span class="badge">
+            <span class="badge-left orange">Other (Console scripts, Data commands, Tests, ...)</span>
+            <span class="badge-right">9</span>
         </span>
         
         
@@ -167,6 +172,11 @@
                         aiida_castep.calculations.castep:CastepTSCalculation
                     </span></div></li>
                 
+                <li><code>castep.phonon</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.calculations.castep:CastepPhononCalculation
+                    </span></div></li>
+                
                 </ul>
             
                 <h4>
@@ -216,7 +226,7 @@
                 
                 <li><code>castep.calculation</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_castep.tests.dbtestcalculation
+                        aiida_castep.tests.dbtests.dbtestcalculation
                     </span></div></li>
                 
                 </ul>
@@ -241,6 +251,59 @@
                 <li><code>castep-helper</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_castep.cmdline.helper_cmd:helper_cmd
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      aiida.tools.calculations
+                    
+                </h4>
+                <ul>
+                
+                <li><code>castep.castep</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.calculations.tools:CastepCalcTools
+                    </span></div></li>
+                
+                <li><code>castep.spec</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.calculations.tools:CastepCalcTools
+                    </span></div></li>
+                
+                <li><code>castep.phonon</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.calculations.tools:CastepCalcTools
+                    </span></div></li>
+                
+                <li><code>castep.bs</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.calculations.tools:CastepCalcTools
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      WorkChains and work functions <span class="entrypointraw">(aiida.workflows)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>castep.base</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.workflows.base:CastepBaseWorkChain
+                    </span></div></li>
+                
+                <li><code>castep.relax</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.workflows.relax:CastepRelaxWorkChain
+                    </span></div></li>
+                
+                <li><code>castep.altrelax</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_castep.workflows.relax:CastepAlterRelaxWorkChain
                     </span></div></li>
                 
                 </ul>
