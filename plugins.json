@@ -327,14 +327,13 @@
         "code_home": "https://github.com/uppasd/aiida-uppasd",
         "documentation_url": "https://github.com/uppasd/aiida-uppasd/blob/master/README.md"
     },
-    "hea":{
-        "name": "aiida-hea",
-        "entry_point": "hea",
-        "state": "registered",
-        "code_home": "https://github.com/unkcpz/aiida-hea",
-        "plugin_info": "https://raw.github.com/unkcpz/aiida-hea/master/setup.json",
-        "pip_url": "git+https://github.com/unkcpz/aiida-hea",
-        "documentation_url": "https://aiida-hea.readthedocs.io/"
+    "ce":{
+        "name": "aiida-ce",
+        "entry_point": "ce",
+        "state": "development",
+        "code_home": "https://github.com/unkcpz/aiida-ce",
+        "plugin_info": "https://raw.github.com/unkcpz/aiida-ce/master/setup.json",
+        "pip_url": "git+https://github.com/unkcpz/aiida-ce"
     },
     "porousmaterials": {
         "name": "aiida-porousmaterials",
