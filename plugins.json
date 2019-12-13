@@ -368,5 +368,13 @@
         "documentation_url": "https://aiida-gulp.readthedocs.io",
         "code_home": "https://github.com/chrisjsewell/aiida-gulp",
         "pip_url": "aiida-gulp"
-    }
+    },
+    "bigdft": {
+        "name": "aiida-bigdft",
+        "entry_point": "bigdft",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/BigDFT-group/aiida-bigdft-plugin/master/setup.json",
+        "code_home": "https://github.com/BigDFT-group/aiida-bigdft-plugin",
+        "documentation_url": "http://aiida-bigdft.readthedocs.io/"
+},
 }
