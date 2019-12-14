@@ -33,7 +33,7 @@
     
 <main>
     <h1 class="plugin-header">
-        AiiDA plugin package &quot;<a href="https://github.com/unkcpz/aiida-ce">aiida-ce</a>&quot;
+        AiiDA plugin package &quot;<a href="https://github.com/BigDFT-group/aiida-bigdft-plugin">aiida-bigdft</a>&quot;
     </h1>
     <p><a href="../index.html">&lt; back to the registry index</a></p>
 
@@ -49,17 +49,17 @@
         </p>
         
         <p>
-            <strong>Short description</strong>: AiiDA plugin for running cluster expansion using icet.
+            <strong>Short description</strong>: Aiida plugin for BigDFT code
         </p>
         
         
         <p>
-            <strong>How to install</strong>: <code>pip install git+https://github.com/unkcpz/aiida-ce</code>
+            <strong>How to install</strong>: <code>pip install --pre aiida-bigdft</code>
         </p>
         
 
         <p>
-            <strong>Source code</strong>: <a href="https://github.com/unkcpz/aiida-ce" target="_blank">Go to the source code repository</a>
+            <strong>Source code</strong>: <a href="https://github.com/BigDFT-group/aiida-bigdft-plugin" target="_blank">Go to the source code repository</a>
         </p>
     </div>
 
@@ -76,21 +76,21 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: unkcpz
+            <strong>Author(s)</strong>: The BigDFT Team
         </p>
         
         <p>
-            <strong>Contact</strong>: <a href="mailto:morty.yu@yahoo.com">morty.yu@yahoo.com</a>
+            <strong>Contact</strong>: <a href="mailto:bigdft-developers@lists.launchpad.net">bigdft-developers@lists.launchpad.net</a>
         </p>
         
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_ce</code>
+            <strong>How to use from python</strong>: <code>import aiida_bigdft</code>
         </p>
         <p>
             <strong>Most recent version</strong>: 0.1.0a0
         </p>
         <p>
-            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0,&lt;2.0.0
+            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0b3,&lt;2.0.0
         </p>
 
         
@@ -99,17 +99,17 @@
         
         <span class="badge">
             <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">3</span>
+            <span class="badge-right">1</span>
         </span>
         
         <span class="badge">
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">3</span>
+            <span class="badge-right">1</span>
         </span>
         
         <span class="badge">
             <span class="badge-left red">Data</span>
-            <span class="badge-right">3</span>
+            <span class="badge-right">2</span>
         </span>
         
         <span class="badge">
@@ -128,19 +128,14 @@
                 </h4>
                 <ul>
                 
-                <li><code>ce</code>
+                <li><code>bigdft</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.data:DiffParameters
+                        aiida_bigdft.data:BigDFTParameters
                     </span></div></li>
                 
-                <li><code>ce.structures</code>
+                <li><code>bigdft_logfile</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.data.structure_set:StructureSet
-                    </span></div></li>
-                
-                <li><code>ce.cluster</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.data.cluster:ClusterSpaceData
+                        aiida_bigdft.data:BigDFTLogfile
                     </span></div></li>
                 
                 </ul>
@@ -152,19 +147,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>ce.genenum</code>
+                <li><code>bigdft</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.calculations.genenum:EnumCalculation
-                    </span></div></li>
-                
-                <li><code>ce.gensqs</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.calculations.gensqs:SqsCalculation
-                    </span></div></li>
-                
-                <li><code>ce.train</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.calculations.train:TrainCalculation
+                        aiida_bigdft.calculations:BigDFTCalculation
                     </span></div></li>
                 
                 </ul>
@@ -176,19 +161,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>ce.genenum</code>
+                <li><code>bigdft</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.parsers.genenum:EnumParser
-                    </span></div></li>
-                
-                <li><code>ce.gensqs</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.parsers.gensqs:SqsParser
-                    </span></div></li>
-                
-                <li><code>ce.train</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.parsers.train:TrainParser
+                        aiida_bigdft.parsers:BigDFTParser
                     </span></div></li>
                 
                 </ul>
@@ -200,9 +175,9 @@
                 </h4>
                 <ul>
                 
-                <li><code>ce</code>
+                <li><code>bigdft</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_ce.cli:data_cli
+                        aiida_bigdft.cli:data_cli
                     </span></div></li>
                 
                 </ul>
