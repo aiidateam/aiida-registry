@@ -376,5 +376,5 @@
         "plugin_info": "https://raw.github.com/BigDFT-group/aiida-bigdft-plugin/master/setup.json",
         "code_home": "https://github.com/BigDFT-group/aiida-bigdft-plugin",
         "documentation_url": "http://aiida-bigdft.readthedocs.io/"
-},
+    }
 }
