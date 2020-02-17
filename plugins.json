@@ -306,8 +306,7 @@
         "state": "development",
         "pip_url": "git+https://github.com/aiidateam/aiida-tcod",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-tcod/master/setup.json",
-        "code_home": "https://github.com/aiidateam/aiida-tcod",
-        "documentation_url": "https://aiida-tcod.readthedocs.io/"
+        "code_home": "https://github.com/aiidateam/aiida-tcod"
     },
     "gaussian-datatypes": {
         "name": "aiida-gaussian-datatypes",
@@ -349,8 +348,7 @@
         "state": "development",
         "code_home": "https://github.com/ConradJohnston/aiida-plumed",
         "plugin_info": "https://raw.github.com/ConradJohnston/aiida-plumed/AiiDA-v1.0-compatibility/setup.json",
-        "pip_url": "aiida-plumed",
-        "documentation_url": "https://aiida-plumed.readthedocs.io/"
+        "pip_url": "aiida-plumed"
     },
     "graphql": {
         "name": "aiida-graphql",
