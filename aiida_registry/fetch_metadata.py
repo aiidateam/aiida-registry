@@ -267,9 +267,25 @@ def complete_plugin_data(plugin_data):
     if plugin_data['state'] not in list(state_dict.keys()):
         print("  >> WARNING: Invalid state '{}'".format(plugin_data['state']))
 
+    if 'documentation_url' in plugin_data:
+        validate_doc_url(plugin_data['documentation_url'])
+
     validate_plugin_entry_points(plugin_data)
 
     return plugin_data
+
+
+def validate_doc_url(url):
+    """Validate that documentation URL provides valid HTTP response."""
+    try:
+        response = requests.get(url)
+        response.raise_for_status(
+        )  # raise an exception for all 4xx/5xx errors
+    except Exception:
+        import traceback
+        print(
+            "  >> WARNING! Unable to reach documentation URL: {}".format(url))
+        print(traceback.print_exc(file=sys.stdout))
 
 
 def validate_plugin_entry_points(plugin_data):
