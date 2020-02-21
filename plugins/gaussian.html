@@ -1,0 +1,176 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" type="image/png" href="../static/favicon.png">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+     
+    <header id='entrytitle' style="background-color: #000; margin: 0; padding: 5px 20px 25px 20px;">
+        <h1>
+            <a href="http://www.aiida.net/">AiiDA</a> plugin registry
+        </h1>
+        <p style="font-size: 90%;"><a href="http://github.com/aiidateam/aiida-registry" style="color: #999;">[View on GitHub/register your package]</a> </p>
+      </header>
+
+    
+  <div style="max-width: 1200px; margin: auto;">
+    
+<main>
+    <h1 class="plugin-header">
+        AiiDA plugin package &quot;<a href="https://github.com/nanotech-empa/aiida-gaussian">aiida-gaussian</a>&quot;
+    </h1>
+    <p><a href="../index.html">&lt; back to the registry index</a></p>
+
+    <h2>General information</h2>
+    <div>
+        <p>
+            Current state:
+            <span class="classbox">development
+                <span class="tooltiptext">
+                    Adds new functionality, not yet ready for production. Testing welcome!
+                </span>
+            </span>
+        </p>
+        
+        <p>
+            <strong>Short description</strong>: AiiDA plugin for the Gaussian quantum chemistry software
+        </p>
+        
+        
+        <p>
+            <strong>How to install</strong>: <code>pip install --pre aiida-gaussian</code>
+        </p>
+        
+
+        <p>
+            <strong>Source code</strong>: <a href="https://github.com/nanotech-empa/aiida-gaussian" target="_blank">Go to the source code repository</a>
+        </p>
+    </div>
+
+    
+        <p>
+            <strong>Documentation</strong>: No documentation provided by the package author
+        <p>
+    
+
+
+    <h2>
+        Detailed information
+    </h2>
+    
+    <div id='description'>
+        <p>
+            <strong>Author(s)</strong>: Kristjan Eimre
+        </p>
+        
+        <p>
+            <strong>Contact</strong>: <a href="mailto:kristjaneimre@gmail.com">kristjaneimre@gmail.com</a>
+        </p>
+        
+        <p>
+            <strong>How to use from python</strong>: <code>import aiida_gaussian</code>
+        </p>
+        <p>
+            <strong>Most recent version</strong>: 0.1.0a0
+        </p>
+        <p>
+            <strong>Compatible with aiida-core</strong>: &gt;=1.0.0,&lt;2.0.0
+        </p>
+
+        
+        <h3>Plugins provided by the package</h3>
+
+        
+        <span class="badge">
+            <span class="badge-left blue">Calculations</span>
+            <span class="badge-right">3</span>
+        </span>
+        
+        <span class="badge">
+            <span class="badge-left brown">Parsers</span>
+            <span class="badge-right">1</span>
+        </span>
+        
+        
+        
+
+            
+                <h4>
+                    
+                      CalcJobs and calculation functions <span class="entrypointraw">(aiida.calculations)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>gaussian</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_gaussian.calculations:GaussianCalculation
+                    </span></div></li>
+                
+                <li><code>gaussian.formchk</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_gaussian.calculations:FormchkCalculation
+                    </span></div></li>
+                
+                <li><code>gaussian.cubegen</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_gaussian.calculations:CubegenCalculation
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      CalcJob parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>gaussian_base_parser</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_gaussian.parsers:GaussianBaseParser
+                    </span></div></li>
+                
+                </ul>
+            
+        
+    </div>
+    
+
+</main>
+
+
+  </div>
+    
+    <footer class="footer">
+    <hr>
+      This page is part of the <a href="http://aiidateam.github.io/aiida-registry">aiida-registry</a>, the official registry of <a href="http://www.aiida.net">AiiDA</a> plugins.
+    <br>
+    This work is supported by the <a href="http://nccr-marvel.ch" target="_blank">MARVEL National Centre for Competency in Research</a> 
+    funded by the <a href="http://www.snf.ch/en" target="_blank">Swiss National Science Foundation</a>, as well as by the 
+    <a href="http://www.max-centre.eu" target="_blank">MaX European Centre of Excellence</a> 
+    funded by the Horizon 2020 EINFRA-5 program, Grant No. 676598.<br><br>
+    
+<div style="text-align: center;"><img src="../static/img/MARVEL.png" height="70px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="../static/img/MaX.png" height="70px"></div>
+
+    </footer>    
+    
+</body>
+
+</html>
