@@ -374,5 +374,13 @@
         "plugin_info": "https://raw.github.com/BigDFT-group/aiida-bigdft-plugin/master/setup.json",
         "code_home": "https://github.com/BigDFT-group/aiida-bigdft-plugin",
         "pip_url": "aiida-bigdft"
+    },
+    "gaussian": {
+        "name": "aiida-gaussian",
+        "entry_point": "gaussian",
+        "state": "development",
+        "plugin_info": "https://raw.github.com/nanotech-empa/aiida-gaussian/master/setup.json",
+        "code_home": "https://github.com/nanotech-empa/aiida-gaussian",
+        "pip_url": "aiida-gaussian"
     }
 }
