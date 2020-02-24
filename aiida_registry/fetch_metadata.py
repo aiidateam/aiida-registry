@@ -292,7 +292,7 @@ def validate_plugin_entry_points(plugin_data):
     """Validate that all entry points registered by the plugin start with the registered entry point root."""
 
     try:
-        entry_point_root = plugin_data['entry_point']
+        entry_point_root = plugin_data['entry_point_prefix']
     except KeyError:
         # plugin should not specify entry points
         entry_point_root = 'MISSING'

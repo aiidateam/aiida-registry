@@ -22,7 +22,7 @@ community of your ongoing work.
     ```
     "new": {
         "name": "aiida-new",
-        "entry_point": "new",
+        "entry_point_prefix": "new",
         "state": "registered",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-new/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-new",
@@ -41,9 +41,9 @@ Examples:
  * `aiida-quantumespresso`
  * `aiida-gaussian-datatypes`
 
-#### entry_point (required)
+#### entry_point_prefix (required)
 The prefix of all entry points provided by the plugin.
-By convention, a plugin `aiida-xxx` should use `entry_point: 'xxx'`.
+By convention, a plugin `aiida-xxx` should use `"entry_point_prefix": "xxx"`.
 
 Example: `aiida-quantumespresso` uses the entry point prefix `quantumespresso` and provides numerous entry points, all of which start with `quantumespresso.`.
 
