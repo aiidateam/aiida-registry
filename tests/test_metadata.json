@@ -1,7 +1,7 @@
 {
   "alloy": {
     "name": "aiida-alloy",
-    "entry_point": "alloy",
+    "entry_point_prefix": "alloy",
     "state": "registered",
     "code_home": "https://github.com/DanielMarchand/aiida-alloy",
     "plugin_info": [
@@ -113,7 +113,7 @@
   },
   "ase": {
     "name": "aiida-ase",
-    "entry_point": "ase",
+    "entry_point_prefix": "ase",
     "state": "stable",
     "pip_url": "aiida-ase",
     "plugin_info": [
@@ -181,7 +181,7 @@
   },
   "bands-inspect": {
     "name": "aiida-bands-inspect",
-    "entry_point": "bands_inspect",
+    "entry_point_prefix": "bands_inspect",
     "state": "development",
     "plugin_info": [
       "setuptools",
@@ -276,7 +276,7 @@
   },
   "castep": {
     "name": "aiida-castep",
-    "entry_point": "castep",
+    "entry_point_prefix": "castep",
     "state": "development",
     "plugin_info": [
       "setuptools",
@@ -381,7 +381,7 @@
   },
   "codtools": {
     "name": "aiida-codtools",
-    "entry_point": "codtools",
+    "entry_point_prefix": "codtools",
     "state": "stable",
     "pip_url": "aiida-codtools",
     "plugin_info": [
@@ -470,7 +470,7 @@
   "core": {
     "name": "aiida-core",
     "package_name": "aiida",
-    "entry_point": "",
+    "entry_point_prefix": "",
     "state": "stable",
     "pip_url": "aiida-core",
     "plugin_info": [
@@ -823,7 +823,7 @@
   },
   "cp2k": {
     "name": "aiida-cp2k",
-    "entry_point": "cp2k",
+    "entry_point_prefix": "cp2k",
     "state": "development",
     "plugin_info": [
       "setuptools",
@@ -920,7 +920,7 @@
   },
   "crystal17": {
     "name": "aiida-crystal17",
-    "entry_point": "crystal17",
+    "entry_point_prefix": "crystal17",
     "state": "development",
     "plugin_info": [
       "setuptools",
@@ -1103,7 +1103,7 @@
   },
   "ddec": {
     "name": "aiida-ddec",
-    "entry_point": "ddec",
+    "entry_point_prefix": "ddec",
     "state": "development",
     "plugin_info": [
       "setuptools",
@@ -1198,7 +1198,7 @@
   },
   "diff": {
     "name": "aiida-diff",
-    "entry_point": "diff",
+    "entry_point_prefix": "diff",
     "state": "stable",
     "pip_url": "git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0",
     "plugin_info": [
@@ -1300,7 +1300,7 @@
   },
   "fleur": {
     "name": "aiida-fleur",
-    "entry_point": "fleur",
+    "entry_point_prefix": "fleur",
     "state": "development",
     "pip_url": "aiida-fleur",
     "plugin_info": [
@@ -1448,7 +1448,7 @@
   },
   "gaussian-datatypes": {
     "name": "aiida-gaussian-datatypes",
-    "entry_point": "gaussian",
+    "entry_point_prefix": "gaussian",
     "state": "development",
     "pip_url": "aiida-gaussian-datatypes",
     "plugin_info": [
@@ -1538,7 +1538,7 @@
   },
   "gollum": {
     "name": "aiida-gollum",
-    "entry_point": "gollum",
+    "entry_point_prefix": "gollum",
     "state": "development",
     "plugin_info": [
       "setuptools",
@@ -1603,7 +1603,7 @@
   },
   "graphql": {
     "name": "aiida-graphql",
-    "entry_point": "graphql",
+    "entry_point_prefix": "graphql",
     "state": "development",
     "code_home": "https://github.com/dev-zero/aiida-graphql",
     "plugin_info": [
