@@ -340,7 +340,7 @@
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-porousmaterials/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-porousmaterials",
-        "pip_url": "git+https://github.com/pzarabadip/aiida-porousmaterials"
+        "pip_url": "aiida-porousmaterials"
     },
     "plumed": {
         "name": "aiida-plumed",
@@ -382,5 +382,13 @@
         "plugin_info": "https://raw.github.com/nanotech-empa/aiida-gaussian/master/setup.json",
         "code_home": "https://github.com/nanotech-empa/aiida-gaussian",
         "pip_url": "aiida-gaussian"
+    },
+    "orca": {
+        "name": "aiida-orca",
+        "entry_point_prefix": "orca",
+        "state": "development",
+        "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-orca/master/setup.json",
+        "code_home": "https://github.com/pzarabadip/aiida-orca",
+        "pip_url": "git+https://github.com/pzarabadip/aiida-orca"
     }
 }
