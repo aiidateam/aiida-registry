@@ -390,5 +390,13 @@
         "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-orca/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-orca",
         "pip_url": "git+https://github.com/pzarabadip/aiida-orca"
+    },
+    "wannier90-workflows": {
+        "name": "aiida-wannier90-workflows",
+        "entry_point_prefix": "wannier90_workflows",
+        "state": "development",
+        "pip_url": "aiida-wannier90-workflows",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90-workflows/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-wannier90-workflows"
     }
 }
