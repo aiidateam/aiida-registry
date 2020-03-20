@@ -191,7 +191,7 @@
     "kkr": {
         "name": "aiida-kkr",
         "entry_point_prefix": "kkr",
-        "state": "development",
+        "state": "stable",
         "plugin_info": "https://raw.github.com/JuDFTteam/aiida-kkr/develop/setup.json",
         "code_home": "https://github.com/JuDFTteam/aiida-kkr/tree/develop",
         "documentation_url": "https://aiida-kkr.readthedocs.io/",
