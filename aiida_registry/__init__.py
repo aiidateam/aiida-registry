@@ -73,10 +73,18 @@ entrypoint_metainfo = {
 
 # User-facing description of plugin development states
 state_dict = {
-    'registered': "Not yet ready to use. Developers welcome!",
-    'development':
-    "Adds new functionality, not yet ready for production. Testing welcome!",
-    'stable': "Ready for production calculations. Bug reports welcome!",
+    'registered': [
+        "Not yet ready to use. Developers welcome!",
+        "state-registered-d9644d.svg"
+    ],
+    'development': [
+        "Adds new functionality, not yet ready for production. Testing welcome!",
+        "state-development-d6af23.svg"
+    ],
+    'stable': [
+        "Ready for production calculations. Bug reports welcome!",
+        "state-stable-4cc61e.svg"
+    ]
 }
 
 ## dictionary of human-readable entrypointtypes
