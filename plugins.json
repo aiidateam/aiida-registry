@@ -226,7 +226,7 @@
     "z2pack": {
         "name":"aiida-z2pack",
         "entry_point_prefix":"z2pack",
-        "state":"registered",
+        "state":"development",
         "code_home":"https://github.com/AntimoMarrazzo/aiida-z2pack",
         "pip_url":"git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
