@@ -223,14 +223,14 @@
         "code_home": "https://github.com/chrisjsewell/aiida-crystal17",
         "pip_url": "aiida-crystal17"
     },
-    "crystal-mpds": {
-        "name": "aiida-crystal-mpds",
+    "crystal-dft": {
+        "name": "aiida-crystal-dft",
         "entry_point": "crystal",
         "state": "development",
-        "plugin_info": "https://raw.githubusercontent.com/tilde-lab/aiida-crystal/master/setup.json",
-        "documentation_url": "https://github.com/tilde-lab/aiida-crystal",
-        "code_home": "https://github.com/tilde-lab/aiida-crystal",
-        "pip_url": "git+https://github.com/tilde-lab/aiida-crystal"
+        "plugin_info": "https://raw.githubusercontent.com/tilde-lab/aiida-crystal-dft/master/setup.json",
+        "documentation_url": "https://github.com/tilde-lab/aiida-crystal-dft",
+        "code_home": "https://github.com/tilde-lab/aiida-crystal-dft",
+        "pip_url": "git+https://github.com/tilde-lab/aiida-crystal-dft"
     },
     "z2pack": {
         "name":"aiida-z2pack",
