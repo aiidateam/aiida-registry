@@ -225,7 +225,7 @@
     },
     "crystal-dft": {
         "name": "aiida-crystal-dft",
-        "entry_point": "crystal",
+        "entry_point_prefix": "crystal_dft",
         "state": "development",
         "plugin_info": "https://raw.githubusercontent.com/tilde-lab/aiida-crystal-dft/master/setup.json",
         "documentation_url": "https://github.com/tilde-lab/aiida-crystal-dft",
