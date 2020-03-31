@@ -18,6 +18,14 @@
         "code_home": "https://github.com/aiidateam/aiida-quantumespresso",
         "documentation_url": "https://aiida-quantumespresso.readthedocs.io/"
     },
+    "sssp": {
+        "name": "aiida-sssp",
+        "entry_point_prefix": "sssp",
+        "state": "registered",
+        "pip_url": "git+https://github.com/aiidateam/aiida-sssp",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-sssp/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-sssp"
+    },
     "wannier90": {
         "name": "aiida-wannier90",
         "entry_point_prefix": "wannier90",
