@@ -33,7 +33,7 @@
     
 <main>
     <h1 class="plugin-header">
-        AiiDA plugin package &quot;<a href="https://github.com/pzarabadip/aiida-orca">aiida-orca</a>&quot;
+        AiiDA plugin package &quot;<a href="https://github.com/aiidateam/aiida-sssp">aiida-sssp</a>&quot;
     </h1>
     <p><a href="../index.html">&lt; back to the registry index</a></p>
 
@@ -41,21 +41,21 @@
     <div>
         <p>
             Current state:
-            <img class="svg-badge" src="../static/img/state-development-d6af23.svg" title="Adds new functionality, not yet ready for production. Testing welcome!">
+            <img class="svg-badge" src="../static/img/state-registered-d9644d.svg" title="Not yet ready to use. Developers welcome!">
         </p>
         
         <p>
-            <strong>Short description</strong>: AiiDA plugin for ORCA code
+            <strong>Short description</strong>: AiiDA plugin for the Standard Solid State Pseudopotential (SSSP) library
         </p>
         
         
         <p>
-            <strong>How to install</strong>: <code>pip install git+https://github.com/pzarabadip/aiida-orca</code>
+            <strong>How to install</strong>: <code>pip install git+https://github.com/aiidateam/aiida-sssp</code>
         </p>
         
 
         <p>
-            <strong>Source code</strong>: <a href="https://github.com/pzarabadip/aiida-orca" target="_blank">Go to the source code repository</a>
+            <strong>Source code</strong>: <a href="https://github.com/aiidateam/aiida-sssp" target="_blank">Go to the source code repository</a>
         </p>
     </div>
 
@@ -72,18 +72,18 @@
     
     <div id='description'>
         <p>
-            <strong>Author(s)</strong>: Pezhman Zarabadi-Poor
+            <strong>Author(s)</strong>: The AiiDA team
         </p>
         
         <p>
-            <strong>Contact</strong>: <a href="mailto:pzarabadip@gmail.com">pzarabadip@gmail.com</a>
+            <strong>Contact</strong>: <a href="mailto:developers@aiida.net">developers@aiida.net</a>
         </p>
         
         <p>
-            <strong>How to use from python</strong>: <code>import aiida_orca</code>
+            <strong>How to use from python</strong>: <code>import aiida_sssp</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.5.0
+            <strong>Most recent version</strong>: 0.1.0
         </p>
         <p>
             <strong>Compatibility</strong>:
@@ -95,12 +95,7 @@
 
         
         <span class="badge">
-            <span class="badge-left blue">Calculations</span>
-            <span class="badge-right">2</span>
-        </span>
-        
-        <span class="badge">
-            <span class="badge-left brown">Parsers</span>
+            <span class="badge-left orange">Other (Console scripts)</span>
             <span class="badge-right">1</span>
         </span>
         
@@ -110,33 +105,14 @@
             
                 <h4>
                     
-                      CalcJobs and calculation functions <span class="entrypointraw">(aiida.calculations)</span>
+                      Command-line scripts <span class="entrypointraw">(console_scripts)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>orca_main</code>
+                <li><code>aiida-sssp</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_orca.calculations:OrcaCalculation
-                    </span></div></li>
-                
-                <li><code>orca_asa</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_orca.calculations:OrcaAsaCalculation
-                    </span></div></li>
-                
-                </ul>
-            
-                <h4>
-                    
-                      CalcJob parsers <span class="entrypointraw">(aiida.parsers)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>orca_base_parser</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_orca.parsers:OrcaBaseParser
+                        aiida_sssp.cli:cmd_root
                     </span></div></li>
                 
                 </ul>
