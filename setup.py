@@ -21,7 +21,7 @@ if __name__ == '__main__':
             "requests",
             "requests-cache",
             "requirements-parser",
-            "tomlkit",
+            "tomlkit<0.6.0",
             "poetry",
             "click",
         ],
