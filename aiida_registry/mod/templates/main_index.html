@@ -21,13 +21,13 @@
     </div>
 
     <h1>
-        Plugin packages (alphabetical order)
+        Package list (alphabetical order)
     </h1>
 
     <div id='entrylist'>
         {% for plugin_name, plugin in plugins.items() %}
         <div class='submenu-entry'>
-        <h2><a href="{{ plugin.subpage }}">{{ plugin_name}}: {{ plugin.name }} package</a></h2>
+        <h2><a href="{{ plugin.subpage }}">{{ plugin.name }}</a></h2>
 
         <p class="currentstate">
             <img class="svg-badge" src="static/img/{{  plugin.state_dict[plugin.state][1] }}" title="{{ plugin.state_dict[plugin.state][0] }}">
@@ -41,23 +41,25 @@
         <p class=description>{{plugin.metadata.description}}</p>
         {% endif %}
 
-        <p>
-            <a href="{{ plugin.code_home }}" target="_blank">Code homepage</a>
-            {% if plugin.hosted_on %}
-                <span style="font-size: 90%">(hosted on {{ plugin.hosted_on }})</span>
-            {% endif %}
-        </p>
+        <ul class="plugin-info">
+
+
+
+        <li>
+            <a href="{{ plugin.code_home }}" target="_blank">Source code</a>
+        </li>
 
         {% if plugin.documentation_url %}
-            <p>
+            <li>
                 <a href="{{ plugin.documentation_url }}" target="_blank">Documentation</a>
-            <p>
+            </li>
         {% endif %}
 
+        <li>
+            <a href="{{ plugin.subpage }}">Plugin details</a>
+        </li>
 
-        <p class='details'>
-            <a href="{{ plugin.subpage }}">Show plugin details</a>
-        </p>
+        </ul>
 
         {% if plugin.summaryinfo %}
         <p class="summaryinfo">
