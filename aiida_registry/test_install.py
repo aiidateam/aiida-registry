@@ -66,8 +66,8 @@ def test_install():
         if not supports_python_version(v):
             continue
 
-        # 'registered' plugins aren't installed/tested
-        if v['state'] == 'registered':
+        # 'planning' plugins aren't installed/tested
+        if v["development_status"] == 'planning':
             continue
 
         if 'pip_url' not in list(v.keys()):

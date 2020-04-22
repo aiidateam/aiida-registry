@@ -18,7 +18,7 @@ from collections import OrderedDict
 import requests
 import requests_cache
 import tomlkit
-from . import PLUGINS_METADATA, PLUGINS_FILE_ABS, state_dict
+from . import PLUGINS_METADATA, PLUGINS_FILE_ABS, status_dict
 
 if os.environ.get('CACHE_REQUESTS'):
     # Set environment variable CACHE_REQUESTS to cache requests for 1 day for faster testing
@@ -264,8 +264,9 @@ def complete_plugin_data(plugin_data):
     plugin_data.update(get_plugin_info(plugin_data['plugin_info']))
 
     # note: for more validation, it might be sensible to switch to voluptuous
-    if plugin_data['state'] not in list(state_dict.keys()):
-        print("  >> WARNING: Invalid state '{}'".format(plugin_data['state']))
+    if plugin_data["development_status"] not in list(status_dict.keys()):
+        print("  >> WARNING: Invalid state '{}'".format(
+            plugin_data["development_status"]))
 
     if 'documentation_url' in plugin_data:
         validate_doc_url(plugin_data['documentation_url'])
