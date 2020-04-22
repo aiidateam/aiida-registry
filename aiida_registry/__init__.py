@@ -72,18 +72,18 @@ entrypoint_metainfo = {
 }
 
 # User-facing description of plugin development states
-state_dict = {
-    'registered': [
+status_dict = {
+    'planning': [
         "Not yet ready to use. Developers welcome!",
-        "state-registered-d9644d.svg"
+        "status-planning-d9644d.svg"
     ],
-    'development': [
+    'beta': [
         "Adds new functionality, not yet ready for production. Testing welcome!",
-        "state-development-d6af23.svg"
+        "status-beta-d6af23.svg"
     ],
     'stable': [
         "Ready for production calculations. Bug reports welcome!",
-        "state-stable-4cc61e.svg"
+        "status-stable-4cc61e.svg"
     ]
 }
 

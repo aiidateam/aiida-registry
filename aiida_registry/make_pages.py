@@ -13,7 +13,7 @@ import shutil
 from collections import defaultdict
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from . import othercolorclass, entrypoint_metainfo, main_entrypoints, PLUGINS_METADATA, entrypointtypes, state_dict
+from . import othercolorclass, entrypoint_metainfo, main_entrypoints, PLUGINS_METADATA, entrypointtypes, status_dict
 
 # Subfolders
 OUT_FOLDER = 'out'
@@ -186,7 +186,7 @@ def make_pages():
 
         plugin_data["summaryinfo"] = get_summary_info(
             plugin_data["entry_points"])
-        plugin_data['state_dict'] = state_dict
+        plugin_data['status_dict'] = status_dict
         plugin_data['pip_install_cmd'] = get_pip_install_cmd(plugin_data)
 
         # Write plugin html

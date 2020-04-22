@@ -23,7 +23,7 @@ community of your ongoing work.
     "new": {
         "name": "aiida-new",
         "entry_point_prefix": "new",
-        "state": "registered",
+        "development_status": "planning",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-new/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-new",
         "documentation_url": "http://aiida-new.readthedocs.io/"
@@ -47,20 +47,20 @@ By convention, a plugin `aiida-xxx` should use `"entry_point_prefix": "xxx"`.
 
 Example: `aiida-quantumespresso` uses the entry point prefix `quantumespresso` and provides numerous entry points, all of which start with `quantumespresso.`.
 
-#### state (required)
-One of
-* `registered`: plugin is not yet in a working state. Use this to secure a specific name before starting development
-* `development`: plugin adds new functionality but isn't stable enough for production use
+#### development_status (required)
+The development status of your plugin, expressed using a [development status trove classifer](https://pypi.org/classifiers/), including:
+* `planning`: plugin is not yet in a working state. Use this to secure a specific name before starting development
+* `beta`: plugin adds new functionality but isn't stable enough for production use
 * `stable`: plugin can be used in production
 
-#### pip_url (required for states `development` and `stable`)
-A URL or PyPI package name for installing the most recent development (`state: 'development'`) or stable (`state: 'stable'`) version of the package with pip.
+#### pip_url (required for development status `beta` and higher)
+A URL or PyPI package name for installing the most recent version of the package through `pip`.
 
 Examples:
  * `"pip_url": "aiida-quantumespresso"` for a package that is [registered on PyPI](https://pypi.org/project/aiida-quantumespresso/)
  * `"pip_url": "git+https://github.com/aiidateam/aiida-wannier90"` for a package not registered on PyPI
 
-#### plugin_info (required for state `stable`)
+#### plugin_info (required for development status `stable`)
 URL pointing to a JSON file containing the keyword arguments passed to the `setuptools.setup` function when installing your package.
 
 For an example, see the [`setup.json`](https://github.com/aiidateam/aiida-diff/blob/master/setup.json) file of the [aiida-diff demo plugin](http://github.com/aiidateam/aiida-diff).
