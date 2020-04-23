@@ -46,6 +46,7 @@ def get_summary_info(entry_points):
     summary_info = []
     ep = entry_points.copy()
 
+    # Collect "main" entry points first
     for entrypoint_name in main_entrypoints:
         try:
             num = len(ep.pop(entrypoint_name))

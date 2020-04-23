@@ -18,7 +18,8 @@ PLUGINS_METADATA = 'plugins_metadata.json'
 
 # These are the main entrypoints, the other will fall under 'other'
 main_entrypoints = [
-    'aiida.calculations', 'aiida.parsers', 'aiida.data', 'aiida.workflows'
+    'aiida.calculations', 'aiida.parsers', 'aiida.data', 'aiida.workflows',
+    'console_scripts'
 ]
 # Color class of the 'other' category
 othercolorclass = 'orange'
@@ -44,6 +45,11 @@ entrypoint_metainfo = {
         'longname': "verdi data commands",
         'colorclass': othercolorclass,
     },
+    'aiida.groups': {
+        'shortname': "Groups",
+        'longname': "Group types",
+        'colorclass': othercolorclass,
+    },
     'aiida.workflows': {
         'shortname': "Workflows",
         'longname': "WorkChains and work functions",
@@ -54,24 +60,34 @@ entrypoint_metainfo = {
         'longname': "Job scheduler support",
         'colorclass': othercolorclass,
     },
+    'aiida.transports': {
+        'shortname': "Transports",
+        'longname': "Data transport protocols",
+        'colorclass': othercolorclass,
+    },
     'aiida.tests': {
         'shortname': "Tests",
         'longname': "Development test modules",
         'colorclass': othercolorclass,
     },
-    'aiida.tools.dbexporters.tcod_plugins': {
-        'shortname': "TCOD plugins",
-        'longname': "Exporter plugins for the TCOD database",
+    'aiida.tools.dbexporters': {
+        'shortname': "Database Exporters",
+        'longname': "Support for exporting to external databases",
+        'colorclass': othercolorclass
+    },
+    'aiida.tools.dbimporters': {
+        'shortname': "Database Importers",
+        'longname': "Support for importing from external databases",
         'colorclass': othercolorclass
     },
     'console_scripts': {
         'shortname': "Console scripts",
         'longname': "Command-line scripts",
-        'colorclass': othercolorclass,
+        'colorclass': 'purple',
     },
 }
 
-# User-facing description of plugin development states
+# User-facing description of plugin development status
 status_dict = {
     'planning': [
         "Not yet ready to use. Developers welcome!",
