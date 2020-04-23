@@ -373,3 +373,20 @@ span.badge-right {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+ul.plugin-info {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+    padding-top: 5px;
+}
+
+li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+li:before {
+  content: "→";
+  padding-right: 5px;
+}
