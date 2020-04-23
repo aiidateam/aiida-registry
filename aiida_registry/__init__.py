@@ -82,7 +82,7 @@ entrypoint_metainfo = {
     },
     'console_scripts': {
         'shortname': "Console scripts",
-        'longname': "Command-line scripts",
+        'longname': "Console scripts",
         'colorclass': 'purple',
     },
 }

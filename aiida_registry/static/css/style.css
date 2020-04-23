@@ -381,12 +381,12 @@ ul.plugin-info {
     padding-top: 5px;
 }
 
-li {
+ul.plugin-info li {
   padding-left: 1em;
   text-indent: -1em;
 }
 
-li:before {
+ul.plugin-info li:before {
   content: "→";
   padding-right: 5px;
 }
