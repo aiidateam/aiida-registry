@@ -54,7 +54,7 @@
         "pip_url": "aiida-vasp",
         "documentation_url": "https://aiida-vasp.readthedocs.io/"
     },
-    "alloy":{
+    "alloy": {
         "name": "aiida-alloy",
         "entry_point_prefix": "alloy",
         "development_status": "planning",
@@ -241,11 +241,11 @@
         "pip_url": "git+https://github.com/tilde-lab/aiida-crystal-dft"
     },
     "z2pack": {
-        "name":"aiida-z2pack",
-        "entry_point_prefix":"z2pack",
-        "development_status":"beta",
-        "code_home":"https://github.com/AntimoMarrazzo/aiida-z2pack",
-        "pip_url":"git+https://github.com/AntimoMarrazzo/aiida-z2pack"
+        "name": "aiida-z2pack",
+        "entry_point_prefix": "z2pack",
+        "development_status": "beta",
+        "code_home": "https://github.com/AntimoMarrazzo/aiida-z2pack",
+        "pip_url": "git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
     "spex": {
         "name": "aiida-spex",
@@ -266,7 +266,7 @@
     "optimize": {
         "name": "aiida-optimize",
         "entry_point_prefix": "optimize",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-optimize/master/setup.json",
         "code_home": "https://github.com/greschd/aiida-optimize",
         "documentation_url": "https://aiida-optimize.readthedocs.io",
@@ -275,7 +275,7 @@
     "bands-inspect": {
         "name": "aiida-bands-inspect",
         "entry_point_prefix": "bands_inspect",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-bands-inspect/master/setup.json",
         "code_home": "https://github.com/greschd/aiida-bands-inspect",
         "documentation_url": "https://aiida-bands-inspect.readthedocs.io",
@@ -284,7 +284,7 @@
     "symmetry-representation": {
         "name": "aiida-symmetry-representation",
         "entry_point_prefix": "symmetry_representation",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida_symmetry_representation/master/setup.json",
         "code_home": "https://github.com/greschd/aiida_symmetry_representation",
         "documentation_url": "https://aiida-symmetry-representation.readthedocs.io",
@@ -293,7 +293,7 @@
     "strain": {
         "name": "aiida-strain",
         "entry_point_prefix": "strain",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-strain/master/setup.json",
         "code_home": "https://github.com/greschd/aiida-strain",
         "documentation_url": "https://aiida-strain.readthedocs.io",
@@ -302,7 +302,7 @@
     "tbmodels": {
         "name": "aiida-tbmodels",
         "entry_point_prefix": "tbmodels",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-tbmodels/master/setup.json",
         "code_home": "https://github.com/greschd/aiida-tbmodels",
         "documentation_url": "https://aiida-tbmodels.readthedocs.io",
@@ -343,7 +343,7 @@
         "code_home": "https://github.com/uppasd/aiida-uppasd",
         "documentation_url": "https://github.com/uppasd/aiida-uppasd/blob/master/README.md"
     },
-    "ce":{
+    "ce": {
         "name": "aiida-ce",
         "entry_point_prefix": "ce",
         "development_status": "beta",
