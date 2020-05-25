@@ -1,16 +1,21 @@
-name: CI
+---
+# Updates web page on pushes to `master` as well as daily
+name: webpage
 
 on:
   schedule:
   # See https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
   # run every day at 21:00 UTC
   - cron: "0 21 * * *"
+  push:
+    branches:
+      - master
 
 jobs:
-  daily_build:
+  webpage:
     runs-on: ubuntu-latest
     env:
-      COMMIT_AUTHOR: Daily Deploy Action
+      COMMIT_AUTHOR: Deploy Action
       COMMIT_AUTHOR_EMAIL: action@github.com
     steps:
     - uses: actions/checkout@v2

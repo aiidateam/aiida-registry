@@ -74,10 +74,17 @@ def test_install():
             print("    >> WARNING: Missing pip_url key!")
             continue
 
-        print("   - Installing {}".format(v['name']))
-        is_installed = try_cmd("pip install {}".format(v['pip_url']))
+        # Idea: create conda environment for each package to isolate installs...
+        # print("   - Creating environment for {}".format(v['name']))
+        # py_version = "{}.{}".format(sys.version_info[0], sys.version_info[1])
+        # is_env_installed = try_cmd("conda create -n {} python={} -y && conda activate".format(v['name'], py_version))
+        # if not is_env_installed:
+        #     continue
 
-        if not is_installed:
+        print("   - Installing {}".format(v['name']))
+        is_package_installed = try_cmd("pip install {}".format(v['pip_url']))
+
+        if not is_package_installed:
             continue
 
         if 'package_name' not in list(v.keys()):
@@ -85,3 +92,6 @@ def test_install():
 
         print("   - Importing {}".format(v['package_name']))
         try_cmd("python -c 'import {}'".format(v['package_name']))
+
+        # print("   - Removing environment for {}".format(v['name']))
+        # is_env_removed = try_cmd("conda env remove -n {}".format(v['name']))
