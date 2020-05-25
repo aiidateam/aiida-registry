@@ -422,6 +422,6 @@
         "development_status": "beta",
         "pip_url": "git+https://https://github.com/rikigigi/aiida-QECpWorkChain",
         "plugin_info": "https://raw.https://github.com/rikigigi/aiida-QECpWorkChain/master/setup.json",
-        "code_home": "https://https://github.com/rikigigi/aiida-QECpWorkChain"
+        "code_home": "https://github.com/rikigigi/aiida-QECpWorkChain"
     }
 }
