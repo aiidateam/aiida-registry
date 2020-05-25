@@ -420,7 +420,7 @@
         "name": "aiida-QECpWorkChain",
         "entry_point_prefix": "QECpWorkChain",
         "development_status": "beta",
-        "pip_url": "git+https://https://github.com/rikigigi/aiida-QECpWorkChain",
+        "pip_url": "git+https://github.com/rikigigi/aiida-QECpWorkChain",
         "plugin_info": "https://raw.github.com/rikigigi/aiida-QECpWorkChain/master/setup.json",
         "code_home": "https://github.com/rikigigi/aiida-QECpWorkChain"
     }
