@@ -1,0 +1,72 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+
+  test-webpage-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install prerequisites
+      run: pip install --upgrade pip
+    - name: Install
+      run: pip install -e . -v
+    - name: fetch metadata
+      run: aiida-registry fetch
+    - name: make pages
+      run: aiida-registry html
+
+  test-install:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+      fail-fast: false
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    # Idea: create individual conda env for every tested package
+    # - uses: goanpeca/setup-miniconda@v1
+    #   with:
+    #     # auto-update-conda: true
+    #     python-version: ${{ matrix.python-version }}
+    - name: Install prerequisites
+      run: pip install --upgrade pip
+    - name: Install
+      run: pip install -e . -v
+    - name: fetch metadata
+      run: aiida-registry fetch
+    - name: Try installing packages
+      run: aiida-registry test-install
+
+  run-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install prerequisites
+      run: pip install --upgrade pip
+    - name: Install
+      run: pip install -e .[testing] -v
+    - name: Run tests
+      run: pytest tests/
