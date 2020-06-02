@@ -415,5 +415,13 @@
         "pip_url": "aiida-wannier90-workflows",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90-workflows/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-wannier90-workflows"
+    },
+    "QECpWorkChain": {
+        "name": "aiida-QECpWorkChain",
+        "entry_point_prefix": "qecpworkchain",
+        "development_status": "beta",
+        "pip_url": "git+https://github.com/rikigigi/aiida-QECpWorkChain",
+        "plugin_info": "https://raw.github.com/rikigigi/aiida-QECpWorkChain/master/setup.json",
+        "code_home": "https://github.com/rikigigi/aiida-QECpWorkChain"
     }
 }
