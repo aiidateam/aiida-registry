@@ -43,6 +43,10 @@
             <img class="svg-badge" src="../static/img/status-stable-4cc61e.svg" title="Ready for production calculations. Bug reports welcome!">
         </p>
         
+        <p>
+            <strong>Short description</strong>: AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.
+        </p>
+        
         
         <p>
             <strong>How to install</strong>: <code>pip install aiida-core</code>
@@ -78,7 +82,7 @@
             <strong>How to use from python</strong>: <code>import aiida</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 1.2.1
+            <strong>Most recent version</strong>: 1.3.0
         </p>
         <p>
             <strong>Compatibility</strong>:
@@ -102,6 +106,11 @@
         <span class="badge">
             <span class="badge-left red">Data</span>
             <span class="badge-right">22</span>
+        </span>
+        
+        <span class="badge">
+            <span class="badge-left green">Workflows</span>
+            <span class="badge-right">2</span>
         </span>
         
         <span class="badge">
@@ -146,12 +155,12 @@
                 
                 <li><code>arithmetic.add</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida.calculations.plugins.arithmetic.add:ArithmeticAddCalculation
+                        aiida.calculations.arithmetic.add:ArithmeticAddCalculation
                     </span></div></li>
                 
                 <li><code>templatereplacer</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida.calculations.plugins.templatereplacer:TemplatereplacerCalculation
+                        aiida.calculations.templatereplacer:TemplatereplacerCalculation
                     </span></div></li>
                 
                 </ul>
@@ -600,6 +609,16 @@
                     
                 </h4>
                 <ul>
+                
+                <li><code>arithmetic.multiply_add</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida.workflows.arithmetic.multiply_add:MultiplyAddWorkChain
+                    </span></div></li>
+                
+                <li><code>arithmetic.add_multiply</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida.workflows.arithmetic.add_multiply:add_multiply
+                    </span></div></li>
                 
                 </ul>
             
