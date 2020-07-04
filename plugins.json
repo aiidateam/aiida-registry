@@ -423,5 +423,14 @@
         "pip_url": "git+https://github.com/rikigigi/aiida-QECpWorkChain",
         "plugin_info": "https://raw.github.com/rikigigi/aiida-QECpWorkChain/master/setup.json",
         "code_home": "https://github.com/rikigigi/aiida-QECpWorkChain"
+    },
+    "nims-scheduler": {
+        "name": "aiida-nims-scheduler",
+        "entry_point_prefix": "nims_scheduler",
+        "development_status": "beta",
+        "plugin_info": "https://raw.githubusercontent.com/atztogo/aiida-nims-scheduler/master/setup.json",
+        "code_home": "https://github.com/atztogo/aiida-nims-scheduler",
+        "pip_url": "git+https://github.com/atztogo/aiida-nims-scheduler",
+        "documentation_url": "https://github.com/atztogo/aiida-nims-scheduler"
     }
 }
