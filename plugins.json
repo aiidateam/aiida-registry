@@ -73,7 +73,7 @@
     "nanotech-empa": {
         "name": "aiida-nanotech-empa",
         "entry_point_prefix": "nanotech_empa",
-        "development_status": "planned",
+        "development_status": "planning",
         "plugin_info": "https://raw.githubusercontent.com/nanotech-empa/aiida-nanotech-empa/master/setup.json",
         "code_home": "https://github.com/nanotech-empa/aiida-nanotech-empa",
         "pip_url": "git+https://github.com/nanotech-empa/aiida-nanotech-empa"
