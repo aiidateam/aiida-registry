@@ -17,11 +17,10 @@ if __name__ == '__main__':
         scripts=['bin/aiida-registry'],
         install_requires=[
             "jinja2",
-            "pipenv",
             "requests",
             "requests-cache",
             "requirements-parser",
-            "tomlkit<0.6.0",
+            "tomlkit~=0.5.11",
             "poetry",
             "click",
         ],
