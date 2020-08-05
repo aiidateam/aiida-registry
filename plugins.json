@@ -440,5 +440,14 @@
         "code_home": "https://github.com/atztogo/aiida-nims-scheduler",
         "pip_url": "git+https://github.com/atztogo/aiida-nims-scheduler",
         "documentation_url": "https://github.com/atztogo/aiida-nims-scheduler"
-    }
+    },
+		"aiida-cusp": {
+				"name": "aiida-cusp",
+    		"entry_point_prefix": "cusp",
+    		"development_status": "beta",
+	  		"plugin_info": "https://raw.githubusercontent.com/aiida-cusp/aiida-cusp/master/setup.json",
+    		"code_home": "https://github.com/aiida-cusp/aiida-cusp",
+				"pip_url": "https://pypi.org/project/aiida-cusp",
+	  		"documentation_url": "https://aiida-cusp.readthedocs.io"
+	}
 }
