@@ -16,7 +16,7 @@ def test_entrypoint(capsys):
 
     The registry should check only entry points from the 'aiida.' groups.
     """
-    from aiida_registry.fetch_metadata import validate_plugin_entry_points
+    from aiida_registry.fetch_metadata import validate_plugin_entry_points  # pylint: disable=import-outside-toplevel
 
     # aiida-gulp example contains 'reaxff' entry point in 'gulp.potentials' group
     validate_plugin_entry_points(TEST_DATA['crystal17'])
@@ -28,7 +28,7 @@ def test_entrypoint(capsys):
 
 def test_pip_install_cmd():
     """Test pip install command to display."""
-    from aiida_registry.make_pages import get_pip_install_cmd
+    from aiida_registry.make_pages import get_pip_install_cmd  # pylint: disable=import-outside-toplevel
 
     # aiida-crystal17 is beta version
     assert '--pre' in get_pip_install_cmd(TEST_DATA['crystal17'])

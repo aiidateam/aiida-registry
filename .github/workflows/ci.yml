@@ -4,6 +4,25 @@ on: [push, pull_request]
 
 jobs:
 
+  pre-commit:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install prerequisites
+      run: pip install --upgrade pip
+    - name: Install
+      run: pip install -e .[pre-commit]
+    - name: Run pre-commit
+      run:
+        pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
+
   test-webpage-build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -23,7 +42,7 @@ jobs:
     - name: make pages
       run: aiida-registry html
 
-  test-install:
+  install-plugins:
     runs-on: ubuntu-latest
     strategy:
       matrix:
