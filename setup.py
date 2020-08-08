@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Setup for AiiDA registry."""
 
 from __future__ import absolute_import
@@ -16,24 +17,19 @@ if __name__ == '__main__':
         url='https://aiidateam.github.io/aiida-registry/',
         scripts=['bin/aiida-registry'],
         install_requires=[
-            "jinja2",
-            "requests",
-            "requests-cache",
-            "requirements-parser",
-            "tomlkit~=0.5.11",
-            "poetry",
-            "click",
+            'jinja2',
+            'requests',
+            'requests-cache',
+            'requirements-parser',
+            'tomlkit~=0.5.11',
+            'poetry',
+            'click',
         ],
         license='MIT',
         extras_require={
             'pre-commit': [
-                "astroid==1.6.6; python_version<'3.0'",
-                "astroid==2.2.5; python_version>='3.0'",
-                "pre-commit==1.17.0",
-                "yapf==0.28.0",
-                "prospector==1.1.7",
-                "pylint==1.9.4; python_version<'3.0'",
-                "pylint==2.3.1; python_version>='3.0'",
+                'pre-commit~=2.2',
+                'pylint~=2.5.0',
             ],
             'testing': ['pytest'],
         },
