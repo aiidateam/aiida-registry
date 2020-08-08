@@ -81,7 +81,8 @@ def test_install():
         #     continue
 
         print('   - Installing {}'.format(val['name']))
-        is_package_installed = try_cmd('pip install {}'.format(val['pip_url']))
+        is_package_installed = try_cmd('pip install --pre {}'.format(
+            val['pip_url']))
 
         if not is_package_installed:
             continue
