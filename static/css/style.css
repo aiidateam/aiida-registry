@@ -19,7 +19,7 @@ main {
     margin-left: 16px;
     padding-top: 0px;
     margin-top: 0px;
-    margin-right: 16px; 
+    margin-right: 16px;
     padding-right: 0px;
     padding-bottom: 0px;
     margin-bottom: 0px;
@@ -222,7 +222,7 @@ td {
     text-align: center;
     padding: 3px;
     border-radius: 6px;
- 
+
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
@@ -249,25 +249,25 @@ td {
 }
 
 span.badge-left {
-    border-radius: .25rem;  
-    border-top-right-radius: 0; 
+    border-radius: .25rem;
+    border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     color: #212529;
     background-color: #A2CBFF;
     /* color: #ffffff; */
     text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-    
+
     padding: .25em .4em;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
     float: left;
-    display: block;  
+    display: block;
 }
 
 span.badge-right {
     border-radius: .25rem;
-    border-top-left-radius: 0; 
+    border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 
     color: #fff;
@@ -278,7 +278,7 @@ span.badge-right {
     text-align: center;
     white-space: nowrap;
     float: left;
-    display: block;    
+    display: block;
 }
 
 .badge-right.light-blue, .badge-left.light-blue {
