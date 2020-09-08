@@ -53,6 +53,9 @@ The development status of your plugin, expressed using a [development status tro
 * `beta`: plugin adds new functionality but isn't stable enough for production use
 * `stable`: plugin can be used in production
 
+#### code_home (required)
+The link to the homepage of the plugin, for example its github repository.
+
 #### pip_url (required for development status `beta` and higher)
 A URL or PyPI package name for installing the most recent version of the package through `pip`.
 
@@ -64,9 +67,6 @@ Examples:
 URL pointing to a JSON file containing the keyword arguments passed to the `setuptools.setup` function when installing your package.
 
 For an example, see the [`setup.json`](https://github.com/aiidateam/aiida-diff/blob/master/setup.json) file of the [aiida-diff demo plugin](http://github.com/aiidateam/aiida-diff).
-
-#### code_home (optional)
-The link to the homepage of your plugin, for example its github repository.
 
 #### documentation_url (optional)
 The link to the online documentation for your plugin, for example on readthedocs.org .
