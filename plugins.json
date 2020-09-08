@@ -449,5 +449,13 @@
     		"code_home": "https://github.com/aiida-cusp/aiida-cusp",
 				"pip_url": "https://pypi.org/project/aiida-cusp",
 	  		"documentation_url": "https://aiida-cusp.readthedocs.io"
-	}
+	},
+    "sshonly": {
+        "name": "aiida-sshonly",
+        "entry_point_prefix": "sshonly",
+        "development_status": "beta",
+        "plugin_info": "https://raw.github.com/adegomme/aiida-sshonly/master/setup.json",
+        "code_home": "https://github.com/adegomme/aiida-sshonly",
+        "pip_url": "aiida-sshonly"
+    }
 }
