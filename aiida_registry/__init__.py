@@ -92,6 +92,14 @@ status_dict = {
         'Not yet ready to use. Developers welcome!',
         'status-planning-d9644d.svg'
     ],
+    'pre-alpha': [
+        'Not yet ready to use. Developers welcome!',
+        'status-planning-d9644d.svg'
+    ],
+    'alpha': [
+        'Adds new functionality, not yet ready for production. Testing welcome!',
+        'status-beta-d6af23.svg'
+    ],
     'beta': [
         'Adds new functionality, not yet ready for production. Testing welcome!',
         'status-beta-d6af23.svg'
@@ -99,6 +107,14 @@ status_dict = {
     'stable': [
         'Ready for production calculations. Bug reports welcome!',
         'status-stable-4cc61e.svg'
+    ],
+    'mature': [
+        'Ready for production calculations. Bug reports welcome!',
+        'status-stable-4cc61e.svg'
+    ],
+    'inactive': [
+        'No longer maintained.',
+        'status-inactive-bbbbbb.svg',
     ]
 }
 
