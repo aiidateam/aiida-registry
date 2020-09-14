@@ -52,6 +52,7 @@ The development status of your plugin, expressed using a [development status tro
 * `planning`: plugin is not yet in a working state. Use this to secure a specific name before starting development
 * `beta`: plugin adds new functionality but isn't stable enough for production use
 * `stable`: plugin can be used in production
+* `inactive`: plugin no longer maintained
 
 #### code_home (required)
 The link to the homepage of the plugin, for example its github repository.
