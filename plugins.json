@@ -152,9 +152,9 @@
         "name": "aiida-lammps",
         "entry_point_prefix": "lammps",
         "development_status": "beta",
-        "plugin_info": "https://raw.githubusercontent.com/abelcarreras/aiida-lammps/master/setup.json",
-        "pip_url": "git+https://github.com/abelcarreras/aiida-lammps",
-        "code_home": "https://github.com/abelcarreras/aiida-lammps"
+        "plugin_info": "https://raw.githubusercontent.com/aiidaplugins/aiida-lammps/master/setup.json",
+        "pip_url": "git+https://github.com/aiidaplugins/aiida-lammps",
+        "code_home": "https://github.com/aiidaplugins/aiida-lammps"
     },
     "castep": {
         "name": "aiida-castep",
@@ -234,9 +234,9 @@
         "name": "aiida-crystal17",
         "entry_point_prefix": "crystal17",
         "development_status": "beta",
-        "plugin_info": "https://raw.githubusercontent.com/chrisjsewell/aiida-crystal17/master/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/aiidaplugins/aiida-crystal17/master/setup.json",
         "documentation_url": "https://aiida-crystal17.readthedocs.io",
-        "code_home": "https://github.com/chrisjsewell/aiida-crystal17",
+        "code_home": "https://github.com/aiidaplugins/aiida-crystal17",
         "pip_url": "aiida-crystal17"
     },
     "crystal-dft": {
@@ -387,9 +387,9 @@
         "name": "aiida-gulp",
         "entry_point_prefix": "gulp",
         "development_status": "beta",
-        "plugin_info": "https://raw.githubusercontent.com/chrisjsewell/aiida-gulp/master/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/aiidaplugins/aiida-gulp/master/setup.json",
         "documentation_url": "https://aiida-gulp.readthedocs.io",
-        "code_home": "https://github.com/chrisjsewell/aiida-gulp",
+        "code_home": "https://github.com/aiidaplugins/aiida-gulp",
         "pip_url": "aiida-gulp"
     },
     "bigdft": {
