@@ -21,7 +21,7 @@
     "sssp": {
         "name": "aiida-sssp",
         "entry_point_prefix": "sssp",
-        "development_status": "planning",
+        "development_status": "inactive",
         "pip_url": "git+https://github.com/aiidateam/aiida-sssp",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-sssp/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-sssp"
@@ -57,7 +57,7 @@
     "alloy": {
         "name": "aiida-alloy",
         "entry_point_prefix": "alloy",
-        "development_status": "planning",
+        "development_status": "beta",
         "code_home": "https://github.com/DanielMarchand/aiida-alloy",
         "plugin_info": "https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json",
         "pip_url": "git+https://github.com/aiidateam/aiida-alloy"
@@ -65,7 +65,7 @@
     "cp2k": {
         "name": "aiida-cp2k",
         "entry_point_prefix": "cp2k",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/cp2k/aiida-cp2k/master/setup.json",
         "code_home": "https://github.com/cp2k/aiida-cp2k",
         "pip_url": "aiida-cp2k"
@@ -73,7 +73,7 @@
     "nanotech-empa": {
         "name": "aiida-nanotech-empa",
         "entry_point_prefix": "nanotech_empa",
-        "development_status": "planning",
+        "development_status": "beta",
         "plugin_info": "https://raw.githubusercontent.com/nanotech-empa/aiida-nanotech-empa/master/setup.json",
         "code_home": "https://github.com/nanotech-empa/aiida-nanotech-empa",
         "pip_url": "git+https://github.com/nanotech-empa/aiida-nanotech-empa"
@@ -89,7 +89,7 @@
     "fleur": {
         "name": "aiida-fleur",
         "entry_point_prefix": "fleur",
-        "development_status": "beta",
+        "development_status": "stable",
         "pip_url": "aiida-fleur",
         "plugin_info": "https://raw.github.com/JuDFTteam/aiida-fleur/develop/setup.json",
         "code_home": "https://github.com/JuDFTteam/aiida-fleur/tree/develop",
@@ -107,7 +107,7 @@
     "yambo": {
         "name": "aiida-yambo",
         "entry_point_prefix": "yambo",
-        "development_status": "beta",
+        "development_status": "stable",
         "pip_url": "aiida-yambo",
         "plugin_info": "https://raw.github.com/yambo-code/yambo-aiida/master/setup.json",
         "code_home": "https://github.com/yambo-code/yambo-aiida/"
@@ -142,7 +142,7 @@
     "phonopy": {
         "name": "aiida-phonopy",
         "entry_point_prefix": "phonopy",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/master/setup.json",
         "code_home": "https://github.com/aiida-phonopy/aiida-phonopy",
         "pip_url": "git+https://github.com/aiida-phonopy/aiida-phonopy",
@@ -168,7 +168,7 @@
     "raspa": {
         "name": "aiida-raspa",
         "entry_point_prefix": "raspa",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json",
         "code_home": "https://github.com/yakutovicha/aiida-raspa",
         "pip_url": "aiida-raspa"
@@ -225,7 +225,7 @@
     "ddec": {
         "name": "aiida-ddec",
         "entry_point_prefix": "ddec",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/yakutovicha/aiida-ddec/master/setup.json",
         "code_home": "https://github.com/yakutovicha/aiida-ddec",
         "pip_url": "git+https://github.com/yakutovicha/aiida-ddec"
@@ -362,7 +362,7 @@
     "porousmaterials": {
         "name": "aiida-porousmaterials",
         "entry_point_prefix": "porousmaterials",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-porousmaterials/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-porousmaterials",
         "pip_url": "aiida-porousmaterials"
@@ -411,7 +411,7 @@
     "orca": {
         "name": "aiida-orca",
         "entry_point_prefix": "orca",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-orca/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-orca",
         "pip_url": "git+https://github.com/pzarabadip/aiida-orca"
@@ -419,7 +419,7 @@
     "wannier90-workflows": {
         "name": "aiida-wannier90-workflows",
         "entry_point_prefix": "wannier90_workflows",
-        "development_status": "beta",
+        "development_status": "stable",
         "pip_url": "aiida-wannier90-workflows",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-wannier90-workflows/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-wannier90-workflows"
@@ -435,7 +435,7 @@
     "nims-scheduler": {
         "name": "aiida-nims-scheduler",
         "entry_point_prefix": "nims_scheduler",
-        "development_status": "beta",
+        "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/atztogo/aiida-nims-scheduler/master/setup.json",
         "code_home": "https://github.com/atztogo/aiida-nims-scheduler",
         "pip_url": "git+https://github.com/atztogo/aiida-nims-scheduler",
