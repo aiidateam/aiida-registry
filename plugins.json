@@ -26,6 +26,14 @@
         "plugin_info": "https://raw.github.com/aiidateam/aiida-sssp/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-sssp"
     },
+    "pseudo": {
+        "name": "aiida-pseudo",
+        "entry_point_prefix": "pseudo",
+        "development_status": "beta",
+        "pip_url": "aiida-pseudo",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-pseudo/master/setup.json",
+        "code_home": "https://github.com/aiidateam/aiida-pseudo"
+    },
     "wannier90": {
         "name": "aiida-wannier90",
         "entry_point_prefix": "wannier90",
