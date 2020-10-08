@@ -98,7 +98,7 @@
     "siesta": {
         "name": "aiida-siesta",
         "entry_point_prefix": "siesta",
-        "development_status": "beta",
+        "development_status": "stable",
         "pip_url": "aiida-siesta",
         "plugin_info": "https://raw.github.com/albgar/aiida_siesta_plugin/master/setup.json",
         "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master",
