@@ -457,5 +457,13 @@
         "plugin_info": "https://raw.github.com/adegomme/aiida-sshonly/master/setup.json",
         "code_home": "https://github.com/adegomme/aiida-sshonly",
         "pip_url": "aiida-sshonly"
+    },
+    "abinit": {
+        "name": "aiida-abinit",
+        "entry_point_prefix": "abinit",
+        "development_status": "beta",
+        "pip_url": "aiida-abinit",
+        "plugin_info": "https://raw.github.com/sponce24/aiida-abinit/master/setup.json",
+        "code_home": "https://github.com/sponce24/aiida-abinit"
     }
 }
