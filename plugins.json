@@ -59,7 +59,6 @@
         "pip_url": "aiida-vasp",
         "code_home": "https://github.com/aiida-vasp/aiida-vasp",
         "plugin_info": "https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/master/setup.json",
-        "pip_url": "aiida-vasp",
         "documentation_url": "https://aiida-vasp.readthedocs.io/"
     },
     "alloy": {
@@ -153,7 +152,7 @@
         "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/master/setup.json",
         "code_home": "https://github.com/aiida-phonopy/aiida-phonopy",
-        "pip_url": "git+https://github.com/aiida-phonopy/aiida-phonopy",
+        "pip_url": "aiida-phonopy",
         "documentation_url": "https://aiida-phonopy.readthedocs.io/"
     },
     "lammps": {
