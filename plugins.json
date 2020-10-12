@@ -472,5 +472,13 @@
         "pip_url": "aiida-abinit",
         "plugin_info": "https://raw.github.com/sponce24/aiida-abinit/master/setup.json",
         "code_home": "https://github.com/sponce24/aiida-abinit"
+    },
+    "aiida-metavo-scheduler": {
+        "name": "aiida-metavo-scheduler",
+        "entry_point_prefix": "aiida_metavo_scheduler",
+        "development_status": "stable",
+        "plugin_info": "https://github.com/pzarabadip/aiida-metavo-scheduler/blob/master/setup.json",
+        "code_home": "https://github.com/pzarabadip/aiida-metavo-scheduler",
+        "pip_url": "git+https://github.com/pzarabadip/aiida-metavo-scheduler"
     }
 }
