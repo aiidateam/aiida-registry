@@ -480,5 +480,14 @@
         "plugin_info": "https://github.com/pzarabadip/aiida-metavo-scheduler/blob/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-metavo-scheduler",
         "pip_url": "git+https://github.com/pzarabadip/aiida-metavo-scheduler"
+    },
+    "fireworks-scheduler": {
+        "name": "aiida-fireengine",
+        "entry_point_prefix": "fireengine",
+        "development_status": "beta",
+        "plugin_info": "https://github.com/zhubonan/aiida-fireengine/blob/master/setup.json",
+        "code_home": "https://github.com/zhubonan/aiida-fireengine",
+        "pip_url": "git+https://https://github.com/zhubonan/aiida-fireengine",
+        "documentation_url": "https://aiida-fireengine.readthedocs.io"
     }
 }
