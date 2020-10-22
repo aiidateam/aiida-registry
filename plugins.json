@@ -477,7 +477,7 @@
         "name": "aiida-metavo-scheduler",
         "entry_point_prefix": "aiida_metavo_scheduler",
         "development_status": "stable",
-        "plugin_info": "https://github.com/pzarabadip/aiida-metavo-scheduler/blob/master/setup.json",
+        "plugin_info": "https://raw.github.com/pzarabadip/aiida-metavo-scheduler/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-metavo-scheduler",
         "pip_url": "git+https://github.com/pzarabadip/aiida-metavo-scheduler"
     },
@@ -485,7 +485,7 @@
         "name": "aiida-fireworks-scheduler",
         "entry_point_prefix": "fireworks_scheduler",
         "development_status": "beta",
-        "plugin_info": "https://github.com/zhubonan/aiida-fireworks-scheduler/blob/master/setup.json",
+        "plugin_info": "https://raw.github.com/zhubonan/aiida-fireworks-scheduler/master/setup.json",
         "code_home": "https://github.com/zhubonan/aiida-fireworks-scheduler",
         "pip_url": "git+https://https://github.com/zhubonan/aiida-fireworks-scheduler",
         "documentation_url": "https://aiida-fireworks-scheduler.readthedocs.io"
