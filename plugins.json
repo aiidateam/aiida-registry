@@ -309,7 +309,7 @@
         "name": "aiida-strain",
         "entry_point_prefix": "strain",
         "development_status": "stable",
-        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-strain/master/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/greschd/aiida-strain/trunk/setup.json",
         "code_home": "https://github.com/greschd/aiida-strain",
         "documentation_url": "https://aiida-strain.readthedocs.io",
         "pip_url": "aiida-strain"
@@ -448,15 +448,15 @@
         "pip_url": "git+https://github.com/atztogo/aiida-nims-scheduler",
         "documentation_url": "https://github.com/atztogo/aiida-nims-scheduler"
     },
-		"aiida-cusp": {
-				"name": "aiida-cusp",
-    		"entry_point_prefix": "cusp",
-    		"development_status": "beta",
-	  		"plugin_info": "https://raw.githubusercontent.com/aiida-cusp/aiida-cusp/master/setup.json",
-    		"code_home": "https://github.com/aiida-cusp/aiida-cusp",
-				"pip_url": "https://pypi.org/project/aiida-cusp",
-	  		"documentation_url": "https://aiida-cusp.readthedocs.io"
-	},
+    "aiida-cusp": {
+        "name": "aiida-cusp",
+        "entry_point_prefix": "cusp",
+        "development_status": "beta",
+        "plugin_info": "https://raw.githubusercontent.com/aiida-cusp/aiida-cusp/master/setup.json",
+        "code_home": "https://github.com/aiida-cusp/aiida-cusp",
+        "pip_url": "https://pypi.org/project/aiida-cusp",
+        "documentation_url": "https://aiida-cusp.readthedocs.io"
+    },
     "sshonly": {
         "name": "aiida-sshonly",
         "entry_point_prefix": "sshonly",
