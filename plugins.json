@@ -107,8 +107,8 @@
         "entry_point_prefix": "siesta",
         "development_status": "stable",
         "pip_url": "aiida-siesta",
-        "plugin_info": "https://raw.github.com/albgar/aiida_siesta_plugin/master/setup.json",
-        "code_home": "https://github.com/albgar/aiida_siesta_plugin/tree/master",
+        "plugin_info": "https://raw.github.com/siesta-project/aiida_siesta_plugin/master/setup.json",
+        "code_home": "https://github.com/siesta-project/aiida_siesta_plugin/tree/master",
         "documentation_url": "https://aiida-siesta-plugin.readthedocs.io/"
     },
     "yambo": {
