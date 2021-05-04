@@ -489,5 +489,11 @@
         "code_home": "https://github.com/zhubonan/aiida-fireworks-scheduler",
         "pip_url": "git+https://https://github.com/zhubonan/aiida-fireworks-scheduler",
         "documentation_url": "https://aiida-fireworks-scheduler.readthedocs.io"
+    },
+    "catmap": {
+        "name": "aiida-catmap",
+        "entry_point_prefix": "catmap",
+        "development_status": "planning",
+        "code_home": "https://github.com/sudarshanv01/aiida-catmap",
     }
 }
