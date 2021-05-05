@@ -27,7 +27,8 @@ if os.environ.get('CACHE_REQUESTS'):
     requests_cache.install_cache('demo_cache', expire_after=60 * 60 * 24)
 
 GITHUB_ACTIONS = os.environ.get('GITHUB_ACTIONS') == 'true'
-log = []
+LOG = []  # global log messages
+PLUGIN_LOG = []  # per-plugin log messages
 
 
 def report(string):
@@ -37,7 +38,7 @@ def report(string):
     """
     if GITHUB_ACTIONS:
         # Set the step ouput error message which can be used, e.g., for display as part of an issue comment.
-        log.append(string)
+        PLUGIN_LOG.append(string)
     print(string)
 
 
@@ -258,6 +259,12 @@ def complete_plugin_data(plugin_data):
       * add hosted_on
       & more
      used for rendering."""
+    global LOG, PLUGIN_LOG  # pylint:disable=global-statement
+
+    if 'package_name' not in list(plugin_data.keys()):
+        plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
+
+    report(f'  - {plugin_data["package_name"]}')
 
     # Get link to setup.json file (set to None if not retrievable)
     try:
@@ -267,9 +274,6 @@ def complete_plugin_data(plugin_data):
         plugin_data['plugin_info'] = None
     else:
         plugin_data['plugin_info'] = fetch_plugin_info(plugin_info_link)
-
-    if 'package_name' not in list(plugin_data.keys()):
-        plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
 
     plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
 
@@ -284,6 +288,10 @@ def complete_plugin_data(plugin_data):
         validate_doc_url(plugin_data['documentation_url'])
 
     validate_plugin_entry_points(plugin_data)
+
+    if 'WARNING' in '\n'.join(PLUGIN_LOG):
+        LOG += PLUGIN_LOG
+    PLUGIN_LOG = []
 
     return plugin_data
 
@@ -330,14 +338,11 @@ def fetch_metadata():
     plugins_metadata = OrderedDict()
 
     for plugin_name, plugin_data in sorted(six.iteritems(plugins_raw_data)):
-        report('  - {}'.format(plugin_name))
-
-        plugin_data = complete_plugin_data(plugin_data)
-        plugins_metadata[plugin_name] = plugin_data
+        plugins_metadata[plugin_name] = complete_plugin_data(plugin_data)
 
     with open(PLUGINS_METADATA, 'w') as handle:
         json.dump(plugins_metadata, handle, indent=2)
     report('  - {} dumped'.format(PLUGINS_METADATA))
 
     if GITHUB_ACTIONS:
-        print('::set-output name=error::' + '%0A'.join(log))
+        print('::set-output name=error::' + '%0A'.join(LOG))

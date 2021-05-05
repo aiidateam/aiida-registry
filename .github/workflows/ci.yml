@@ -44,9 +44,8 @@ jobs:
       if: steps.fetch_metadata.outputs.error
       uses: peter-evans/commit-comment@v1
       with:
-        path: plugins.json
         body: |
-          Some issues were noted while fetching plugin metadata
+          Issues noted in retrieved plugin metadata
           ${{ steps.fetch_metadata.outputs.error }}
     - name: Report warnings
       run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
