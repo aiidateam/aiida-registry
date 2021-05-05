@@ -35,14 +35,6 @@ jobs:
     - name: fetch metadata
       id: fetch_metadata
       run: aiida-registry fetch
-    - name: Create commit comment
-      if: steps.fetch_metadata.outputs.error
-      uses: peter-evans/commit-comment@v1
-      with:
-        path: plugins.json
-        body: |
-          Some issues were noted while fetching plugin metadata
-          ${{ steps.fetch_metadata.outputs.error }}
     - name: Report warnings
       run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
     - name: make pages
