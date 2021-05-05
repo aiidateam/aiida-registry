@@ -311,10 +311,15 @@ def validate_doc_url(url):
 def validate_plugin_entry_points(plugin_data):
     """Validate that all entry points registered by the plugin start with the registered entry point root."""
 
-    try:
+    if 'entry_point_prefix' in plugin_data:
         entry_point_root = plugin_data['entry_point_prefix']
-    except KeyError:
-        # plugin should not specify entry points
+        if not 'aiida_' + plugin_data['entry_point_prefix'] == plugin_data[
+                'name']:
+            report(
+                f"  > WARNING: Prefix \'{plugin_data['entry_point_prefix']}\' does not follow naming convention."
+            )
+    else:
+        # plugin should not specify any entry points
         entry_point_root = 'MISSING'
 
     for ept_group, ept_list in plugin_data['entry_points'].items():
@@ -324,7 +329,7 @@ def validate_plugin_entry_points(plugin_data):
         for ept in ept_list:
             ept_string, _path = ept.split('=')
             ept_string = ept_string.strip()
-            if not ept_string.startswith(entry_point_root):
+            if not ept_string.startswith(entry_point_root + '.'):
                 report(
                     f"  > WARNING: Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
                 )
