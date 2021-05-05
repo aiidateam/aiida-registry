@@ -314,7 +314,7 @@ def validate_plugin_entry_points(plugin_data):
     if 'entry_point_prefix' in plugin_data:
         entry_point_root = plugin_data['entry_point_prefix']
         if not 'aiida_' + plugin_data['entry_point_prefix'] == plugin_data[
-                'name']:
+                'package_name']:
             report(
                 f"  > WARNING: Prefix \'{plugin_data['entry_point_prefix']}\' does not follow naming convention."
             )
@@ -329,7 +329,7 @@ def validate_plugin_entry_points(plugin_data):
         for ept in ept_list:
             ept_string, _path = ept.split('=')
             ept_string = ept_string.strip()
-            if not ept_string.startswith(entry_point_root + '.'):
+            if not ept_string.startswith(entry_point_root):
                 report(
                     f"  > WARNING: Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
                 )
