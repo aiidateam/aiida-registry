@@ -313,8 +313,8 @@ def validate_plugin_entry_points(plugin_data):
 
     if 'entry_point_prefix' in plugin_data:
         entry_point_root = plugin_data['entry_point_prefix']
-        if not 'aiida_' + plugin_data['entry_point_prefix'] == plugin_data[
-                'package_name']:
+        if not 'aiida_' + plugin_data['entry_point_prefix'].lower(
+        ) == plugin_data['package_name'].lower():
             report(
                 f"  > WARNING: Prefix \'{plugin_data['entry_point_prefix']}\' does not follow naming convention."
             )
