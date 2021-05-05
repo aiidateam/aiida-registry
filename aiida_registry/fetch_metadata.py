@@ -71,8 +71,8 @@ def fetch_plugin_info(url):
         response.raise_for_status(
         )  # raise an exception for all 4xx/5xx errors
     except Exception:  # pylint: disable=broad-except
-        report('  >> WARNING! Unable to retrieve plugin info from: {}'.format(
-            url))
+        report(
+            '  > WARNING! Unable to retrieve plugin info from: {}'.format(url))
         report(traceback.print_exc(file=sys.stdout))
         return None
 
@@ -80,17 +80,17 @@ def fetch_plugin_info(url):
         try:
             pyproject = tomlkit.parse(response.content)
         except tomlkit.exceptions.TOMLKitError:
-            report('  >> WARNING! Unable to parse TOML')
+            report('  > WARNING! Unable to parse TOML')
 
         for buildsystem in ('poetry', 'flit'):
             if buildsystem in pyproject['tool']:
                 return (buildsystem, pyproject)
-        report('  >> WARNING! Unknown build system in pyproject.toml')
+        report('  > WARNING! Unknown build system in pyproject.toml')
     else:
         try:
             return ('setuptools', json.loads(response.content))
         except ValueError:
-            report('  >> WARNING! Unable to parse JSON')
+            report('  > WARNING! Unable to parse JSON')
 
     return None
 
@@ -111,7 +111,7 @@ def get_aiida_version_setup_json(setup_json):
                 aiida_specs += req.specs
 
         if not aiida_specs:
-            report('  >> WARNING! AiiDA version not specified')
+            report('  > WARNING! AiiDA version not specified')
             return None
 
         # precedence of version specs, from high to low
@@ -150,14 +150,14 @@ def get_aiida_version_poetry(pyproject):
 
         break
     else:
-        report('  >> WARNING! AiiDA version not specified')
+        report('  > WARNING! AiiDA version not specified')
         return None
 
     try:
         return str(parse_constraint(version))
     except ValueError:
         report(
-            '  >> WARNING: Invalid version encountered in Poetry pyproject.toml for aiida-core'
+            '  > WARNING: Invalid version encountered in Poetry pyproject.toml for aiida-core'
         )
 
     return None
@@ -184,7 +184,7 @@ def get_plugin_info(plugin_info):
     buildsystem, data = plugin_info
 
     if buildsystem not in ['setuptools', 'poetry', 'flit']:
-        report("  >> WARNING! build system '{}' is not supported".format(
+        report("  > WARNING! build system '{}' is not supported".format(
             buildsystem))
         return infos
 
@@ -219,7 +219,7 @@ def get_plugin_info(plugin_info):
             'classifiers'] if 'classifiers' in data else []
 
         if 'Framework :: AiiDA' not in infos['metadata']['classifiers']:  # pylint: disable=unsubscriptable-object
-            report("  >> WARNING: Missing classifier 'Framework :: AiiDA'")
+            report("  > WARNING: Missing classifier 'Framework :: AiiDA'")
 
     elif buildsystem == 'poetry':
         # all the following fields are mandatory in Poetry
@@ -245,7 +245,7 @@ def get_plugin_info(plugin_info):
             'description': '',
         }
         report(
-            '  >> WARNING! version & description metadata and AiiDA version'
+            '  > WARNING! version & description metadata and AiiDA version'
             ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
 
     return infos
@@ -270,7 +270,7 @@ def complete_plugin_data(plugin_data):
     try:
         plugin_info_link = plugin_data['plugin_info']
     except KeyError:
-        report('  >> WARNING: Missing plugin_info key!')
+        report('  > WARNING: Missing plugin_info key!')
         plugin_data['plugin_info'] = None
     else:
         plugin_data['plugin_info'] = fetch_plugin_info(plugin_info_link)
@@ -281,7 +281,7 @@ def complete_plugin_data(plugin_data):
 
     # note: for more validation, it might be sensible to switch to voluptuous
     if plugin_data['development_status'] not in list(status_dict.keys()):
-        report("  >> WARNING: Invalid state '{}'".format(
+        report("  > WARNING: Invalid state '{}'".format(
             plugin_data['development_status']))
 
     if 'documentation_url' in plugin_data:
@@ -304,7 +304,7 @@ def validate_doc_url(url):
         )  # raise an exception for all 4xx/5xx errors
     except Exception:  # pylint: disable=broad-except
         report(
-            '  >> WARNING! Unable to reach documentation URL: {}'.format(url))
+            '  > WARNING! Unable to reach documentation URL: {}'.format(url))
         report(traceback.print_exc(file=sys.stdout))
 
 
@@ -326,8 +326,8 @@ def validate_plugin_entry_points(plugin_data):
             ept_string = ept_string.strip()
             if not ept_string.startswith(entry_point_root):
                 report(
-                    "  >> WARNING: Entry point '{}' does not start with '{}'".
-                    format(ept_string, entry_point_root))
+                    f"  > WARNING: Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
+                )
 
 
 def fetch_metadata():

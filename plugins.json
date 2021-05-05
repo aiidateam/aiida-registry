@@ -475,7 +475,7 @@
     },
     "aiida-metavo-scheduler": {
         "name": "aiida-metavo-scheduler",
-        "entry_point_prefix": "aiida_metavo_scheduler",
+        "entry_point_prefix": "metavo_scheduler",
         "development_status": "stable",
         "plugin_info": "https://raw.github.com/pzarabadip/aiida-metavo-scheduler/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-metavo-scheduler",
