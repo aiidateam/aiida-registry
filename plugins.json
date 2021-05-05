@@ -494,6 +494,6 @@
         "name": "aiida-catmap",
         "entry_point_prefix": "catmap",
         "development_status": "planning",
-        "code_home": "https://github.com/sudarshanv01/aiida-catmap",
+        "code_home": "https://github.com/sudarshanv01/aiida-catmap"
     }
 }
