@@ -24,16 +24,27 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
     - name: Install prerequisites
       run: pip install --upgrade wheel setuptools
     - name: Install
       run: pip install -e . -v
     - name: fetch metadata
+      id: fetch_metadata
       run: aiida-registry fetch
+    - name: Create commit comment
+      if: steps.fetch_metadata.outputs.error
+      uses: peter-evans/commit-comment@v1
+      with:
+        path: plugins.json
+        body: |
+          Some issues were noted while fetching plugin metadata
+          ${{ steps.fetch_metadata.outputs.error }}
+    - name: Report warnings
+      run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
     - name: make pages
       run: aiida-registry html
     - name: commit to gh-pages

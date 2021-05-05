@@ -26,6 +26,17 @@ if os.environ.get('CACHE_REQUESTS'):
     # e.g.: export CACHE_REQUESTS=1
     requests_cache.install_cache('demo_cache', expire_after=60 * 60 * 24)
 
+GITHUB_ACTIONS = os.environ.get('GITHUB_ACTIONS') == 'true'
+
+
+def report(string):
+    """Write to stdout and file."""
+    if GITHUB_ACTIONS:
+        # Set the step ouput error message which can be used, e.g., for display as part of an issue comment.
+        print('::set-output name=error::' + '%0A'.join(string))
+    else:
+        print(string)
+
 
 def get_hosted_on(url):
     try:
@@ -56,26 +67,26 @@ def fetch_plugin_info(url):
         response.raise_for_status(
         )  # raise an exception for all 4xx/5xx errors
     except Exception:  # pylint: disable=broad-except
-        print('  >> WARNING! Unable to retrieve plugin info from: {}'.format(
+        report('  >> WARNING! Unable to retrieve plugin info from: {}'.format(
             url))
-        print(traceback.print_exc(file=sys.stdout))
+        report(traceback.print_exc(file=sys.stdout))
         return None
 
     if 'pyproject.toml' in url:
         try:
             pyproject = tomlkit.parse(response.content)
         except tomlkit.exceptions.TOMLKitError:
-            print('  >> WARNING! Unable to parse TOML')
+            report('  >> WARNING! Unable to parse TOML')
 
         for buildsystem in ('poetry', 'flit'):
             if buildsystem in pyproject['tool']:
                 return (buildsystem, pyproject)
-        print('  >> WARNING! Unknown build system in pyproject.toml')
+        report('  >> WARNING! Unknown build system in pyproject.toml')
     else:
         try:
             return ('setuptools', json.loads(response.content))
         except ValueError:
-            print('  >> WARNING! Unable to parse JSON')
+            report('  >> WARNING! Unable to parse JSON')
 
     return None
 
@@ -96,7 +107,7 @@ def get_aiida_version_setup_json(setup_json):
                 aiida_specs += req.specs
 
         if not aiida_specs:
-            print('  >> WARNING! AiiDA version not specified')
+            report('  >> WARNING! AiiDA version not specified')
             return None
 
         # precedence of version specs, from high to low
@@ -135,13 +146,13 @@ def get_aiida_version_poetry(pyproject):
 
         break
     else:
-        print('  >> WARNING! AiiDA version not specified')
+        report('  >> WARNING! AiiDA version not specified')
         return None
 
     try:
         return str(parse_constraint(version))
     except ValueError:
-        print(
+        report(
             '  >> WARNING: Invalid version encountered in Poetry pyproject.toml for aiida-core'
         )
 
@@ -169,7 +180,7 @@ def get_plugin_info(plugin_info):
     buildsystem, data = plugin_info
 
     if buildsystem not in ['setuptools', 'poetry', 'flit']:
-        print("  >> WARNING! build system '{}' is not supported".format(
+        report("  >> WARNING! build system '{}' is not supported".format(
             buildsystem))
         return infos
 
@@ -204,7 +215,7 @@ def get_plugin_info(plugin_info):
             'classifiers'] if 'classifiers' in data else []
 
         if 'Framework :: AiiDA' not in infos['metadata']['classifiers']:  # pylint: disable=unsubscriptable-object
-            print("  >> WARNING: Missing classifier 'Framework :: AiiDA'")
+            report("  >> WARNING: Missing classifier 'Framework :: AiiDA'")
 
     elif buildsystem == 'poetry':
         # all the following fields are mandatory in Poetry
@@ -229,8 +240,9 @@ def get_plugin_info(plugin_info):
             'version': '',
             'description': '',
         }
-        print('  >> WARNING! version & description metadata and AiiDA version'
-              ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
+        report(
+            '  >> WARNING! version & description metadata and AiiDA version'
+            ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
 
     return infos
 
@@ -248,7 +260,7 @@ def complete_plugin_data(plugin_data):
     try:
         plugin_info_link = plugin_data['plugin_info']
     except KeyError:
-        print('  >> WARNING: Missing plugin_info key!')
+        report('  >> WARNING: Missing plugin_info key!')
         plugin_data['plugin_info'] = None
     else:
         plugin_data['plugin_info'] = fetch_plugin_info(plugin_info_link)
@@ -262,7 +274,7 @@ def complete_plugin_data(plugin_data):
 
     # note: for more validation, it might be sensible to switch to voluptuous
     if plugin_data['development_status'] not in list(status_dict.keys()):
-        print("  >> WARNING: Invalid state '{}'".format(
+        report("  >> WARNING: Invalid state '{}'".format(
             plugin_data['development_status']))
 
     if 'documentation_url' in plugin_data:
@@ -280,9 +292,9 @@ def validate_doc_url(url):
         response.raise_for_status(
         )  # raise an exception for all 4xx/5xx errors
     except Exception:  # pylint: disable=broad-except
-        print(
+        report(
             '  >> WARNING! Unable to reach documentation URL: {}'.format(url))
-        print(traceback.print_exc(file=sys.stdout))
+        report(traceback.print_exc(file=sys.stdout))
 
 
 def validate_plugin_entry_points(plugin_data):
@@ -302,7 +314,7 @@ def validate_plugin_entry_points(plugin_data):
             ept_string, _path = ept.split('=')
             ept_string = ept_string.strip()
             if not ept_string.startswith(entry_point_root):
-                print(
+                report(
                     "  >> WARNING: Entry point '{}' does not start with '{}'".
                     format(ept_string, entry_point_root))
 
@@ -315,11 +327,11 @@ def fetch_metadata():
     plugins_metadata = OrderedDict()
 
     for plugin_name, plugin_data in sorted(six.iteritems(plugins_raw_data)):
-        print('  - {}'.format(plugin_name))
+        report('  - {}'.format(plugin_name))
 
         plugin_data = complete_plugin_data(plugin_data)
         plugins_metadata[plugin_name] = plugin_data
 
     with open(PLUGINS_METADATA, 'w') as handle:
         json.dump(plugins_metadata, handle, indent=2)
-    print('  - {} dumped'.format(PLUGINS_METADATA))
+    report('  - {} dumped'.format(PLUGINS_METADATA))
