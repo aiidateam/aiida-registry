@@ -27,15 +27,18 @@ if os.environ.get('CACHE_REQUESTS'):
     requests_cache.install_cache('demo_cache', expire_after=60 * 60 * 24)
 
 GITHUB_ACTIONS = os.environ.get('GITHUB_ACTIONS') == 'true'
+log = []
 
 
 def report(string):
-    """Write to stdout and file."""
+    """Write to stdout and log.
+
+    Used to display log in  actions.
+    """
     if GITHUB_ACTIONS:
         # Set the step ouput error message which can be used, e.g., for display as part of an issue comment.
-        print('::set-output name=error::' + '%0A'.join(string))
-    else:
-        print(string)
+        log.append(string)
+    print(string)
 
 
 def get_hosted_on(url):
@@ -335,3 +338,6 @@ def fetch_metadata():
     with open(PLUGINS_METADATA, 'w') as handle:
         json.dump(plugins_metadata, handle, indent=2)
     report('  - {} dumped'.format(PLUGINS_METADATA))
+
+    if GITHUB_ACTIONS:
+        print('::set-output name=error::' + '%0A'.join(log))
