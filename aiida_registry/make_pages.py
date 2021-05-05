@@ -136,7 +136,12 @@ def global_summary():
 
 def get_pip_install_cmd(plugin_data):
 
+    if 'pip_url' not in plugin_data and plugin_data[
+            'development_status'] == 'planning':
+        return 'See source code repository.'
+
     pip_url = plugin_data['pip_url']
+
     if pip_url.startswith('http') or pip_url.startswith('git'):
         return 'pip install {}'.format(pip_url)
 
