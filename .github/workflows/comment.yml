@@ -1,0 +1,33 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+
+  check-plugin-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install prerequisites
+      run: pip install --upgrade pip
+    - name: Install
+      run: pip install -e . -v
+    - name: fetch metadata
+      id: fetch_metadata
+      run: aiida-registry fetch
+    - name: Create commit comment
+      if: steps.fetch_metadata.outputs.error
+      uses: peter-evans/commit-comment@v1
+      # While this step correctly creates the comment, if fails for unknown reasons with
+      # `Error: Resource not accessible by integration`
+      continue-on-error: true
+      with:
+        body: |
+          Potential issues in retrieved plugin metadata (ignore those for plugins not managed by you)
+          ${{ steps.fetch_metadata.outputs.error }}
