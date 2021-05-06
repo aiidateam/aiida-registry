@@ -495,5 +495,14 @@
         "entry_point_prefix": "catmap",
         "development_status": "planning",
         "code_home": "https://github.com/sudarshanv01/aiida-catmap"
+    },
+    "spirit": {
+        "name": "aiida-spirit",
+        "entry_point_prefix": "spirit",
+        "development_status": "planning",
+        "plugin_info": "https://raw.github.com/JuDFTteam/aiida-spirit/main/setup.json",
+        "code_home": "https://github.com/JuDFTteam/aiida-spirit/tree/main",
+        "documentation_url": "https://aiida-spirit.readthedocs.io/",
+        "pip_url": "aiida-spirit"
     }
 }
