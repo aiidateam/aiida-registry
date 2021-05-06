@@ -40,20 +40,8 @@ jobs:
     - name: fetch metadata
       id: fetch_metadata
       run: aiida-registry fetch
-    - name: Report warnings
-      run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
     - name: make pages
       run: aiida-registry html
-    - name: Create commit comment
-      if: steps.fetch_metadata.outputs.error
-      uses: peter-evans/commit-comment@v1
-      # While this step correctly creates the comment, if fails for unknown reasons with
-      # `Error: Resource not accessible by integration`
-      continue-on-error: true
-      with:
-        body: |
-          Potential issues in retrieved plugin metadata (ignore those for plugins not managed by you)
-          ${{ steps.fetch_metadata.outputs.error }}
 
   install-plugins:
     runs-on: ubuntu-latest
