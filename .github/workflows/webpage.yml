@@ -10,7 +10,6 @@ on:
   push:
     branches:
     - master
-    - test
 
 jobs:
   webpage:
