@@ -9,7 +9,9 @@ on:
   - cron: "0 21 * * *"
   push:
     branches:
-      - master
+    - master
+    - main
+    - test
 
 
 
@@ -35,8 +37,6 @@ jobs:
     - name: fetch metadata
       id: fetch_metadata
       run: aiida-registry fetch
-    - name: Report warnings
-      run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
     - name: make pages
       run: aiida-registry html
     - name: commit to gh-pages
