@@ -10,10 +10,7 @@ on:
   push:
     branches:
     - master
-    - main
     - test
-
-
 
 jobs:
   webpage:
@@ -39,10 +36,8 @@ jobs:
       run: aiida-registry fetch
     - name: make pages
       run: aiida-registry html
-    - name: commit to gh-pages
-      run: ./.github/commit.sh
-    - name: push changes
-      uses: ad-m/github-push-action@v0.5.0
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
-        branch: gh-pages
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages # The branch the action should deploy to.
+        folder: out # The folder the action should deploy.
