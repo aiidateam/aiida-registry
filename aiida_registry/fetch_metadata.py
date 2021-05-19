@@ -73,7 +73,7 @@ def fetch_plugin_info(url):
     except Exception:  # pylint: disable=broad-except
         report(
             '  > WARNING! Unable to retrieve plugin info from: {}'.format(url))
-        report(traceback.print_exc(file=sys.stdout))
+        report(traceback.format_exc())
         return None
 
     if 'pyproject.toml' in url:
