@@ -152,7 +152,7 @@ def get_pip_install_cmd(plugin_data):
         if any([version.find(p_id) != -1 for p_id in pre_releases]):
             return 'pip install --pre {}'.format(pip_url)
         return 'pip install {}'.format(pip_url)
-    except KeyError:
+    except (KeyError, TypeError):
         return 'pip install {}'.format(pip_url)
 
 
