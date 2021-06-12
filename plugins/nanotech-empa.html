@@ -44,7 +44,7 @@
         </p>
         
         <p>
-            <strong>Short description</strong>: AiiDA plugins and work chains developed at nanotech@surfaces group from Empa.
+            <strong>Short description</strong>: AiiDA plugins and workflows developed at nanotech@surfaces group from Empa.
         </p>
         
         
@@ -78,7 +78,7 @@
             <strong>How to use from python</strong>: <code>import aiida_nanotech_empa</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.2.0
+            <strong>Most recent version</strong>: 0.3.0
         </p>
         <p>
             <strong>Compatibility</strong>:
@@ -91,16 +91,16 @@
         
         <span class="badge">
             <span class="badge-left brown">Parsers</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">4</span>
         </span>
         
         <span class="badge">
             <span class="badge-left green">Workflows</span>
-            <span class="badge-right">1</span>
+            <span class="badge-right">13</span>
         </span>
         
         <span class="badge">
-            <span class="badge-left orange">Other (Data commands)</span>
+            <span class="badge-left orange">Other (Schedulers)</span>
             <span class="badge-right">1</span>
         </span>
         
@@ -117,7 +117,22 @@
                 
                 <li><code>nanotech_empa.pp</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_nanotech_empa.parsers:PpParser
+                        aiida_nanotech_empa.parsers.pp_parser:PpParser
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.cp2k_gw_parser</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.parsers.cp2k_gw_parser:Cp2kGWParser
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.cubegen_pymol</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.parsers.cubegen_pymol_parser:CubegenPymolParser
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.casscf</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.parsers.gaussian_casscf_parser:GaussianCasscfParser
                     </span></div></li>
                 
                 </ul>
@@ -131,21 +146,81 @@
                 
                 <li><code>nanotech_empa.nanoribbon</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_nanotech_empa.workflows.nanoribbon:NanoribbonWorkChain
+                        aiida_nanotech_empa.workflows.qe.nanoribbon:NanoribbonWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.scf</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianScfWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.relax</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianRelaxWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.relax_scf_cubes</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianRelaxScfCubesWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.delta_scf</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianDeltaScfWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.natorb</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianNatOrbWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.spin</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianSpinWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.hf_mp2</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianHfMp2WorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.casscf</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianCasscfWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.gaussian.casscf_series</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianCasscfSeriesWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.cp2k.molecule_opt</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.cp2k.molecule_opt_workchain:Cp2kMoleculeOptWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.cp2k.molecule_gw</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.cp2k.molecule_gw_workchain:Cp2kMoleculeGwWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.cp2k.ads_gw_ic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.cp2k.adsorbed_gw_ic_workchain:Cp2kAdsorbedGwIcWorkChain
                     </span></div></li>
                 
                 </ul>
             
                 <h4>
                     
-                      verdi data commands <span class="entrypointraw">(aiida.cmdline.data)</span>
+                      Job scheduler support <span class="entrypointraw">(aiida.schedulers)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>nanotech_empa</code>
+                <li><code>lsf_ethz_euler</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_nanotech_empa.cli:data_cli
+                        aiida_nanotech_empa.schedulers.lsf_ethz_euler:ETHZEulerLsfScheduler
                     </span></div></li>
                 
                 </ul>
