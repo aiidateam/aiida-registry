@@ -504,5 +504,13 @@
         "code_home": "https://github.com/JuDFTteam/aiida-spirit/tree/main",
         "documentation_url": "https://aiida-spirit.readthedocs.io/",
         "pip_url": "aiida-spirit"
+    },
+    "psi4": {
+        "name": "aiida-psi4",
+        "entry_point_prefix": "psi4",
+        "development_status": "beta",
+        "plugin_info": "https://raw.github.com/ltalirz/aiida-psi4/master/setup.json",
+        "code_home": "https://github.com/ltalirz/aiida-psi4/tree/master",
+        "pip_url": "git+https://github.com/ltalirz/aiida-psi4"
     }
 }
