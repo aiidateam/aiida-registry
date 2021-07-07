@@ -512,5 +512,17 @@
         "plugin_info": "https://raw.github.com/ltalirz/aiida-psi4/master/setup.json",
         "code_home": "https://github.com/ltalirz/aiida-psi4/tree/master",
         "pip_url": "git+https://github.com/ltalirz/aiida-psi4"
+    },
+    "eonclient": {
+        "name": "aiida-eonclient",
+        "entry_point_prefix": "eonclient",
+        "development_status": "planning",
+        "code_home": "https://github.com/HaoZeke/aiida-eonclient"
+    },
+    "eon": {
+        "name": "aiida-eon",
+        "entry_point_prefix": "eon",
+        "development_status": "planning",
+        "code_home": "https://github.com/HaoZeke/aiida-eon"
     }
 }
