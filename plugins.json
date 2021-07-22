@@ -525,4 +525,10 @@
         "development_status": "planning",
         "code_home": "https://github.com/HaoZeke/aiida-eon"
     }
+    "wien2k": {
+        "name": "aiida-wien2k",
+        "entry_point_prefix": "wien2k",
+        "development_status": "planning",
+        "code_home": "https://github.com/rubel75/aiida-wien2k"
+    }
 }
