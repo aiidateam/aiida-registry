@@ -531,7 +531,7 @@
         "development_status": "planning",
         "code_home": "https://github.com/rubel75/aiida-wien2k"
     },
-    "aiida-supercell": {
+    "supercell": {
         "name": "aiida-supercell",
         "entry_point_prefix": "supercell",
         "development_status": "stable",
