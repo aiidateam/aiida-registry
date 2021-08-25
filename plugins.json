@@ -530,5 +530,13 @@
         "entry_point_prefix": "wien2k",
         "development_status": "planning",
         "code_home": "https://github.com/rubel75/aiida-wien2k"
+    },
+    "aiida-supercell": {
+        "name": "aiida-supercell",
+        "entry_point_prefix": "supercell",
+        "development_status": "stable",
+        "plugin_info": "https://raw.github.com/pzarabadip/aiida-supercell/master/setup.json",
+        "code_home": "https://github.com/pzarabadip/aiida-supercell",
+        "pip_url": "git+https://github.com/pzarabadip/aiida-supercell"
     }
 }
