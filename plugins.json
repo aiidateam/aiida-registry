@@ -228,6 +228,7 @@
     "aiida-z2pack": {
         "entry_point_prefix": "z2pack",
         "development_status": "beta",
+        "plugin_info": "https://raw.githubusercontent.com/antimomarrazzo/aiida-z2pack/master/setup.json",
         "code_home": "https://github.com/AntimoMarrazzo/aiida-z2pack",
         "pip_url": "git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
@@ -395,7 +396,7 @@
         "pip_url": "git+https://github.com/atztogo/aiida-nims-scheduler",
         "documentation_url": "https://github.com/atztogo/aiida-nims-scheduler"
     },
-    "aiida-aiida-cusp": {
+    "aiida-cusp": {
         "entry_point_prefix": "cusp",
         "development_status": "beta",
         "plugin_info": "https://raw.githubusercontent.com/aiida-cusp/aiida-cusp/master/setup.json",
@@ -417,7 +418,7 @@
         "plugin_info": "https://raw.github.com/sponce24/aiida-abinit/master/setup.json",
         "code_home": "https://github.com/sponce24/aiida-abinit"
     },
-    "aiida-aiida-metavo-scheduler": {
+    "aiida-metavo-scheduler": {
         "entry_point_prefix": "metavo_scheduler",
         "development_status": "stable",
         "plugin_info": "https://raw.github.com/pzarabadip/aiida-metavo-scheduler/master/setup.json",
@@ -435,9 +436,10 @@
     "aiida-catmap": {
         "entry_point_prefix": "catmap",
         "development_status": "planning",
+        "plugin_info": "https://raw.github.com/sudarshanv01/aiida-catmap/master/setup.json",
         "code_home": "https://github.com/sudarshanv01/aiida-catmap"
     },
-    "spirit": {
+    "aiida-spirit": {
         "name": "aiida-spirit",
         "entry_point_prefix": "spirit",
         "development_status": "planning",
