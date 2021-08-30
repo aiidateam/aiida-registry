@@ -538,5 +538,13 @@
         "plugin_info": "https://raw.github.com/pzarabadip/aiida-supercell/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-supercell",
         "pip_url": "git+https://github.com/pzarabadip/aiida-supercell"
+    },
+    "lsmo": {
+        "name": "aiida-lsmo",
+        "entry_point_prefix": "lsmo",
+        "development_status": "stable",
+        "plugin_info": "https://raw.github.com/lsmo-epfl/aiida-lsmo/master/setup.json",
+        "code_home": "https://github.com/lsmo-epfl/aiida-lsmo",
+        "pip_url": "git+https://github.com/lsmo-epfl/aiida-lsmo"
     }
 }
