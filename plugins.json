@@ -180,12 +180,6 @@
         "code_home": "https://github.com/ltalirz/aiida-phtools",
         "pip_url": "aiida-phtools"
     },
-    "aiida-widgets": {
-        "development_status": "beta",
-        "plugin_info": "https://raw.github.com/aiidalab/aiidalab-widgets-base/master/setup.json",
-        "code_home": "https://github.com/aiidalab/aiidalab-widgets-base",
-        "pip_url": "aiidalab-widgets-base"
-    },
     "aiida-kkr": {
         "entry_point_prefix": "kkr",
         "development_status": "stable",
