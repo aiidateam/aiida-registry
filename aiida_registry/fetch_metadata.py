@@ -343,6 +343,7 @@ def fetch_metadata():
     plugins_metadata = OrderedDict()
 
     for plugin_name, plugin_data in sorted(six.iteritems(plugins_raw_data)):
+        plugin_data['name'] = plugin_name
         plugins_metadata[plugin_name] = complete_plugin_data(plugin_data)
 
     with open(PLUGINS_METADATA, 'w') as handle:

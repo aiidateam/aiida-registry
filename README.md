@@ -22,8 +22,7 @@ community of your ongoing work.
     ```
     ...
     },
-    "new": {
-        "name": "aiida-new",
+    "aiida-new": {
         "entry_point_prefix": "new",
         "development_status": "planning",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-new/master/setup.json",
@@ -35,7 +34,7 @@ community of your ongoing work.
 
 ### Valid keys for each plugin
 
-#### name (required)
+#### top-level key (required)
 The name under which your plugin will be distributed.
 By convention, names of AiiDA plugins are lowercase and prefixed by `aiida-`.
 
