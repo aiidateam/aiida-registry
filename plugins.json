@@ -366,6 +366,7 @@
         "development_status": "stable",
         "plugin_info": "https://raw.githubusercontent.com/pzarabadip/aiida-orca/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-orca",
+        "documentation_url": "https://aiida-orca.readthedocs.io/",
         "pip_url": "git+https://github.com/pzarabadip/aiida-orca"
     },
     "aiida-wannier90-workflows": {
@@ -469,6 +470,7 @@
         "development_status": "stable",
         "plugin_info": "https://raw.github.com/pzarabadip/aiida-supercell/master/setup.json",
         "code_home": "https://github.com/pzarabadip/aiida-supercell",
+        "documentation_url": "https://aiida-supercell.readthedocs.io/",
         "pip_url": "git+https://github.com/pzarabadip/aiida-supercell"
     },
     "aiida-lsmo": {
