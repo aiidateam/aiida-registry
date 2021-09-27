@@ -479,5 +479,12 @@
         "plugin_info": "https://raw.github.com/lsmo-epfl/aiida-lsmo/master/setup.json",
         "code_home": "https://github.com/lsmo-epfl/aiida-lsmo",
         "pip_url": "git+https://github.com/lsmo-epfl/aiida-lsmo"
+    },
+    "aiida-environ": {
+        "entry_point_prefix": "environ",
+        "development_status": "beta",
+        "plugin_info": "https://raw.github.com/environ-developers/aiida-environ/master/setup.json",
+        "code_home": "https://github.com/environ-developers/aiida-environ",
+        "pip_url": "git+https://github.com/environ-developers/aiida-environ"
     }
 }
