@@ -78,7 +78,7 @@
             <strong>How to use from python</strong>: <code>import aiida_nanotech_empa</code>
         </p>
         <p>
-            <strong>Most recent version</strong>: 0.3.0
+            <strong>Most recent version</strong>: 0.4.0
         </p>
         <p>
             <strong>Compatibility</strong>:
@@ -96,7 +96,7 @@
         
         <span class="badge">
             <span class="badge-left green">Workflows</span>
-            <span class="badge-right">13</span>
+            <span class="badge-right">15</span>
         </span>
         
         <span class="badge">
@@ -159,11 +159,6 @@
                         aiida_nanotech_empa.workflows.gaussian:GaussianRelaxWorkChain
                     </span></div></li>
                 
-                <li><code>nanotech_empa.gaussian.relax_scf_cubes</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_nanotech_empa.workflows.gaussian:GaussianRelaxScfCubesWorkChain
-                    </span></div></li>
-                
                 <li><code>nanotech_empa.gaussian.delta_scf</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_nanotech_empa.workflows.gaussian:GaussianDeltaScfWorkChain
@@ -184,6 +179,11 @@
                         aiida_nanotech_empa.workflows.gaussian:GaussianHfMp2WorkChain
                     </span></div></li>
                 
+                <li><code>nanotech_empa.gaussian.constr_opt_chain</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.gaussian:GaussianConstrOptChainWorkChain
+                    </span></div></li>
+                
                 <li><code>nanotech_empa.gaussian.casscf</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_nanotech_empa.workflows.gaussian:GaussianCasscfWorkChain
@@ -197,6 +197,16 @@
                 <li><code>nanotech_empa.cp2k.molecule_opt</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_nanotech_empa.workflows.cp2k.molecule_opt_workchain:Cp2kMoleculeOptWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.cp2k.slab_opt</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.cp2k.slab_opt_workchain:Cp2kSlabOptWorkChain
+                    </span></div></li>
+                
+                <li><code>nanotech_empa.cp2k.bulk_opt</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_nanotech_empa.workflows.cp2k.bulk_opt_workchain:Cp2kBulkOptWorkChain
                     </span></div></li>
                 
                 <li><code>nanotech_empa.cp2k.molecule_gw</code>
