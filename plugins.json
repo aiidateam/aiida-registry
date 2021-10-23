@@ -213,7 +213,7 @@
     },
     "aiida-crystal-dft": {
         "entry_point_prefix": "crystal_dft",
-        "development_status": "alpha",
+        "development_status": "beta",
         "plugin_info": "https://raw.githubusercontent.com/tilde-lab/aiida-crystal-dft/master/setup.json",
         "documentation_url": "https://github.com/tilde-lab/aiida-crystal-dft",
         "code_home": "https://github.com/tilde-lab/aiida-crystal-dft",
@@ -486,5 +486,13 @@
         "plugin_info": "https://raw.github.com/environ-developers/aiida-environ/master/setup.json",
         "code_home": "https://github.com/environ-developers/aiida-environ",
         "pip_url": "git+https://github.com/environ-developers/aiida-environ"
+    },
+    "aiida-mpds": {
+        "entry_point_prefix": "mpds",
+        "development_status": "beta",
+        "plugin_info": "https://github.com/mpds-io/mpds-aiida/blob/master/setup.json",
+        "documentation_url": "https://github.com/mpds-io/mpds-aiida",
+        "code_home": "https://github.com/mpds-io/mpds-aiida",
+        "pip_url": "git+https://github.com/mpds-io/mpds-aiida"
     }
 }
