@@ -490,7 +490,7 @@
     "aiida-mpds": {
         "entry_point_prefix": "mpds",
         "development_status": "beta",
-        "plugin_info": "https://github.com/mpds-io/mpds-aiida/blob/master/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/mpds-io/mpds-aiida/master/setup.json",
         "documentation_url": "https://github.com/mpds-io/mpds-aiida",
         "code_home": "https://github.com/mpds-io/mpds-aiida",
         "pip_url": "git+https://github.com/mpds-io/mpds-aiida"
