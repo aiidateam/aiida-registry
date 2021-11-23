@@ -494,5 +494,12 @@
         "documentation_url": "https://github.com/mpds-io/mpds-aiida",
         "code_home": "https://github.com/mpds-io/mpds-aiida",
         "pip_url": "git+https://github.com/mpds-io/mpds-aiida"
+    },
+    "aiida-statefile-schedulers": {
+        "entry_point_prefix": "statefile_schedulers",
+        "development_status": "beta",
+        "plugin_info": "https://raw.githubusercontent.com/dev-zero/aiida-statefile-schedulers/main/setup.json",
+        "code_home": "https://github.com/dev-zero/aiida-statefile-schedulers",
+        "pip_url": "aiida-statefile-schedulers"
     }
 }
