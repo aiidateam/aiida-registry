@@ -501,5 +501,12 @@
         "plugin_info": "https://raw.githubusercontent.com/dev-zero/aiida-statefile-schedulers/main/setup.json",
         "code_home": "https://github.com/dev-zero/aiida-statefile-schedulers",
         "pip_url": "aiida-statefile-schedulers"
-    }
+    },
+    "aiida-flexpart": {
+        "entry_point_prefix": "flexpart",
+        "development_status": "planning",
+        "plugin_info": "https://github.com/aiidaplugins/aiida-flexpart/blob/main/setup.json",
+        "code_home": "https://github.com/aiidaplugins/aiida-flexpart",
+        "documentation_url": "http://aiida-flexpart.readthedocs.io/"
+    }    
 }
