@@ -505,8 +505,8 @@
     "aiida-flexpart": {
         "entry_point_prefix": "flexpart",
         "development_status": "planning",
-        "plugin_info": "https://github.com/aiidaplugins/aiida-flexpart/blob/main/setup.json",
+        "plugin_info": "https://raw.githubusercontent.com/aiidaplugins/aiida-flexpart/main/setup.json",
         "code_home": "https://github.com/aiidaplugins/aiida-flexpart",
-        "documentation_url": "http://aiida-flexpart.readthedocs.io/"
+        "pip_url": "aiida-flexpart"
     }    
 }
