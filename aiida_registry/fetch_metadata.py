@@ -378,6 +378,7 @@ def validate_dev_status(plugin_data: dict):
     if plugin_data['metadata'] and 'Framework :: AiiDA' not in classifiers:
         report("  > WARNING: Missing classifier 'Framework :: AiiDA'")
 
+    # Read development status from plugin repo
     development_status = None
     for classifier in classifiers:
         if classifier in classifier_to_status:
@@ -395,12 +396,15 @@ def validate_dev_status(plugin_data: dict):
         )
 
     # prioritise development_status from plugins.json
-    if 'development_status' not in plugin_data:
-        plugin_data['development_status'] = development_status
+    if 'development_status' in plugin_data:
+        report('  > WARNING: `development_status` key is deprecated. '
+               'Use PyPI Trove classifiers in the plugin repository instead.')
+    else:
+        plugin_data['development_status'] = development_status or 'planning'
 
     # note: for more validation, it might be sensible to switch to voluptuous
     if plugin_data['development_status'] not in list(status_dict.keys()):
-        report("  > WARNING: Invalid state '{}'".format(
+        report("  > WARNING: Invalid development status '{}'".format(
             plugin_data['development_status']))
 
 

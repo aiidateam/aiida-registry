@@ -24,7 +24,6 @@ community of your ongoing work.
     },
     "aiida-new": {
         "entry_point_prefix": "new",
-        "development_status": "planning",
         "plugin_info": "https://raw.github.com/aiidateam/aiida-new/master/setup.json",
         "code_home": "https://github.com/aiidateam/aiida-new",
         "documentation_url": "http://aiida-new.readthedocs.io/"
@@ -48,13 +47,6 @@ By convention, a plugin `aiida-xxx` should use `"entry_point_prefix": "xxx"`.
 
 Example: `aiida-quantumespresso` uses the entry point prefix `quantumespresso` and provides numerous entry points, all of which start with `quantumespresso.`.
 
-#### development_status (required)
-The development status of your plugin, expressed using a [development status trove classifer](https://pypi.org/classifiers/), including:
-* `planning`: plugin is not yet in a working state. Use this to secure a specific name before starting development
-* `beta`: plugin adds new functionality but isn't stable enough for production use
-* `stable`: plugin can be used in production
-* `inactive`: plugin no longer maintained
-
 #### code_home (required)
 The link to the homepage of the plugin, for example its github repository.
 
@@ -72,3 +64,13 @@ For an example, see the [`setup.json`](https://github.com/aiidateam/aiida-diff/b
 
 #### documentation_url (optional)
 The link to the online documentation for your plugin, for example on readthedocs.org .
+
+#### version_file (optional)
+
+Use this to point to a Python module that contains a `__version__` variable with the version of your plugin.
+Useful for `flit` and `setuptools` configuration files that use the programmatic `version = attr: aiida_plugin.__version__` format.
+#### development_status (deprecated)
+The development status of a plugin used to be recorded explicitly on the plugin registry.
+Over time, we've moved closer and closer to adopting the [development status trove classifer](https://pypi.org/classifiers/), so we now suggest to just use those in your `setup.json`/`setup.cfg`/... file of your plugin.
+
+If no development status is specified, the status will default to 'planning'.
