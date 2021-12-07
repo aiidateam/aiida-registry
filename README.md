@@ -71,4 +71,6 @@ Use this to point to a Python module that contains a `__version__` variable with
 Useful for `flit` and `setuptools` configuration files that use the programmatic `version = attr: aiida_plugin.__version__` format.
 #### development_status (deprecated)
 The development status of a plugin used to be recorded explicitly on the plugin registry.
-Over time, we've moved closer and closer to adopting the [development status trove classifer](https://pypi.org/classifiers/), so we now suggest to just use those in your `setup.json`/`setup.cfg`/... file in your plugin.
+Over time, we've moved closer and closer to adopting the [development status trove classifer](https://pypi.org/classifiers/), so we now suggest to just use those in your `setup.json`/`setup.cfg`/... file of your plugin.
+
+If no development status is specified, the status will default to 'planning'.
