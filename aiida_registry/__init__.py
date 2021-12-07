@@ -9,6 +9,8 @@
 
 import os
 
+__version__ = '0.1.0'
+
 # Absolute paths
 pwd = os.path.split(os.path.abspath(__file__))[0]
 PLUGINS_FILE_ABS = os.path.join(pwd, os.pardir, 'plugins.json')
@@ -98,7 +100,7 @@ status_dict = {
     ],
     'alpha': [
         'Adds new functionality, not yet ready for production. Testing welcome!',
-        'status-beta-d6af23.svg'
+        'status-alpha-d6af23.svg'
     ],
     'beta': [
         'Adds new functionality, not yet ready for production. Testing welcome!',
@@ -116,6 +118,16 @@ status_dict = {
         'No longer maintained.',
         'status-inactive-bbbbbb.svg',
     ]
+}
+
+classifier_to_status = {
+    'Development Status :: 1 - Planning': 'planning',
+    'Development Status :: 2 - Pre-Alpha': 'pre-alpha',
+    'Development Status :: 3 - Alpha': 'alpha',
+    'Development Status :: 4 - Beta': 'beta',
+    'Development Status :: 5 - Production/Stable': 'stable',
+    'Development Status :: 6 - Mature': 'mature',
+    'Development Status :: 7 - Inactive': 'inactive'
 }
 
 ## dictionary of human-readable entrypointtypes

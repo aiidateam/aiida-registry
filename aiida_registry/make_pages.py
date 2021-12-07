@@ -6,15 +6,17 @@ Reads plugin-metadata.json produced by fetch_metadata.
 # pylint: disable=missing-function-docstring,invalid-name,global-statement
 
 import codecs
+import copy
 import json
 import os
-import copy
 import shutil
 import string
 from collections import defaultdict
+
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from . import OTHERCOLORCLASS, entrypoint_metainfo, main_entrypoints, PLUGINS_METADATA, entrypointtypes, status_dict
+from . import (OTHERCOLORCLASS, PLUGINS_METADATA, entrypoint_metainfo,
+               entrypointtypes, main_entrypoints, status_dict)
 
 # Subfolders
 OUT_FOLDER = 'out'
