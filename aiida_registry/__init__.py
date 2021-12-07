@@ -100,7 +100,7 @@ status_dict = {
     ],
     'alpha': [
         'Adds new functionality, not yet ready for production. Testing welcome!',
-        'status-beta-d6af23.svg'
+        'status-alpha-d6af23.svg'
     ],
     'beta': [
         'Adds new functionality, not yet ready for production. Testing welcome!',

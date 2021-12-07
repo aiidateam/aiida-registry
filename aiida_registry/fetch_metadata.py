@@ -347,7 +347,7 @@ def complete_plugin_data(plugin_data: dict):
     if 'version_file' in plugin_data and (
             not plugin_info['metadata'].get('version', None)
             or str(plugin_info['metadata']['version']).startswith('attr:')):
-        content = fetch_file(plugin_data['version_file'])
+        content = fetch_file(plugin_data.pop('version_file'))
         if content is not None:
             version = get_version_from_module(content)
             if version is not None:
