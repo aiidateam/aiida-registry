@@ -508,5 +508,12 @@
         "plugin_info": "https://raw.githubusercontent.com/aiidaplugins/aiida-flexpart/main/setup.json",
         "code_home": "https://github.com/aiidaplugins/aiida-flexpart",
         "pip_url": "aiida-flexpart"
+    },
+    "aiida-firecrest": {
+        "entry_point_prefix": "firecrest",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-firecrest/main/setup.cfg",
+        "version_file": "https://raw.githubusercontent.com/aiidateam/aiida-firecrest/main/aiida_firecrest/__init__.py",
+        "code_home": "https://github.com/aiidateam/aiida-firecrest",
+        "pip_url": "aiida-firecrest"
     }
 }

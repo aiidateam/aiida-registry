@@ -6,20 +6,25 @@ This fetches metadata from plugins defined using different build systems
  * poetry: pyproject.toml
  * flit: pyproject.toml
 """
-# pylint: disable=missing-function-docstring
-
-import urllib
+import ast
 import json
 import os
 import sys
 import traceback
+import urllib
 from collections import OrderedDict
-import six
+# pylint: disable=missing-function-docstring
+from configparser import ConfigParser
+from typing import List, Optional
 
 import requests
 import requests_cache
+import requirements
 import tomlkit
-from . import PLUGINS_METADATA, PLUGINS_FILE_ABS, status_dict, PLUGINS_METADATA_KEYS
+from tomlkit.toml_document import TOMLDocument
+
+from . import (PLUGINS_FILE_ABS, PLUGINS_METADATA, PLUGINS_METADATA_KEYS,
+               classifier_to_status, status_dict)
 
 if os.environ.get('CACHE_REQUESTS'):
     # Set environment variable CACHE_REQUESTS to cache requests for 1 day for faster testing
@@ -60,48 +65,166 @@ def get_hosted_on(url):
     return netloc
 
 
-def fetch_plugin_info(url):
+def parse_plugin_info(url: str, content: Optional[str]) -> dict:  # pylint: disable=too-many-return-statements
     """Fetches plugin metadata in different formats.
 
-    setup.json (for pip/setuptools)
-    pyproject.toml (for poetry/flit)
+    - pyproject.toml (for poetry/flit)
+    - setup.cfg (for setuptools)
+    - setup.json (for setuptools)
+
+    This returns the keys:
+     * entry_points
+     * metadata
+     * aiida_version
+
     """
-    try:
-        response = requests.get(url)
-        response.raise_for_status(
-        )  # raise an exception for all 4xx/5xx errors
-    except Exception:  # pylint: disable=broad-except
-        report(
-            '  > WARNING! Unable to retrieve plugin info from: {}'.format(url))
-        report(traceback.format_exc())
-        return None
+    default_infos = {
+        'entry_points': {},
+        'metadata': None,
+        'aiida_version': None,
+    }
+
+    if content is None:
+        return default_infos
 
     if 'pyproject.toml' in url:
         try:
-            pyproject = tomlkit.parse(response.content)
-        except tomlkit.exceptions.TOMLKitError:
-            report('  > WARNING! Unable to parse TOML')
+            pyproject = tomlkit.parse(content)
+        except tomlkit.exceptions.TOMLKitError as exc:
+            report(f'  > WARNING! Unable to parse TOML: {exc}')
+            return default_infos
 
-        for buildsystem in ('poetry', 'flit'):
-            if buildsystem in pyproject['tool']:
-                return (buildsystem, pyproject)
-        report('  > WARNING! Unknown build system in pyproject.toml')
-    else:
+        tool_name = pyproject.get('tool', '')
+
+        if 'poetry' in tool_name:
+            return parse_poetry(pyproject)
+        if 'flit' in tool_name:
+            return parse_flit_old(pyproject)
+
+        report(
+            f'  > WARNING! Unknown build system in pyproject.toml: {tool_name}'
+        )
+        return default_infos
+
+    if 'setup.cfg' in url:
         try:
-            return ('setuptools', json.loads(response.content))
-        except ValueError:
-            report('  > WARNING! Unable to parse JSON')
-
-    return None
-
-
-def get_aiida_version_setup_json(setup_json):
-    """Get AiiDA version that this plugin is compatible with.
-    """
-    import requirements  # pylint: disable=import-outside-toplevel
+            config = ConfigParser()
+            config.read_string(content)
+        except Exception as exc:  # pylint: disable=broad-except
+            report(f'  > WARNING! Unable to parse setup.cfg: {exc}')
+            return default_infos
+        return parse_setup_cfg(config)
 
     try:
-        install_requires = setup_json['install_requires']
+        data = json.loads(content)
+    except ValueError as exc:
+        report(f'  > WARNING! Unable to parse JSON: {exc}')
+        return default_infos
+
+    return parse_setup_json(data)
+
+
+def parse_setup_json(data: dict) -> dict:
+    """Parse setup.json."""
+    infos = {
+        'aiida_version':
+        get_aiida_version_list(data.get('install_requires', [])),
+        'metadata':
+        {k: data[k] if k in data else ''
+         for k in PLUGINS_METADATA_KEYS},
+        'entry_points': data.get('entry_points', {}).copy(),
+    }
+    infos['metadata']['classifiers'] = data.get('classifiers', [])
+
+    return infos
+
+
+def parse_poetry(data: TOMLDocument) -> dict:
+    """Parse poetry pyproject.toml."""
+    infos = {
+        'aiida_version': get_aiida_version_poetry(data),
+        'metadata': {
+            # all the following fields are mandatory in Poetry
+            'version':
+            str(data['tool']['poetry']['version']),
+            'description':
+            str(data['tool']['poetry']['description']),
+            # the authors is a list of the strings of the form "name <email>"
+            'author':
+            ', '.join(
+                a.split('<')[0].strip()
+                for a in data['tool']['poetry']['authors']),
+        },
+        'entry_points': {
+            group: ['{} = {}'.format(k, v) for k, v in entries.items()]
+            for group, entries in data['tool']['poetry'].get('plugins',
+                                                             {}).items()
+        }
+    }
+    infos['metadata']['classifiers'] = [
+        str(item) for item in data['tool']['poetry'].get('classifiers', [])
+    ]
+    return infos
+
+
+def parse_flit_old(data: TOMLDocument) -> dict:
+    """Parse flit pyproject.toml with old-style metadata."""
+    # uses https://flit.readthedocs.io/en/latest/pyproject_toml.html#old-style-metadata
+
+    # version is not part of the metadata but expected to available in <module>/__init__.py:__version__
+    # description is available as a reference in `description-file` (requires another fetch)
+    # author is a mandatory field in Flit
+    report('  > WARNING! version & description metadata'
+           ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
+    metadata = data['tool']['flit'].get('metadata', {})
+    return {
+        'aiida_version': get_aiida_version_list(metadata.get('requires', [])),
+        'metadata': {
+            'author': str(metadata.get('author', '')),
+            'version': '',
+            'description': '',
+        },
+        'entry_points': {
+            group: [f'{k} = {v}' for k, v in entries.items()]
+            for group, entries in data['tool']['flit'].get('entrypoints',
+                                                           {}).items()
+        }
+    }
+
+
+def parse_setup_cfg(config: ConfigParser) -> dict:
+    """Parse setup.cfg."""
+    infos = {
+        'aiida_version':
+        get_aiida_version_list(
+            config.get('options', 'install_requires').splitlines() if config.
+            has_option('options', 'install_requires') else []),
+        'metadata': {
+            k: (config.get('metadata', k)
+                if config.has_option('metadata', k) else '')
+            for k in PLUGINS_METADATA_KEYS
+        },
+        'entry_points': {}
+    }
+    if config.has_section('options.entry_points'):
+        for name, content in config.items('options.entry_points'):
+            infos['entry_points'][name] = [
+                l.strip() for l in content.splitlines()
+                if l.strip() and not l.strip().startswith('#')
+            ]
+    if config.has_option('metadata', 'classifiers'):
+        infos['metadata']['classifiers'] = [
+            l.strip()
+            for l in config.get('metadata', 'classifiers').splitlines()
+            if l.strip() and not l.strip().startswith('#')
+        ]
+
+    return infos
+
+
+def get_aiida_version_list(install_requires: List[str]) -> Optional[str]:
+    """Get AiiDA version that this plugin is compatible with."""
+    try:
         reqs = requirements.parse('\n'.join(install_requires))
 
         aiida_specs = []
@@ -132,7 +255,8 @@ def get_aiida_version_setup_json(setup_json):
 def get_aiida_version_poetry(pyproject):
     """Get AiiDA version that this plugin is compatible with from a pyproject.toml.
     """
-    from poetry.semver import parse_constraint  # pylint: disable=import-outside-toplevel
+    from poetry.semver import \
+        parse_constraint  # pylint: disable=import-outside-toplevel
 
     try:
         deps = pyproject['tool']['poetry']['dependencies']
@@ -163,95 +287,38 @@ def get_aiida_version_poetry(pyproject):
     return None
 
 
-def get_plugin_info(plugin_info):
-    """Fetch metadata from plugin_info url.
-
-    This adds the keys:
-     * entry_points
-     * metadata
-     * aiida_version
-
-     """
-    infos = {
-        'entry_points': {},
-        'metadata': None,
-        'aiida_version': None,
-    }
-
-    if plugin_info is None:
-        return infos
-
-    buildsystem, data = plugin_info
-
-    if buildsystem not in ['setuptools', 'poetry', 'flit']:
-        report("  > WARNING! build system '{}' is not supported".format(
-            buildsystem))
-        return infos
-
+def get_version_from_module(content: str) -> Optional[str]:
+    """Get the __version__ value from a module."""
+    # adapted from setuptools/config.py
     try:
-        if buildsystem == 'setuptools':
-            infos['entry_points'].update(
-                data['entry_points'])  # updating it gives us a copy
-        elif buildsystem == 'poetry':
-            infos['entry_points'].update({
-                group: ['{} = {}'.format(k, v) for k, v in entries.items()]
-                for group, entries in data['tool']['poetry']
-                ['plugins'].items()
-            })
-        elif buildsystem == 'flit':
-            infos['entry_points'].update({
-                group: ['{} = {}'.format(k, v) for k, v in entries.items()]
-                for group, entries in data['tool']['flit']
-                ['entrypoints'].items()
-            })
-    except KeyError:
-        pass
-
-    if buildsystem == 'setuptools':
-        infos['metadata'] = {
-            k: data[k] if k in data else ''
-            for k in PLUGINS_METADATA_KEYS
-        }
-
-        # pylint: disable=unsupported-assignment-operation
-        infos['aiida_version'] = get_aiida_version_setup_json(data)
-        infos['metadata']['classifiers'] = data[
-            'classifiers'] if 'classifiers' in data else []
-
-        if 'Framework :: AiiDA' not in infos['metadata']['classifiers']:  # pylint: disable=unsubscriptable-object
-            report("  > WARNING: Missing classifier 'Framework :: AiiDA'")
-
-    elif buildsystem == 'poetry':
-        # all the following fields are mandatory in Poetry
-        infos['metadata'] = {
-            'version':
-            data['tool']['poetry']['version'],
-            'description':
-            data['tool']['poetry']['description'],
-            # the authors is a list of the strings of the form "name <email>"
-            'author':
-            ', '.join(
-                a.split('<')[0].strip()
-                for a in data['tool']['poetry']['authors']),
-        }
-        infos['aiida_version'] = get_aiida_version_poetry(data)
-    elif buildsystem == 'flit':
-        # version is not part of the metadata but expected to available in <module>/__init__.py:__version__
-        # description is available as a reference in `description-file` (requires another fetch)
-        # author is a mandatory field in Flit
-        infos['metadata'] = {
-            'author': data['tool']['flit']['metadata']['author'],
-            'version': '',
-            'description': '',
-        }
-        report(
-            '  > WARNING! version & description metadata and AiiDA version'
-            ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
-
-    return infos
+        module = ast.parse(content)
+    except SyntaxError as exc:
+        report(f'  > WARNING! Unable to parse module: {exc}')
+        return None
+    try:
+        return next(
+            ast.literal_eval(statement.value) for statement in module.body
+            if isinstance(statement, ast.Assign)
+            for target in statement.targets
+            if isinstance(target, ast.Name) and target.id == '__version__')
+    except StopIteration:
+        return None
 
 
-def complete_plugin_data(plugin_data):
+def fetch_file(file_url: str, file_type: str = 'plugin info') -> str:
+    """Fetch plugin info from a URL to a file."""
+    try:
+        response = requests.get(file_url)
+        # raise an exception for all 4xx/5xx errors
+        response.raise_for_status()
+    except Exception:  # pylint: disable=broad-except
+        report(f'  > WARNING! Unable to retrieve {file_type} from: {file_url}')
+        report(traceback.format_exc())
+        return None
+    return response.content.decode(response.encoding or 'utf8')
+
+
+def complete_plugin_data(plugin_data: dict):
     """Update plugin data dictionary.
 
       * add metadata, aiida_version and entrypoints from plugin_info
@@ -267,22 +334,30 @@ def complete_plugin_data(plugin_data):
     report(f'  - {plugin_data["package_name"]}')
 
     # Get link to setup.json file (set to None if not retrievable)
-    try:
-        plugin_info_link = plugin_data['plugin_info']
-    except KeyError:
+    plugin_info_url = plugin_data.pop('plugin_info', None)
+    if plugin_info_url is None:
         report('  > WARNING: Missing plugin_info key!')
-        plugin_data['plugin_info'] = None
+        plugin_info_content = None
     else:
-        plugin_data['plugin_info'] = fetch_plugin_info(plugin_info_link)
+        plugin_info_content = fetch_file(plugin_info_url)
+
+    plugin_info = parse_plugin_info(plugin_info_url, plugin_info_content)
+
+    # setuptools and flit can read the version from the package
+    if 'version_file' in plugin_data and (
+            not plugin_info['metadata'].get('version', None)
+            or str(plugin_info['metadata']['version']).startswith('attr:')):
+        content = fetch_file(plugin_data['version_file'])
+        if content is not None:
+            version = get_version_from_module(content)
+            if version is not None:
+                plugin_info['metadata']['version'] = version
 
     plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
 
-    plugin_data.update(get_plugin_info(plugin_data['plugin_info']))
+    plugin_data.update(plugin_info)
 
-    # note: for more validation, it might be sensible to switch to voluptuous
-    if plugin_data['development_status'] not in list(status_dict.keys()):
-        report("  > WARNING: Invalid state '{}'".format(
-            plugin_data['development_status']))
+    validate_dev_status(plugin_data)
 
     if 'documentation_url' in plugin_data:
         validate_doc_url(plugin_data['documentation_url'])
@@ -294,6 +369,39 @@ def complete_plugin_data(plugin_data):
     PLUGIN_LOG = []
 
     return plugin_data
+
+
+def validate_dev_status(plugin_data: dict):
+    """Validate the development_status key, potentially sourcing from classifiers."""
+    classifiers = plugin_data['metadata'].get(
+        'classifiers', []) if plugin_data.get('metadata', None) else []
+    if plugin_data['metadata'] and 'Framework :: AiiDA' not in classifiers:
+        report("  > WARNING: Missing classifier 'Framework :: AiiDA'")
+
+    development_status = None
+    for classifier in classifiers:
+        if classifier in classifier_to_status:
+            if development_status is not None:
+                report(
+                    '  > WARNING: Multiple development statuses found in classifiers'
+                )
+            development_status = classifier_to_status[classifier]
+
+    if development_status and 'development_status' in plugin_data and (
+            development_status != plugin_data['development_status']):
+        report(
+            f'  > WARNING: Development status in classifiers ({development_status}) '
+            f"does not match development_status in metadata ({plugin_data['development_status']})"
+        )
+
+    # prioritise development_status from plugins.json
+    if 'development_status' not in plugin_data:
+        plugin_data['development_status'] = development_status
+
+    # note: for more validation, it might be sensible to switch to voluptuous
+    if plugin_data['development_status'] not in list(status_dict.keys()):
+        report("  > WARNING: Invalid state '{}'".format(
+            plugin_data['development_status']))
 
 
 def validate_doc_url(url):
@@ -338,11 +446,11 @@ def validate_plugin_entry_points(plugin_data):
 def fetch_metadata():
 
     with open(PLUGINS_FILE_ABS) as handle:
-        plugins_raw_data = json.load(handle)
+        plugins_raw_data: dict = json.load(handle)
 
     plugins_metadata = OrderedDict()
 
-    for plugin_name, plugin_data in sorted(six.iteritems(plugins_raw_data)):
+    for plugin_name, plugin_data in sorted(plugins_raw_data.items()):
         plugin_data['name'] = plugin_name
         plugins_metadata[plugin_name] = complete_plugin_data(plugin_data)
 

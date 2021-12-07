@@ -1,0 +1,29 @@
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "aiida-graphql"
+version = "0.0.2"
+description = "A plugin for AiiDA to support GraphQL"
+authors = ["Tiziano Muller <tiziano.mueller@chem.uzh.ch>"]
+repository = "https://github.com/dev-zero/aiida-graphql"
+license = "MIT"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Science/Research",
+]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+aiida-core = "^1.0.1"
+strawberry-graphql = "^0.18.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3.1"
+codecov = "^2.0.15"
+pytest-cov = "^2.8.1"

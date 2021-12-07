@@ -1,0 +1,12 @@
+aiida_version: '>=1.0.1,<2.0.0'
+entry_points: {}
+metadata:
+  author: Tiziano Muller
+  classifiers:
+  - 'Development Status :: 3 - Alpha'
+  - 'License :: OSI Approved :: MIT License'
+  - 'Operating System :: OS Independent'
+  - 'Topic :: Software Development :: Libraries :: Python Modules'
+  - 'Intended Audience :: Science/Research'
+  description: A plugin for AiiDA to support GraphQL
+  version: 0.0.2

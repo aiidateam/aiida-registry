@@ -1,0 +1,7 @@
+[tool.flit.metadata]
+module = "flit"
+author = "Thomas Kluyver"
+author-email = "thomas@kluyver.me.uk"
+requires = [
+    "aiida-core == 2.0.0",
+]

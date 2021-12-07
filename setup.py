@@ -2,7 +2,8 @@
 """Setup for AiiDA registry."""
 
 from __future__ import absolute_import
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
 
 if __name__ == '__main__':
     setup(
@@ -31,6 +32,7 @@ if __name__ == '__main__':
                 'pre-commit~=2.2',
                 'pylint~=2.5.0',
             ],
-            'testing': ['pytest'],
+            'testing': ['pytest', 'pytest-regressions'],
         },
+        include_package_data=True,
     )
