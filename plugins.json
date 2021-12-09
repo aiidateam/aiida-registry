@@ -478,5 +478,11 @@
         "version_file": "https://raw.githubusercontent.com/aiidateam/aiida-firecrest/main/aiida_firecrest/__init__.py",
         "code_home": "https://github.com/aiidateam/aiida-firecrest",
         "pip_url": "aiida-firecrest"
+    },
+    "aiida-fenics": {
+        "entry_point_prefix": "fenics",
+        "plugin_info": "https://raw.github.com/sphuber/aiida-fenics/master/setup.json",
+        "code_home": "https://github.com/sphuber/aiida-fenics/tree/master",
+        "pip_url": "git+https://github.com/sphuber/aiida-fenics"
     }
 }
