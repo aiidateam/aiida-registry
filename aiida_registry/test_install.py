@@ -65,7 +65,7 @@ def test_install():
             continue
 
         # 'planning' plugins aren't installed/tested
-        if val['development_status'] == 'planning':
+        if val['development_status'] in ['planning', 'pre-alpha', 'alpha']:
             continue
 
         if 'pip_url' not in list(val.keys()):
