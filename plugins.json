@@ -484,5 +484,9 @@
         "plugin_info": "https://raw.github.com/sphuber/aiida-fenics/master/setup.json",
         "code_home": "https://github.com/sphuber/aiida-fenics/tree/master",
         "pip_url": "git+https://github.com/sphuber/aiida-fenics"
+    },
+    "aiida-dynamic-workflows": {
+        "entry_point_prefix": "dynamic_workflows",
+        "code_home": "https://github.com/microsoft/aiida-dynamic-workflows"
     }
 }
