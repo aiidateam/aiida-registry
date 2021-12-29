@@ -184,8 +184,8 @@
     },
     "aiida-ddec": {
         "entry_point_prefix": "ddec",
-        "plugin_info": "https://raw.githubusercontent.com/yakutovicha/aiida-ddec/master/setup.json",
-        "code_home": "https://github.com/yakutovicha/aiida-ddec",
+        "plugin_info": "https://raw.githubusercontent.com/lsmo-epfl/aiida-ddec/master/setup.json",
+        "code_home": "https://github.com/lsmo-epfl/aiida-ddec",
         "pip_url": "git+https://github.com/yakutovicha/aiida-ddec"
     },
     "aiida-crystal17": {
