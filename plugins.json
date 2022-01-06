@@ -489,6 +489,14 @@
         "entry_point_prefix": "dynamic_workflows",
         "code_home": "https://github.com/microsoft/aiida-dynamic-workflows"
     },
+    "aiida-champ": {
+    "entry_point_prefix": "champ",
+    "development_status": "beta",
+    "plugin_info": "https://raw.github.com/TREX-CoE/aiida-champ/master/setup.json",
+    "code_home": "https://github.com/TREX-CoE/aiida-champ",
+    "pip_url": "aiida-champ",
+    "documentation_url": "http://aiida-champ.readthedocs.io/"
+    },
     "aiida-donothing": {
         "entry_point_prefix": "donothing",
         "plugin_info": "https://raw.githubusercontent.com/atztogo/aiida-donothing/main/setup.json",
