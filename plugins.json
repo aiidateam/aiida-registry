@@ -494,7 +494,7 @@
     "development_status": "beta",
     "plugin_info": "https://raw.github.com/TREX-CoE/aiida-champ/master/setup.json",
     "code_home": "https://github.com/TREX-CoE/aiida-champ",
-    "pip_url": "aiida-champ"
+    "pip_url": "aiida-champ",
     "documentation_url": "http://aiida-champ.readthedocs.io/"
     },
     "aiida-donothing": {
