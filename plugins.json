@@ -501,5 +501,11 @@
         "entry_point_prefix": "donothing",
         "plugin_info": "https://raw.githubusercontent.com/atztogo/aiida-donothing/main/setup.json",
         "code_home": "https://github.com/atztogo/aiida-donothing"
+    },
+    "aiida-gromacs": {
+        "entry_point_prefix": "gromacs",
+        "plugin_info": "https://raw.githubusercontent.com/jimboid/aiida-gromacs/master/setup.json",
+        "code_home": "https://github.com/jimboid/aiida-gromacs",
+        "documentation_url": "https://aiida-gromacs.readthedocs.io/"
     }
 }
