@@ -140,10 +140,15 @@ class Reporter:
     def __init__(self):
         """Initialize the reporter."""
         self.warnings = []
+        self.plugin_name = None
 
     def reset(self):
         """Reset the warnings list."""
         self.warnings = []
+
+    def set_plugin_name(self, name):
+        """Set the plugin name."""
+        self.plugin_name = name
 
     def warn(self, string):
         """Write to stdout and log.
@@ -153,7 +158,10 @@ class Reporter:
         message = f'  > WARNING! {string}'
         # Set the step output error message which can be used,
         # e.g., for display as part of an issue comment.
-        self.warnings.append(message)
+        if self.plugin_name:
+            self.warnings.append(f'{message} [{self.plugin_name}]')
+        else:
+            self.warnings.append(message)
         print(message)
 
     def info(self, string):  # pylint: disable=no-self-use

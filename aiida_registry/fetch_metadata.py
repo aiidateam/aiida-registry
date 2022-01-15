@@ -269,6 +269,7 @@ def fetch_metadata(filter_list=None):
     for plugin_name, plugin_data in sorted(plugins_raw_data.items()):
         if filter_list and plugin_name not in filter_list:
             continue
+        REPORTER.set_plugin_name(plugin_name)
         plugin_data['name'] = plugin_name
         plugins_metadata[plugin_name] = complete_plugin_data(plugin_data)
 
