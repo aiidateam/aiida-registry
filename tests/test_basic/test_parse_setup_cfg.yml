@@ -1,7 +1,7 @@
 aiida_version: ~=2.0
 entry_points:
   aiida.calculations:
-  - plugin.add = aiida.calculations.arithmetic.add:ArithmeticAddCalculation
+    plugin.add: aiida.calculations.arithmetic.add:ArithmeticAddCalculation
 metadata:
   author: Chris Sewell
   author_email: aiidateam@htomail.com

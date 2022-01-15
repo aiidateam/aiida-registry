@@ -132,3 +132,20 @@ classifier_to_status = {
 
 ## dictionary of human-readable entrypointtypes
 entrypointtypes = {k: v['longname'] for k, v in entrypoint_metainfo.items()}
+
+# Logging
+
+GITHUB_ACTIONS = os.environ.get('GITHUB_ACTIONS') == 'true'
+LOG = []  # global log messages
+PLUGIN_LOG = []  # per-plugin log messages
+
+
+def report(string):
+    """Write to stdout and log.
+
+    Used to display log in  actions.
+    """
+    if GITHUB_ACTIONS:
+        # Set the step ouput error message which can be used, e.g., for display as part of an issue comment.
+        PLUGIN_LOG.append(string)
+    print(string)

@@ -1,53 +1,36 @@
 # -*- coding: utf-8 -*-
 """Fetch metadata from plugins and dump it to temporary JSON file.
 
-This fetches metadata from plugins defined using different build systems
- * setuptools/pip: setup.json
- * poetry: pyproject.toml
- * flit: pyproject.toml
+Data is primarily sourced from PyPI,
+with a fallback to the repository build file (setup.json, setup.cfg, pyproject.toml).
+
+Currently the entry points are always read from the build,
+since PyPI JSON does not include entry points,
+and so we would need to download and read the wheel file.
 """
-import ast
 import json
 import os
 import sys
 import traceback
 import urllib
 from collections import OrderedDict
-# pylint: disable=missing-function-docstring
-from configparser import ConfigParser
-from typing import List, Optional
 
 import requests
 import requests_cache
-import requirements
-import tomlkit
-from tomlkit.toml_document import TOMLDocument
+from poetry.core.version.requirements import Requirement
 
-from . import (PLUGINS_FILE_ABS, PLUGINS_METADATA, PLUGINS_METADATA_KEYS,
-               classifier_to_status, status_dict)
+from . import (GITHUB_ACTIONS, LOG, PLUGIN_LOG, PLUGINS_FILE_ABS,
+               PLUGINS_METADATA, classifier_to_status, report, status_dict)
+from .parse_build_file import get_data_parser, identify_build_tool
 
 if os.environ.get('CACHE_REQUESTS'):
     # Set environment variable CACHE_REQUESTS to cache requests for 1 day for faster testing
     # e.g.: export CACHE_REQUESTS=1
     requests_cache.install_cache('demo_cache', expire_after=60 * 60 * 24)
 
-GITHUB_ACTIONS = os.environ.get('GITHUB_ACTIONS') == 'true'
-LOG = []  # global log messages
-PLUGIN_LOG = []  # per-plugin log messages
-
-
-def report(string):
-    """Write to stdout and log.
-
-    Used to display log in  actions.
-    """
-    if GITHUB_ACTIONS:
-        # Set the step ouput error message which can be used, e.g., for display as part of an issue comment.
-        PLUGIN_LOG.append(string)
-    print(string)
-
 
 def get_hosted_on(url):
+    """Get the hosting service from a URL."""
     try:
         requests.get(url, timeout=30)
     except Exception:
@@ -65,260 +48,25 @@ def get_hosted_on(url):
     return netloc
 
 
-def parse_plugin_info(url: str, content: Optional[str]) -> dict:  # pylint: disable=too-many-return-statements
-    """Fetches plugin metadata in different formats.
-
-    - pyproject.toml (for poetry/flit)
-    - setup.cfg (for setuptools)
-    - setup.json (for setuptools)
-
-    This returns the keys:
-     * entry_points
-     * metadata
-     * aiida_version
-
-    """
-    default_infos = {
-        'entry_points': {},
-        'metadata': None,
-        'aiida_version': None,
-    }
-
-    if content is None:
-        return default_infos
-
-    if 'pyproject.toml' in url:
-        try:
-            pyproject = tomlkit.parse(content)
-        except tomlkit.exceptions.TOMLKitError as exc:
-            report(f'  > WARNING! Unable to parse TOML: {exc}')
-            return default_infos
-
-        tool_name = pyproject.get('tool', '')
-
-        if 'poetry' in tool_name:
-            return parse_poetry(pyproject)
-        if 'flit' in tool_name:
-            return parse_flit_old(pyproject)
-
-        report(
-            f'  > WARNING! Unknown build system in pyproject.toml: {tool_name}'
-        )
-        return default_infos
-
-    if 'setup.cfg' in url:
-        try:
-            config = ConfigParser()
-            config.read_string(content)
-        except Exception as exc:  # pylint: disable=broad-except
-            report(f'  > WARNING! Unable to parse setup.cfg: {exc}')
-            return default_infos
-        return parse_setup_cfg(config)
-
-    try:
-        data = json.loads(content)
-    except ValueError as exc:
-        report(f'  > WARNING! Unable to parse JSON: {exc}')
-        return default_infos
-
-    return parse_setup_json(data)
-
-
-def parse_setup_json(data: dict) -> dict:
-    """Parse setup.json."""
-    infos = {
-        'aiida_version':
-        get_aiida_version_list(data.get('install_requires', [])),
-        'metadata':
-        {k: data[k] if k in data else ''
-         for k in PLUGINS_METADATA_KEYS},
-        'entry_points': data.get('entry_points', {}).copy(),
-    }
-    infos['metadata']['classifiers'] = data.get('classifiers', [])
-
-    return infos
-
-
-def parse_poetry(data: TOMLDocument) -> dict:
-    """Parse poetry pyproject.toml."""
-    infos = {
-        'aiida_version': get_aiida_version_poetry(data),
-        'metadata': {
-            # all the following fields are mandatory in Poetry
-            'version':
-            str(data['tool']['poetry']['version']),
-            'description':
-            str(data['tool']['poetry']['description']),
-            # the authors is a list of the strings of the form "name <email>"
-            'author':
-            ', '.join(
-                a.split('<')[0].strip()
-                for a in data['tool']['poetry']['authors']),
-        },
-        'entry_points': {
-            group: ['{} = {}'.format(k, v) for k, v in entries.items()]
-            for group, entries in data['tool']['poetry'].get('plugins',
-                                                             {}).items()
-        }
-    }
-    infos['metadata']['classifiers'] = [
-        str(item) for item in data['tool']['poetry'].get('classifiers', [])
-    ]
-    return infos
-
-
-def parse_flit_old(data: TOMLDocument) -> dict:
-    """Parse flit pyproject.toml with old-style metadata."""
-    # uses https://flit.readthedocs.io/en/latest/pyproject_toml.html#old-style-metadata
-
-    # version is not part of the metadata but expected to available in <module>/__init__.py:__version__
-    # description is available as a reference in `description-file` (requires another fetch)
-    # author is a mandatory field in Flit
-    report('  > WARNING! version & description metadata'
-           ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
-    metadata = data['tool']['flit'].get('metadata', {})
-    return {
-        'aiida_version': get_aiida_version_list(metadata.get('requires', [])),
-        'metadata': {
-            'author': str(metadata.get('author', '')),
-            'version': '',
-            'description': '',
-        },
-        'entry_points': {
-            group: [f'{k} = {v}' for k, v in entries.items()]
-            for group, entries in data['tool']['flit'].get('entrypoints',
-                                                           {}).items()
-        }
-    }
-
-
-def parse_setup_cfg(config: ConfigParser) -> dict:
-    """Parse setup.cfg."""
-    infos = {
-        'aiida_version':
-        get_aiida_version_list(
-            config.get('options', 'install_requires').splitlines() if config.
-            has_option('options', 'install_requires') else []),
-        'metadata': {
-            k: (config.get('metadata', k)
-                if config.has_option('metadata', k) else '')
-            for k in PLUGINS_METADATA_KEYS
-        },
-        'entry_points': {}
-    }
-    if config.has_section('options.entry_points'):
-        for name, content in config.items('options.entry_points'):
-            infos['entry_points'][name] = [
-                l.strip() for l in content.splitlines()
-                if l.strip() and not l.strip().startswith('#')
-            ]
-    if config.has_option('metadata', 'classifiers'):
-        infos['metadata']['classifiers'] = [
-            l.strip()
-            for l in config.get('metadata', 'classifiers').splitlines()
-            if l.strip() and not l.strip().startswith('#')
-        ]
-
-    return infos
-
-
-def get_aiida_version_list(install_requires: List[str]) -> Optional[str]:
-    """Get AiiDA version that this plugin is compatible with."""
-    try:
-        reqs = requirements.parse('\n'.join(install_requires))
-
-        aiida_specs = []
-        for req in reqs:
-            # note: this also catches aiida-core[extra1]
-            if req.name in ['aiida-core', 'aiida_core', 'aiida']:
-                aiida_specs += req.specs
-
-        if not aiida_specs:
-            report('  > WARNING! AiiDA version not specified')
-            return None
-
-        # precedence of version specs, from high to low
-        precedence = ['==', '>=', '>', '<=', '<']
-        sort_order = {precedence[i]: i for i in range(len(precedence))}
-        aiida_specs = sorted(aiida_specs,
-                             key=lambda r: sort_order.get(r[0], 10))
-
-        # first index: operator (e,g, '>=')
-        # second index: version (e.g. '0.12.0rc2')
-        # In the future, this can be used to e.g. display a banner for 1.0-compatible plugins
-        return ','.join([s[0] + s[1] for s in aiida_specs])
-
-    except KeyError:
-        return None
-
-
-def get_aiida_version_poetry(pyproject):
-    """Get AiiDA version that this plugin is compatible with from a pyproject.toml.
-    """
-    from poetry.semver import \
-        parse_constraint  # pylint: disable=import-outside-toplevel
-
-    try:
-        deps = pyproject['tool']['poetry']['dependencies']
-    except KeyError:
-        return None
-
-    for name, data in deps.items():
-        if name not in ['aiida-core', 'aiida_core', 'aiida']:
-            continue
-
-        try:  # data is either a dict {"version": ..., "extras": ["..", ], }
-            version = data['version']
-        except TypeError:  # or directly the version string
-            version = data
-
-        break
-    else:
-        report('  > WARNING! AiiDA version not specified')
-        return None
-
-    try:
-        return str(parse_constraint(version))
-    except ValueError:
-        report(
-            '  > WARNING: Invalid version encountered in Poetry pyproject.toml for aiida-core'
-        )
-
-    return None
-
-
-def get_version_from_module(content: str) -> Optional[str]:
-    """Get the __version__ value from a module."""
-    # adapted from setuptools/config.py
-    try:
-        module = ast.parse(content)
-    except SyntaxError as exc:
-        report(f'  > WARNING! Unable to parse module: {exc}')
-        return None
-    try:
-        return next(
-            ast.literal_eval(statement.value) for statement in module.body
-            if isinstance(statement, ast.Assign)
-            for target in statement.targets
-            if isinstance(target, ast.Name) and target.id == '__version__')
-    except StopIteration:
-        return None
-
-
-def fetch_file(file_url: str, file_type: str = 'plugin info') -> str:
+def fetch_file(file_url: str,
+               file_type: str = 'plugin info',
+               warn=True) -> str:
     """Fetch plugin info from a URL to a file."""
     try:
         response = requests.get(file_url)
         # raise an exception for all 4xx/5xx errors
         response.raise_for_status()
     except Exception:  # pylint: disable=broad-except
-        report(f'  > WARNING! Unable to retrieve {file_type} from: {file_url}')
-        report(traceback.format_exc())
+        if warn:
+            report(
+                f'  > WARNING! Unable to retrieve {file_type} from: {file_url}'
+            )
+            report(traceback.format_exc())
         return None
     return response.content.decode(response.encoding or 'utf8')
 
 
-def complete_plugin_data(plugin_data: dict):
+def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branches,too-many-statements
     """Update plugin data dictionary.
 
       * add metadata, aiida_version and entrypoints from plugin_info
@@ -333,29 +81,96 @@ def complete_plugin_data(plugin_data: dict):
 
     report(f'  - {plugin_data["package_name"]}')
 
-    # Get link to setup.json file (set to None if not retrievable)
+    plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
+    plugin_data.update({
+        'metadata': {},
+        'aiida_version': None,
+        'entry_points': {},
+    })
+
+    # first try to get metadata from PyPI
+    pypi_info = None
+    missing_pypi_requires = False
+    if 'pypi_name' in plugin_data:
+        pypi_info = fetch_file(
+            f"https://pypi.org/pypi/{plugin_data['pypi_name']}/json")
+        if pypi_info is not None:
+            pypi_data = json.loads(pypi_info)
+            # check if both a wheel and sdist are available
+            build_types = [
+                data['packagetype'] for data in pypi_data.get('urls') or []
+                if data.get('packagetype')
+            ]
+            if 'sdist' not in build_types:
+                report('  > WARNING: No sdist available for PyPI release')
+            if 'bdist_wheel' not in build_types:
+                report(
+                    '  > WARNING: No bdist_wheel available for PyPI release')
+            plugin_data['pypi_builds'] = build_types
+
+            # get data from pypi JSON
+            pypi_info_data = pypi_data.get('info', {})
+
+            # add required metadata
+            for key_from, key_to in (
+                ('summary', 'description'),
+                ('author', 'author'),
+                ('author_email', 'author_email'),
+                ('license', 'license'),
+                ('home_page', 'home_page'),
+                ('classifiers', 'classifiers'),
+                ('version', 'version'),
+            ):
+                if pypi_info_data.get(key_from):
+                    plugin_data['metadata'][key_to] = pypi_info_data[key_from]
+
+            # find aiida-version
+            # note if a bdist_wheel is not available,
+            # then requires_dist will likely not be available
+            if pypi_info_data.get('requires_dist'):
+                for req in pypi_info_data['requires_dist']:
+                    try:
+                        parsed = Requirement(req)
+                    except Exception:  # pylint: disable=broad-except
+                        continue
+                    if parsed.name in ['aiida-core', 'aiida_core', 'aiida']:
+                        plugin_data['aiida_version'] = str(parsed.constraint)
+            elif pypi_info_data.get('requires_dist') is None:
+                missing_pypi_requires = True
+
+            # NOTE cannot read 'entry_points' from PyPI JSON
+            # (would have to download wheel and read from there)
+
+    # Now get missing data from the repository
     plugin_info_url = plugin_data.pop('plugin_info', None)
     if plugin_info_url is None:
         report('  > WARNING: Missing plugin_info key!')
-        plugin_info_content = None
     else:
+        # retrive content of build file
         plugin_info_content = fetch_file(plugin_info_url)
+        # Identify build system
+        build_tool_name = identify_build_tool(plugin_info_url,
+                                              plugin_info_content)
+        if pypi_info:
+            data = get_data_parser(build_tool_name)(
+                plugin_info_content, ep_only=True)  # , entry_points_only=True
+            plugin_data['entry_points'] = data.entry_points
+        else:
+            data = get_data_parser(build_tool_name)(plugin_info_content,
+                                                    ep_only=False)
+            plugin_data['metadata'] = data.metadata
+            plugin_data['aiida_version'] = data.aiida_version
+            plugin_data['entry_points'] = data.entry_points
 
-    plugin_info = parse_plugin_info(plugin_info_url, plugin_info_content)
+    # run validations
 
-    # setuptools and flit can read the version from the package
-    if 'version_file' in plugin_data and (
-            not plugin_info['metadata'].get('version', None)
-            or str(plugin_info['metadata']['version']).startswith('attr:')):
-        content = fetch_file(plugin_data.pop('version_file'))
-        if content is not None:
-            version = get_version_from_module(content)
-            if version is not None:
-                plugin_info['metadata']['version'] = version
-
-    plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
-
-    plugin_data.update(plugin_info)
+    if plugin_data['name'] == 'aiida-core' and plugin_data['metadata'].get(
+            'version'):
+        plugin_data[
+            'aiida_version'] = f'=={plugin_data["metadata"]["version"]}'
+    if plugin_data.get('aiida_version') is None:
+        if not missing_pypi_requires:  # this was likely the issue
+            report('  > WARNING! AiiDA version not specified')
 
     validate_dev_status(plugin_data)
 
@@ -422,6 +237,8 @@ def validate_doc_url(url):
 
 def validate_plugin_entry_points(plugin_data):
     """Validate that all entry points registered by the plugin start with the registered entry point root."""
+    if plugin_data['name'] == 'aiida-core':
+        return
 
     if 'entry_point_prefix' in plugin_data:
         entry_point_root = plugin_data['entry_point_prefix']
@@ -434,27 +251,31 @@ def validate_plugin_entry_points(plugin_data):
         # plugin should not specify any entry points
         entry_point_root = 'MISSING'
 
-    for ept_group, ept_list in plugin_data['entry_points'].items():
+    for ept_group, ept_list in (plugin_data['entry_points'] or {}).items():
         # we only restrict aiida's entry point groups
         if not ept_group.startswith('aiida.'):
             continue
-        for ept in ept_list:
-            ept_string, _path = ept.split('=')
-            ept_string = ept_string.strip()
+
+        for ept_string in ept_list:
+            if not isinstance(ept_list, dict):
+                ept_string, _path = ept_string.split('=')
+                ept_string = ept_string.strip()
             if not ept_string.startswith(entry_point_root):
                 report(
                     f"  > WARNING: Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
                 )
 
 
-def fetch_metadata():
-
+def fetch_metadata(filter_list=None):
+    """Fetch metadata from PyPI and AiiDA-Plugins."""
     with open(PLUGINS_FILE_ABS) as handle:
         plugins_raw_data: dict = json.load(handle)
 
     plugins_metadata = OrderedDict()
 
     for plugin_name, plugin_data in sorted(plugins_raw_data.items()):
+        if filter_list and plugin_name not in filter_list:
+            continue
         plugin_data['name'] = plugin_name
         plugins_metadata[plugin_name] = complete_plugin_data(plugin_data)
 

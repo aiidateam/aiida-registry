@@ -6,9 +6,10 @@ def cli():
     pass
 
 @cli.command()
-def fetch():
+@click.argument('package', required=False)
+def fetch(package):
     from aiida_registry.fetch_metadata import fetch_metadata
-    fetch_metadata()
+    fetch_metadata([package] if package else None)
 
 @cli.command()
 def html():

@@ -46,7 +46,7 @@ def get_summary_info(entry_points):
     global entrypoints_count, other_entrypoint_names
 
     summary_info = []
-    ep = entry_points.copy()
+    ep = (entry_points or {}).copy()
 
     # Collect "main" entry points first
     for entrypoint_name in main_entrypoints:
