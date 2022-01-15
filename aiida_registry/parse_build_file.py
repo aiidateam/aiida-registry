@@ -10,7 +10,7 @@ import tomlkit
 from poetry.core.semver import parse_constraint
 from tomlkit.toml_document import TOMLDocument
 
-from . import PLUGINS_METADATA_KEYS, report
+from . import PLUGINS_METADATA_KEYS, REPORTER
 
 
 class Data(NamedTuple):
@@ -40,7 +40,7 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:  # pylint: dis
         try:
             pyproject = tomlkit.parse(content)
         except tomlkit.exceptions.TOMLKitError as exc:
-            report(f'  > WARNING! Unable to parse TOML: {exc}')
+            REPORTER.warn(f'Unable to parse TOML: {exc}')
             return None
 
         if 'project' in pyproject:
@@ -52,9 +52,7 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:  # pylint: dis
         if 'flit' in tool_name:
             return 'FLIT_OLD'
 
-        report(
-            f'  > WARNING! Unknown build system in pyproject.toml: {tool_name}'
-        )
+        REPORTER.warn(f'Unknown build system in pyproject.toml: {tool_name}')
         return None
 
     if 'setup.cfg' in url:
@@ -63,7 +61,7 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:  # pylint: dis
     if 'setup.json' in url:
         return 'SETUPTOOLS_JSON'
 
-    report(f'  > WARNING! Unknown build system: {url}')
+    REPORTER.warn(f'Unknown build system: {url}')
     return None
 
 
@@ -83,7 +81,7 @@ def parse_toml(content: str) -> Optional[TOMLDocument]:
     try:
         return tomlkit.parse(content)
     except tomlkit.exceptions.TOMLKitError as exc:
-        report(f'  > WARNING! Unable to parse TOML: {exc}')
+        REPORTER.warn(f'Unable to parse TOML: {exc}')
     return None
 
 
@@ -129,7 +127,7 @@ def parse_setup_json(content: str, ep_only=False) -> Data:
     try:
         data = json.loads(content)
     except ValueError as exc:
-        report(f'  > WARNING! Unable to parse JSON: {exc}')
+        REPORTER.warn(f'Unable to parse JSON: {exc}')
         return Data()
 
     entry_points = {
@@ -204,8 +202,9 @@ def parse_flit_old(content: str, ep_only=False) -> Data:
     # description is available as a reference in `description-file` (requires another fetch)
     # author is a mandatory field in Flit
 
-    report('  > WARNING! version & description metadata'
-           ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
+    REPORTER.warn(
+        'version & description metadata'
+        ' are not (yet) parsed from the Flit buildsystem pyproject.toml')
     metadata = data['tool']['flit'].get('metadata', {})
     infos = {
         'aiida_version': get_aiida_version_list(metadata.get('requires', [])),
@@ -226,7 +225,7 @@ def parse_setup_cfg(content: str, ep_only=False) -> Data:
         config = ConfigParser()
         config.read_string(content)
     except Exception as exc:  # pylint: disable=broad-except
-        report(f'  > WARNING! Unable to parse setup.cfg: {exc}')
+        REPORTER.warn(f'Unable to parse setup.cfg: {exc}')
         return Data()
 
     entry_points = {}
@@ -318,8 +317,8 @@ def get_aiida_version_poetry(pyproject):
     try:
         return str(parse_constraint(version))
     except ValueError:
-        report(
-            '  > WARNING: Invalid version encountered in Poetry pyproject.toml for aiida-core'
+        REPORTER.warn(
+            'Invalid version encountered in Poetry pyproject.toml for aiida-core'
         )
 
     return None
@@ -331,7 +330,7 @@ def get_version_from_module(content: str) -> Optional[str]:
     try:
         module = ast.parse(content)
     except SyntaxError as exc:
-        report(f'  > WARNING! Unable to parse module: {exc}')
+        REPORTER.warn(f'Unable to parse module: {exc}')
         return None
     try:
         return next(

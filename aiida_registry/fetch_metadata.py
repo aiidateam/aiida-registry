@@ -19,8 +19,8 @@ import requests
 import requests_cache
 from poetry.core.version.requirements import Requirement
 
-from . import (GITHUB_ACTIONS, LOG, PLUGIN_LOG, PLUGINS_FILE_ABS,
-               PLUGINS_METADATA, classifier_to_status, report, status_dict)
+from . import (PLUGINS_FILE_ABS, PLUGINS_METADATA, REPORTER,
+               classifier_to_status, status_dict)
 from .parse_build_file import get_data_parser, identify_build_tool
 
 if os.environ.get('CACHE_REQUESTS'):
@@ -58,10 +58,10 @@ def fetch_file(file_url: str,
         response.raise_for_status()
     except Exception:  # pylint: disable=broad-except
         if warn:
-            report(
+            REPORTER.warn(
                 f'  > WARNING! Unable to retrieve {file_type} from: {file_url}'
             )
-            report(traceback.format_exc())
+            REPORTER.debug(traceback.format_exc())
         return None
     return response.content.decode(response.encoding or 'utf8')
 
@@ -73,13 +73,12 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
       * add package_name if missing
       * add hosted_on
       & more
-     used for rendering."""
-    global LOG, PLUGIN_LOG  # pylint:disable=global-statement
-
+     used for rendering.
+    """
     if 'package_name' not in list(plugin_data.keys()):
         plugin_data['package_name'] = plugin_data['name'].replace('-', '_')
 
-    report(f'  - {plugin_data["package_name"]}')
+    REPORTER.info(f'{plugin_data["package_name"]}')
 
     plugin_data['hosted_on'] = get_hosted_on(plugin_data['code_home'])
     plugin_data.update({
@@ -102,10 +101,9 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
                 if data.get('packagetype')
             ]
             if 'sdist' not in build_types:
-                report('  > WARNING: No sdist available for PyPI release')
+                REPORTER.warn('No sdist available for PyPI release')
             if 'bdist_wheel' not in build_types:
-                report(
-                    '  > WARNING: No bdist_wheel available for PyPI release')
+                REPORTER.warn('No bdist_wheel available for PyPI release')
             plugin_data['pypi_builds'] = build_types
 
             # get data from pypi JSON
@@ -144,7 +142,7 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
     # Now get missing data from the repository
     plugin_info_url = plugin_data.pop('plugin_info', None)
     if plugin_info_url is None:
-        report('  > WARNING: Missing plugin_info key!')
+        REPORTER.warn('Missing plugin_info key!')
     else:
         # retrive content of build file
         plugin_info_content = fetch_file(plugin_info_url)
@@ -170,7 +168,7 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
             'aiida_version'] = f'=={plugin_data["metadata"]["version"]}'
     if plugin_data.get('aiida_version') is None:
         if not missing_pypi_requires:  # this was likely the issue
-            report('  > WARNING! AiiDA version not specified')
+            REPORTER.warn('AiiDA version not specified')
 
     validate_dev_status(plugin_data)
 
@@ -178,10 +176,6 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
         validate_doc_url(plugin_data['documentation_url'])
 
     validate_plugin_entry_points(plugin_data)
-
-    if 'WARNING' in '\n'.join(PLUGIN_LOG):
-        LOG += PLUGIN_LOG
-    PLUGIN_LOG = []
 
     return plugin_data
 
@@ -191,35 +185,35 @@ def validate_dev_status(plugin_data: dict):
     classifiers = plugin_data['metadata'].get(
         'classifiers', []) if plugin_data.get('metadata', None) else []
     if plugin_data['metadata'] and 'Framework :: AiiDA' not in classifiers:
-        report("  > WARNING: Missing classifier 'Framework :: AiiDA'")
+        REPORTER.warn("Missing classifier 'Framework :: AiiDA'")
 
     # Read development status from plugin repo
     development_status = None
     for classifier in classifiers:
         if classifier in classifier_to_status:
             if development_status is not None:
-                report(
-                    '  > WARNING: Multiple development statuses found in classifiers'
-                )
+                REPORTER.warn(
+                    'Multiple development statuses found in classifiers')
             development_status = classifier_to_status[classifier]
 
     if development_status and 'development_status' in plugin_data and (
             development_status != plugin_data['development_status']):
-        report(
-            f'  > WARNING: Development status in classifiers ({development_status}) '
+        REPORTER.warn(
+            f'Development status in classifiers ({development_status}) '
             f"does not match development_status in metadata ({plugin_data['development_status']})"
         )
 
     # prioritise development_status from plugins.json
     if 'development_status' in plugin_data:
-        report('  > WARNING: `development_status` key is deprecated. '
-               'Use PyPI Trove classifiers in the plugin repository instead.')
+        REPORTER.warn(
+            '`development_status` key is deprecated. '
+            'Use PyPI Trove classifiers in the plugin repository instead.')
     else:
         plugin_data['development_status'] = development_status or 'planning'
 
     # note: for more validation, it might be sensible to switch to voluptuous
     if plugin_data['development_status'] not in list(status_dict.keys()):
-        report("  > WARNING: Invalid development status '{}'".format(
+        REPORTER.warn("Invalid development status '{}'".format(
             plugin_data['development_status']))
 
 
@@ -230,9 +224,8 @@ def validate_doc_url(url):
         response.raise_for_status(
         )  # raise an exception for all 4xx/5xx errors
     except Exception:  # pylint: disable=broad-except
-        report(
-            '  > WARNING! Unable to reach documentation URL: {}'.format(url))
-        report(traceback.print_exc(file=sys.stdout))
+        REPORTER.warn('Unable to reach documentation URL: {}'.format(url))
+        REPORTER.debug(traceback.print_exc(file=sys.stdout))
 
 
 def validate_plugin_entry_points(plugin_data):
@@ -244,8 +237,8 @@ def validate_plugin_entry_points(plugin_data):
         entry_point_root = plugin_data['entry_point_prefix']
         if not 'aiida_' + plugin_data['entry_point_prefix'].lower(
         ) == plugin_data['package_name'].lower():
-            report(
-                f"  > WARNING: Prefix \'{plugin_data['entry_point_prefix']}\' does not follow naming convention."
+            REPORTER.warn(
+                f"Prefix \'{plugin_data['entry_point_prefix']}\' does not follow naming convention."
             )
     else:
         # plugin should not specify any entry points
@@ -261,8 +254,8 @@ def validate_plugin_entry_points(plugin_data):
                 ept_string, _path = ept_string.split('=')
                 ept_string = ept_string.strip()
             if not ept_string.startswith(entry_point_root):
-                report(
-                    f"  > WARNING: Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
+                REPORTER.warn(
+                    f"Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
                 )
 
 
@@ -281,7 +274,7 @@ def fetch_metadata(filter_list=None):
 
     with open(PLUGINS_METADATA, 'w') as handle:
         json.dump(plugins_metadata, handle, indent=2)
-    report('  - {} dumped'.format(PLUGINS_METADATA))
+    REPORTER.info(f'{PLUGINS_METADATA} dumped')
 
-    if GITHUB_ACTIONS:
-        print('::set-output name=error::' + '%0A'.join(LOG))
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        print('::set-output name=error::' + '%0A'.join(REPORTER.warnings))

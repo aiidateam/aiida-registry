@@ -133,19 +133,36 @@ classifier_to_status = {
 ## dictionary of human-readable entrypointtypes
 entrypointtypes = {k: v['longname'] for k, v in entrypoint_metainfo.items()}
 
+
 # Logging
+class Reporter:
+    """ Logging methods """
+    def __init__(self):
+        """Initialize the reporter."""
+        self.warnings = []
 
-GITHUB_ACTIONS = os.environ.get('GITHUB_ACTIONS') == 'true'
-LOG = []  # global log messages
-PLUGIN_LOG = []  # per-plugin log messages
+    def reset(self):
+        """Reset the warnings list."""
+        self.warnings = []
+
+    def warn(self, string):
+        """Write to stdout and log.
+
+        Used to display log in actions.
+        """
+        message = f'  > WARNING! {string}'
+        # Set the step output error message which can be used,
+        # e.g., for display as part of an issue comment.
+        self.warnings.append(message)
+        print(message)
+
+    def info(self, string):  # pylint: disable=no-self-use
+        """Write to stdout."""
+        print(string)
+
+    def debug(self, string):  # pylint: disable=no-self-use
+        """Write to stdout."""
+        print(string)
 
 
-def report(string):
-    """Write to stdout and log.
-
-    Used to display log in  actions.
-    """
-    if GITHUB_ACTIONS:
-        # Set the step ouput error message which can be used, e.g., for display as part of an issue comment.
-        PLUGIN_LOG.append(string)
-    print(string)
+REPORTER = Reporter()
