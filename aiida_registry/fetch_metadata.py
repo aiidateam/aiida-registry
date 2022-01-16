@@ -3,10 +3,6 @@
 
 Data is primarily sourced from PyPI,
 with a fallback to the repository build file (setup.json, setup.cfg, pyproject.toml).
-
-Currently the entry points are always read from the build,
-since PyPI JSON does not include entry points,
-and so we would need to download and read the wheel file.
 """
 import json
 import os
