@@ -99,7 +99,7 @@ def get_pypi_metadata(package_name: str,
                     parser.read_string(entry_points_content)
                     entry_points = {}
                     for key, value in parser.items():
-                        if not key.startswith('aiida.'):
+                        if key == 'DEFAULT':
                             continue
                         entry_points[key] = dict(value.items())
 
