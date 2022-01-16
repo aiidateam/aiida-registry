@@ -13,7 +13,7 @@ from tomlkit.toml_document import TOMLDocument
 from . import PLUGINS_METADATA_KEYS, REPORTER
 
 
-class Data(NamedTuple):
+class SourceData(NamedTuple):
     """Data read from the build file."""
     metadata: Optional[dict] = None
     entry_points: Optional[dict] = None
@@ -65,7 +65,7 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:  # pylint: dis
     return None
 
 
-def get_data_parser(name: str) -> Callable[[str, bool], Data]:
+def get_data_parser(name: str) -> Callable[[str, bool], SourceData]:
     """Return the function that parses the build file."""
     return {
         'PEP621': parse_pep_621,
@@ -85,18 +85,18 @@ def parse_toml(content: str) -> Optional[TOMLDocument]:
     return None
 
 
-def parse_pep_621(content: str, ep_only=False) -> Data:
+def parse_pep_621(content: str, ep_only=False) -> SourceData:
     """Parse a https://www.python.org/dev/peps/pep-0621/ compliant pyproject.toml file."""
     data = parse_toml(content)
     if data is None:
-        return Data()
+        return SourceData()
 
     project_data = data.get('project', {})
 
     entry_points = project_data.get('entry-points', {}).copy()
 
     if ep_only:
-        return Data(entry_points=entry_points)
+        return SourceData(entry_points=entry_points)
 
     infos = {
         'aiida_version':
@@ -119,16 +119,16 @@ def parse_pep_621(content: str, ep_only=False) -> Data:
             infos['metadata']['author_email'] = str(
                 project_data['authors'][0]['email'])
 
-    return Data(**infos)
+    return SourceData(**infos)
 
 
-def parse_setup_json(content: str, ep_only=False) -> Data:
+def parse_setup_json(content: str, ep_only=False) -> SourceData:
     """Parse setup.json."""
     try:
         data = json.loads(content)
     except ValueError as exc:
         REPORTER.warn(f'Unable to parse JSON: {exc}')
-        return Data()
+        return SourceData()
 
     entry_points = {
         k: {v.split('=')[0].strip(): v.split('=')[1].strip()
@@ -137,7 +137,7 @@ def parse_setup_json(content: str, ep_only=False) -> Data:
     }
 
     if ep_only:
-        return Data(entry_points=entry_points)
+        return SourceData(entry_points=entry_points)
 
     infos = {
         'aiida_version':
@@ -149,19 +149,19 @@ def parse_setup_json(content: str, ep_only=False) -> Data:
     }
     infos['metadata']['classifiers'] = data.get('classifiers', [])
 
-    return Data(**infos)
+    return SourceData(**infos)
 
 
-def parse_poetry(content: str, ep_only=False) -> Data:
+def parse_poetry(content: str, ep_only=False) -> SourceData:
     """Parse poetry pyproject.toml."""
     data = parse_toml(content)
     if data is None:
-        return Data()
+        return SourceData()
 
     entry_points = data['tool']['poetry'].get('plugins', {}).copy()
 
     if ep_only:
-        return Data(entry_points=entry_points)
+        return SourceData(entry_points=entry_points)
 
     infos = {
         'aiida_version': get_aiida_version_poetry(data),
@@ -182,21 +182,21 @@ def parse_poetry(content: str, ep_only=False) -> Data:
     infos['metadata']['classifiers'] = [
         str(item) for item in data['tool']['poetry'].get('classifiers', [])
     ]
-    return Data(**infos)
+    return SourceData(**infos)
 
 
-def parse_flit_old(content: str, ep_only=False) -> Data:
+def parse_flit_old(content: str, ep_only=False) -> SourceData:
     """Parse flit pyproject.toml with old-style metadata."""
     # uses https://flit.readthedocs.io/en/latest/pyproject_toml.html#old-style-metadata
 
     data = parse_toml(content)
     if data is None:
-        return Data()
+        return SourceData()
 
     entry_points = data['tool']['flit'].get('entrypoints', {}).copy()
 
     if ep_only:
-        return Data(entry_points=entry_points)
+        return SourceData(entry_points=entry_points)
 
     # version is not part of the metadata but expected to available in <module>/__init__.py:__version__
     # description is available as a reference in `description-file` (requires another fetch)
@@ -215,10 +215,10 @@ def parse_flit_old(content: str, ep_only=False) -> Data:
         },
         'entry_points': entry_points
     }
-    return Data(**infos)
+    return SourceData(**infos)
 
 
-def parse_setup_cfg(content: str, ep_only=False) -> Data:
+def parse_setup_cfg(content: str, ep_only=False) -> SourceData:
     """Parse setup.cfg."""
 
     try:
@@ -226,7 +226,7 @@ def parse_setup_cfg(content: str, ep_only=False) -> Data:
         config.read_string(content)
     except Exception as exc:  # pylint: disable=broad-except
         REPORTER.warn(f'Unable to parse setup.cfg: {exc}')
-        return Data()
+        return SourceData()
 
     entry_points = {}
     if config.has_section('options.entry_points'):
@@ -239,7 +239,7 @@ def parse_setup_cfg(content: str, ep_only=False) -> Data:
                 entry_points[name][key.strip()] = value.strip()
 
     if ep_only:
-        return Data(entry_points=entry_points)
+        return SourceData(entry_points=entry_points)
 
     infos = {
         'aiida_version':
@@ -261,7 +261,7 @@ def parse_setup_cfg(content: str, ep_only=False) -> Data:
             if l.strip() and not l.strip().startswith('#')
         ]
 
-    return Data(**infos)
+    return SourceData(**infos)
 
 
 def get_aiida_version_list(install_requires: List[str]) -> Optional[str]:

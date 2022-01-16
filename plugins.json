@@ -470,7 +470,7 @@
         "entry_point_prefix": "flexpart",
         "plugin_info": "https://raw.githubusercontent.com/aiidaplugins/aiida-flexpart/main/setup.json",
         "code_home": "https://github.com/aiidaplugins/aiida-flexpart",
-        "pip_url": "aiida-flexpart"
+        "pip_url": "git+https://github.com/aiidaplugins/aiida-flexpart"
     },
     "aiida-firecrest": {
         "entry_point_prefix": "firecrest",

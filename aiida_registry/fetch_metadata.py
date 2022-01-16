@@ -15,19 +15,15 @@ import sys
 import traceback
 import urllib
 from collections import OrderedDict
+from typing import Optional
 
 import requests
-import requests_cache
-from poetry.core.version.requirements import Requirement
 
 from . import (PLUGINS_FILE_ABS, PLUGINS_METADATA, REPORTER,
                classifier_to_status, status_dict)
 from .parse_build_file import get_data_parser, identify_build_tool
-
-if os.environ.get('CACHE_REQUESTS'):
-    # Set environment variable CACHE_REQUESTS to cache requests for 1 day for faster testing
-    # e.g.: export CACHE_REQUESTS=1
-    requests_cache.install_cache('demo_cache', expire_after=60 * 60 * 24)
+from .parse_pypi import PypiData, get_pypi_metadata
+from .utils import fetch_file
 
 
 def get_hosted_on(url):
@@ -49,25 +45,9 @@ def get_hosted_on(url):
     return netloc
 
 
-def fetch_file(file_url: str,
-               file_type: str = 'plugin info',
-               warn=True) -> str:
-    """Fetch plugin info from a URL to a file."""
-    try:
-        response = requests.get(file_url)
-        # raise an exception for all 4xx/5xx errors
-        response.raise_for_status()
-    except Exception:  # pylint: disable=broad-except
-        if warn:
-            REPORTER.warn(
-                f'  > WARNING! Unable to retrieve {file_type} from: {file_url}'
-            )
-            REPORTER.debug(traceback.format_exc())
-        return None
-    return response.content.decode(response.encoding or 'utf8')
-
-
-def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branches,too-many-statements
+def complete_plugin_data(plugin_data: dict,
+                         fetch_pypi=True,
+                         fetch_pypi_wheel=True):  # pylint: disable=too-many-branches,too-many-statements
     """Update plugin data dictionary.
 
       * add metadata, aiida_version and entrypoints from plugin_info
@@ -85,81 +65,48 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
     plugin_data.update({
         'metadata': {},
         'aiida_version': None,
-        'entry_points': {},
+        'entry_points': None,
     })
 
-    # first try to get metadata from PyPI
-    pypi_info = None
-    missing_pypi_requires = False
-    if is_pip_url_pypi(plugin_data.get('pip_url', '')):
-        pypi_info = fetch_file(
-            f"https://pypi.org/pypi/{plugin_data['pip_url']}/json")
-        if pypi_info is not None:
-            pypi_data = json.loads(pypi_info)
-            # check if both a wheel and sdist are available
-            build_types = [
-                data['packagetype'] for data in pypi_data.get('urls') or []
-                if data.get('packagetype')
-            ]
-            if 'sdist' not in build_types:
-                REPORTER.warn('No sdist available for PyPI release')
-            if 'bdist_wheel' not in build_types:
-                REPORTER.warn('No bdist_wheel available for PyPI release')
-            plugin_data['pypi_builds'] = build_types
+    # First try to get metadata from PyPI
+    pypi_metadata: Optional[PypiData] = None
+    if fetch_pypi and is_pip_url_pypi(plugin_data.get('pip_url', '')):
+        pypi_metadata = get_pypi_metadata(plugin_data['pip_url'],
+                                          fetch_pypi_wheel)
+    if pypi_metadata:
+        plugin_data['metadata'] = pypi_metadata.metadata
+        plugin_data['aiida_version'] = pypi_metadata.aiida_version
+        plugin_data['entry_points'] = pypi_metadata.entry_points
 
-            # get data from pypi JSON
-            pypi_info_data = pypi_data.get('info', {})
-
-            # add required metadata
-            for key_from, key_to in (
-                ('summary', 'description'),
-                ('author', 'author'),
-                ('author_email', 'author_email'),
-                ('license', 'license'),
-                ('home_page', 'home_page'),
-                ('classifiers', 'classifiers'),
-                ('version', 'version'),
-            ):
-                if pypi_info_data.get(key_from):
-                    plugin_data['metadata'][key_to] = pypi_info_data[key_from]
-
-            # find aiida-version
-            # note if a bdist_wheel is not available,
-            # then requires_dist will likely not be available
-            if pypi_info_data.get('requires_dist'):
-                for req in pypi_info_data['requires_dist']:
-                    try:
-                        parsed = Requirement(req)
-                    except Exception:  # pylint: disable=broad-except
-                        continue
-                    if parsed.name in ['aiida-core', 'aiida_core', 'aiida']:
-                        plugin_data['aiida_version'] = str(parsed.constraint)
-            elif pypi_info_data.get('requires_dist') is None:
-                missing_pypi_requires = True
-
-            # NOTE cannot read 'entry_points' from PyPI JSON
-            # (would have to download wheel and read from there)
-
-    # Now get missing data from the repository
-    plugin_info_url = plugin_data.pop('plugin_info', None)
-    if plugin_info_url is None:
-        REPORTER.warn('Missing plugin_info key!')
-    else:
-        # retrive content of build file
-        plugin_info_content = fetch_file(plugin_info_url)
-        # Identify build system
-        build_tool_name = identify_build_tool(plugin_info_url,
-                                              plugin_info_content)
-        if pypi_info:
-            data = get_data_parser(build_tool_name)(
-                plugin_info_content, ep_only=True)  # , entry_points_only=True
-            plugin_data['entry_points'] = data.entry_points
+    # Now get missing data from the source repository
+    if pypi_metadata is None or pypi_metadata.entry_points is None:
+        plugin_info_url = plugin_data.pop('plugin_info', None)
+        if plugin_info_url is None:
+            REPORTER.warn(
+                'Cannot fetch all data from PyPI and missing plugin_info key!')
         else:
-            data = get_data_parser(build_tool_name)(plugin_info_content,
-                                                    ep_only=False)
-            plugin_data['metadata'] = data.metadata
-            plugin_data['aiida_version'] = data.aiida_version
-            plugin_data['entry_points'] = data.entry_points
+            # retrive content of build file
+            plugin_info_content = fetch_file(plugin_info_url)
+            # Identify build system
+            build_tool_name = identify_build_tool(
+                plugin_info_url,
+                plugin_info_content,
+            )
+            if pypi_metadata is not None:
+                # we only need to get the entry points
+                data = get_data_parser(build_tool_name)(
+                    plugin_info_content,
+                    ep_only=True)  # , entry_points_only=True
+                plugin_data['entry_points'] = data.entry_points
+            else:
+                data = get_data_parser(build_tool_name)(plugin_info_content,
+                                                        ep_only=False)
+                plugin_data['metadata'] = data.metadata
+                plugin_data['aiida_version'] = data.aiida_version
+                plugin_data['entry_points'] = data.entry_points
+
+    # ensure entry points are not None
+    plugin_data['entry_points'] = plugin_data['entry_points'] or {}
 
     # run validations
 
@@ -168,8 +115,7 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
         plugin_data[
             'aiida_version'] = f'=={plugin_data["metadata"]["version"]}'
     if plugin_data.get('aiida_version') is None:
-        if not missing_pypi_requires:  # this was likely the issue
-            REPORTER.warn('AiiDA version not specified')
+        REPORTER.warn('AiiDA version not found')
 
     validate_dev_status(plugin_data)
 
@@ -269,7 +215,7 @@ def is_pip_url_pypi(string: str) -> bool:
     return PYPI_NAME_RE.match(string) is not None
 
 
-def fetch_metadata(filter_list=None):
+def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
     """Fetch metadata from PyPI and AiiDA-Plugins."""
     with open(PLUGINS_FILE_ABS) as handle:
         plugins_raw_data: dict = json.load(handle)
@@ -281,10 +227,13 @@ def fetch_metadata(filter_list=None):
             continue
         REPORTER.set_plugin_name(plugin_name)
         plugin_data['name'] = plugin_name
-        plugins_metadata[plugin_name] = complete_plugin_data(plugin_data)
+        plugins_metadata[plugin_name] = complete_plugin_data(
+            plugin_data,
+            fetch_pypi=fetch_pypi,
+            fetch_pypi_wheel=fetch_pypi_wheel)
 
     with open(PLUGINS_METADATA, 'w') as handle:
-        json.dump(plugins_metadata, handle, indent=2)
+        json.dump(plugins_metadata, handle, indent=2, sort_keys=True)
     REPORTER.info(f'{PLUGINS_METADATA} dumped')
 
     if os.environ.get('GITHUB_ACTIONS') == 'true':
