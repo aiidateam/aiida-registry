@@ -91,7 +91,7 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
     # first try to get metadata from PyPI
     pypi_info = None
     missing_pypi_requires = False
-    if is_pip_url_pypi(plugin_data.get("pip_url", "")):
+    if is_pip_url_pypi(plugin_data.get('pip_url', '')):
         pypi_info = fetch_file(
             f"https://pypi.org/pypi/{plugin_data['pip_url']}/json")
         if pypi_info is not None:
@@ -261,6 +261,7 @@ def validate_plugin_entry_points(plugin_data):
 
 
 PYPI_NAME_RE = re.compile(r'^[a-zA-Z0-9-_]+$')
+
 
 def is_pip_url_pypi(string: str) -> bool:
     """Check if the `pip_url` points to a PyPI package."""
