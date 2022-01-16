@@ -10,6 +10,7 @@ and so we would need to download and read the wheel file.
 """
 import json
 import os
+import re
 import sys
 import traceback
 import urllib
@@ -90,9 +91,9 @@ def complete_plugin_data(plugin_data: dict):  # pylint: disable=too-many-branche
     # first try to get metadata from PyPI
     pypi_info = None
     missing_pypi_requires = False
-    if 'pypi_name' in plugin_data:
+    if is_pip_url_pypi(plugin_data.get("pip_url", "")):
         pypi_info = fetch_file(
-            f"https://pypi.org/pypi/{plugin_data['pypi_name']}/json")
+            f"https://pypi.org/pypi/{plugin_data['pip_url']}/json")
         if pypi_info is not None:
             pypi_data = json.loads(pypi_info)
             # check if both a wheel and sdist are available
@@ -257,6 +258,14 @@ def validate_plugin_entry_points(plugin_data):
                 REPORTER.warn(
                     f"Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
                 )
+
+
+PYPI_NAME_RE = re.compile(r'^[a-zA-Z0-9-_]+$')
+
+def is_pip_url_pypi(string: str) -> bool:
+    """Check if the `pip_url` points to a PyPI package."""
+    # for example git+https://... is not a PyPI package
+    return PYPI_NAME_RE.match(string) is not None
 
 
 def fetch_metadata(filter_list=None):
