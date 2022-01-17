@@ -132,3 +132,45 @@ classifier_to_status = {
 
 ## dictionary of human-readable entrypointtypes
 entrypointtypes = {k: v['longname'] for k, v in entrypoint_metainfo.items()}
+
+
+# Logging
+class Reporter:
+    """ Logging methods """
+    def __init__(self):
+        """Initialize the reporter."""
+        self.warnings = []
+        self.plugin_name = None
+
+    def reset(self):
+        """Reset the warnings list."""
+        self.warnings = []
+
+    def set_plugin_name(self, name):
+        """Set the plugin name."""
+        self.plugin_name = name
+
+    def warn(self, string):
+        """Write to stdout and log.
+
+        Used to display log in actions.
+        """
+        message = f'  > WARNING! {string}'
+        # Set the step output error message which can be used,
+        # e.g., for display as part of an issue comment.
+        if self.plugin_name:
+            self.warnings.append(f'{message} [{self.plugin_name}]')
+        else:
+            self.warnings.append(message)
+        print(message)
+
+    def info(self, string):  # pylint: disable=no-self-use
+        """Write to stdout."""
+        print(string)
+
+    def debug(self, string):  # pylint: disable=no-self-use
+        """Write to stdout."""
+        print(string)
+
+
+REPORTER = Reporter()

@@ -1,0 +1,8 @@
+aiida_version: null
+entry_points: {}
+metadata:
+  author: Sir Robin
+  author_email: robin@camelot.uk
+  classifiers:
+  - 'Development Status :: 3 - Alpha'
+  - 'License :: OSI Approved :: MIT License'

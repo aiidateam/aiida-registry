@@ -25,7 +25,7 @@
     "aiida-pseudo": {
         "entry_point_prefix": "pseudo",
         "pip_url": "aiida-pseudo",
-        "plugin_info": "https://raw.github.com/aiidateam/aiida-pseudo/master/setup.json",
+        "plugin_info": "https://raw.github.com/aiidateam/aiida-pseudo/master/setup.cfg",
         "code_home": "https://github.com/aiidateam/aiida-pseudo"
     },
     "aiida-wannier90": {
@@ -470,12 +470,11 @@
         "entry_point_prefix": "flexpart",
         "plugin_info": "https://raw.githubusercontent.com/aiidaplugins/aiida-flexpart/main/setup.json",
         "code_home": "https://github.com/aiidaplugins/aiida-flexpart",
-        "pip_url": "aiida-flexpart"
+        "pip_url": "git+https://github.com/aiidaplugins/aiida-flexpart"
     },
     "aiida-firecrest": {
         "entry_point_prefix": "firecrest",
-        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-firecrest/main/setup.cfg",
-        "version_file": "https://raw.githubusercontent.com/aiidateam/aiida-firecrest/main/aiida_firecrest/__init__.py",
+        "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-firecrest/main/pyproject.toml",
         "code_home": "https://github.com/aiidateam/aiida-firecrest",
         "pip_url": "aiida-firecrest"
     },
@@ -490,12 +489,12 @@
         "code_home": "https://github.com/microsoft/aiida-dynamic-workflows"
     },
     "aiida-champ": {
-    "entry_point_prefix": "champ",
-    "development_status": "beta",
-    "plugin_info": "https://raw.github.com/TREX-CoE/aiida-champ/master/setup.json",
-    "code_home": "https://github.com/TREX-CoE/aiida-champ",
-    "pip_url": "aiida-champ",
-    "documentation_url": "http://aiida-champ.readthedocs.io/"
+        "entry_point_prefix": "champ",
+        "development_status": "beta",
+        "plugin_info": "https://raw.github.com/TREX-CoE/aiida-champ/master/setup.json",
+        "code_home": "https://github.com/TREX-CoE/aiida-champ",
+        "pip_url": "aiida-champ",
+        "documentation_url": "http://aiida-champ.readthedocs.io/"
     },
     "aiida-donothing": {
         "entry_point_prefix": "donothing",

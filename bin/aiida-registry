@@ -6,9 +6,12 @@ def cli():
     pass
 
 @cli.command()
-def fetch():
+@click.argument('package', required=False)
+@click.option('--fetch-pypi/--no-fetch-pypi', is_flag=True, default=True, help='Allow fetching data from PyPI')
+@click.option('--fetch-wheel/--no-fetch-wheel', is_flag=True, default=True, help='Allow fetching wheels from PyPI')
+def fetch(package, fetch_pypi, fetch_wheel):
     from aiida_registry.fetch_metadata import fetch_metadata
-    fetch_metadata()
+    fetch_metadata([package] if package else None, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_wheel)
 
 @cli.command()
 def html():

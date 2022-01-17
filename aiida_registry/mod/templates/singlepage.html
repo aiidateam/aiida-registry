@@ -92,10 +92,10 @@
                     {% endif %}
                 </h4>
                 <ul>
-                {% for entrypoint in entrypointlist %}
-                <li><code>{{ entrypoint.split('=')[0].strip() }}</code>
+                {% for ep_name, ep_module in entrypointlist.items() %}
+                <li><code>{{ ep_name }}</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        {{ entrypoint.split('=')[1].strip() }}
+                        {{ ep_module }}
                     </span></div></li>
                 {% endfor %}
                 </ul>

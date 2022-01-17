@@ -14,40 +14,44 @@ This fetches metadata from plugins defined using different build systems
 import json
 from pathlib import Path
 
-from aiida_registry.fetch_metadata import (get_version_from_module,
-                                           parse_plugin_info,
-                                           validate_plugin_entry_points)
+from aiida_registry.fetch_metadata import validate_plugin_entry_points
 from aiida_registry.make_pages import get_pip_install_cmd
+from aiida_registry.parse_build_file import (get_version_from_module,
+                                             parse_flit_old, parse_pep_621,
+                                             parse_poetry, parse_setup_cfg,
+                                             parse_setup_json)
 
 TEST_PATH = Path(__file__).parent / 'static'
 
 
 def test_parse_setup_json(data_regression):
     """Test parsing setup.json file."""
-    data = parse_plugin_info('setup.json',
-                             (TEST_PATH / 'setup.json').read_text())
-    data_regression.check(data)
+    data = parse_setup_json((TEST_PATH / 'setup.json').read_text())
+    data_regression.check(data.as_dict())
 
 
 def test_parse_pyproject_toml_poetry(data_regression):
     """Test parsing pyproject.toml file."""
-    data = parse_plugin_info('pyproject.toml',
-                             (TEST_PATH / 'poetry-pyproject.toml').read_text())
-    data_regression.check(data)
+    data = parse_poetry((TEST_PATH / 'poetry-pyproject.toml').read_text())
+    data_regression.check(data.as_dict())
 
 
 def test_parse_pyproject_toml_flit_old(data_regression):
     """Test parsing pyproject.toml file."""
-    data = parse_plugin_info(
-        'pyproject.toml', (TEST_PATH / 'flit-old-pyproject.toml').read_text())
-    data_regression.check(data)
+    data = parse_flit_old((TEST_PATH / 'flit-old-pyproject.toml').read_text())
+    data_regression.check(data.as_dict())
+
+
+def test_parse_pyproject_toml_pep621(data_regression):
+    """Test parsing pyproject.toml file, that is PEP 621 compliant"""
+    data = parse_pep_621((TEST_PATH / 'pep621-pyproject.toml').read_text())
+    data_regression.check(data.as_dict())
 
 
 def test_parse_setup_cfg(data_regression):
     """Test parsing pyproject.toml file."""
-    data = parse_plugin_info('setup.cfg',
-                             (TEST_PATH / 'setup.cfg').read_text())
-    data_regression.check(data)
+    data = parse_setup_cfg((TEST_PATH / 'setup.cfg').read_text())
+    data_regression.check(data.as_dict())
 
 
 def test_get_version_from_module():
