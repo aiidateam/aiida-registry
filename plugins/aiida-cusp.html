@@ -119,70 +119,6 @@
             
                 <h4>
                     
-                      Data node types <span class="entrypointraw">(aiida.data)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>cusp.kpoints</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.inputs.vasp_kpoint:VaspKpointData
-                    </span></div></li>
-                
-                <li><code>cusp.poscar</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.inputs.vasp_poscar:VaspPoscarData
-                    </span></div></li>
-                
-                <li><code>cusp.incar</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.inputs.vasp_incar:VaspIncarData
-                    </span></div></li>
-                
-                <li><code>cusp.potcar</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.inputs.vasp_potcar:VaspPotcarData
-                    </span></div></li>
-                
-                <li><code>cusp.vasprun</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.outputs.vasp_vasprun:VaspVasprunData
-                    </span></div></li>
-                
-                <li><code>cusp.outcar</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.outputs.vasp_outcar:VaspOutcarData
-                    </span></div></li>
-                
-                <li><code>cusp.contcar</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.outputs.vasp_contcar:VaspContcarData
-                    </span></div></li>
-                
-                <li><code>cusp.chgcar</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.outputs.vasp_chgcar:VaspChgcarData
-                    </span></div></li>
-                
-                <li><code>cusp.wavecar</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.outputs.vasp_wavecar:VaspWavecarData
-                    </span></div></li>
-                
-                <li><code>cusp.generic</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.outputs.vasp_generic:VaspGenericData
-                    </span></div></li>
-                
-                <li><code>cusp.potcarfile</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.data.inputs.vasp_potcar:VaspPotcarFile
-                    </span></div></li>
-                
-                </ul>
-            
-                <h4>
-                    
                       CalcJobs and calculation functions <span class="entrypointraw">(aiida.calculations)</span>
                     
                 </h4>
@@ -197,20 +133,6 @@
             
                 <h4>
                     
-                      CalcJob parsers <span class="entrypointraw">(aiida.parsers)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>cusp.default</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_cusp.parsers.vasp_file_parser:VaspFileParser
-                    </span></div></li>
-                
-                </ul>
-            
-                <h4>
-                    
                       verdi data commands <span class="entrypointraw">(aiida.cmdline.data)</span>
                     
                 </h4>
@@ -219,6 +141,84 @@
                 <li><code>potcar</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_cusp.cli.potcar_cmd:potcar
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      Data node types <span class="entrypointraw">(aiida.data)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>cusp.chgcar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.outputs.vasp_chgcar:VaspChgcarData
+                    </span></div></li>
+                
+                <li><code>cusp.contcar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.outputs.vasp_contcar:VaspContcarData
+                    </span></div></li>
+                
+                <li><code>cusp.generic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.outputs.vasp_generic:VaspGenericData
+                    </span></div></li>
+                
+                <li><code>cusp.incar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.inputs.vasp_incar:VaspIncarData
+                    </span></div></li>
+                
+                <li><code>cusp.kpoints</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.inputs.vasp_kpoint:VaspKpointData
+                    </span></div></li>
+                
+                <li><code>cusp.outcar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.outputs.vasp_outcar:VaspOutcarData
+                    </span></div></li>
+                
+                <li><code>cusp.poscar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.inputs.vasp_poscar:VaspPoscarData
+                    </span></div></li>
+                
+                <li><code>cusp.potcar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.inputs.vasp_potcar:VaspPotcarData
+                    </span></div></li>
+                
+                <li><code>cusp.potcarfile</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.inputs.vasp_potcar:VaspPotcarFile
+                    </span></div></li>
+                
+                <li><code>cusp.vasprun</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.outputs.vasp_vasprun:VaspVasprunData
+                    </span></div></li>
+                
+                <li><code>cusp.wavecar</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.data.outputs.vasp_wavecar:VaspWavecarData
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      CalcJob parsers <span class="entrypointraw">(aiida.parsers)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>cusp.default</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_cusp.parsers.vasp_file_parser:VaspFileParser
                     </span></div></li>
                 
                 </ul>

@@ -129,19 +129,63 @@
             
                 <h4>
                     
-                      Console scripts <span class="entrypointraw">(console_scripts)</span>
+                      CalcJobs and calculation functions <span class="entrypointraw">(aiida.calculations)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>mock_crystal17</code>
+                <li><code>crystal17.basic</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.tests.mock_crystal17:main
+                        aiida_crystal17.calculations.cry_basic:CryBasicCalculation
                     </span></div></li>
                 
-                <li><code>mock_properties17</code>
+                <li><code>crystal17.doss</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.tests.mock_properties17:main
+                        aiida_crystal17.calculations.prop_doss:CryDossCalculation
+                    </span></div></li>
+                
+                <li><code>crystal17.ech3</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.prop_ech3:CryEch3Calculation
+                    </span></div></li>
+                
+                <li><code>crystal17.main</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.cry_main:CryMainCalculation
+                    </span></div></li>
+                
+                <li><code>crystal17.newk</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.prop_newk:CryNewkCalculation
+                    </span></div></li>
+                
+                <li><code>crystal17.ppan</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.calculations.prop_ppan:CryPpanCalculation
+                    </span></div></li>
+                
+                </ul>
+            
+                <h4>
+                    
+                      verdi data commands <span class="entrypointraw">(aiida.cmdline.data)</span>
+                    
+                </h4>
+                <ul>
+                
+                <li><code>crystal17.basis</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.basis_set:basisset
+                    </span></div></li>
+                
+                <li><code>crystal17.parse</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.cmd_parser:parse
+                    </span></div></li>
+                
+                <li><code>crystal17.symmetry</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.cmndline.symmetry:symmetry
                     </span></div></li>
                 
                 </ul>
@@ -153,19 +197,14 @@
                 </h4>
                 <ul>
                 
-                <li><code>crystal17.parameters</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.data.input_params:CryInputParamsData
-                    </span></div></li>
-                
                 <li><code>crystal17.basisset</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_crystal17.data.basis_set:BasisSetData
                     </span></div></li>
                 
-                <li><code>crystal17.symmetry</code>
+                <li><code>crystal17.gcube</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.data.symmetry:SymmetryData
+                        aiida_crystal17.data.gcube:GaussianCube
                     </span></div></li>
                 
                 <li><code>crystal17.kinds</code>
@@ -173,9 +212,14 @@
                         aiida_crystal17.data.kinds:KindData
                     </span></div></li>
                 
-                <li><code>crystal17.gcube</code>
+                <li><code>crystal17.parameters</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.data.gcube:GaussianCube
+                        aiida_crystal17.data.input_params:CryInputParamsData
+                    </span></div></li>
+                
+                <li><code>crystal17.symmetry</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.data.symmetry:SymmetryData
                     </span></div></li>
                 
                 </ul>
@@ -196,54 +240,10 @@
             
                 <h4>
                     
-                      CalcJobs and calculation functions <span class="entrypointraw">(aiida.calculations)</span>
-                    
-                </h4>
-                <ul>
-                
-                <li><code>crystal17.basic</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.cry_basic:CryBasicCalculation
-                    </span></div></li>
-                
-                <li><code>crystal17.main</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.cry_main:CryMainCalculation
-                    </span></div></li>
-                
-                <li><code>crystal17.doss</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.prop_doss:CryDossCalculation
-                    </span></div></li>
-                
-                <li><code>crystal17.ech3</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.prop_ech3:CryEch3Calculation
-                    </span></div></li>
-                
-                <li><code>crystal17.newk</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.prop_newk:CryNewkCalculation
-                    </span></div></li>
-                
-                <li><code>crystal17.ppan</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.calculations.prop_ppan:CryPpanCalculation
-                    </span></div></li>
-                
-                </ul>
-            
-                <h4>
-                    
                       CalcJob parsers <span class="entrypointraw">(aiida.parsers)</span>
                     
                 </h4>
                 <ul>
-                
-                <li><code>crystal17.main</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.parsers.cry_main:CryMainParser
-                    </span></div></li>
                 
                 <li><code>crystal17.doss</code>
                     <div class="classbox">class<span class="tooltiptext">
@@ -253,6 +253,11 @@
                 <li><code>crystal17.ech3</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_crystal17.parsers.cry_ech3:CryEch3Parser
+                    </span></div></li>
+                
+                <li><code>crystal17.main</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.parsers.cry_main:CryMainParser
                     </span></div></li>
                 
                 <li><code>crystal17.newk</code>
@@ -274,11 +279,6 @@
                 </h4>
                 <ul>
                 
-                <li><code>crystal17.sym3d</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
-                    </span></div></li>
-                
                 <li><code>crystal17.main.base</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_crystal17.workflows.crystal_main.base:CryMainBaseWorkChain
@@ -289,28 +289,28 @@
                         aiida_crystal17.workflows.crystal_props.base:CryPropertiesWorkChain
                     </span></div></li>
                 
+                <li><code>crystal17.sym3d</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+                    </span></div></li>
+                
                 </ul>
             
                 <h4>
                     
-                      verdi data commands <span class="entrypointraw">(aiida.cmdline.data)</span>
+                      Console scripts <span class="entrypointraw">(console_scripts)</span>
                     
                 </h4>
                 <ul>
                 
-                <li><code>crystal17.symmetry</code>
+                <li><code>mock_crystal17</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.cmndline.symmetry:symmetry
+                        aiida_crystal17.tests.mock_crystal17:main
                     </span></div></li>
                 
-                <li><code>crystal17.basis</code>
+                <li><code>mock_properties17</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.cmndline.basis_set:basisset
-                    </span></div></li>
-                
-                <li><code>crystal17.parse</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_crystal17.cmndline.cmd_parser:parse
+                        aiida_crystal17.tests.mock_properties17:main
                     </span></div></li>
                 
                 </ul>

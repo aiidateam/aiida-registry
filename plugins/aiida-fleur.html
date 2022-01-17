@@ -167,14 +167,14 @@
                 </h4>
                 <ul>
                 
-                <li><code>fleur.fleurparser</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.parsers.fleur:FleurParser
-                    </span></div></li>
-                
                 <li><code>fleur.fleurinpgenparser</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_fleur.parsers.fleur_inputgen:Fleur_inputgenParser
+                    </span></div></li>
+                
+                <li><code>fleur.fleurparser</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.parsers.fleur:FleurParser
                     </span></div></li>
                 
                 </ul>
@@ -186,29 +186,39 @@
                 </h4>
                 <ul>
                 
-                <li><code>fleur.scf</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.scf:FleurScfWorkChain
-                    </span></div></li>
-                
-                <li><code>fleur.dos</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.dos:fleur_dos_wc
-                    </span></div></li>
-                
                 <li><code>fleur.banddos</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_fleur.workflows.banddos:FleurBandDosWorkChain
                     </span></div></li>
                 
-                <li><code>fleur.orbcontrol</code>
+                <li><code>fleur.base</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.orbcontrol:FleurOrbControlWorkChain
+                        aiida_fleur.workflows.base_fleur:FleurBaseWorkChain
                     </span></div></li>
                 
-                <li><code>fleur.strain</code>
+                <li><code>fleur.base_relax</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.strain:FleurStrainWorkChain
+                        aiida_fleur.workflows.base_relax:FleurBaseRelaxWorkChain
+                    </span></div></li>
+                
+                <li><code>fleur.corehole</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.workflows.corehole:FleurCoreholeWorkChain
+                    </span></div></li>
+                
+                <li><code>fleur.create_magnetic</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.workflows.create_magnetic_film:FleurCreateMagneticWorkChain
+                    </span></div></li>
+                
+                <li><code>fleur.dmi</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.workflows.dmi:FleurDMIWorkChain
+                    </span></div></li>
+                
+                <li><code>fleur.dos</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.workflows.dos:fleur_dos_wc
                     </span></div></li>
                 
                 <li><code>fleur.eos</code>
@@ -221,11 +231,6 @@
                         aiida_fleur.workflows.initial_cls:FleurInitialCLSWorkChain
                     </span></div></li>
                 
-                <li><code>fleur.corehole</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.corehole:FleurCoreholeWorkChain
-                    </span></div></li>
-                
                 <li><code>fleur.mae</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_fleur.workflows.mae:FleurMaeWorkChain
@@ -234,6 +239,21 @@
                 <li><code>fleur.mae_conv</code>
                     <div class="classbox">class<span class="tooltiptext">
                         aiida_fleur.workflows.mae_conv:FleurMaeConvWorkChain
+                    </span></div></li>
+                
+                <li><code>fleur.orbcontrol</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.workflows.orbcontrol:FleurOrbControlWorkChain
+                    </span></div></li>
+                
+                <li><code>fleur.relax</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.workflows.relax:FleurRelaxWorkChain
+                    </span></div></li>
+                
+                <li><code>fleur.scf</code>
+                    <div class="classbox">class<span class="tooltiptext">
+                        aiida_fleur.workflows.scf:FleurScfWorkChain
                     </span></div></li>
                 
                 <li><code>fleur.ssdisp</code>
@@ -246,29 +266,9 @@
                         aiida_fleur.workflows.ssdisp_conv:FleurSSDispConvWorkChain
                     </span></div></li>
                 
-                <li><code>fleur.dmi</code>
+                <li><code>fleur.strain</code>
                     <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.dmi:FleurDMIWorkChain
-                    </span></div></li>
-                
-                <li><code>fleur.relax</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.relax:FleurRelaxWorkChain
-                    </span></div></li>
-                
-                <li><code>fleur.create_magnetic</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.create_magnetic_film:FleurCreateMagneticWorkChain
-                    </span></div></li>
-                
-                <li><code>fleur.base_relax</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.base_relax:FleurBaseRelaxWorkChain
-                    </span></div></li>
-                
-                <li><code>fleur.base</code>
-                    <div class="classbox">class<span class="tooltiptext">
-                        aiida_fleur.workflows.base_fleur:FleurBaseWorkChain
+                        aiida_fleur.workflows.strain:FleurStrainWorkChain
                     </span></div></li>
                 
                 </ul>
