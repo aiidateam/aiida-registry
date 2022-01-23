@@ -14,6 +14,7 @@ from collections import OrderedDict
 from typing import Optional
 
 import requests
+import yaml
 
 from . import (PLUGINS_FILE_ABS, PLUGINS_METADATA, REPORTER,
                classifier_to_status, status_dict)
@@ -148,7 +149,7 @@ def validate_dev_status(plugin_data: dict):
             f"does not match development_status in metadata ({plugin_data['development_status']})"
         )
 
-    # prioritise development_status from plugins.json
+    # prioritise development_status from plugins.yaml
     if 'development_status' in plugin_data:
         REPORTER.warn(
             '`development_status` key is deprecated. '
@@ -216,7 +217,7 @@ def is_pip_url_pypi(string: str) -> bool:
 def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
     """Fetch metadata from PyPI and AiiDA-Plugins."""
     with open(PLUGINS_FILE_ABS) as handle:
-        plugins_raw_data: dict = json.load(handle)
+        plugins_raw_data: dict = yaml.safe_load(handle)
 
     plugins_metadata = OrderedDict()
 
