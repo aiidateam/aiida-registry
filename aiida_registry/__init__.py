@@ -13,7 +13,7 @@ __version__ = '0.1.0'
 
 # Absolute paths
 pwd = os.path.split(os.path.abspath(__file__))[0]
-PLUGINS_FILE_ABS = os.path.join(pwd, os.pardir, 'plugins.json')
+PLUGINS_FILE_ABS = os.path.join(pwd, os.pardir, 'plugins.yaml')
 PLUGINS_METADATA = 'plugins_metadata.json'
 PLUGINS_METADATA_KEYS = ['author', 'author_email', 'version', 'description']
 

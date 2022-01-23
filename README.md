@@ -18,16 +18,14 @@ community of your ongoing work.
 ## How to register a plugin
 
 1. Fork this repository
-2. Add your plugin to the end of the `plugins.json` file, e.g.
+2. Add your plugin to the end of the `plugins.yaml` file, e.g.
     ```
     ...
-    },
-    "aiida-new": {
-        "entry_point_prefix": "new",
-        "plugin_info": "https://raw.github.com/aiidateam/aiida-new/master/setup.json",
-        "code_home": "https://github.com/aiidateam/aiida-new",
-        "documentation_url": "http://aiida-new.readthedocs.io/"
-    }
+    aiida-new:
+      entry_point_prefix: new
+      plugin_info: https://raw.github.com/aiidateam/aiida-new/master/setup.json
+      code_home: https://github.com/aiidateam/aiida-new
+      documentation_url: http://aiida-new.readthedocs.io/
     ```
 3. Create a [Pull Request](https://github.com/aiidateam/aiida-registry/pulls) to this repository
 

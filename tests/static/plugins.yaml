@@ -1,0 +1,3522 @@
+alloy:
+  aiida_version: '>=1.0.0b1,<2.0.0'
+  code_home: https://github.com/DanielMarchand/aiida-alloy
+  development_status: planning
+  entry_point_prefix: alloy
+  entry_points:
+    aiida.calculations:
+    - alloy = aiida_alloy.calculations:DiffCalculation
+    aiida.cmdline.data:
+    - alloy = aiida_alloy.cli.data:data_cli
+    aiida.data:
+    - alloy = aiida_alloy.data:DiffParameters
+    aiida.parsers:
+    - alloy = aiida_alloy.parsers:DiffParser
+    console_scripts:
+    - create_randomsupercell_structures = aiida_alloy.cli.create_randomsupercell_structures:cli
+    - create_surface_structures = aiida_alloy.cli.create_surface_structures:cli
+    - create_solutesupercell_structures = aiida_alloy.cli.create_solutesupercell_structures:cli
+    - create_stackingfault_structures = aiida_alloy.cli.create_stackingfault_structures:cli
+    - dump_group_to_runner = aiida_alloy.cli.dump_group_to_runner:cli
+    - launch_workflow_alloy = aiida_alloy.cli.launch_workflow_alloy:cli
+    - load_oqmd_dump = aiida_alloy.cli.load_oqmd_dump:cli
+    - load_runner_dump = aiida_alloy.cli.load_runner_dump:cli
+  hosted_on: github.com
+  metadata:
+    author: Daniel Marchand, Albert Glensk
+    author_email: daniel.marchand@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    description: AiiDA plugin for studying alloys
+    version: 0.1.0a0
+  name: aiida-alloy
+  package_name: aiida_alloy
+  pip_url: git+https://github.com/aiidateam/aiida-alloy
+  plugin_info:
+  - setuptools
+  - author: Daniel Marchand, Albert Glensk
+    author_email: daniel.marchand@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    description: AiiDA plugin for studying alloys
+    entry_points:
+      aiida.calculations:
+      - alloy = aiida_alloy.calculations:DiffCalculation
+      aiida.cmdline.data:
+      - alloy = aiida_alloy.cli.data:data_cli
+      aiida.data:
+      - alloy = aiida_alloy.data:DiffParameters
+      aiida.parsers:
+      - alloy = aiida_alloy.parsers:DiffParser
+      console_scripts:
+      - create_randomsupercell_structures = aiida_alloy.cli.create_randomsupercell_structures:cli
+      - create_surface_structures = aiida_alloy.cli.create_surface_structures:cli
+      - create_solutesupercell_structures = aiida_alloy.cli.create_solutesupercell_structures:cli
+      - create_stackingfault_structures = aiida_alloy.cli.create_stackingfault_structures:cli
+      - dump_group_to_runner = aiida_alloy.cli.dump_group_to_runner:cli
+      - launch_workflow_alloy = aiida_alloy.cli.launch_workflow_alloy:cli
+      - load_oqmd_dump = aiida_alloy.cli.load_oqmd_dump:cli
+      - load_runner_dump = aiida_alloy.cli.load_runner_dump:cli
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.26.0
+      - prospector==0.12.11
+      - pylint==1.9.4
+      testing:
+      - mock==2.0.0
+      - pgtest==1.2.0
+      - sqlalchemy-diff==0.1.3
+      - wheel>=0.31
+      - coverage
+      - pytest==3.6.3
+      - pytest-cov==2.6.0
+    include_package_data: true
+    install_requires:
+    - aiida-core>=1.0.0b1,<2.0.0
+    - six
+    - voluptuous
+    license: MIT
+    name: aiida-alloy
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/DanielMarchand/aiida-alloy
+    version: 0.1.0a0
+ase:
+  aiida_version: '>=0.10.0rc1'
+  code_home: https://github.com/aiidateam/aiida-ase
+  development_status: stable
+  documentation_url: https://aiida-ase.readthedocs.io/
+  entry_point_prefix: ase
+  entry_points:
+    aiida.calculations:
+    - ase.ase = aiida_ase.calculations.ase:AseCalculation
+    aiida.parsers:
+    - ase.ase = aiida_ase.parsers.ase:AseParser
+  hosted_on: github.com
+  metadata:
+    author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for ASE
+    version: 1.0.1
+  name: aiida-ase
+  package_name: aiida_ase
+  pip_url: aiida-ase
+  plugin_info:
+  - setuptools
+  - author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for ASE
+    entry_points:
+      aiida.calculations:
+      - ase.ase = aiida_ase.calculations.ase:AseCalculation
+      aiida.parsers:
+      - ase.ase = aiida_ase.parsers.ase:AseParser
+    extras_require:
+      dev_precommit:
+      - pre-commit
+      docs:
+      - Sphinx
+      - docutils
+      - sphinx_rtd_theme
+    install_requires:
+    - aiida-core>=0.10.0rc1
+    license: MIT License
+    name: aiida_ase
+    url: https://github.com/aiidateam/aiida-ase
+    version: 1.0.1
+bands-inspect:
+  aiida_version: '>=1.0.0a4,<2.0.0'
+  code_home: https://github.com/greschd/aiida-bands-inspect
+  development_status: beta
+  documentation_url: https://aiida-bands-inspect.readthedocs.io
+  entry_point_prefix: bands_inspect
+  entry_points:
+    aiida.calculations:
+    - bands_inspect.difference = aiida_bands_inspect.calculations.difference:DifferenceCalculation
+    - bands_inspect.plot = aiida_bands_inspect.calculations.plot:PlotCalculation
+    aiida.parsers:
+    - bands_inspect.bands = aiida_bands_inspect.parsers.bands:BandsParser
+    - bands_inspect.difference = aiida_bands_inspect.parsers.difference:DifferenceParser
+    - bands_inspect.plot = aiida_bands_inspect.parsers.plot:PlotParser
+  hosted_on: github.com
+  metadata:
+    author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 4 - Beta'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA Plugin for running bands_inspect
+    version: ''
+  name: aiida-bands-inspect
+  package_name: aiida_bands_inspect
+  pip_url: aiida-bands-inspect
+  plugin_info:
+  - setuptools
+  - author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 4 - Beta'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA Plugin for running bands_inspect
+    entry_points:
+      aiida.calculations:
+      - bands_inspect.difference = aiida_bands_inspect.calculations.difference:DifferenceCalculation
+      - bands_inspect.plot = aiida_bands_inspect.calculations.plot:PlotCalculation
+      aiida.parsers:
+      - bands_inspect.bands = aiida_bands_inspect.parsers.bands:BandsParser
+      - bands_inspect.difference = aiida_bands_inspect.parsers.difference:DifferenceParser
+      - bands_inspect.plot = aiida_bands_inspect.parsers.plot:PlotParser
+    extras_require:
+      dev:
+      - numpy
+      - aiida-pytest>=0.1.0a4
+      - pytest
+      - yapf==0.28
+      - pre-commit
+    include_package_data: true
+    install_requires:
+    - h5py
+    - aiida-core>=1.0.0a4,<2.0.0
+    - fsc.export
+    - six
+    keywords:
+    - bandstructure
+    - aiida
+    - workflows
+    license: Apache 2.0
+    name: aiida-bands-inspect
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://aiida-bands-inspect.readthedocs.io
+castep:
+  aiida_version: '>=0.11.0,<1.0.0'
+  code_home: https://gitlab.com/bz1/aiida-castep
+  development_status: beta
+  documentation_url: https://aiida-castep.readthedocs.io/
+  entry_point_prefix: castep
+  entry_points:
+    aiida.calculations:
+    - castep.castep = aiida_castep.calculations.castep:CastepCalculation
+    - castep.bs = aiida_castep.calculations.castep:CastepBSCalculation
+    - castep.spec = aiida_castep.calculations.castep:CastepSpectralCalculation
+    - castep.pot1d = aiida_castep.calculations.castep:Pot1dCalculation
+    - castep.ts = aiida_castep.calculations.castep:CastepTSCalculation
+    aiida.cmdline.data:
+    - castep-usp = aiida_castep.cmdline.usp_cmd:usp_cmd
+    - castep-otfg = aiida_castep.cmdline.otfg_cmd:otfg_cmd
+    - castep-helper = aiida_castep.cmdline.helper_cmd:helper_cmd
+    aiida.data:
+    - castep.uspdata = aiida_castep.data.usp:UspData
+    - castep.otfgdata = aiida_castep.data.otfg:OTFGData
+    aiida.parsers:
+    - castep.castep = aiida_castep.parsers.castep:CastepParser
+    - castep.pot1d = aiida_castep.parsers.castep:Pot1dParser
+    aiida.tests:
+    - castep.calculation = aiida_castep.tests.dbtestcalculation
+    console_scripts:
+    - castep.mock = aiida_castep.utils.mock:main
+  hosted_on: gitlab.com
+  metadata:
+    author: Bonan Zhu
+    author_email: bz240@cam.ac.uk
+    classifiers:
+    - 'Programming Language :: Python :: 2.7'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for CASTEP
+    version: 0.3.2
+  name: aiida-castep
+  package_name: aiida_castep
+  pip_url: aiida-castep
+  plugin_info:
+  - setuptools
+  - author: Bonan Zhu
+    author_email: bz240@cam.ac.uk
+    classifiers:
+    - 'Programming Language :: Python :: 2.7'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for CASTEP
+    entry_points:
+      aiida.calculations:
+      - castep.castep = aiida_castep.calculations.castep:CastepCalculation
+      - castep.bs = aiida_castep.calculations.castep:CastepBSCalculation
+      - castep.spec = aiida_castep.calculations.castep:CastepSpectralCalculation
+      - castep.pot1d = aiida_castep.calculations.castep:Pot1dCalculation
+      - castep.ts = aiida_castep.calculations.castep:CastepTSCalculation
+      aiida.cmdline.data:
+      - castep-usp = aiida_castep.cmdline.usp_cmd:usp_cmd
+      - castep-otfg = aiida_castep.cmdline.otfg_cmd:otfg_cmd
+      - castep-helper = aiida_castep.cmdline.helper_cmd:helper_cmd
+      aiida.data:
+      - castep.uspdata = aiida_castep.data.usp:UspData
+      - castep.otfgdata = aiida_castep.data.otfg:OTFGData
+      aiida.parsers:
+      - castep.castep = aiida_castep.parsers.castep:CastepParser
+      - castep.pot1d = aiida_castep.parsers.castep:Pot1dParser
+      aiida.tests:
+      - castep.calculation = aiida_castep.tests.dbtestcalculation
+      console_scripts:
+      - castep.mock = aiida_castep.utils.mock:main
+    install_requires:
+    - aiida-core >= 0.11.0, <1.0.0
+    - pgtest==1.1.0
+    - deepdiff<=3.3.0
+    - ase
+    - matplotlib<3
+    - castepinput==0.1.3
+    license: MIT License
+    name: aiida-castep
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://gitlab.com/bz1/aiida-castep
+    version: 0.3.2
+codtools:
+  aiida_version: '>=0.10.0rc1'
+  code_home: https://github.com/aiidateam/aiida-codtools
+  development_status: stable
+  documentation_url: https://aiida-codtools.readthedocs.io/
+  entry_point_prefix: codtools
+  entry_points:
+    aiida.calculations:
+    - codtools.ciffilter = aiida_codtools.calculations.ciffilter:CiffilterCalculation
+    - codtools.cifcellcontents = aiida_codtools.calculations.cifcellcontents:CifcellcontentsCalculation
+    - codtools.cifcodcheck = aiida_codtools.calculations.cifcodcheck:CifcodcheckCalculation
+    - codtools.cifcoddeposit = aiida_codtools.calculations.cifcoddeposit:CifcoddepositCalculation
+    - codtools.cifcodnumbers = aiida_codtools.calculations.cifcodnumbers:CifcodnumbersCalculation
+    - codtools.cifsplitprimitive = aiida_codtools.calculations.cifsplitprimitive:CifsplitprimitiveCalculation
+    aiida.parsers:
+    - codtools.cifcellcontents = aiida_codtools.parsers.cifcellcontents:CifcellcontentsParser
+    - codtools.cifcodcheck = aiida_codtools.parsers.cifcodcheck:CifcodcheckParser
+    - codtools.cifcoddeposit = aiida_codtools.parsers.cifcoddeposit:CifcoddepositParser
+    - codtools.cifcodnumbers = aiida_codtools.parsers.cifcodnumbers:CifcodnumbersParser
+    - codtools.ciffilter = aiida_codtools.parsers.ciffilter:CiffilterParser
+    - codtools.cifsplitprimitive = aiida_codtools.parsers.cifsplitprimitive:CifsplitprimitiveParser
+  hosted_on: github.com
+  metadata:
+    author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for COD tools
+    version: 1.0.1
+  name: aiida-codtools
+  package_name: aiida_codtools
+  pip_url: aiida-codtools
+  plugin_info:
+  - setuptools
+  - author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for COD tools
+    entry_points:
+      aiida.calculations:
+      - codtools.ciffilter = aiida_codtools.calculations.ciffilter:CiffilterCalculation
+      - codtools.cifcellcontents = aiida_codtools.calculations.cifcellcontents:CifcellcontentsCalculation
+      - codtools.cifcodcheck = aiida_codtools.calculations.cifcodcheck:CifcodcheckCalculation
+      - codtools.cifcoddeposit = aiida_codtools.calculations.cifcoddeposit:CifcoddepositCalculation
+      - codtools.cifcodnumbers = aiida_codtools.calculations.cifcodnumbers:CifcodnumbersCalculation
+      - codtools.cifsplitprimitive = aiida_codtools.calculations.cifsplitprimitive:CifsplitprimitiveCalculation
+      aiida.parsers:
+      - codtools.cifcellcontents = aiida_codtools.parsers.cifcellcontents:CifcellcontentsParser
+      - codtools.cifcodcheck = aiida_codtools.parsers.cifcodcheck:CifcodcheckParser
+      - codtools.cifcoddeposit = aiida_codtools.parsers.cifcoddeposit:CifcoddepositParser
+      - codtools.cifcodnumbers = aiida_codtools.parsers.cifcodnumbers:CifcodnumbersParser
+      - codtools.ciffilter = aiida_codtools.parsers.ciffilter:CiffilterParser
+      - codtools.cifsplitprimitive = aiida_codtools.parsers.cifsplitprimitive:CifsplitprimitiveParser
+    extras_require:
+      dev_precommit:
+      - pre-commit
+      docs:
+      - Sphinx
+      - docutils
+      - sphinx_rtd_theme
+    install_requires:
+    - aiida-core>=0.10.0rc1
+    license: MIT License
+    name: aiida_codtools
+    url: https://github.com/aiidateam/aiida-codtools
+    version: 1.0.1
+core:
+  aiida_version: null
+  code_home: https://github.com/aiidateam/aiida-core
+  development_status: stable
+  documentation_url: https://aiida-core.readthedocs.io/
+  entry_point_prefix: ''
+  entry_points:
+    aiida.calculations:
+    - arithmetic.add = aiida.calculations.plugins.arithmetic.add:ArithmeticAddCalculation
+    - templatereplacer = aiida.calculations.plugins.templatereplacer:TemplatereplacerCalculation
+    aiida.cmdline.computer.configure:
+    - local = aiida.transports.plugins.local:CONFIGURE_LOCAL_CMD
+    - ssh = aiida.transports.plugins.ssh:CONFIGURE_SSH_CMD
+    aiida.cmdline.data:
+    - array = aiida.cmdline.commands.cmd_data.cmd_array:array
+    - bands = aiida.cmdline.commands.cmd_data.cmd_bands:bands
+    - cif = aiida.cmdline.commands.cmd_data.cmd_cif:cif
+    - dict = aiida.cmdline.commands.cmd_data.cmd_dict:dictionary
+    - remote = aiida.cmdline.commands.cmd_data.cmd_remote:remote
+    - structure = aiida.cmdline.commands.cmd_data.cmd_structure:structure
+    - trajectory = aiida.cmdline.commands.cmd_data.cmd_trajectory:trajectory
+    - upf = aiida.cmdline.commands.cmd_data.cmd_upf:upf
+    aiida.data:
+    - array = aiida.orm.nodes.data.array.array:ArrayData
+    - array.bands = aiida.orm.nodes.data.array.bands:BandsData
+    - array.kpoints = aiida.orm.nodes.data.array.kpoints:KpointsData
+    - array.projection = aiida.orm.nodes.data.array.projection:ProjectionData
+    - array.trajectory = aiida.orm.nodes.data.array.trajectory:TrajectoryData
+    - array.xy = aiida.orm.nodes.data.array.xy:XyData
+    - base = aiida.orm.nodes.data:BaseType
+    - bool = aiida.orm.nodes.data.bool:Bool
+    - cif = aiida.orm.nodes.data.cif:CifData
+    - code = aiida.orm.nodes.data.code:Code
+    - dict = aiida.orm.nodes.data.dict:Dict
+    - float = aiida.orm.nodes.data.float:Float
+    - folder = aiida.orm.nodes.data.folder:FolderData
+    - int = aiida.orm.nodes.data.int:Int
+    - list = aiida.orm.nodes.data.list:List
+    - numeric = aiida.orm.nodes.data.numeric:NumericType
+    - orbital = aiida.orm.nodes.data.orbital:OrbitalData
+    - remote = aiida.orm.nodes.data.remote:RemoteData
+    - singlefile = aiida.orm.nodes.data.singlefile:SinglefileData
+    - str = aiida.orm.nodes.data.str:Str
+    - structure = aiida.orm.nodes.data.structure:StructureData
+    - upf = aiida.orm.nodes.data.upf:UpfData
+    aiida.node:
+    - data = aiida.orm.nodes.data.data:Data
+    - process = aiida.orm.nodes.process.process:ProcessNode
+    - process.calculation = aiida.orm.nodes.process.calculation.calculation:CalculationNode
+    - process.calculation.calcfunction = aiida.orm.nodes.process.calculation.calcfunction:CalcFunctionNode
+    - process.calculation.calcjob = aiida.orm.nodes.process.calculation.calcjob:CalcJobNode
+    - process.workflow = aiida.orm.nodes.process.workflow.workflow:WorkflowNode
+    - process.workflow.workchain = aiida.orm.nodes.process.workflow.workchain:WorkChainNode
+    - process.workflow.workfunction = aiida.orm.nodes.process.workflow.workfunction:WorkFunctionNode
+    aiida.parsers:
+    - arithmetic.add = aiida.parsers.plugins.arithmetic.add:ArithmeticAddParser
+    - templatereplacer.doubler = aiida.parsers.plugins.templatereplacer.doubler:TemplatereplacerDoublerParser
+    aiida.schedulers:
+    - direct = aiida.schedulers.plugins.direct:DirectScheduler
+    - lsf = aiida.schedulers.plugins.lsf:LsfScheduler
+    - pbspro = aiida.schedulers.plugins.pbspro:PbsproScheduler
+    - sge = aiida.schedulers.plugins.sge:SgeScheduler
+    - slurm = aiida.schedulers.plugins.slurm:SlurmScheduler
+    - torque = aiida.schedulers.plugins.torque:TorqueScheduler
+    aiida.tools.calculations: []
+    aiida.tools.data.orbitals:
+    - orbital = aiida.tools.data.orbital.orbital:Orbital
+    - realhydrogen = aiida.tools.data.orbital.realhydrogen:RealhydrogenOrbital
+    aiida.tools.dbexporters: []
+    aiida.tools.dbimporters:
+    - cod = aiida.tools.dbimporters.plugins.cod:CodDbImporter
+    - icsd = aiida.tools.dbimporters.plugins.icsd:IcsdDbImporter
+    - materialsproject = aiida.tools.dbimporters.plugins.materialsproject:MaterialsProjectImporter
+    - mpds = aiida.tools.dbimporters.plugins.mpds:MpdsDbImporter
+    - mpod = aiida.tools.dbimporters.plugins.mpod:MpodDbImporter
+    - nninc = aiida.tools.dbimporters.plugins.nninc:NnincDbImporter
+    - oqmd = aiida.tools.dbimporters.plugins.oqmd:OqmdDbImporter
+    - pcod = aiida.tools.dbimporters.plugins.pcod:PcodDbImporter
+    - tcod = aiida.tools.dbimporters.plugins.tcod:TcodDbImporter
+    aiida.transports:
+    - local = aiida.transports.plugins.local:LocalTransport
+    - ssh = aiida.transports.plugins.ssh:SshTransport
+    aiida.workflows: []
+    console_scripts:
+    - verdi=aiida.cmdline.commands.cmd_verdi:verdi
+  hosted_on: github.com
+  metadata:
+    author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'Framework :: AiiDA'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Operating System :: POSIX :: Linux'
+    - 'Operating System :: MacOS :: MacOS X'
+    - 'Programming Language :: Python'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.5'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Topic :: Scientific/Engineering'
+    description: ''
+    version: 1.0.0
+  name: aiida-core
+  package_name: aiida
+  pip_url: aiida-core
+  plugin_info:
+  - setuptools
+  - author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'Framework :: AiiDA'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Operating System :: POSIX :: Linux'
+    - 'Operating System :: MacOS :: MacOS X'
+    - 'Programming Language :: Python'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.5'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Topic :: Scientific/Engineering'
+    entry_points:
+      aiida.calculations:
+      - arithmetic.add = aiida.calculations.plugins.arithmetic.add:ArithmeticAddCalculation
+      - templatereplacer = aiida.calculations.plugins.templatereplacer:TemplatereplacerCalculation
+      aiida.cmdline.computer.configure:
+      - local = aiida.transports.plugins.local:CONFIGURE_LOCAL_CMD
+      - ssh = aiida.transports.plugins.ssh:CONFIGURE_SSH_CMD
+      aiida.cmdline.data:
+      - array = aiida.cmdline.commands.cmd_data.cmd_array:array
+      - bands = aiida.cmdline.commands.cmd_data.cmd_bands:bands
+      - cif = aiida.cmdline.commands.cmd_data.cmd_cif:cif
+      - dict = aiida.cmdline.commands.cmd_data.cmd_dict:dictionary
+      - remote = aiida.cmdline.commands.cmd_data.cmd_remote:remote
+      - structure = aiida.cmdline.commands.cmd_data.cmd_structure:structure
+      - trajectory = aiida.cmdline.commands.cmd_data.cmd_trajectory:trajectory
+      - upf = aiida.cmdline.commands.cmd_data.cmd_upf:upf
+      aiida.data:
+      - array = aiida.orm.nodes.data.array.array:ArrayData
+      - array.bands = aiida.orm.nodes.data.array.bands:BandsData
+      - array.kpoints = aiida.orm.nodes.data.array.kpoints:KpointsData
+      - array.projection = aiida.orm.nodes.data.array.projection:ProjectionData
+      - array.trajectory = aiida.orm.nodes.data.array.trajectory:TrajectoryData
+      - array.xy = aiida.orm.nodes.data.array.xy:XyData
+      - base = aiida.orm.nodes.data:BaseType
+      - bool = aiida.orm.nodes.data.bool:Bool
+      - cif = aiida.orm.nodes.data.cif:CifData
+      - code = aiida.orm.nodes.data.code:Code
+      - dict = aiida.orm.nodes.data.dict:Dict
+      - float = aiida.orm.nodes.data.float:Float
+      - folder = aiida.orm.nodes.data.folder:FolderData
+      - int = aiida.orm.nodes.data.int:Int
+      - list = aiida.orm.nodes.data.list:List
+      - numeric = aiida.orm.nodes.data.numeric:NumericType
+      - orbital = aiida.orm.nodes.data.orbital:OrbitalData
+      - remote = aiida.orm.nodes.data.remote:RemoteData
+      - singlefile = aiida.orm.nodes.data.singlefile:SinglefileData
+      - str = aiida.orm.nodes.data.str:Str
+      - structure = aiida.orm.nodes.data.structure:StructureData
+      - upf = aiida.orm.nodes.data.upf:UpfData
+      aiida.node:
+      - data = aiida.orm.nodes.data.data:Data
+      - process = aiida.orm.nodes.process.process:ProcessNode
+      - process.calculation = aiida.orm.nodes.process.calculation.calculation:CalculationNode
+      - process.calculation.calcfunction = aiida.orm.nodes.process.calculation.calcfunction:CalcFunctionNode
+      - process.calculation.calcjob = aiida.orm.nodes.process.calculation.calcjob:CalcJobNode
+      - process.workflow = aiida.orm.nodes.process.workflow.workflow:WorkflowNode
+      - process.workflow.workchain = aiida.orm.nodes.process.workflow.workchain:WorkChainNode
+      - process.workflow.workfunction = aiida.orm.nodes.process.workflow.workfunction:WorkFunctionNode
+      aiida.parsers:
+      - arithmetic.add = aiida.parsers.plugins.arithmetic.add:ArithmeticAddParser
+      - templatereplacer.doubler = aiida.parsers.plugins.templatereplacer.doubler:TemplatereplacerDoublerParser
+      aiida.schedulers:
+      - direct = aiida.schedulers.plugins.direct:DirectScheduler
+      - lsf = aiida.schedulers.plugins.lsf:LsfScheduler
+      - pbspro = aiida.schedulers.plugins.pbspro:PbsproScheduler
+      - sge = aiida.schedulers.plugins.sge:SgeScheduler
+      - slurm = aiida.schedulers.plugins.slurm:SlurmScheduler
+      - torque = aiida.schedulers.plugins.torque:TorqueScheduler
+      aiida.tools.calculations: []
+      aiida.tools.data.orbitals:
+      - orbital = aiida.tools.data.orbital.orbital:Orbital
+      - realhydrogen = aiida.tools.data.orbital.realhydrogen:RealhydrogenOrbital
+      aiida.tools.dbexporters: []
+      aiida.tools.dbimporters:
+      - cod = aiida.tools.dbimporters.plugins.cod:CodDbImporter
+      - icsd = aiida.tools.dbimporters.plugins.icsd:IcsdDbImporter
+      - materialsproject = aiida.tools.dbimporters.plugins.materialsproject:MaterialsProjectImporter
+      - mpds = aiida.tools.dbimporters.plugins.mpds:MpdsDbImporter
+      - mpod = aiida.tools.dbimporters.plugins.mpod:MpodDbImporter
+      - nninc = aiida.tools.dbimporters.plugins.nninc:NnincDbImporter
+      - oqmd = aiida.tools.dbimporters.plugins.oqmd:OqmdDbImporter
+      - pcod = aiida.tools.dbimporters.plugins.pcod:PcodDbImporter
+      - tcod = aiida.tools.dbimporters.plugins.tcod:TcodDbImporter
+      aiida.transports:
+      - local = aiida.transports.plugins.local:LocalTransport
+      - ssh = aiida.transports.plugins.ssh:SshTransport
+      aiida.workflows: []
+      console_scripts:
+      - verdi=aiida.cmdline.commands.cmd_verdi:verdi
+    extras_require:
+      atomic_tools:
+      - PyCifRW==4.2.1; python_version < '3'
+      - PyCifRW==4.4.1; python_version >= '3'
+      - ase==3.17.0
+      - monty==2.0.4
+      - pymatgen<=2018.12.12
+      - pymysql==0.9.3
+      - seekpath==1.9.3
+      - spglib==1.14.1.post0
+      bpython:
+      - bpython==0.17.1
+      dev_precommit:
+      - astroid==1.6.6; python_version<'3.0'
+      - astroid==2.2.5; python_version>='3.0'
+      - pep8-naming==0.8.2
+      - pre-commit==1.18.3
+      - prospector==1.1.7
+      - pylint-django==0.11.1; python_version<'3.0'
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.3.1; python_version>='3.0'
+      - toml==0.10.0
+      - yapf==0.28.0
+      docs:
+      - docutils==0.15.2
+      - jinja2==2.10.3
+      - markupsafe==1.1.1
+      - pygments==2.4.2
+      - sphinx-rtd-theme==0.4.3
+      - sphinx==1.8.5; python_version<'3'
+      - sphinx==2.2.0; python_version>='3.0'
+      - sphinxcontrib-contentui==0.2.2; python_version<'3'
+      - sphinxcontrib-contentui==0.2.4; python_version>='3.0'
+      - sphinxcontrib-details-directive==0.1.0; python_version>='3.0'
+      notebook:
+      - jupyter==1.0.0
+      - notebook<6
+      rest:
+      - flask-cache==0.13.1
+      - flask-cors==3.0.8
+      - flask-httpauth==3.3.0
+      - flask-marshmallow==0.10.1
+      - flask-restful==0.3.7
+      - flask-sqlalchemy==2.4.1
+      - flask==1.1.1
+      - itsdangerous==1.1.0
+      - marshmallow-sqlalchemy==0.19.0
+      - pyparsing==2.4.2
+      - python-memcached==1.59
+      - seekpath==1.9.3
+      - sqlalchemy-migrate==0.12.0
+      ssh_kerberos:
+      - gssapi==1.6.1
+      - pyasn1==0.4.7
+      testing:
+      - aiida-export-migration-tests==0.7.0
+      - codecov==2.0.15
+      - coverage==4.5.4
+      - futures==3.3.0; python_version=='2.7'
+      - pg8000<1.13.0
+      - pgtest==1.3.1
+      - pytest==4.6.6
+      - pytest-cov==2.8.1
+      - mock==3.0.5; python_version<'3.3'
+      - sqlalchemy-diff==0.1.3
+      - unittest2==1.1.0; python_version<'3.5'
+    include_package_data: true
+    install_requires:
+    - aldjemy==0.9.1
+    - alembic==1.2.1
+    - circus==0.15.0
+    - click-completion==0.5.1
+    - click-config-file==0.5.0
+    - click-spinner==0.1.8
+    - click==7.0
+    - django==1.11.25
+    - enum34==1.1.6; python_version<'3.5'
+    - ete3==3.1.1
+    - graphviz==0.13
+    - ipython>=4.0,<6.0
+    - kiwipy[rmq]==0.5.1
+    - mock==3.0.5
+    - numpy==1.16.4
+    - paramiko==2.6.0
+    - passlib==1.7.1
+    - pika==1.1.0
+    - plumpy==0.14.3
+    - psutil==5.6.3
+    - psycopg2-binary==2.8.3
+    - pyblake2==1.1.2; python_version<'3.6'
+    - python-dateutil==2.8.0
+    - pytz==2019.3
+    - pyyaml==3.13
+    - reentry>=1.3.0
+    - simplejson==3.16.0
+    - singledispatch>=3.4.0.3; python_version<'3.5'
+    - six==1.12.0
+    - sqlalchemy-utils==0.34.2
+    - sqlalchemy==1.3.10
+    - tabulate==0.8.5
+    - tornado<5.0
+    - typing==3.7.4.1; python_version<'3.5'
+    - tzlocal==2.0.0
+    - upf_to_json==0.9.2
+    - uritools==2.2.0
+    - wrapt==1.11.2
+    license: MIT License
+    name: aiida-core
+    reentry_register: true
+    scripts:
+    - bin/runaiida
+    url: http://www.aiida.net/
+    version: 1.0.0
+cp2k:
+  aiida_version: '>=1.0.0b5'
+  code_home: https://github.com/cp2k/aiida-cp2k
+  development_status: beta
+  entry_point_prefix: cp2k
+  entry_points:
+    aiida.calculations:
+    - cp2k = aiida_cp2k.calculations:Cp2kCalculation
+    aiida.parsers:
+    - cp2k_base_parser = aiida_cp2k.parsers:Cp2kBaseParser
+    - cp2k_advanced_parser = aiida_cp2k.parsers:Cp2kAdvancedParser
+    aiida.workflows:
+    - cp2k.base = aiida_cp2k.workchains:Cp2kBaseWorkChain
+    - cp2k.multistage= aiida_cp2k.workchains:Cp2kMultistageWorkChain
+  hosted_on: github.com
+  metadata:
+    author: "Ole Sch\xFCtt, Edward Ditler, Aliaksandr Yakutovich, Patrick Seewald,\
+      \ Tiziano M\xFCller, Andreas Gl\xF6ss, Leonid Kahle"
+    author_email: ole.schuett@cp2k.org
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    description: The CP2K plugin for the AiiDA workflow and provenance engine.
+    version: 1.0.0b4
+  name: aiida-cp2k
+  package_name: aiida_cp2k
+  pip_url: aiida-cp2k
+  plugin_info:
+  - setuptools
+  - author: "Ole Sch\xFCtt, Edward Ditler, Aliaksandr Yakutovich, Patrick Seewald,\
+      \ Tiziano M\xFCller, Andreas Gl\xF6ss, Leonid Kahle"
+    author_email: ole.schuett@cp2k.org
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    data_files:
+    - - .
+      - - setup.json
+    description: The CP2K plugin for the AiiDA workflow and provenance engine.
+    entry_points:
+      aiida.calculations:
+      - cp2k = aiida_cp2k.calculations:Cp2kCalculation
+      aiida.parsers:
+      - cp2k_base_parser = aiida_cp2k.parsers:Cp2kBaseParser
+      - cp2k_advanced_parser = aiida_cp2k.parsers:Cp2kAdvancedParser
+      aiida.workflows:
+      - cp2k.base = aiida_cp2k.workchains:Cp2kBaseWorkChain
+      - cp2k.multistage= aiida_cp2k.workchains:Cp2kMultistageWorkChain
+    extras_require:
+      pre-commit:
+      - pre-commit==1.17.0
+      - yapf==0.28.0
+      - prospector==1.1.7
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.3.1; python_version>='3.0'
+      test:
+      - pytest==4.4.1
+    install_requires:
+    - aiida-core>=1.0.0b5
+    - ase==3.17.0; python_version<'3.0'
+    - ase; python_version>='3.5'
+    license: MIT License
+    name: aiida_cp2k
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/aiidateam/aiida-cp2k
+    version: 1.0.0b4
+crystal17:
+  aiida_version: ==1.0.0b5
+  code_home: https://github.com/chrisjsewell/aiida-crystal17
+  development_status: beta
+  documentation_url: https://aiida-crystal17.readthedocs.io
+  entry_point_prefix: crystal17
+  entry_points:
+    aiida.calculations:
+    - crystal17.basic = aiida_crystal17.calculations.cry_basic:CryBasicCalculation
+    - crystal17.main = aiida_crystal17.calculations.cry_main:CryMainCalculation
+    - crystal17.doss = aiida_crystal17.calculations.prop_doss:CryDossCalculation
+    - crystal17.ech3 = aiida_crystal17.calculations.prop_ech3:CryEch3Calculation
+    - crystal17.newk = aiida_crystal17.calculations.prop_newk:CryNewkCalculation
+    - gulp.single = aiida_crystal17.gulp.calculations.gulp_single:GulpSingleCalculation
+    - gulp.optimize = aiida_crystal17.gulp.calculations.gulp_optimize:GulpOptCalculation
+    - gulp.fitting = aiida_crystal17.gulp.calculations.gulp_fitting:GulpFittingCalculation
+    aiida.cmdline.data:
+    - crystal17.symmetry = aiida_crystal17.cmndline.symmetry:symmetry
+    - crystal17.basis = aiida_crystal17.cmndline.basis_set:basisset
+    - crystal17.parse = aiida_crystal17.cmndline.cmd_parser:parse
+    - gulp.potentials = aiida_crystal17.gulp.cmndline.potentials:potentials
+    aiida.data:
+    - crystal17.parameters = aiida_crystal17.data.input_params:CryInputParamsData
+    - crystal17.basisset = aiida_crystal17.data.basis_set:BasisSetData
+    - crystal17.symmetry = aiida_crystal17.data.symmetry:SymmetryData
+    - crystal17.kinds = aiida_crystal17.data.kinds:KindData
+    - crystal17.gcube = aiida_crystal17.data.gcube:GaussianCube
+    - gulp.potential = aiida_crystal17.gulp.data.potential:EmpiricalPotential
+    aiida.parsers:
+    - crystal17.main = aiida_crystal17.parsers.cry_main:CryMainParser
+    - crystal17.doss = aiida_crystal17.parsers.cry_doss:CryDossParser
+    - crystal17.ech3 = aiida_crystal17.parsers.cry_ech3:CryEch3Parser
+    - crystal17.newk = aiida_crystal17.parsers.cry_newk:CryNewkParser
+    - gulp.single = aiida_crystal17.gulp.parsers.parse_single:GulpSingleParser
+    - gulp.optimize = aiida_crystal17.gulp.parsers.parse_opt:GulpOptParser
+    - gulp.fitting = aiida_crystal17.gulp.parsers.parse_fitting:GulpFittingParser
+    aiida.workflows:
+    - crystal17.sym3d = aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+    - crystal17.main.base = aiida_crystal17.workflows.crystal_main.base:CryMainBaseWorkChain
+    - crystal17.properties = aiida_crystal17.workflows.crystal_props.base:CryPropertiesWorkChain
+    console_scripts:
+    - mock_crystal17 = aiida_crystal17.tests.mock_crystal17:main
+    - mock_properties17 = aiida_crystal17.tests.mock_properties17:main
+    - mock_gulp = aiida_crystal17.tests.mock_gulp:main
+    gulp.potentials:
+    - reaxff = aiida_crystal17.gulp.potentials.reaxff:PotentialWriterReaxff
+    - lj =  aiida_crystal17.gulp.potentials.lj:PotentialWriterLJ
+  hosted_on: github.com
+  metadata:
+    author: Chris Sewell
+    author_email: chrisj_sewell@hotmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Chemistry'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for running the CRYSTAL17 code
+    version: 0.10.0b5
+  name: aiida-crystal17
+  package_name: aiida_crystal17
+  pip_url: aiida-crystal17
+  plugin_info:
+  - setuptools
+  - author: Chris Sewell
+    author_email: chrisj_sewell@hotmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Chemistry'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for running the CRYSTAL17 code
+    entry_points:
+      aiida.calculations:
+      - crystal17.basic = aiida_crystal17.calculations.cry_basic:CryBasicCalculation
+      - crystal17.main = aiida_crystal17.calculations.cry_main:CryMainCalculation
+      - crystal17.doss = aiida_crystal17.calculations.prop_doss:CryDossCalculation
+      - crystal17.ech3 = aiida_crystal17.calculations.prop_ech3:CryEch3Calculation
+      - crystal17.newk = aiida_crystal17.calculations.prop_newk:CryNewkCalculation
+      - gulp.single = aiida_crystal17.gulp.calculations.gulp_single:GulpSingleCalculation
+      - gulp.optimize = aiida_crystal17.gulp.calculations.gulp_optimize:GulpOptCalculation
+      - gulp.fitting = aiida_crystal17.gulp.calculations.gulp_fitting:GulpFittingCalculation
+      aiida.cmdline.data:
+      - crystal17.symmetry = aiida_crystal17.cmndline.symmetry:symmetry
+      - crystal17.basis = aiida_crystal17.cmndline.basis_set:basisset
+      - crystal17.parse = aiida_crystal17.cmndline.cmd_parser:parse
+      - gulp.potentials = aiida_crystal17.gulp.cmndline.potentials:potentials
+      aiida.data:
+      - crystal17.parameters = aiida_crystal17.data.input_params:CryInputParamsData
+      - crystal17.basisset = aiida_crystal17.data.basis_set:BasisSetData
+      - crystal17.symmetry = aiida_crystal17.data.symmetry:SymmetryData
+      - crystal17.kinds = aiida_crystal17.data.kinds:KindData
+      - crystal17.gcube = aiida_crystal17.data.gcube:GaussianCube
+      - gulp.potential = aiida_crystal17.gulp.data.potential:EmpiricalPotential
+      aiida.parsers:
+      - crystal17.main = aiida_crystal17.parsers.cry_main:CryMainParser
+      - crystal17.doss = aiida_crystal17.parsers.cry_doss:CryDossParser
+      - crystal17.ech3 = aiida_crystal17.parsers.cry_ech3:CryEch3Parser
+      - crystal17.newk = aiida_crystal17.parsers.cry_newk:CryNewkParser
+      - gulp.single = aiida_crystal17.gulp.parsers.parse_single:GulpSingleParser
+      - gulp.optimize = aiida_crystal17.gulp.parsers.parse_opt:GulpOptParser
+      - gulp.fitting = aiida_crystal17.gulp.parsers.parse_fitting:GulpFittingParser
+      aiida.workflows:
+      - crystal17.sym3d = aiida_crystal17.workflows.symmetrise_3d_struct:Symmetrise3DStructure
+      - crystal17.main.base = aiida_crystal17.workflows.crystal_main.base:CryMainBaseWorkChain
+      - crystal17.properties = aiida_crystal17.workflows.crystal_props.base:CryPropertiesWorkChain
+      console_scripts:
+      - mock_crystal17 = aiida_crystal17.tests.mock_crystal17:main
+      - mock_properties17 = aiida_crystal17.tests.mock_properties17:main
+      - mock_gulp = aiida_crystal17.tests.mock_gulp:main
+      gulp.potentials:
+      - reaxff = aiida_crystal17.gulp.potentials.reaxff:PotentialWriterReaxff
+      - lj =  aiida_crystal17.gulp.potentials.lj:PotentialWriterLJ
+    extras_require:
+      code_style:
+      - flake8<3.8.0,>=3.7.0
+      - yapf==0.28.0
+      - pre-commit==1.17.0
+      - doc8<0.9.0,>=0.8.0
+      docs:
+      - sphinx>=1.6
+      - ipypublish>=0.10.7
+      testing:
+      - mock==2.0.0
+      - pgtest==1.2.0
+      - sqlalchemy-diff==0.1.3
+      - pytest==3.6.3
+      - wheel>=0.31
+      - coverage
+      - pytest-cov
+      - pytest-timeout
+      - pytest-regressions
+      - pytest-notebook; python_version >= '3.5'
+    include_package_data: true
+    install_requires:
+    - aiida-core==1.0.0b5
+    - six >=1.12.0
+    - ruamel.yaml
+    - jsonextended>=0.7.10
+    - jsonschema
+    - spglib>=1.10.0,<2.0.0
+    - ase>=3.12.0,<3.18.0; python_version < '3'
+    - ase>=3.12.0,<4.0.0; python_version >= '3'
+    - PyCifRW==4.2.1; python_version < '3'
+    - PyCifRW==4.4; python_version >= '3'
+    - pathlib2; python_version < '3.4'
+    - importlib_resources
+    license: MIT
+    name: aiida-crystal17
+    reentry_register: true
+    url: https://github.com/chrisjsewell/aiida-crystal17
+    version: 0.10.0b5
+ddec:
+  aiida_version: '>=1.0.0b6'
+  code_home: https://github.com/yakutovicha/aiida-ddec
+  development_status: beta
+  entry_point_prefix: ddec
+  entry_points:
+    aiida.calculations:
+    - ddec = aiida_ddec.calculations:DdecCalculation
+    aiida.parsers:
+    - ddec = aiida_ddec.parsers:DdecParser
+    aiida.workflows:
+    - ddec.cp2k_ddec = aiida_ddec.workchains:Cp2kDdecWorkChain
+  hosted_on: github.com
+  metadata:
+    author: Aliaksandr Yakutovich
+    author_email: aliaksandr.yakutovich@epfl.ch
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 2 - Pre-Alpha'
+    description: AiiDA plugin DDEC code
+    version: 1.0.0a1
+  name: aiida-ddec
+  package_name: aiida_ddec
+  pip_url: git+https://github.com/yakutovicha/aiida-ddec
+  plugin_info:
+  - setuptools
+  - author: Aliaksandr Yakutovich
+    author_email: aliaksandr.yakutovich@epfl.ch
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 2 - Pre-Alpha'
+    data_files:
+    - - .
+      - - setup.json
+    description: AiiDA plugin DDEC code
+    entry_points:
+      aiida.calculations:
+      - ddec = aiida_ddec.calculations:DdecCalculation
+      aiida.parsers:
+      - ddec = aiida_ddec.parsers:DdecParser
+      aiida.workflows:
+      - ddec.cp2k_ddec = aiida_ddec.workchains:Cp2kDdecWorkChain
+    extras_require:
+      cp2k:
+      - aiida-cp2k>=1.0.0b4
+      pre-commit:
+      - pre-commit==1.17.0
+      - yapf==0.28.0
+      - prospector==1.1.7
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.3.1; python_version>='3.0'
+      testing:
+      - pytest==4.4.1
+    install_requires:
+    - aiida_core >= 1.0.0b6
+    - six
+    license: MIT License
+    name: aiida-ddec
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/yakutovicha/aiida-ddec
+    version: 1.0.0a1
+diff:
+  aiida_version: '>=1.0.0,<2.0.0'
+  code_home: https://github.com/aiidateam/aiida-diff
+  development_status: stable
+  documentation_url: https://aiida-diff.readthedocs.io/
+  entry_point_prefix: diff
+  entry_points:
+    aiida.calculations:
+    - diff = aiida_diff.calculations:DiffCalculation
+    aiida.cmdline.data:
+    - diff = aiida_diff.cli:data_cli
+    aiida.data:
+    - diff = aiida_diff.data:DiffParameters
+    aiida.parsers:
+    - diff = aiida_diff.parsers:DiffParser
+  hosted_on: github.com
+  metadata:
+    author: The AiiDA Team
+    author_email: ''
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA demo plugin that wraps the `diff` executable for computing
+      the difference between two files.
+    version: 1.0.0
+  name: aiida-diff
+  package_name: aiida_diff
+  pip_url: git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0
+  plugin_info:
+  - setuptools
+  - author: The AiiDA Team
+    author_email: ''
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA demo plugin that wraps the `diff` executable for computing
+      the difference between two files.
+    entry_points:
+      aiida.calculations:
+      - diff = aiida_diff.calculations:DiffCalculation
+      aiida.cmdline.data:
+      - diff = aiida_diff.cli:data_cli
+      aiida.data:
+      - diff = aiida_diff.data:DiffParameters
+      aiida.parsers:
+      - diff = aiida_diff.parsers:DiffParser
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - astroid==1.6.6; python_version<'3.0'
+      - astroid==2.2.5; python_version>='3.0'
+      - pre-commit==1.20.0
+      - prospector==1.1.7
+      - pylint-django<0.9; python_version<'3.0'
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.3.1; python_version>='3.0'
+      testing:
+      - pgtest==1.3.1
+      - wheel>=0.31
+      - coverage
+      - pytest>=3.6.3,<5.0.0
+      - pytest-cov>=2.6.1,<5.0.0
+    include_package_data: true
+    install_requires:
+    - aiida-core>=1.0.0,<2.0.0
+    - six
+    - voluptuous
+    license: MIT
+    name: aiida-diff
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/aiidateam/aiida-diff
+    version: 1.0.0
+fleur:
+  aiida_version: '>=1.0.0b1[atomic_tools]'
+  code_home: https://github.com/JuDFTteam/aiida-fleur/tree/develop
+  development_status: beta
+  documentation_url: https://aiida-fleur.readthedocs.io/
+  entry_point_prefix: fleur
+  entry_points:
+    aiida.calculations:
+    - fleur.fleur = aiida_fleur.calculation.fleur:FleurCalculation
+    - fleur.inpgen = aiida_fleur.calculation.fleurinputgen:FleurinputgenCalculation
+    aiida.data:
+    - fleur.fleurinp = aiida_fleur.data.fleurinp:FleurinpData
+    - fleur.fleurinpmodifier = aiida_fleur.data.fleurinpmodifier:FleurinpModifier
+    aiida.parsers:
+    - fleur.fleurparser = aiida_fleur.parsers.fleur:FleurParser
+    - fleur.fleurinpgenparser = aiida_fleur.parsers.fleur_inputgen:Fleur_inputgenParser
+    aiida.workflows:
+    - fleur.scf = aiida_fleur.workflows.scf:FleurScfWorkChain
+    - fleur.dos = aiida_fleur.workflows.dos:fleur_dos_wc
+    - fleur.band = aiida_fleur.workflows.band:fleur_band_wc
+    - fleur.eos = aiida_fleur.workflows.eos:FleurEosWorkChain
+    - fleur.init_cls = aiida_fleur.workflows.initial_cls:fleur_initial_cls_wc
+    - fleur.corehole = aiida_fleur.workflows.corehole:fleur_corehole_wc
+    - fleur.mae = aiida_fleur.workflows.mae:FleurMaeWorkChain
+    - fleur.mae_conv = aiida_fleur.workflows.mae_conv:FleurMaeConvWorkChain
+    - fleur.ssdisp = aiida_fleur.workflows.ssdisp:FleurSSDispWorkChain
+    - fleur.ssdisp_conv = aiida_fleur.workflows.ssdisp_conv:FleurSSDispConvWorkChain
+    - fleur.dmi = aiida_fleur.workflows.dmi:FleurDMIWorkChain
+    - fleur.relax = aiida_fleur.workflows.relax:FleurRelaxWorkChain
+    - fleur.base = aiida_fleur.workflows.base_fleur:FleurBaseWorkChain
+  hosted_on: github.com
+  metadata:
+    author: JuDFTteam
+    author_email: j.broeder@fz-juelich.de
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3'
+    - 'Programming Language :: Python :: 3'
+    - 'Programming Language :: Python :: 3.4'
+    - 'Programming Language :: Python :: 3.5'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Development Status :: 4 - Beta'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Natural Language :: English'
+    description: Python FLEUR simulation package containing an AiiDA Plugin for running
+      the FLEUR-code and its input generator. Plus some workflows and utility
+    version: 1.0.0a
+  name: aiida-fleur
+  package_name: aiida_fleur
+  pip_url: aiida-fleur
+  plugin_info:
+  - setuptools
+  - author: JuDFTteam
+    author_email: j.broeder@fz-juelich.de
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3'
+    - 'Programming Language :: Python :: 3'
+    - 'Programming Language :: Python :: 3.4'
+    - 'Programming Language :: Python :: 3.5'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Development Status :: 4 - Beta'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Natural Language :: English'
+    description: Python FLEUR simulation package containing an AiiDA Plugin for running
+      the FLEUR-code and its input generator. Plus some workflows and utility
+    entry_points:
+      aiida.calculations:
+      - fleur.fleur = aiida_fleur.calculation.fleur:FleurCalculation
+      - fleur.inpgen = aiida_fleur.calculation.fleurinputgen:FleurinputgenCalculation
+      aiida.data:
+      - fleur.fleurinp = aiida_fleur.data.fleurinp:FleurinpData
+      - fleur.fleurinpmodifier = aiida_fleur.data.fleurinpmodifier:FleurinpModifier
+      aiida.parsers:
+      - fleur.fleurparser = aiida_fleur.parsers.fleur:FleurParser
+      - fleur.fleurinpgenparser = aiida_fleur.parsers.fleur_inputgen:Fleur_inputgenParser
+      aiida.workflows:
+      - fleur.scf = aiida_fleur.workflows.scf:FleurScfWorkChain
+      - fleur.dos = aiida_fleur.workflows.dos:fleur_dos_wc
+      - fleur.band = aiida_fleur.workflows.band:fleur_band_wc
+      - fleur.eos = aiida_fleur.workflows.eos:FleurEosWorkChain
+      - fleur.init_cls = aiida_fleur.workflows.initial_cls:fleur_initial_cls_wc
+      - fleur.corehole = aiida_fleur.workflows.corehole:fleur_corehole_wc
+      - fleur.mae = aiida_fleur.workflows.mae:FleurMaeWorkChain
+      - fleur.mae_conv = aiida_fleur.workflows.mae_conv:FleurMaeConvWorkChain
+      - fleur.ssdisp = aiida_fleur.workflows.ssdisp:FleurSSDispWorkChain
+      - fleur.ssdisp_conv = aiida_fleur.workflows.ssdisp_conv:FleurSSDispConvWorkChain
+      - fleur.dmi = aiida_fleur.workflows.dmi:FleurDMIWorkChain
+      - fleur.relax = aiida_fleur.workflows.relax:FleurRelaxWorkChain
+      - fleur.base = aiida_fleur.workflows.base_fleur:FleurBaseWorkChain
+    extras_require:
+      'graphs ':
+      - matplotlib
+      - masci-tools
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.24.0
+      - prospector==0.12.11
+      - pylint==1.9.3
+    include_package_data: true
+    install_requires:
+    - aiida-core >= 1.0.0b1[atomic_tools]
+    - lxml >= 3.6.4
+    - pytest-cov >= 2.5.0
+    - pytest >= 2.9
+    - pgtest
+    - numpy>=1.16.0
+    - sympy
+    - masci-tools
+    - future
+    - ase
+    - pymatgen
+    keywords: fleur aiida inpgen workflows flapw juelich dft all-electron
+    license: MIT License, see LICENSE.txt file.
+    name: aiida-fleur
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/JuDFTteam/aiida-fleur
+    version: 1.0.0a
+gaussian-datatypes:
+  aiida_version: '>=1.0.0b6'
+  code_home: https://github.com/dev-zero/aiida-gaussian-datatypes
+  development_status: beta
+  documentation_url: https://github.com/dev-zero/aiida-gaussian-datatypes/blob/master/README.md
+  entry_point_prefix: gaussian
+  entry_points:
+    aiida.cmdline.data:
+    - gaussian.basisset = aiida_gaussian_datatypes.basisset.cli:cli
+    - gaussian.pseudo = aiida_gaussian_datatypes.pseudopotential.cli:cli
+    aiida.data:
+    - gaussian.basisset = aiida_gaussian_datatypes.basisset.data:BasisSet
+    - gaussian.pseudo = aiida_gaussian_datatypes.pseudopotential.data:Pseudopotential
+  hosted_on: github.com
+  metadata:
+    author: "Tiziano M\xFCller"
+    author_email: tiziano.mueller@chem.uzh.ch
+    classifiers:
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Operating System :: OS Independent'
+    - 'Topic :: Software Development :: Libraries :: Python Modules'
+    - 'Topic :: Scientific/Engineering :: Chemistry'
+    - 'Intended Audience :: Science/Research'
+    description: AiiDA data plugin to manage gaussian datatypes (basis sets and pseudopotentials)
+      as first-class citizens
+    version: 0.3.0
+  name: aiida-gaussian-datatypes
+  package_name: aiida_gaussian_datatypes
+  pip_url: aiida-gaussian-datatypes
+  plugin_info:
+  - setuptools
+  - author: "Tiziano M\xFCller"
+    author_email: tiziano.mueller@chem.uzh.ch
+    classifiers:
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Operating System :: OS Independent'
+    - 'Topic :: Software Development :: Libraries :: Python Modules'
+    - 'Topic :: Scientific/Engineering :: Chemistry'
+    - 'Intended Audience :: Science/Research'
+    description: AiiDA data plugin to manage gaussian datatypes (basis sets and pseudopotentials)
+      as first-class citizens
+    entry_points:
+      aiida.cmdline.data:
+      - gaussian.basisset = aiida_gaussian_datatypes.basisset.cli:cli
+      - gaussian.pseudo = aiida_gaussian_datatypes.pseudopotential.cli:cli
+      aiida.data:
+      - gaussian.basisset = aiida_gaussian_datatypes.basisset.data:BasisSet
+      - gaussian.pseudo = aiida_gaussian_datatypes.pseudopotential.data:Pseudopotential
+    extras_require:
+      docs:
+      - sphinx >= 2.1.0,<2.2.0
+      - sphinx-click >= 2.2.0
+      pre-commit:
+      - pre-commit >= 1.18.3
+      testing:
+      - pytest >= 5.1.2
+      - pytest-cov >= 2.7.1
+      - codecov >= 2.0.15
+      - pgtest >= 1.2.0
+    install_requires:
+    - voluptuous >= 0.11.7
+    - aiida-core >= 1.0.0b6
+    license: MIT License
+    name: aiida-gaussian-datatypes
+    reentry_register: true
+    scripts: []
+    url: https://github.com/dev-zero/aiida-gaussian-datatypes
+    version: 0.3.0
+gollum:
+  aiida_version: '>=0.12.0'
+  code_home: https://github.com/garsua/aiida-gollum/
+  development_status: beta
+  documentation_url: https://aiida-gollum.readthedocs.io/
+  entry_point_prefix: gollum
+  entry_points:
+    aiida.calculations:
+    - gollum.gollum = aiida_gollum.calculations.gollum:GollumCalculation
+    aiida.parsers:
+    - gollum.parser = aiida_gollum.parsers.gollum:GollumParser
+  hosted_on: github.com
+  metadata:
+    author: Victor M. Garcia-Suarez
+    author_email: vm.garcia@cinn.es
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 1 - Alpha'
+    description: A plugin for Gollum functionality within AiiDA framework.
+    version: 0.12.0
+  name: aiida-gollum
+  package_name: aiida_gollum
+  pip_url: git+https://github.com/garsua/aiida-gollum
+  plugin_info:
+  - setuptools
+  - author: Victor M. Garcia-Suarez
+    author_email: vm.garcia@cinn.es
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 1 - Alpha'
+    description: A plugin for Gollum functionality within AiiDA framework.
+    download_url: https://github.com/garsua/aiida-gollum.git
+    entry_points:
+      aiida.calculations:
+      - gollum.gollum = aiida_gollum.calculations.gollum:GollumCalculation
+      aiida.parsers:
+      - gollum.parser = aiida_gollum.parsers.gollum:GollumParser
+    install_requires:
+    - aiida_core[docs,atomic_tools]>=0.12.0
+    - pytest>=3.3.2
+    keywords:
+    - aiida
+    - gollum
+    - transport
+    license: MIT License
+    name: aiida_gollum
+    url: https://github.com/garsua/aiida-gollum
+    version: 0.12.0
+graphql:
+  aiida_version: '>=1.0.0b6,<2.0.0'
+  code_home: https://github.com/dev-zero/aiida-graphql
+  development_status: beta
+  entry_point_prefix: graphql
+  entry_points: {}
+  hosted_on: github.com
+  metadata:
+    author: "Tiziano M\xFCller"
+    description: Strawberry-based GraphQL API Server for AiiDA
+    version: 0.0.2
+  name: aiida-graphql
+  package_name: aiida_graphql
+  pip_url: aiida-graphql
+  plugin_info:
+  - poetry
+  - build-system:
+      build-backend: poetry.masonry.api
+      requires:
+      - poetry>=0.12
+    tool:
+      black:
+        line-length: 132
+        target_version:
+        - py37
+      poetry:
+        authors:
+        - "Tiziano M\xFCller <tiziano.mueller@chem.uzh.ch>"
+        classifiers:
+        - 'Development Status :: 3 - Alpha'
+        - 'License :: OSI Approved :: MIT License'
+        - 'Operating System :: OS Independent'
+        - 'Topic :: Software Development :: Libraries :: Python Modules'
+        - 'Intended Audience :: Science/Research'
+        dependencies:
+          aiida: ^1.0.0b6
+          python: ^3.7
+          strawberry-graphql: ^0.16.7
+        description: Strawberry-based GraphQL API Server for AiiDA
+        dev-dependencies:
+          codecov: ^2.0.15
+          pytest: ^5.2
+          pytest-cov: ^2.7.1
+        license: MIT
+        name: aiida-graphql
+        readme: README.md
+        repository: https://github.com/dev-zero/aiida-graphql
+        version: 0.0.2
+gudhi:
+  aiida_version: '>=0.11'
+  code_home: https://github.com/ltalirz/aiida-gudhi
+  development_status: beta
+  entry_point: gudhi
+  entry_points:
+    aiida.calculations:
+    - gudhi.rdm = aiida_gudhi.calculations.rips:RipsDistanceMatrixCalculation
+    aiida.data:
+    - gudhi.rdm = aiida_gudhi.data.rips:RipsDistanceMatrixParameters
+    aiida.parsers:
+    - gudhi.rdm = aiida_gudhi.parsers.rips:RipsParser
+  hosted_on: github.com
+  metadata:
+    author: Leopold Talirz
+    author_email: leopold.talirz@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    description: AiiDA plugin for the [GUDHI](http://gudhi.gforge.inria.fr/) library
+      for topological data analysis.
+    version: 0.1.0a3
+  name: aiida-gudhi
+  package_name: aiida_gudhi
+  pip_url: aiida-gudhi
+  plugin_info:
+  - setuptools
+  - author: Leopold Talirz
+    author_email: leopold.talirz@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    description: AiiDA plugin for the [GUDHI](http://gudhi.gforge.inria.fr/) library
+      for topological data analysis.
+    entry_points:
+      aiida.calculations:
+      - gudhi.rdm = aiida_gudhi.calculations.rips:RipsDistanceMatrixCalculation
+      aiida.data:
+      - gudhi.rdm = aiida_gudhi.data.rips:RipsDistanceMatrixParameters
+      aiida.parsers:
+      - gudhi.rdm = aiida_gudhi.parsers.rips:RipsParser
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit
+      - yapf
+      - prospector
+      - pylint
+      testing:
+      - aiida-core[testing]
+    install_requires:
+    - aiida >= 0.11
+    license: MIT
+    name: aiida-gudhi
+    reentry_register: true
+    scripts:
+    - examples/cli.py
+    setup_requires:
+    - reentry
+    url: https://github.com/ltalirz/aiida-gudhi
+    version: 0.1.0a3
+gulp:
+  aiida_version: ==1.0.0b5
+  code_home: https://github.com/chrisjsewell/aiida-gulp
+  development_status: beta
+  documentation_url: https://aiida-gulp.readthedocs.io
+  entry_point: gulp
+  entry_points:
+    aiida.calculations:
+    - gulp.single = aiida_gulp.calculations.gulp_single:GulpSingleCalculation
+    - gulp.optimize = aiida_gulp.calculations.gulp_optimize:GulpOptCalculation
+    - gulp.fitting = aiida_gulp.calculations.gulp_fitting:GulpFittingCalculation
+    aiida.cmdline.data:
+    - gulp.potentials = aiida_gulp.cmndline.potentials:potentials
+    aiida.data:
+    - gulp.symmetry = aiida_gulp.data.symmetry:SymmetryData
+    - gulp.potential = aiida_gulp.data.potential:EmpiricalPotential
+    aiida.parsers:
+    - gulp.single = aiida_gulp.parsers.parse_single:GulpSingleParser
+    - gulp.optimize = aiida_gulp.parsers.parse_opt:GulpOptParser
+    - gulp.fitting = aiida_gulp.parsers.parse_fitting:GulpFittingParser
+    aiida.workflows: []
+    console_scripts:
+    - gulp_mock = aiida_gulp.tests.mock_gulp:main
+    gulp.potentials:
+    - reaxff = aiida_gulp.potentials.reaxff:PotentialWriterReaxff
+    - lj =  aiida_gulp.potentials.lj:PotentialWriterLJ
+  hosted_on: github.com
+  metadata:
+    author: Chris Sewell
+    author_email: chrisj_sewell@hotmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Chemistry'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for running the GULP MD code
+    version: 0.10.0b5
+  name: aiida-gulp
+  package_name: aiida_gulp
+  pip_url: aiida-gulp
+  plugin_info:
+  - setuptools
+  - author: Chris Sewell
+    author_email: chrisj_sewell@hotmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Chemistry'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for running the GULP MD code
+    entry_points:
+      aiida.calculations:
+      - gulp.single = aiida_gulp.calculations.gulp_single:GulpSingleCalculation
+      - gulp.optimize = aiida_gulp.calculations.gulp_optimize:GulpOptCalculation
+      - gulp.fitting = aiida_gulp.calculations.gulp_fitting:GulpFittingCalculation
+      aiida.cmdline.data:
+      - gulp.potentials = aiida_gulp.cmndline.potentials:potentials
+      aiida.data:
+      - gulp.symmetry = aiida_gulp.data.symmetry:SymmetryData
+      - gulp.potential = aiida_gulp.data.potential:EmpiricalPotential
+      aiida.parsers:
+      - gulp.single = aiida_gulp.parsers.parse_single:GulpSingleParser
+      - gulp.optimize = aiida_gulp.parsers.parse_opt:GulpOptParser
+      - gulp.fitting = aiida_gulp.parsers.parse_fitting:GulpFittingParser
+      aiida.workflows: []
+      console_scripts:
+      - gulp_mock = aiida_gulp.tests.mock_gulp:main
+      gulp.potentials:
+      - reaxff = aiida_gulp.potentials.reaxff:PotentialWriterReaxff
+      - lj =  aiida_gulp.potentials.lj:PotentialWriterLJ
+    extras_require:
+      code_style:
+      - black==19.3b0
+      - flake8<3.8.0,>=3.7.0
+      - pre-commit==1.17.0
+      - doc8<0.9.0,>=0.8.0
+      docs:
+      - sphinx>=1.6
+      - ipypublish>=0.10.7
+      testing:
+      - mock==2.0.0
+      - pgtest==1.2.0
+      - sqlalchemy-diff==0.1.3
+      - pytest==3.6.3
+      - wheel>=0.31
+      - coverage
+      - pytest-cov
+      - pytest-timeout
+      - pytest-regressions
+      - pytest-notebook; python_version >= '3.5'
+    include_package_data: true
+    install_requires:
+    - aiida-core==1.0.0b5
+    - six >=1.12.0
+    - ruamel.yaml
+    - jsonextended>=0.7.10
+    - jsonschema
+    - spglib>=1.10.0,<2.0.0
+    - ase>=3.12.0,<3.18.0; python_version < '3'
+    - ase>=3.12.0,<4.0.0; python_version >= '3'
+    - PyCifRW==4.2.1; python_version < '3'
+    - PyCifRW==4.4; python_version >= '3'
+    - pathlib2; python_version < '3.4'
+    - importlib_resources
+    license: MIT
+    name: aiida-gulp
+    reentry_register: true
+    url: https://github.com/chrisjsewell/aiida-gulp
+    version: 0.10.0b5
+hea:
+  aiida_version: '>=1.0.0b3,<2.0.0'
+  code_home: https://github.com/unkcpz/aiida-hea
+  development_status: planning
+  documentation_url: https://aiida-hea.readthedocs.io/
+  entry_point: hea
+  entry_points:
+    aiida.calculations:
+    - hea = aiida_hea.calculations:DiffCalculation
+    aiida.cmdline.data:
+    - hea = aiida_hea.cli:data_cli
+    aiida.data:
+    - hea = aiida_hea.data:DiffParameters
+    aiida.parsers:
+    - hea = aiida_hea.parsers:DiffParser
+  hosted_on: github.com
+  metadata:
+    author: Jason Eu
+    author_email: morty.yu@yahoo.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for generating special quasi-random structures by ATAT/sqs
+      and enumerating derivative superstructures by enumlib.
+    version: 0.1.0a0
+  name: aiida-hea
+  package_name: aiida_hea
+  pip_url: git+https://github.com/unkcpz/aiida-hea
+  plugin_info:
+  - setuptools
+  - author: Jason Eu
+    author_email: morty.yu@yahoo.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for generating special quasi-random structures by ATAT/sqs
+      and enumerating derivative superstructures by enumlib.
+    entry_points:
+      aiida.calculations:
+      - hea = aiida_hea.calculations:DiffCalculation
+      aiida.cmdline.data:
+      - hea = aiida_hea.cli:data_cli
+      aiida.data:
+      - hea = aiida_hea.data:DiffParameters
+      aiida.parsers:
+      - hea = aiida_hea.parsers:DiffParser
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.27.0
+      - prospector==0.12.11
+      - pylint==1.9.4
+      testing:
+      - pgtest==1.2.0
+      - wheel>=0.31
+      - coverage
+      - pytest>=3.6.3,<5.0.0
+      - pytest-cov>=2.6.1,<5.0.0
+    include_package_data: true
+    install_requires:
+    - aiida-core>=1.0.0b3,<2.0.0
+    - six
+    - voluptuous
+    license: MIT
+    name: aiida-hea
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/unkcpz/aiida-hea
+    version: 0.1.0a0
+kkr:
+  aiida_version: '>=1.0.0b6,<2.0.0'
+  code_home: https://github.com/JuDFTteam/aiida-kkr/tree/develop
+  development_status: beta
+  documentation_url: https://aiida-kkr.readthedocs.io/
+  entry_point: kkr
+  entry_points:
+    aiida.calculations:
+    - kkr.kkr = aiida_kkr.calculations.kkr:KkrCalculation
+    - kkr.kkrimporter = aiida_kkr.calculations.kkrimporter:KkrImporterCalculation
+    - kkr.voro = aiida_kkr.calculations.voro:VoronoiCalculation
+    - kkr.kkrimp = aiida_kkr.calculations.kkrimp:KkrimpCalculation
+    aiida.data:
+    - kkr.kkrstructure = aiida_kkr.data.kkrstructure:KkrstructureData
+    aiida.parsers:
+    - kkr.voroparser = aiida_kkr.parsers.voro:VoronoiParser
+    - kkr.kkrparser = aiida_kkr.parsers.kkr:KkrParser
+    - kkr.kkrimporterparser = aiida_kkr.parsers.kkrimporter:KkrImporterParser
+    - kkr.kkrimpparser = aiida_kkr.parsers.kkrimp:KkrimpParser
+    aiida.workflows:
+    - kkr.scf = aiida_kkr.workflows.kkr_scf:kkr_scf_wc
+    - kkr.dos = aiida_kkr.workflows.dos:kkr_dos_wc
+    - kkr.eos = aiida_kkr.workflows.eos:kkr_eos_wc
+    - kkr.startpot = aiida_kkr.workflows.voro_start:kkr_startpot_wc
+    - kkr.check_mag = aiida_kkr.workflows.check_magnetic_state:kkr_check_mag_wc
+    - kkr.convergence_check = aiida_kkr.workflows.check_para_convergence:kkr_check_para_wc
+    - kkr.gf_writeout = aiida_kkr.workflows.gf_writeout:kkr_flex_wc
+    - kkr.imp_sub = aiida_kkr.workflows.kkr_imp_sub:kkr_imp_sub_wc
+    - kkr.imp = aiida_kkr.workflows.kkr_imp:kkr_imp_wc
+    console_scripts:
+    - kkrstructure = aiida_kkr.cmdline.data_cli:cli
+  hosted_on: github.com
+  metadata:
+    author: Philipp Ruessmann, Jens Broeder, Fabian Bertoldo
+    author_email: p.ruessmann@fz-juelich.de
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3'
+    - 'Programming Language :: Python :: 3.4'
+    - 'Programming Language :: Python :: 3.5'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for the KKR code
+    version: 1.1.9-dev
+  name: aiida-kkr
+  package_name: aiida_kkr
+  pip_url: aiida-kkr
+  plugin_info:
+  - setuptools
+  - author: Philipp Ruessmann, Jens Broeder, Fabian Bertoldo
+    author_email: p.ruessmann@fz-juelich.de
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3'
+    - 'Programming Language :: Python :: 3.4'
+    - 'Programming Language :: Python :: 3.5'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for the KKR code
+    download_url: https://github.com/JuDFTteam/aiida-kkr
+    entry_points:
+      aiida.calculations:
+      - kkr.kkr = aiida_kkr.calculations.kkr:KkrCalculation
+      - kkr.kkrimporter = aiida_kkr.calculations.kkrimporter:KkrImporterCalculation
+      - kkr.voro = aiida_kkr.calculations.voro:VoronoiCalculation
+      - kkr.kkrimp = aiida_kkr.calculations.kkrimp:KkrimpCalculation
+      aiida.data:
+      - kkr.kkrstructure = aiida_kkr.data.kkrstructure:KkrstructureData
+      aiida.parsers:
+      - kkr.voroparser = aiida_kkr.parsers.voro:VoronoiParser
+      - kkr.kkrparser = aiida_kkr.parsers.kkr:KkrParser
+      - kkr.kkrimporterparser = aiida_kkr.parsers.kkrimporter:KkrImporterParser
+      - kkr.kkrimpparser = aiida_kkr.parsers.kkrimp:KkrimpParser
+      aiida.workflows:
+      - kkr.scf = aiida_kkr.workflows.kkr_scf:kkr_scf_wc
+      - kkr.dos = aiida_kkr.workflows.dos:kkr_dos_wc
+      - kkr.eos = aiida_kkr.workflows.eos:kkr_eos_wc
+      - kkr.startpot = aiida_kkr.workflows.voro_start:kkr_startpot_wc
+      - kkr.check_mag = aiida_kkr.workflows.check_magnetic_state:kkr_check_mag_wc
+      - kkr.convergence_check = aiida_kkr.workflows.check_para_convergence:kkr_check_para_wc
+      - kkr.gf_writeout = aiida_kkr.workflows.gf_writeout:kkr_flex_wc
+      - kkr.imp_sub = aiida_kkr.workflows.kkr_imp_sub:kkr_imp_sub_wc
+      - kkr.imp = aiida_kkr.workflows.kkr_imp:kkr_imp_wc
+      console_scripts:
+      - kkrstructure = aiida_kkr.cmdline.data_cli:cli
+    extras_require:
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.24.0
+      - prospector==0.12.11
+      - pylint==1.9.3
+    install_requires:
+    - aiida-core >= 1.0.0b6,<2.0.0
+    - masci-tools >= 0.3.10
+    - seekpath >= 1.9.2
+    - pgtest >= 1.3.0
+    - pytest-cov >= 2.5.0
+    - pytest-mpl>=0.10
+    - pytest-timeout>=1.3.3
+    - Sphinx==1.8.2
+    - sphinx_rtd_theme==0.4.2
+    - ase<=3.17.0
+    - bump2version >= 0.5.10
+    license: MIT
+    name: aiida-kkr
+    reentry_register: true
+    url: https://github.com/JuDFTteam/aiida-kkr
+    version: 1.1.9-dev
+lammps:
+  aiida_version: ==1.0.0b3
+  code_home: https://github.com/abelcarreras/aiida-lammps
+  development_status: beta
+  entry_point: lammps
+  entry_points:
+    aiida.calculations:
+    - lammps.combinate = aiida_lammps.calculations.lammps.combinate:CombinateCalculation
+    - lammps.force = aiida_lammps.calculations.lammps.force:ForceCalculation
+    - lammps.md = aiida_lammps.calculations.lammps.md:MdCalculation
+    - lammps.optimize = aiida_lammps.calculations.lammps.optimize:OptimizeCalculation
+    - 'dynaphopy = aiida_lammps.calculations.dynaphopy: DynaphopyCalculation'
+    aiida.data:
+    - lammps.potential = aiida_lammps.data.potential:EmpiricalPotential
+    aiida.parsers:
+    - lammps.force = aiida_lammps.parsers.lammps.force:ForceParser
+    - lammps.md = aiida_lammps.parsers.lammps.md:MdParser
+    - lammps.optimize = aiida_lammps.parsers.lammps.optimize:OptimizeParser
+    - 'dynaphopy = aiida_lammps.parsers.dynaphopy: DynaphopyParser'
+    lammps.potentials:
+    - eam =  aiida_lammps.data.potential.eam
+    - lennard_jones =  aiida_lammps.data.potential.lennard_jones
+    - reaxff =  aiida_lammps.data.potential.reaxff
+    - tersoff =  aiida_lammps.data.potential.tersoff
+  hosted_on: github.com
+  metadata:
+    author: Abel Carreras
+    author_email: abelcarreras83@gmail.com
+    classifiers: []
+    description: AiiDA plugin for LAMMPS
+    version: 0.4.1b3
+  name: aiida-lammps
+  package_name: aiida_lammps
+  pip_url: git+https://github.com/abelcarreras/aiida-lammps
+  plugin_info:
+  - setuptools
+  - author: Abel Carreras
+    author_email: abelcarreras83@gmail.com
+    description: AiiDA plugin for LAMMPS
+    entry_points:
+      aiida.calculations:
+      - lammps.combinate = aiida_lammps.calculations.lammps.combinate:CombinateCalculation
+      - lammps.force = aiida_lammps.calculations.lammps.force:ForceCalculation
+      - lammps.md = aiida_lammps.calculations.lammps.md:MdCalculation
+      - lammps.optimize = aiida_lammps.calculations.lammps.optimize:OptimizeCalculation
+      - 'dynaphopy = aiida_lammps.calculations.dynaphopy: DynaphopyCalculation'
+      aiida.data:
+      - lammps.potential = aiida_lammps.data.potential:EmpiricalPotential
+      aiida.parsers:
+      - lammps.force = aiida_lammps.parsers.lammps.force:ForceParser
+      - lammps.md = aiida_lammps.parsers.lammps.md:MdParser
+      - lammps.optimize = aiida_lammps.parsers.lammps.optimize:OptimizeParser
+      - 'dynaphopy = aiida_lammps.parsers.dynaphopy: DynaphopyParser'
+      lammps.potentials:
+      - eam =  aiida_lammps.data.potential.eam
+      - lennard_jones =  aiida_lammps.data.potential.lennard_jones
+      - reaxff =  aiida_lammps.data.potential.reaxff
+      - tersoff =  aiida_lammps.data.potential.tersoff
+    extras_require:
+      code_style:
+      - flake8<3.8.0,>=3.7.0
+      phonopy:
+      - dynaphopy
+      testing:
+      - mock==2.0.0
+      - pgtest==1.2.0
+      - sqlalchemy-diff==0.1.3
+      - pytest==3.6.3
+      - pytest-cov
+      - pytest-timeout
+      - pytest-regressions
+      - wheel>=0.31
+    include_package_data: true
+    install_requires:
+    - aiida-core==1.0.0b3
+    - numpy
+    - packaging
+    - python-dateutil
+    - jsonschema
+    - six
+    - ase>=3.12.0,<4.0.0
+    license: MIT license
+    name: aiida-lammps
+    reentry_register: true
+    url: https://github.com/abelcarreras/aiida-lammps
+    version: 0.4.1b3
+nwchem:
+  aiida_version: '>=0.10.0rc1'
+  code_home: https://github.com/aiidateam/aiida-nwchem
+  development_status: stable
+  documentation_url: https://aiida-nwchem.readthedocs.io/
+  entry_point: nwchem
+  entry_points:
+    aiida.calculations:
+    - nwchem.basic = aiida_nwchem.calculations.basic:BasicCalculation
+    - nwchem.pymatgen = aiida_nwchem.calculations.nwcpymatgen:NwcpymatgenCalculation
+    aiida.parsers:
+    - nwchem.basic = aiida_nwchem.parsers.basic:BasicParser
+    - nwchem.basenwc = aiida_nwchem.parsers.__init__:BasenwcParser
+    - nwchem.pymatgen = aiida_nwchem.parsers.nwcpymatgen:NwcpymatgenParser
+    aiida.tests:
+    - nwchem.tcodexporter = aiida_nwchem.tests.tcodexporter
+    aiida.tools.dbexporters.tcod_plugins:
+    - nwchem.nwcpymatgen = aiida_nwchem.tools.dbexporters.tcod_plugins.nwcpymatgen:NwcpymatgenTcodtranslator
+  hosted_on: github.com
+  metadata:
+    author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for NWChem
+    version: 1.0.2
+  name: aiida-nwchem
+  package_name: aiida_nwchem
+  pip_url: aiida-nwchem
+  plugin_info:
+  - setuptools
+  - author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for NWChem
+    entry_points:
+      aiida.calculations:
+      - nwchem.basic = aiida_nwchem.calculations.basic:BasicCalculation
+      - nwchem.pymatgen = aiida_nwchem.calculations.nwcpymatgen:NwcpymatgenCalculation
+      aiida.parsers:
+      - nwchem.basic = aiida_nwchem.parsers.basic:BasicParser
+      - nwchem.basenwc = aiida_nwchem.parsers.__init__:BasenwcParser
+      - nwchem.pymatgen = aiida_nwchem.parsers.nwcpymatgen:NwcpymatgenParser
+      aiida.tests:
+      - nwchem.tcodexporter = aiida_nwchem.tests.tcodexporter
+      aiida.tools.dbexporters.tcod_plugins:
+      - nwchem.nwcpymatgen = aiida_nwchem.tools.dbexporters.tcod_plugins.nwcpymatgen:NwcpymatgenTcodtranslator
+    extras_require:
+      dev_precommit:
+      - pre-commit
+      docs:
+      - Sphinx
+      - docutils
+      - sphinx_rtd_theme
+    install_requires:
+    - aiida-core>=0.10.0rc1
+    license: MIT License
+    name: aiida_nwchem
+    url: https://github.com/aiidateam/aiida-nwchem
+    version: 1.0.2
+optimize:
+  aiida_version: '>=1.0.0<2.0.0'
+  code_home: https://github.com/greschd/aiida-optimize
+  development_status: beta
+  documentation_url: https://aiida-optimize.readthedocs.io
+  entry_point: optimize
+  entry_points:
+    aiida.workflows:
+    - optimize.optimize = aiida_optimize.workchain:OptimizationWorkChain
+  hosted_on: github.com
+  metadata:
+    author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for running optimization algorithms.
+    version: ''
+  name: aiida-optimize
+  package_name: aiida_optimize
+  pip_url: aiida-optimize
+  plugin_info:
+  - setuptools
+  - author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for running optimization algorithms.
+    entry_points:
+      aiida.workflows:
+      - optimize.optimize = aiida_optimize.workchain:OptimizationWorkChain
+    extras_require:
+      :python_version < "3":
+      - chainmap
+      dev_precommit:
+      - yapf==0.28
+      - pre-commit
+      - prospector==1.1.7
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.3.1; python_version>='3.0'
+      docs:
+      - sphinx
+      - sphinx-rtd-theme
+      testing:
+      - pytest>=3.6
+      - pytest-cov
+      - aiida-pytest
+    include_package_data: true
+    install_requires:
+    - aiida-core>=1.0.0<2.0.0
+    - fsc.export
+    - aiida-tools>=0.2.0
+    - future
+    - numpy
+    - scipy
+    - decorator
+    - pyyaml
+    keywords:
+    - AiiDA
+    - workflows
+    - optimization
+    license: Apache 2.0
+    name: aiida-optimize
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://aiida-optimize.readthedocs.io/
+phonopy:
+  aiida_version: null
+  code_home: https://github.com/abelcarreras/aiida-phonopy
+  development_status: beta
+  documentation_url: https://aiida-phonopy.readthedocs.io/
+  entry_point: phonopy
+  entry_points:
+    aiida.calculations:
+    - 'phonopy.phonopy = aiida_phonopy.calcs.phonopy: PhonopyCalculation'
+    aiida.parsers:
+    - 'phonopy = aiida_phonopy.parsers.phonopy: PhonopyParser'
+    aiida.workflows:
+    - 'phonopy.phonon = aiida_phonopy.workflows.phonopy: PhonopyWorkChain'
+    - 'phonopy.iter_ha = aiida_phonopy.workflows.iter_ha: IterHarmonicApproximation'
+  hosted_on: github.com
+  metadata:
+    author: Atsushi Togo
+    author_email: atz.togo@gmail.com
+    classifiers: []
+    description: AiiDA plugin for running phonon calculations using phonopy
+    version: '0.1'
+  name: aiida-phonopy
+  package_name: aiida_phonopy
+  pip_url: git+https://github.com/abelcarreras/aiida-phonopy
+  plugin_info:
+  - setuptools
+  - author: Atsushi Togo
+    author_email: atz.togo@gmail.com
+    description: AiiDA plugin for running phonon calculations using phonopy
+    entry_points:
+      aiida.calculations:
+      - 'phonopy.phonopy = aiida_phonopy.calcs.phonopy: PhonopyCalculation'
+      aiida.parsers:
+      - 'phonopy = aiida_phonopy.parsers.phonopy: PhonopyParser'
+      aiida.workflows:
+      - 'phonopy.phonon = aiida_phonopy.workflows.phonopy: PhonopyWorkChain'
+      - 'phonopy.iter_ha = aiida_phonopy.workflows.iter_ha: IterHarmonicApproximation'
+    install_requires:
+    - phonopy
+    - numpy
+    - seekpath
+    license: MIT license
+    name: aiida-phonopy
+    setup_requires:
+    - reentry
+    url: https://github.com/aiida-phonopy/aiida-phonopy
+    version: '0.1'
+phtools:
+  aiida_version: '>=0.12.3,<1.0'
+  code_home: https://github.com/ltalirz/aiida-phtools
+  development_status: beta
+  entry_point: phtools
+  entry_points:
+    aiida.calculations:
+    - phtools.surface = aiida_phtools.calculations.pore_surface:PoreSurfaceCalculation
+    - phtools.dmatrix = aiida_phtools.calculations.distance_matrix:DistanceMatrixCalculation
+    aiida.data:
+    - phtools.surface = aiida_phtools.data.pore_surface:PoreSurfaceParameters
+    aiida.parsers:
+    - phtools.surface = aiida_phtools.parsers.pore_surface:PoreSurfaceParser
+    - phtools.dmatrix = aiida_phtools.parsers.distance_matrix:DistanceMatrixParser
+  hosted_on: github.com
+  metadata:
+    author: Leopold Talirz
+    author_email: leopold.talirz@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for persistence homology tools, used to analyze nanoporous
+      materials.
+    version: 0.1.0b1
+  name: aiida-phtools
+  package_name: aiida_phtools
+  pip_url: aiida-phtools
+  plugin_info:
+  - setuptools
+  - author: Leopold Talirz
+    author_email: leopold.talirz@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for persistence homology tools, used to analyze nanoporous
+      materials.
+    entry_points:
+      aiida.calculations:
+      - phtools.surface = aiida_phtools.calculations.pore_surface:PoreSurfaceCalculation
+      - phtools.dmatrix = aiida_phtools.calculations.distance_matrix:DistanceMatrixCalculation
+      aiida.data:
+      - phtools.surface = aiida_phtools.data.pore_surface:PoreSurfaceParameters
+      aiida.parsers:
+      - phtools.surface = aiida_phtools.parsers.pore_surface:PoreSurfaceParser
+      - phtools.dmatrix = aiida_phtools.parsers.distance_matrix:DistanceMatrixParser
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit
+      - yapf
+      - prospector
+      - pylint
+      testing:
+      - aiida-core[testing]
+    install_requires:
+    - aiida-core >=0.12.3,<1.0
+    - aiida-zeopp >=0.2,<1.0
+    - aiida-gudhi
+    - voluptuous
+    license: MIT
+    name: aiida-phtools
+    reentry_register: true
+    scripts:
+    - examples/cli.py
+    setup_requires:
+    - reentry
+    url: https://github.com/ltalirz/aiida-phtools
+    version: 0.1.0b1
+plumed:
+  aiida_version: '>=1.0.0b3,<2.0.0'
+  code_home: https://github.com/ConradJohnston/aiida-plumed
+  development_status: beta
+  documentation_url: https://aiida-plumed.readthedocs.io/
+  entry_point: plumed
+  entry_points:
+    aiida.calculations:
+    - plumed = aiida_plumed.calculations:DiffCalculation
+    aiida.cmdline.data:
+    - plumed = aiida_plumed.cli:data_cli
+    aiida.data:
+    - plumed = aiida_plumed.data:DiffParameters
+    aiida.parsers:
+    - plumed = aiida_plumed.parsers:DiffParser
+  hosted_on: github.com
+  metadata:
+    author: Conrad Johnston
+    author_email: conrad.s.johnston@googlemail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    - 'Development Status :: 2 - Pre-Alpha'
+    description: AiiDA plugin providing support for Plumed2
+    version: 0.1.0a0
+  name: aiida-plumed
+  package_name: aiida_plumed
+  pip_url: aiida-plumed
+  plugin_info:
+  - setuptools
+  - author: Conrad Johnston
+    author_email: conrad.s.johnston@googlemail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    - 'Development Status :: 2 - Pre-Alpha'
+    description: AiiDA plugin providing support for Plumed2
+    entry_points:
+      aiida.calculations:
+      - plumed = aiida_plumed.calculations:DiffCalculation
+      aiida.cmdline.data:
+      - plumed = aiida_plumed.cli:data_cli
+      aiida.data:
+      - plumed = aiida_plumed.data:DiffParameters
+      aiida.parsers:
+      - plumed = aiida_plumed.parsers:DiffParser
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.27.0
+      - prospector==0.12.11
+      - pylint==1.9.4
+      testing:
+      - pgtest==1.2.0
+      - wheel>=0.31
+      - coverage
+      - pytest>=3.6.3,<5.0.0
+      - pytest-cov>=2.6.1,<5.0.0
+    include_package_data: true
+    install_requires:
+    - aiida-core>=1.0.0b3,<2.0.0
+    - six
+    - voluptuous
+    license: MIT
+    name: aiida-plumed
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/ConradJohnston/aiida-plumed
+    version: 0.1.0a0
+porousmaterials:
+  aiida_version: '>=1.0.0b5'
+  code_home: https://github.com/pzarabadip/aiida-porousmaterials
+  development_status: beta
+  entry_point: porousmaterials
+  entry_points:
+    aiida.calculations:
+    - porousmaterials = aiida_porousmaterials.calculations:PorousMaterialsCalculation
+    aiida.parsers:
+    - porousmaterials = aiida_porousmaterials.parser:PorousMaterialsParser
+    aiida.workflows:
+    - porousmaterials.base = aiida_porousmaterials.workchains:PorousMaterialsBaseWorkChain
+    - aiida_porousmaterials.workflows.voronoi_energy=aiida_porousmaterials.workflows.voronoi_energy:VoronoiEnergyWorkChain
+  hosted_on: github.com
+  metadata:
+    author: Pezhman Zarabadi-Poor
+    author_email: pzarabadip@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for PorousMaterials code
+    version: 1.0.0a1
+  name: aiida-porousmaterials
+  package_name: aiida_porousmaterials
+  pip_url: git+https://github.com/pzarabadip/aiida-porousmaterials
+  plugin_info:
+  - setuptools
+  - author: Pezhman Zarabadi-Poor
+    author_email: pzarabadip@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    data_files:
+    - - .
+      - - setup.json
+    description: AiiDA plugin for PorousMaterials code
+    entry_points:
+      aiida.calculations:
+      - porousmaterials = aiida_porousmaterials.calculations:PorousMaterialsCalculation
+      aiida.parsers:
+      - porousmaterials = aiida_porousmaterials.parser:PorousMaterialsParser
+      aiida.workflows:
+      - porousmaterials.base = aiida_porousmaterials.workchains:PorousMaterialsBaseWorkChain
+      - aiida_porousmaterials.workflows.voronoi_energy=aiida_porousmaterials.workflows.voronoi_energy:VoronoiEnergyWorkChain
+    extras_require:
+      pre-commit:
+      - pre-commit==1.16.1
+      - yapf==0.27.0
+      - prospector==1.1.6.2
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.2.2; python_version>='3.0'
+      test:
+      - pytest==4.4.1
+    install_requires:
+    - aiida_core >= 1.0.0b5
+    license: MIT
+    name: aiida-porousmaterials
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/pzarabadip/aiida-porousmaterials
+    version: 1.0.0a1
+qeq:
+  aiida_version: '>=1.0.0b1,<2.0.0'
+  code_home: https://github.com/ltalirz/aiida-qeq
+  development_status: stable
+  entry_point: qeq
+  entry_points:
+    aiida.calculations:
+    - qeq.eqeq = aiida_qeq.calculations.eqeq:EQeqCalculation
+    - qeq.qeq = aiida_qeq.calculations.qeq:QeqCalculation
+    aiida.data:
+    - qeq.eqeq = aiida_qeq.data.eqeq:EQeqParameters
+    - qeq.qeq = aiida_qeq.data.qeq:QeqParameters
+    aiida.parsers:
+    - qeq.eqeq = aiida_qeq.parsers.eqeq:EQeqParser
+    - qeq.qeq = aiida_qeq.parsers.qeq:QeqParser
+  hosted_on: github.com
+  metadata:
+    author: Leopold Talirz, Daniele Ongari
+    author_email: leopold.talirz@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for computing electronic charges on atoms using equilibration-type
+      models (QEq, EQEq, ...).
+    version: 1.0.0a1
+  name: aiida-qeq
+  package_name: aiida_qeq
+  pip_url: aiida-qeq
+  plugin_info:
+  - setuptools
+  - author: Leopold Talirz, Daniele Ongari
+    author_email: leopold.talirz@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for computing electronic charges on atoms using equilibration-type
+      models (QEq, EQEq, ...).
+    entry_points:
+      aiida.calculations:
+      - qeq.eqeq = aiida_qeq.calculations.eqeq:EQeqCalculation
+      - qeq.qeq = aiida_qeq.calculations.qeq:QeqCalculation
+      aiida.data:
+      - qeq.eqeq = aiida_qeq.data.eqeq:EQeqParameters
+      - qeq.qeq = aiida_qeq.data.qeq:QeqParameters
+      aiida.parsers:
+      - qeq.eqeq = aiida_qeq.parsers.eqeq:EQeqParser
+      - qeq.qeq = aiida_qeq.parsers.qeq:QeqParser
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.26.0
+      - prospector==0.12.11
+      - pylint==1.9.3
+      testing:
+      - pgtest==1.2.0
+      - pytest>=4.4,<5.0.0
+      - pytest-cov>=2.6.1,<3.0.0
+      - coverage
+    install_requires:
+    - aiida-core>=1.0.0b1,<2.0.0
+    - six
+    - voluptuous
+    license: MIT
+    name: aiida-qeq
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/ltalirz/aiida-qeq
+    version: 1.0.0a1
+quantumespresso:
+  aiida_version: '>=0.12.0,<1.0.0'
+  code_home: https://github.com/aiidateam/aiida-quantumespresso
+  development_status: stable
+  documentation_url: https://aiida-quantumespresso.readthedocs.io/
+  entry_point: quantumespresso
+  entry_points:
+    aiida.calculations:
+    - quantumespresso.cp = aiida_quantumespresso.calculations.cp:CpCalculation
+    - quantumespresso.dos = aiida_quantumespresso.calculations.dos:DosCalculation
+    - quantumespresso.matdyn = aiida_quantumespresso.calculations.matdyn:MatdynCalculation
+    - quantumespresso.namelists = aiida_quantumespresso.calculations.namelists:NamelistsCalculation
+    - quantumespresso.neb = aiida_quantumespresso.calculations.neb:NebCalculation
+    - quantumespresso.ph = aiida_quantumespresso.calculations.ph:PhCalculation
+    - quantumespresso.pp = aiida_quantumespresso.calculations.pp:PpCalculation
+    - quantumespresso.pw = aiida_quantumespresso.calculations.pw:PwCalculation
+    - quantumespresso.projwfc = aiida_quantumespresso.calculations.projwfc:ProjwfcCalculation
+    - quantumespresso.pw2wannier90 = aiida_quantumespresso.calculations.pw2wannier90:Pw2wannier90Calculation
+    - quantumespresso.q2r = aiida_quantumespresso.calculations.q2r:Q2rCalculation
+    - quantumespresso.pwimmigrant = aiida_quantumespresso.calculations.pwimmigrant:PwimmigrantCalculation
+    aiida.data:
+    - quantumespresso.forceconstants = aiida_quantumespresso.data.forceconstants:ForceconstantsData
+    aiida.parsers:
+    - quantumespresso.basicpw = aiida_quantumespresso.parsers.basicpw:BasicpwParser
+    - quantumespresso.cp = aiida_quantumespresso.parsers.cp:CpParser
+    - quantumespresso.dos = aiida_quantumespresso.parsers.dos:DosParser
+    - quantumespresso.matdyn = aiida_quantumespresso.parsers.matdyn:MatdynParser
+    - quantumespresso.neb = aiida_quantumespresso.parsers.neb:NebParser
+    - quantumespresso.ph = aiida_quantumespresso.parsers.ph:PhParser
+    - quantumespresso.projwfc = aiida_quantumespresso.parsers.projwfc:ProjwfcParser
+    - quantumespresso.pw = aiida_quantumespresso.parsers.pw:PwParser
+    - quantumespresso.q2r = aiida_quantumespresso.parsers.q2r:Q2rParser
+    - quantumespresso.pw2wannier90 = aiida_quantumespresso.parsers.pw2wannier90:Pw2wannier90Parser
+    aiida.tests:
+    - quantumespresso.parsers = tests.parsers.parsers
+    - quantumespresso.pw = tests.parsers.quantumespressopw
+    - quantumespresso.pw_input = tests.parsers.pwinputparser
+    - quantumespresso.pw_immigrant = tests.parsers.quantumespressopwimmigrant
+    - quantumespresso.tcodexporter = tests.parsers.tcodexporter
+    aiida.tools.dbexporters.tcod_plugins:
+    - quantumespresso.cp = aiida_quantumespresso.tools.dbexporters.tcod_plugins.cp:CpTcodtranslator
+    - quantumespresso.pw = aiida_quantumespresso.tools.dbexporters.tcod_plugins.pw:PwTcodtranslator
+    aiida.workflows:
+    - quantumespresso.ph.base = aiida_quantumespresso.workflows.ph.base:PhBaseWorkChain
+    - quantumespresso.pw.base = aiida_quantumespresso.workflows.pw.base:PwBaseWorkChain
+    - quantumespresso.pw.relax = aiida_quantumespresso.workflows.pw.relax:PwRelaxWorkChain
+    - quantumespresso.pw.bands = aiida_quantumespresso.workflows.pw.bands:PwBandsWorkChain
+    - quantumespresso.pw.band_structure = aiida_quantumespresso.workflows.pw.band_structure:PwBandStructureWorkChain
+    - quantumespresso.q2r.base = aiida_quantumespresso.workflows.q2r.base:Q2rBaseWorkChain
+    - quantumespresso.matdyn.base = aiida_quantumespresso.workflows.matdyn.base:MatdynBaseWorkChain
+    console_scripts:
+    - launch_calculation_pw = aiida_quantumespresso.cli.calculations.pw.base:launch
+    - launch_workflow_pw_band_structure = aiida_quantumespresso.cli.workflows.pw.band_structure:launch
+    - launch_workflow_pw_bands = aiida_quantumespresso.cli.workflows.pw.bands:launch
+    - launch_workflow_pw_relax = aiida_quantumespresso.cli.workflows.pw.relax:launch
+    - launch_workflow_pw_base = aiida_quantumespresso.cli.workflows.pw.base:launch
+    - launch_workflow_ph_base = aiida_quantumespresso.cli.workflows.ph.base:launch
+    - launch_workflow_q2r_base = aiida_quantumespresso.cli.workflows.q2r.base:launch
+    - launch_workflow_matdyn_base = aiida_quantumespresso.cli.workflows.matdyn.base:launch
+  hosted_on: github.com
+  metadata:
+    author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for Quantum ESPRESSO
+    version: 2.1.0
+  name: aiida-quantumespresso
+  package_name: aiida_quantumespresso
+  pip_url: aiida-quantumespresso
+  plugin_info:
+  - setuptools
+  - author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The official AiiDA plugin for Quantum ESPRESSO
+    entry_points:
+      aiida.calculations:
+      - quantumespresso.cp = aiida_quantumespresso.calculations.cp:CpCalculation
+      - quantumespresso.dos = aiida_quantumespresso.calculations.dos:DosCalculation
+      - quantumespresso.matdyn = aiida_quantumespresso.calculations.matdyn:MatdynCalculation
+      - quantumespresso.namelists = aiida_quantumespresso.calculations.namelists:NamelistsCalculation
+      - quantumespresso.neb = aiida_quantumespresso.calculations.neb:NebCalculation
+      - quantumespresso.ph = aiida_quantumespresso.calculations.ph:PhCalculation
+      - quantumespresso.pp = aiida_quantumespresso.calculations.pp:PpCalculation
+      - quantumespresso.pw = aiida_quantumespresso.calculations.pw:PwCalculation
+      - quantumespresso.projwfc = aiida_quantumespresso.calculations.projwfc:ProjwfcCalculation
+      - quantumespresso.pw2wannier90 = aiida_quantumespresso.calculations.pw2wannier90:Pw2wannier90Calculation
+      - quantumespresso.q2r = aiida_quantumespresso.calculations.q2r:Q2rCalculation
+      - quantumespresso.pwimmigrant = aiida_quantumespresso.calculations.pwimmigrant:PwimmigrantCalculation
+      aiida.data:
+      - quantumespresso.forceconstants = aiida_quantumespresso.data.forceconstants:ForceconstantsData
+      aiida.parsers:
+      - quantumespresso.basicpw = aiida_quantumespresso.parsers.basicpw:BasicpwParser
+      - quantumespresso.cp = aiida_quantumespresso.parsers.cp:CpParser
+      - quantumespresso.dos = aiida_quantumespresso.parsers.dos:DosParser
+      - quantumespresso.matdyn = aiida_quantumespresso.parsers.matdyn:MatdynParser
+      - quantumespresso.neb = aiida_quantumespresso.parsers.neb:NebParser
+      - quantumespresso.ph = aiida_quantumespresso.parsers.ph:PhParser
+      - quantumespresso.projwfc = aiida_quantumespresso.parsers.projwfc:ProjwfcParser
+      - quantumespresso.pw = aiida_quantumespresso.parsers.pw:PwParser
+      - quantumespresso.q2r = aiida_quantumespresso.parsers.q2r:Q2rParser
+      - quantumespresso.pw2wannier90 = aiida_quantumespresso.parsers.pw2wannier90:Pw2wannier90Parser
+      aiida.tests:
+      - quantumespresso.parsers = tests.parsers.parsers
+      - quantumespresso.pw = tests.parsers.quantumespressopw
+      - quantumespresso.pw_input = tests.parsers.pwinputparser
+      - quantumespresso.pw_immigrant = tests.parsers.quantumespressopwimmigrant
+      - quantumespresso.tcodexporter = tests.parsers.tcodexporter
+      aiida.tools.dbexporters.tcod_plugins:
+      - quantumespresso.cp = aiida_quantumespresso.tools.dbexporters.tcod_plugins.cp:CpTcodtranslator
+      - quantumespresso.pw = aiida_quantumespresso.tools.dbexporters.tcod_plugins.pw:PwTcodtranslator
+      aiida.workflows:
+      - quantumespresso.ph.base = aiida_quantumespresso.workflows.ph.base:PhBaseWorkChain
+      - quantumespresso.pw.base = aiida_quantumespresso.workflows.pw.base:PwBaseWorkChain
+      - quantumespresso.pw.relax = aiida_quantumespresso.workflows.pw.relax:PwRelaxWorkChain
+      - quantumespresso.pw.bands = aiida_quantumespresso.workflows.pw.bands:PwBandsWorkChain
+      - quantumespresso.pw.band_structure = aiida_quantumespresso.workflows.pw.band_structure:PwBandStructureWorkChain
+      - quantumespresso.q2r.base = aiida_quantumespresso.workflows.q2r.base:Q2rBaseWorkChain
+      - quantumespresso.matdyn.base = aiida_quantumespresso.workflows.matdyn.base:MatdynBaseWorkChain
+      console_scripts:
+      - launch_calculation_pw = aiida_quantumespresso.cli.calculations.pw.base:launch
+      - launch_workflow_pw_band_structure = aiida_quantumespresso.cli.workflows.pw.band_structure:launch
+      - launch_workflow_pw_bands = aiida_quantumespresso.cli.workflows.pw.bands:launch
+      - launch_workflow_pw_relax = aiida_quantumespresso.cli.workflows.pw.relax:launch
+      - launch_workflow_pw_base = aiida_quantumespresso.cli.workflows.pw.base:launch
+      - launch_workflow_ph_base = aiida_quantumespresso.cli.workflows.ph.base:launch
+      - launch_workflow_q2r_base = aiida_quantumespresso.cli.workflows.q2r.base:launch
+      - launch_workflow_matdyn_base = aiida_quantumespresso.cli.workflows.matdyn.base:launch
+    extras_require:
+      dev_precommit:
+      - pre-commit
+      docs:
+      - Sphinx
+      - docutils
+      - sphinx_rtd_theme
+    install_requires:
+    - aiida_core[atomic_tools]>=0.12.0,<1.0.0
+    - click
+    license: MIT License
+    name: aiida_quantumespresso
+    url: https://github.com/aiidateam/aiida-quantumespresso
+    version: 2.1.0
+quantumespresso-hp:
+  aiida_version: '>=1.0.0b6,<2.0'
+  code_home: https://github.com/sphuber/aiida-quantumespresso-hp
+  development_status: beta
+  entry_point: quantumespresso.hp
+  entry_points:
+    aiida.calculations:
+    - quantumespresso.hp = aiida_quantumespresso_hp.calculations.hp:HpCalculation
+    aiida.parsers:
+    - quantumespresso.hp = aiida_quantumespresso_hp.parsers.hp:HpParser
+    aiida.workflows:
+    - quantumespresso.hp.main = aiida_quantumespresso_hp.workflows.hp.main:HpWorkChain
+    - quantumespresso.hp.parallelize_atoms = aiida_quantumespresso_hp.workflows.hp.parallelize_atoms:HpParallelizeAtomsWorkChain
+    - quantumespresso.hp.base = aiida_quantumespresso_hp.workflows.hp.base:HpBaseWorkChain
+    - quantumespresso.hp.hubbard = aiida_quantumespresso_hp.workflows.hubbard:SelfConsistentHubbardWorkChain
+    console_scripts:
+    - launch_calculation_hp = aiida_quantumespresso_hp.cli.calculations.hp:launch
+    - launch_workflow_hp_base = aiida_quantumespresso_hp.cli.workflows.hp.base:launch
+    - launch_workflow_hp_main = aiida_quantumespresso_hp.cli.workflows.hp.main:launch
+    - launch_workflow_hp_hubbard = aiida_quantumespresso_hp.cli.workflows.hubbard:launch
+  hosted_on: github.com
+  metadata:
+    author: Sebastiaan P. Huber
+    author_email: mail@sphuber.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The AiiDA plugin for the Hubbard module of Quantum ESPRESSO
+    version: 0.1.0
+  name: aiida-quantumespresso-hp
+  package_name: aiida_quantumespresso_hp
+  pip_url: git+https://github.com/sphuber/aiida-quantumespresso-hp
+  plugin_info:
+  - setuptools
+  - author: Sebastiaan P. Huber
+    author_email: mail@sphuber.net
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Development Status :: 4 - Beta'
+    description: The AiiDA plugin for the Hubbard module of Quantum ESPRESSO
+    entry_points:
+      aiida.calculations:
+      - quantumespresso.hp = aiida_quantumespresso_hp.calculations.hp:HpCalculation
+      aiida.parsers:
+      - quantumespresso.hp = aiida_quantumespresso_hp.parsers.hp:HpParser
+      aiida.workflows:
+      - quantumespresso.hp.main = aiida_quantumespresso_hp.workflows.hp.main:HpWorkChain
+      - quantumespresso.hp.parallelize_atoms = aiida_quantumespresso_hp.workflows.hp.parallelize_atoms:HpParallelizeAtomsWorkChain
+      - quantumespresso.hp.base = aiida_quantumespresso_hp.workflows.hp.base:HpBaseWorkChain
+      - quantumespresso.hp.hubbard = aiida_quantumespresso_hp.workflows.hubbard:SelfConsistentHubbardWorkChain
+      console_scripts:
+      - launch_calculation_hp = aiida_quantumespresso_hp.cli.calculations.hp:launch
+      - launch_workflow_hp_base = aiida_quantumespresso_hp.cli.workflows.hp.base:launch
+      - launch_workflow_hp_main = aiida_quantumespresso_hp.cli.workflows.hp.main:launch
+      - launch_workflow_hp_hubbard = aiida_quantumespresso_hp.cli.workflows.hubbard:launch
+    install_requires:
+    - aiida-core>=1.0.0b6,<2.0
+    - aiida-quantumespresso>=3.0.0a5,<4.0
+    license: MIT License
+    name: aiida_quantumespresso_hp
+    url: https://github.com/sphuber/aiida-quantumespresso-hp
+    version: 0.1.0
+raspa:
+  aiida_version: '>=1.0.0b5'
+  code_home: https://github.com/yakutovicha/aiida-raspa
+  development_status: beta
+  entry_point: raspa
+  entry_points:
+    aiida.calculations:
+    - raspa = aiida_raspa.calculations:RaspaCalculation
+    aiida.parsers:
+    - raspa = aiida_raspa.parsers:RaspaParser
+    aiida.workflows:
+    - raspa.converge = aiida_raspa.workflows:RaspaConvergeWorkChain
+  hosted_on: github.com
+  metadata:
+    author: Aliaksandr Yakutovich
+    author_email: aliaksandr.yakutovich@epfl.ch
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    description: AiiDA plugin for RASPA code
+    version: 1.0.0a1
+  name: aiida-raspa
+  package_name: aiida_raspa
+  pip_url: aiida-raspa
+  plugin_info:
+  - setuptools
+  - author: Aliaksandr Yakutovich
+    author_email: aliaksandr.yakutovich@epfl.ch
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Development Status :: 4 - Beta'
+    data_files:
+    - - .
+      - - setup.json
+    description: AiiDA plugin for RASPA code
+    entry_points:
+      aiida.calculations:
+      - raspa = aiida_raspa.calculations:RaspaCalculation
+      aiida.parsers:
+      - raspa = aiida_raspa.parsers:RaspaParser
+      aiida.workflows:
+      - raspa.converge = aiida_raspa.workflows:RaspaConvergeWorkChain
+    extras_require:
+      pre-commit:
+      - pre-commit==1.16.1
+      - yapf==0.27.0
+      - prospector==1.1.6.2
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.2.2; python_version>='3.0'
+      test:
+      - pytest==4.4.1
+    install_requires:
+    - aiida_core >= 1.0.0b5
+    license: MIT License
+    name: aiida-raspa
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/yakutovicha/aiida-raspa
+    version: 1.0.0a1
+siesta:
+  aiida_version: '>=1.0.0b1,<2.0.0'
+  code_home: https://github.com/albgar/aiida_siesta_plugin/tree/master
+  development_status: beta
+  documentation_url: https://aiida-siesta-plugin.readthedocs.io/
+  entry_point: siesta
+  entry_points:
+    aiida.calculations:
+    - siesta.siesta = aiida_siesta.calculations.siesta:SiestaCalculation
+    - siesta.stm = aiida_siesta.calculations.stm:STMCalculation
+    aiida.cmdline.data:
+    - psf = aiida_siesta.commands.data_psf:psfdata
+    - psml = aiida_siesta.commands.data_psml:psmldata
+    aiida.data:
+    - siesta.psf = aiida_siesta.data.psf:PsfData
+    - siesta.psml = aiida_siesta.data.psml:PsmlData
+    aiida.parsers:
+    - siesta.parser = aiida_siesta.parsers.siesta:SiestaParser
+    - siesta.stm = aiida_siesta.parsers.stm:STMParser
+    aiida.workflows:
+    - siesta.base = aiida_siesta.workflows.base:SiestaBaseWorkChain
+    - siesta.bands = aiida_siesta.workflows.bands:SiestaBandsWorkChain
+    - siesta.stm = aiida_siesta.workflows.stm:SiestaSTMWorkChain
+  hosted_on: github.com
+  metadata:
+    author: Alberto Garcia, Victor M. Garcia-Suarez, Emanuele Bosoni, Vladimir Dikan
+    author_email: albertog@icmab.es
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Development Status :: 3 - Alpha'
+    description: A plugin for Siesta's basic functionality within the AiiDA framework.
+    version: 1.0.0
+  name: aiida-siesta
+  package_name: aiida_siesta
+  pip_url: aiida-siesta
+  plugin_info:
+  - setuptools
+  - author: Alberto Garcia, Victor M. Garcia-Suarez, Emanuele Bosoni, Vladimir Dikan
+    author_email: albertog@icmab.es
+    classifiers:
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Development Status :: 3 - Alpha'
+    description: A plugin for Siesta's basic functionality within the AiiDA framework.
+    entry_points:
+      aiida.calculations:
+      - siesta.siesta = aiida_siesta.calculations.siesta:SiestaCalculation
+      - siesta.stm = aiida_siesta.calculations.stm:STMCalculation
+      aiida.cmdline.data:
+      - psf = aiida_siesta.commands.data_psf:psfdata
+      - psml = aiida_siesta.commands.data_psml:psmldata
+      aiida.data:
+      - siesta.psf = aiida_siesta.data.psf:PsfData
+      - siesta.psml = aiida_siesta.data.psml:PsmlData
+      aiida.parsers:
+      - siesta.parser = aiida_siesta.parsers.siesta:SiestaParser
+      - siesta.stm = aiida_siesta.parsers.stm:STMParser
+      aiida.workflows:
+      - siesta.base = aiida_siesta.workflows.base:SiestaBaseWorkChain
+      - siesta.bands = aiida_siesta.workflows.bands:SiestaBandsWorkChain
+      - siesta.stm = aiida_siesta.workflows.stm:SiestaSTMWorkChain
+    extras_require:
+      dev:
+      - pre-commit
+      - prospector==1.1.5
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.2.2; python_version>='3.0'
+      - astroid==2.1.0; python_version>='3.0'
+      - pgtest==1.2.0
+      - pytest==3.6.3
+      - pytest-regressions==1.0.5
+      - yapf==0.26.0
+      docs:
+      - Sphinx
+      - docutils
+      - sphinx_rtd_theme
+    install_requires:
+    - aiida_core[docs,atomic_tools]>=1.0.0b1,<2.0.0
+    - pytest>=3.3.2
+    keywords:
+    - aiida
+    - siesta
+    - dft
+    license: MIT License
+    name: aiida-siesta
+    url: https://github.com/albgar/aiida_siesta_plugin
+    version: 1.0.0
+spex:
+  aiida_version: null
+  code_home: https://github.com/JuDFTteam/aiida-spex
+  development_status: planning
+  entry_point: spex
+  entry_points: {}
+  hosted_on: github.com
+  metadata: null
+  name: aiida-spex
+  package_name: aiida_spex
+  pip_url: git+https://github.com/JuDFTteam/aiida-spex
+  plugin_info: null
+strain:
+  aiida_version: null
+  code_home: https://github.com/greschd/aiida-strain
+  development_status: beta
+  documentation_url: https://aiida-strain.readthedocs.io
+  entry_point: strain
+  entry_points:
+    aiida.workflows:
+    - strain.apply_strains = aiida_strain.work:ApplyStrains
+    - strain.apply_strains_with_symmetry = aiida_strain.work:ApplyStrainsWithSymmetry
+  hosted_on: github.com
+  metadata:
+    author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for applying strain to structures
+    version: ''
+  name: aiida-strain
+  package_name: aiida_strain
+  pip_url: aiida-strain
+  plugin_info:
+  - setuptools
+  - author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for applying strain to structures
+    entry_points:
+      aiida.workflows:
+      - strain.apply_strains = aiida_strain.work:ApplyStrains
+      - strain.apply_strains_with_symmetry = aiida_strain.work:ApplyStrainsWithSymmetry
+    extras_require:
+      pre-commit:
+      - pre-commit
+      - yapf==0.25
+      test:
+      - aiida-pytest
+      - pytest
+    include_package_data: true
+    install_requires:
+    - aiida-core
+    - strain
+    - aiida-symmetry-representation
+    - aiida-tools
+    keywords:
+    - strain
+    - aiida
+    - workflows
+    license: Apache 2.0
+    name: aiida-strain
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://aiida-strain.readthedocs.io
+symmetry-representation:
+  aiida_version: null
+  code_home: https://github.com/greschd/aiida_symmetry_representation
+  development_status: beta
+  documentation_url: https://aiida-symmetry-representation.readthedocs.io
+  entry_point: symmetry_representation
+  entry_points:
+    aiida.calculations:
+    - symmetry_representation.filter_symmetries = aiida_symmetry_representation.calculations.filter_symmetries:FilterSymmetriesCalculation
+    aiida.parsers:
+    - symmetry_representation.symmetry = aiida_symmetry_representation.parsers.symmetries:SymmetriesParser
+  hosted_on: github.com
+  metadata:
+    author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for symmetry representations.
+    version: ''
+  name: aiida-symmetry-representation
+  package_name: aiida_symmetry_representation
+  pip_url: aiida-symmetry-representation
+  plugin_info:
+  - setuptools
+  - author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for symmetry representations.
+    entry_points:
+      aiida.calculations:
+      - symmetry_representation.filter_symmetries = aiida_symmetry_representation.calculations.filter_symmetries:FilterSymmetriesCalculation
+      aiida.parsers:
+      - symmetry_representation.symmetry = aiida_symmetry_representation.parsers.symmetries:SymmetriesParser
+    extras_require:
+      pre-commit:
+      - yapf==0.25
+      - pre-commit
+      test:
+      - aiida-pytest
+      - pytest
+    include_package_data: true
+    install_requires:
+    - aiida-core
+    - aiida-tools
+    - pymatgen<2019;python_version<"3"
+    - pymatgen;python_version>="3"
+    - fsc.export
+    keywords: symmetry representation aiida workflow
+    license: Apache 2.0
+    name: aiida-symmetry-representation
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://aiida-symmetry-representation.readthedocs.io
+tbextraction:
+  aiida_version: null
+  code_home: https://github.com/greschd/aiida-tbextraction
+  development_status: beta
+  documentation_url: https://aiida-tbextraction.readthedocs.io/
+  entry_point: tbextraction
+  entry_points:
+    aiida.workflows:
+    - tbextraction.fp_run.base = aiida_tbextraction.fp_run:FirstPrinciplesRunBase
+    - tbextraction.fp_run.split = aiida_tbextraction.fp_run:SplitFirstPrinciplesRun
+    - tbextraction.fp_run.vasp = aiida_tbextraction.fp_run:VaspFirstPrinciplesRun
+    - tbextraction.fp_run.reference_bands.base = aiida_tbextraction.fp_run.reference_bands:ReferenceBandsBase
+    - tbextraction.fp_run.reference_bands.vasp = aiida_tbextraction.fp_run.reference_bands:VaspReferenceBands
+    - tbextraction.fp_run.wannier_input.base = aiida_tbextraction.fp_run.wannier_input:WannierInputBase
+    - tbextraction.fp_run.wannier_input.vasp = aiida_tbextraction.fp_run.wannier_input:VaspWannierInput
+    - tbextraction.calculate_tb = aiida_tbextraction.calculate_tb:TightBindingCalculation
+    - tbextraction.model_evaluation.base = aiida_tbextraction.model_evaluation:ModelEvaluationBase
+    - tbextraction.model_evaluation.band_difference = aiida_tbextraction.model_evaluation:BandDifferenceModelEvaluation
+    - tbextraction.energy_windows.run_window = aiida_tbextraction.energy_windows.run_window:RunWindow
+    - tbextraction.energy_windows.window_search = aiida_tbextraction.energy_windows.window_search:WindowSearch
+    - tbextraction.optimize_fp_tb = aiida_tbextraction.optimize_fp_tb:OptimizeFirstPrinciplesTightBinding
+    - tbextraction.optimize_strained_fp_tb = aiida_tbextraction.optimize_strained_fp_tb:OptimizeStrainedFirstPrinciplesTightBinding
+  hosted_on: github.com
+  metadata:
+    author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for extracting tight-binding models
+    version: ''
+  name: aiida-tbextraction
+  package_name: aiida_tbextraction
+  pip_url: aiida-tbextraction
+  plugin_info:
+  - setuptools
+  - author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for extracting tight-binding models
+    entry_points:
+      aiida.workflows:
+      - tbextraction.fp_run.base = aiida_tbextraction.fp_run:FirstPrinciplesRunBase
+      - tbextraction.fp_run.split = aiida_tbextraction.fp_run:SplitFirstPrinciplesRun
+      - tbextraction.fp_run.vasp = aiida_tbextraction.fp_run:VaspFirstPrinciplesRun
+      - tbextraction.fp_run.reference_bands.base = aiida_tbextraction.fp_run.reference_bands:ReferenceBandsBase
+      - tbextraction.fp_run.reference_bands.vasp = aiida_tbextraction.fp_run.reference_bands:VaspReferenceBands
+      - tbextraction.fp_run.wannier_input.base = aiida_tbextraction.fp_run.wannier_input:WannierInputBase
+      - tbextraction.fp_run.wannier_input.vasp = aiida_tbextraction.fp_run.wannier_input:VaspWannierInput
+      - tbextraction.calculate_tb = aiida_tbextraction.calculate_tb:TightBindingCalculation
+      - tbextraction.model_evaluation.base = aiida_tbextraction.model_evaluation:ModelEvaluationBase
+      - tbextraction.model_evaluation.band_difference = aiida_tbextraction.model_evaluation:BandDifferenceModelEvaluation
+      - tbextraction.energy_windows.run_window = aiida_tbextraction.energy_windows.run_window:RunWindow
+      - tbextraction.energy_windows.window_search = aiida_tbextraction.energy_windows.window_search:WindowSearch
+      - tbextraction.optimize_fp_tb = aiida_tbextraction.optimize_fp_tb:OptimizeFirstPrinciplesTightBinding
+      - tbextraction.optimize_strained_fp_tb = aiida_tbextraction.optimize_strained_fp_tb:OptimizeStrainedFirstPrinciplesTightBinding
+    extras_require:
+      :python_version < "3":
+      - chainmap
+      - singledispatch
+      dev:
+      - pymatgen; python_version>="3"
+      - pymatgen<2019; python_version<"3"
+      - aiida-pytest
+      - ase
+      - yapf==0.25
+      - pre-commit
+      - prospector==0.12.11
+      - sphinx-rtd-theme
+      - pylint==1.9.3
+      strain:
+      - aiida-strain
+      vasp:
+      - aiida-vasp
+    include_package_data: true
+    install_requires:
+    - aiida-core
+    - aiida-wannier90
+    - aiida-bands-inspect
+    - aiida-tbmodels
+    - aiida-optimize
+    - fsc.export
+    - aiida-tools
+    - future
+    keywords: tight-binding extraction aiida workflows
+    license: Apache 2.0
+    name: aiida-tbextraction
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://aiida-tbextraction.readthedocs.io
+tbmodels:
+  aiida_version: '>=1.0.0<2.0.0'
+  code_home: https://github.com/greschd/aiida-tbmodels
+  development_status: beta
+  documentation_url: https://aiida-tbmodels.readthedocs.io
+  entry_point: tbmodels
+  entry_points:
+    aiida.calculations:
+    - tbmodels.eigenvals = aiida_tbmodels.calculations.eigenvals:EigenvalsCalculation
+    - tbmodels.parse = aiida_tbmodels.calculations.parse:ParseCalculation
+    - tbmodels.slice = aiida_tbmodels.calculations.slice:SliceCalculation
+    - tbmodels.symmetrize = aiida_tbmodels.calculations.symmetrize:SymmetrizeCalculation
+    aiida.parsers:
+    - tbmodels.model = aiida_tbmodels.parsers.model:ModelParser
+  hosted_on: github.com
+  metadata:
+    author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA Plugin for running TBmodels
+    version: 0.2.0
+  name: aiida-tbmodels
+  package_name: aiida_tbmodels
+  pip_url: aiida-tbmodels
+  plugin_info:
+  - setuptools
+  - author: Dominik Gresch
+    author_email: greschd@gmx.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: Apache Software License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Programming Language :: Python :: 3.6'
+    - 'Programming Language :: Python :: 3.7'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    - 'Framework :: AiiDA'
+    description: AiiDA Plugin for running TBmodels
+    entry_points:
+      aiida.calculations:
+      - tbmodels.eigenvals = aiida_tbmodels.calculations.eigenvals:EigenvalsCalculation
+      - tbmodels.parse = aiida_tbmodels.calculations.parse:ParseCalculation
+      - tbmodels.slice = aiida_tbmodels.calculations.slice:SliceCalculation
+      - tbmodels.symmetrize = aiida_tbmodels.calculations.symmetrize:SymmetrizeCalculation
+      aiida.parsers:
+      - tbmodels.model = aiida_tbmodels.parsers.model:ModelParser
+    extras_require:
+      dev_precommit:
+      - yapf==0.28
+      - pre-commit
+      - prospector==1.1.7
+      docs:
+      - sphinx
+      - sphinx-rtd-theme
+      testing:
+      - pytest
+      - aiida-pytest>=0.1.0a4
+    include_package_data: true
+    install_requires:
+    - six
+    - future
+    - aiida-core>=1.0.0<2.0.0
+    - aiida-bands-inspect>=0.2.0b1
+    keywords:
+    - tbmodels
+    - aiida
+    - workflows
+    license: Apache 2.0
+    name: aiida-tbmodels
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://aiida-tbmodels.readthedocs.io
+    version: 0.2.0
+tcod:
+  aiida_version: '>=1.0.0b1'
+  code_home: https://github.com/aiidateam/aiida-tcod
+  development_status: beta
+  documentation_url: https://aiida-tcod.readthedocs.io/
+  entry_point: tcod
+  entry_points:
+    aiida.tools.dbexporters:
+    - tcod = aiida.tools.dbexporters.tcod
+  hosted_on: github.com
+  metadata:
+    author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'Programming Language :: Python'
+    description: AiiDA plugin to interact with the TCOD
+    version: 0.1.0a0
+  name: aiida-tcod
+  package_name: aiida_tcod
+  pip_url: git+https://github.com/aiidateam/aiida-tcod
+  plugin_info:
+  - setuptools
+  - author: The AiiDA team
+    author_email: developers@aiida.net
+    classifiers:
+    - 'Programming Language :: Python'
+    description: AiiDA plugin to interact with the TCOD
+    entry_points:
+      aiida.tools.dbexporters:
+      - tcod = aiida.tools.dbexporters.tcod
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.24.0
+      - prospector==0.12.11
+      - pylint==1.9.3
+      testing:
+      - mock==2.0.0
+      - pgtest==1.1.0
+      - sqlalchemy-diff==0.1.3
+      - wheel>=0.31
+      - coverage
+      - pytest==3.6.3
+      - pytest-cov==2.6.0
+    include_package_data: true
+    install_requires:
+    - aiida-core>=1.0.0b1
+    - six
+    license: MIT
+    name: aiida-tcod
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/aiidateam/aiida-tcod
+    version: 0.1.0a0
+uppasd:
+  aiida_version: '>=1.0.0b3,<2.0.0'
+  code_home: https://github.com/uppasd/aiida-uppasd
+  development_status: planning
+  documentation_url: https://github.com/uppasd/aiida-uppasd/blob/master/README.md
+  entry_point: uppasd
+  entry_points:
+    aiida.calculations:
+    - uppasd = aiida_uppasd.calculations:DiffCalculation
+    aiida.cmdline.data:
+    - uppasd = aiida_uppasd.cli:data_cli
+    aiida.data:
+    - uppasd = aiida_uppasd.data:DiffParameters
+    aiida.parsers:
+    - uppasd = aiida_uppasd.parsers:DiffParser
+  hosted_on: github.com
+  metadata:
+    author: The UppASD team
+    author_email: uppasd@physics.uu.se
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for the atomistic spin dynamics code UppASD
+    version: 0.1.0a0
+  name: aiida-uppasd
+  package_name: aiida_uppasd
+  pip_url: git+https://github.com/unkcpz/aiida-uppasd
+  plugin_info:
+  - setuptools
+  - author: The UppASD team
+    author_email: uppasd@physics.uu.se
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Natural Language :: English'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for the atomistic spin dynamics code UppASD
+    entry_points:
+      aiida.calculations:
+      - uppasd = aiida_uppasd.calculations:DiffCalculation
+      aiida.cmdline.data:
+      - uppasd = aiida_uppasd.cli:data_cli
+      aiida.data:
+      - uppasd = aiida_uppasd.data:DiffParameters
+      aiida.parsers:
+      - uppasd = aiida_uppasd.parsers:DiffParser
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit==1.11.0
+      - yapf==0.27.0
+      - prospector==0.12.11
+      - pylint==1.9.4
+      testing:
+      - pgtest==1.2.0
+      - wheel>=0.31
+      - coverage
+      - pytest>=3.6.3,<5.0.0
+      - pytest-cov>=2.6.1,<5.0.0
+    include_package_data: true
+    install_requires:
+    - aiida-core>=1.0.0b3,<2.0.0
+    - six
+    - voluptuous
+    - pandas==0.24.2
+    license: MIT
+    name: aiida-uppasd
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/uppasd/aiida-uppasd
+    version: 0.1.0a0
+vasp:
+  aiida_version: '>=0.11.0'
+  code_home: https://github.com/aiida-vasp/aiida-vasp
+  development_status: beta
+  documentation_url: https://aiida-vasp.readthedocs.io/
+  entry_point: vasp
+  entry_points:
+    aiida.calculations:
+    - vasp.vasp = aiida_vasp.calcs.vasp:VaspCalculation
+    - vasp.vasp2w90 = aiida_vasp.calcs.vasp2w90:Vasp2w90Calculation
+    aiida.cmdline.data:
+    - vasp-potcar = aiida_vasp.commands.potcar:potcar
+    aiida.data:
+    - vasp.archive = aiida_vasp.data.archive:ArchiveData
+    - vasp.chargedensity = aiida_vasp.data.chargedensity:ChargedensityData
+    - vasp.wavefun = aiida_vasp.data.wavefun:WavefunData
+    - vasp.potcar = aiida_vasp.data.potcar:PotcarData
+    - vasp.potcar_file = aiida_vasp.data.potcar:PotcarFileData
+    - vasp.paw = aiida_vasp.data.paw:LegacyPawData
+    aiida.parsers:
+    - vasp.vasp = aiida_vasp.parsers.vasp:VaspParser
+    - vasp.vasp2w90 = aiida_vasp.parsers.vasp2w90:Vasp2w90Parser
+    - vasp.pymatgen = aiida_vasp.parsers.pymatgen_vasp:PymatgenParser
+    aiida.workflows:
+    - vasp.base = aiida_vasp.workflows.base:VaspBaseWf
+    - vasp.relax = aiida_vasp.workflows.relax:VaspRelaxWf
+    - vasp.legacy.scf = aiida_vasp.workflows.legacy.scf:ScfWorkflow
+    - vasp.legacy.nscf = aiida_vasp.workflows.legacy.nscf:NscfWorkflow
+    - vasp.legacy.projections = aiida_vasp.workflows.legacy.projections:ProjectionsWorkflow
+    - vasp.legacy.autowindows = aiida_vasp.workflows.legacy.autowindows:AutowindowsWorkflow
+    - vasp.legacy.wannier = aiida_vasp.workflows.legacy.wannier:WannierWorkflow
+    - vasp.legacy.windows = aiida_vasp.workflows.legacy.windows:WindowsWorkflow
+    console_scripts:
+    - mock-vasp = aiida_vasp.commands.mock_vasp:mock_vasp
+  hosted_on: github.com
+  metadata:
+    author: "Rico H\xE4uselmann"
+    author_email: haeuselm@epfl.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for running VASP calculations.
+    version: 0.2.4
+  name: aiida-vasp
+  package_name: aiida_vasp
+  pip_url: aiida-vasp
+  plugin_info:
+  - setuptools
+  - author: "Rico H\xE4uselmann"
+    author_email: haeuselm@epfl.ch
+    classifiers:
+    - 'Development Status :: 3 - Alpha'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for running VASP calculations.
+    entry_points:
+      aiida.calculations:
+      - vasp.vasp = aiida_vasp.calcs.vasp:VaspCalculation
+      - vasp.vasp2w90 = aiida_vasp.calcs.vasp2w90:Vasp2w90Calculation
+      aiida.cmdline.data:
+      - vasp-potcar = aiida_vasp.commands.potcar:potcar
+      aiida.data:
+      - vasp.archive = aiida_vasp.data.archive:ArchiveData
+      - vasp.chargedensity = aiida_vasp.data.chargedensity:ChargedensityData
+      - vasp.wavefun = aiida_vasp.data.wavefun:WavefunData
+      - vasp.potcar = aiida_vasp.data.potcar:PotcarData
+      - vasp.potcar_file = aiida_vasp.data.potcar:PotcarFileData
+      - vasp.paw = aiida_vasp.data.paw:LegacyPawData
+      aiida.parsers:
+      - vasp.vasp = aiida_vasp.parsers.vasp:VaspParser
+      - vasp.vasp2w90 = aiida_vasp.parsers.vasp2w90:Vasp2w90Parser
+      - vasp.pymatgen = aiida_vasp.parsers.pymatgen_vasp:PymatgenParser
+      aiida.workflows:
+      - vasp.base = aiida_vasp.workflows.base:VaspBaseWf
+      - vasp.relax = aiida_vasp.workflows.relax:VaspRelaxWf
+      - vasp.legacy.scf = aiida_vasp.workflows.legacy.scf:ScfWorkflow
+      - vasp.legacy.nscf = aiida_vasp.workflows.legacy.nscf:NscfWorkflow
+      - vasp.legacy.projections = aiida_vasp.workflows.legacy.projections:ProjectionsWorkflow
+      - vasp.legacy.autowindows = aiida_vasp.workflows.legacy.autowindows:AutowindowsWorkflow
+      - vasp.legacy.wannier = aiida_vasp.workflows.legacy.wannier:WannierWorkflow
+      - vasp.legacy.windows = aiida_vasp.workflows.legacy.windows:WindowsWorkflow
+      console_scripts:
+      - mock-vasp = aiida_vasp.commands.mock_vasp:mock_vasp
+    extras_require:
+      dev:
+      - pre-commit
+      - prospector == 0.12.11
+      - pylint == 1.9.3
+      - flake8
+      - yapf
+      - coverage
+      - pytest
+      - pytest-cov
+      - pgtest >= 1.1.0
+      - packaging
+      graphs:
+      - matplotlib
+      regen_default_paws:
+      - lxml
+      wannier:
+      - aiida-wannier90
+    include_package_data: true
+    install_requires:
+    - aiida-core[atomic_tools] >= 0.11.0
+    - ase
+    - scipy
+    - pymatgen
+    - subprocess32
+    - click
+    - chainmap
+    - six
+    - pyparsing
+    - py
+    - lxml
+    - packaging
+    - parsevasp >= 0.2.18
+    license: MIT License, see LICENSE.txt file.
+    name: aiida-vasp
+    reentry_register: true
+    scripts:
+    - utils/runwf.py
+    setup_requires:
+    - reentry
+    url: https://github.com/aiida-vasp/aiida-vasp
+    version: 0.2.4
+wannier90:
+  aiida_version: '>=0.9.1'
+  code_home: https://github.com/aiidateam/aiida-wannier90
+  development_status: stable
+  documentation_url: https://aiida-wannier90.readthedocs.io/
+  entry_point: wannier90
+  entry_points:
+    aiida.calculations:
+    - wannier90.wannier90 = aiida_wannier90.calculations:Wannier90Calculation
+    aiida.data: []
+    aiida.parsers:
+    - wannier90.wannier90 = aiida_wannier90.parsers:Wannier90Parser
+  hosted_on: github.com
+  metadata:
+    author: Dominik Gresch, Antimo Marrazzo, Daniel Marchand, Giovanni Pizzi & The
+      AiiDA Team.
+    author_email: developers@aiida.net
+    classifiers:
+    - 'Development Status :: 5 - Production/Stable'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for Wannier90
+    version: 1.0.0
+  name: aiida-wannier90
+  package_name: aiida_wannier90
+  pip_url: aiida-wannier90
+  plugin_info:
+  - setuptools
+  - author: Dominik Gresch, Antimo Marrazzo, Daniel Marchand, Giovanni Pizzi & The
+      AiiDA Team.
+    author_email: developers@aiida.net
+    classifiers:
+    - 'Development Status :: 5 - Production/Stable'
+    - 'Environment :: Plugins'
+    - 'Intended Audience :: Science/Research'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Programming Language :: Python :: 2.7'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: AiiDA Plugin for Wannier90
+    entry_points:
+      aiida.calculations:
+      - wannier90.wannier90 = aiida_wannier90.calculations:Wannier90Calculation
+      aiida.data: []
+      aiida.parsers:
+      - wannier90.wannier90 = aiida_wannier90.parsers:Wannier90Parser
+    extras_require:
+      dev:
+      - pre-commit
+      - yapf==0.19
+      docs:
+      - sphinx
+      - sphinx-rtd-theme
+      test:
+      - pytest
+      - aiida-pytest
+      - pymatgen
+    install_requires:
+    - aiida-core>=0.9.1
+    keywords: wannier90 AiiDA workflows plugin
+    license: MIT
+    name: aiida-wannier90
+    version: 1.0.0
+widgets:
+  aiida_version: '>=0.11'
+  code_home: https://github.com/aiidalab/aiidalab-widgets-base
+  development_status: beta
+  entry_points: {}
+  hosted_on: github.com
+  metadata:
+    author: ''
+    author_email: aiidateam@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    description: ''
+    version: ''
+  name: aiidalab-widgets-base
+  package_name: aiidalab_widgets_base
+  pip_url: aiidalab-widgets-base
+  plugin_info:
+  - setuptools
+  - author_email: aiidateam@gmail.com
+    classifiers:
+    - 'Programming Language :: Python'
+    extras_require:
+      docs:
+      - sphinx
+      pre-commit:
+      - pre-commit
+      - yapf
+      - prospector
+      - pylint
+      testing:
+      - aiida-core[testing]
+    install_requires:
+    - aiida-core[jupyter] >= 0.11
+    - ase
+    - numpy
+    - ipywidgets
+    - fileupload
+    - nglview
+    license: MIT
+    name: aiidalab-widgets-base
+    url: https://github.com/aiidalab/aiidalab-widgets-base
+yambo:
+  aiida_version: '>=1.0.0a2'
+  code_home: https://github.com/yambo-code/yambo-aiida/
+  development_status: beta
+  entry_point: yambo
+  entry_points:
+    aiida.calculations:
+    - yambo.yambo =  aiida_yambo.calculations.gw:YamboCalculation
+    aiida.data: []
+    aiida.parsers:
+    - yambo.yambo = aiida_yambo.parsers.parsers:YamboParser
+    console_scripts:
+    - plotyamboconv = aiida_yambo.commands.plotting:plotconv
+    - mock_qe = aiida_yambo.commands.mocks:mock_qe
+    - mock_yambo = aiida_yambo.commands.mocks:mock_yambo
+    - mock_p2y = aiida_yambo.commands.mocks:mock_p2y
+  hosted_on: github.com
+  metadata:
+    author: Michael Atambo, Antimo Marrazzo, Prandini Gianluca
+    author_email: m.atambo@nano.cnr.it
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Environment :: Plugins'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    description: YAMBO code Plugin for AiiDA
+    version: 0.2.5
+  name: aiida-yambo
+  package_name: aiida_yambo
+  pip_url: aiida-yambo
+  plugin_info:
+  - setuptools
+  - author: Michael Atambo, Antimo Marrazzo, Prandini Gianluca
+    author_email: m.atambo@nano.cnr.it
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'License :: OSI Approved :: MIT License'
+    - 'Environment :: Plugins'
+    - 'Topic :: Scientific/Engineering :: Physics'
+    dependency_links:
+    - git+https://github.com/aiidateam/aiida_core.git@b2e37749ab2781099df7b7bb15a603599ccdafdb#egg=aiida_core
+    - git+https://github.com/aiidateam/aiida-quantumespresso.git@b1e074f31cc604b43c7803344cf2cee45503c6df#egg=aiida_quantumespresso
+    description: YAMBO code Plugin for AiiDA
+    entry_points:
+      aiida.calculations:
+      - yambo.yambo =  aiida_yambo.calculations.gw:YamboCalculation
+      aiida.data: []
+      aiida.parsers:
+      - yambo.yambo = aiida_yambo.parsers.parsers:YamboParser
+      console_scripts:
+      - plotyamboconv = aiida_yambo.commands.plotting:plotconv
+      - mock_qe = aiida_yambo.commands.mocks:mock_qe
+      - mock_yambo = aiida_yambo.commands.mocks:mock_yambo
+      - mock_p2y = aiida_yambo.commands.mocks:mock_p2y
+    extras_require:
+      docs:
+      - Sphinx
+      - docutils
+      - sphinx_rtd_theme
+    install_requires:
+    - aiida_core[docs,atomic_tools]>=1.0.0a2
+    - aiida-quantumespresso
+    - reentry>=1.0.2
+    keywords: yambo aiida workflows
+    license: MIT
+    name: aiida-yambo
+    url: https://github.com/yambo-code/yambo-aiida
+    version: 0.2.5
+z2pack:
+  aiida_version: null
+  code_home: https://github.com/AntimoMarrazzo/aiida-z2pack
+  development_status: planning
+  entry_point: z2pack
+  entry_points: {}
+  hosted_on: github.com
+  metadata: null
+  name: aiida-z2pack
+  package_name: aiida_z2pack
+  pip_url: git+https://github.com/AntimoMarrazzo/aiida-z2pack
+  plugin_info: null
+zeopp:
+  aiida_version: '>=1.0.0b6,<2.0.0'
+  code_home: https://github.com/ltalirz/aiida-zeopp
+  development_status: stable
+  entry_point: zeopp
+  entry_points:
+    aiida.calculations:
+    - zeopp.network = aiida_zeopp.calculations.network:NetworkCalculation
+    aiida.data:
+    - zeopp.parameters = aiida_zeopp.data.parameters:NetworkParameters
+    aiida.parsers:
+    - zeopp.network = aiida_zeopp.parsers.network:NetworkParser
+    aiida.workflows: []
+    console_scripts:
+    - zeopp-submit = aiida_zeopp.console_scripts.data_cli:cli
+  hosted_on: github.com
+  metadata:
+    author: Leopold Talirz
+    author_email: leopold.talirz@epfl.ch
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for zeo++
+    version: 1.0.0
+  name: aiida-zeopp
+  package_name: aiida_zeopp
+  pip_url: aiida-zeopp
+  plugin_info:
+  - setuptools
+  - author: Leopold Talirz
+    author_email: leopold.talirz@epfl.ch
+    classifiers:
+    - 'Programming Language :: Python'
+    - 'Framework :: AiiDA'
+    description: AiiDA plugin for zeo++
+    entry_points:
+      aiida.calculations:
+      - zeopp.network = aiida_zeopp.calculations.network:NetworkCalculation
+      aiida.data:
+      - zeopp.parameters = aiida_zeopp.data.parameters:NetworkParameters
+      aiida.parsers:
+      - zeopp.network = aiida_zeopp.parsers.network:NetworkParser
+      aiida.workflows: []
+      console_scripts:
+      - zeopp-submit = aiida_zeopp.console_scripts.data_cli:cli
+    extras_require:
+      pre-commit:
+      - astroid==1.6.6; python_version<'3.0'
+      - astroid==2.2.5; python_version>='3.0'
+      - pre-commit==1.17.0
+      - yapf==0.28.0
+      - prospector==1.1.7
+      - pylint-django==0.11.1; python_version<'3.0'
+      - pylint==1.9.4; python_version<'3.0'
+      - pylint==2.3.1; python_version>='3.0'
+      testing:
+      - pgtest==1.2.0
+      - pytest>=4.4,<5.0.0
+      - pytest-cov>=2.6.1,<3.0.0
+      - coverage
+    install_requires:
+    - aiida-core >=1.0.0b6,<2.0.0
+    - pycifrw >= 4.2
+    - numpy < 1.17
+    - pymatgen <= 2018.12.12
+    - monty==2.0.4
+    - voluptuous
+    - six
+    license: Creative Commons
+    name: aiida-zeopp
+    reentry_register: true
+    setup_requires:
+    - reentry
+    url: https://github.com/ltalirz/aiida-zeopp
+    version: 1.0.0
