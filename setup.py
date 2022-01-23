@@ -25,6 +25,7 @@ if __name__ == '__main__':
             'poetry~=1.1',
             'tomlkit',
             'click~=7.1',
+            'pyyaml~=6.0',
         ],
         license='MIT',
         extras_require={
