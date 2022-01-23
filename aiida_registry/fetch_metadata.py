@@ -81,28 +81,30 @@ def complete_plugin_data(plugin_data: dict,
             REPORTER.warn(
                 'Cannot fetch all data from PyPI and missing plugin_info key!')
         else:
-            # retrive content of build file
+            # retrieve content of build file
             plugin_info_content = fetch_file(plugin_info_url)
-            # Identify build system
-            build_tool_name = identify_build_tool(
-                plugin_info_url,
-                plugin_info_content,
-            )
-            if pypi_metadata is not None:
-                # we only need to get the entry points
-                data = get_data_parser(build_tool_name)(
+
+            if plugin_info_content:
+                # Identify build system
+                build_tool_name = identify_build_tool(
+                    plugin_info_url,
                     plugin_info_content,
-                    ep_only=True)  # , entry_points_only=True
-                plugin_data['entry_points'] = data.entry_points
-            else:
-                data = get_data_parser(build_tool_name)(plugin_info_content,
-                                                        ep_only=False)
-                plugin_data['metadata'] = data.metadata
-                plugin_data['aiida_version'] = data.aiida_version
-                plugin_data['entry_points'] = data.entry_points
+                )
+                if pypi_metadata is not None:
+                    # we only need to get the entry points
+                    data = get_data_parser(build_tool_name)(
+                        plugin_info_content,
+                        ep_only=True)  # , entry_points_only=True
+                    plugin_data['entry_points'] = data.entry_points
+                else:
+                    data = get_data_parser(build_tool_name)(
+                        plugin_info_content, ep_only=False)
+                    plugin_data['metadata'] = data.metadata
+                    plugin_data['aiida_version'] = data.aiida_version
+                    plugin_data['entry_points'] = data.entry_points
 
     # ensure entry points are not None
-    plugin_data['entry_points'] = plugin_data['entry_points'] or {}
+    plugin_data['entry_points'] = plugin_data.get('entry_points') or {}
 
     # run validations
 
