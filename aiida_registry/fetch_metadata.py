@@ -217,7 +217,7 @@ def is_pip_url_pypi(string: str) -> bool:
 def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
     """Fetch metadata from PyPI and AiiDA-Plugins."""
     with open(PLUGINS_FILE_ABS) as handle:
-        plugins_raw_data: dict = yaml.load(handle)
+        plugins_raw_data: dict = yaml.safe_load(handle)
 
     plugins_metadata = OrderedDict()
 
