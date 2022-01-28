@@ -388,6 +388,13 @@ aiida-tcod:
   entry_point_prefix: tcod
   pip_url: git+https://github.com/aiidateam/aiida-tcod
   plugin_info: https://raw.github.com/aiidateam/aiida-tcod/master/setup.json
+aiida-testing:
+  code_home: https://github.com/aiidateam/aiida-testing
+  development_status: beta
+  entry_point_prefix: testing
+  pip_url: https://github.com/aiidateam/aiida-testing
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-testing/develop/setup.cfg
+  documentation_url: https://aiida-testing.readthedocs.io/en/latest/
 aiida-uppasd:
   code_home: https://github.com/uppasd/aiida-uppasd
   documentation_url: https://github.com/uppasd/aiida-uppasd/blob/master/README.md
