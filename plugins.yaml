@@ -106,7 +106,7 @@ aiida-diff:
   documentation_url: https://aiida-diff.readthedocs.io/
   entry_point_prefix: diff
   pip_url: git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0
-  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-firecrest/main/pyproject.toml
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-diff/master/pyproject.toml
 aiida-donothing:
   code_home: https://github.com/atztogo/aiida-donothing
   entry_point_prefix: donothing
