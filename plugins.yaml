@@ -247,6 +247,11 @@ aiida-nwchem:
   entry_point_prefix: nwchem
   pip_url: aiida-nwchem
   plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-nwchem/master/setup.json
+aiida-open_circuit_voltage:
+  entry_point_prefix: quantumespresso.ocv
+  plugin_info: https://raw.githubusercontent.com/tsthakur/aiida-open_circuit_voltage/main/setup.json
+  code_home: https://github.com/tsthakur/aiida-open_circuit_voltage
+  development_status: alpha
 aiida-optimize:
   code_home: https://github.com/greschd/aiida-optimize
   documentation_url: https://aiida-optimize.readthedocs.io
