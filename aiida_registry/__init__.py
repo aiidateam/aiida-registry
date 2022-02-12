@@ -130,6 +130,8 @@ classifier_to_status = {
     'Development Status :: 7 - Inactive': 'inactive'
 }
 
+status_no_pip_url_allowed = {'planning', 'pre-alpha', 'alpha'}
+
 ## dictionary of human-readable entrypointtypes
 entrypointtypes = {k: v['longname'] for k, v in entrypoint_metainfo.items()}
 
