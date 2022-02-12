@@ -16,7 +16,8 @@ from collections import defaultdict
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from . import (OTHERCOLORCLASS, PLUGINS_METADATA, entrypoint_metainfo,
-               entrypointtypes, main_entrypoints, status_dict)
+               entrypointtypes, main_entrypoints, status_dict,
+               status_no_pip_url_allowed)
 
 # Subfolders
 OUT_FOLDER = 'out'
@@ -139,7 +140,7 @@ def global_summary():
 def get_pip_install_cmd(plugin_data):
 
     if 'pip_url' not in plugin_data and plugin_data[
-            'development_status'] == 'planning':
+            'development_status'] in status_no_pip_url_allowed:
         return 'See source code repository.'
 
     pip_url = plugin_data['pip_url']

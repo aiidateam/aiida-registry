@@ -86,3 +86,6 @@ def test_pip_install_cmd():
 
     # aiida-core is stable version
     assert '--pre' not in get_pip_install_cmd(test_data['core'])
+
+    # aiida-gudhi is in alpha and does not provide a pip_url
+    assert 'See' not in get_pip_install_cmd(test_data['gudhi'])

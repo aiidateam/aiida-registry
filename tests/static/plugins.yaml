@@ -1360,7 +1360,7 @@ graphql:
 gudhi:
   aiida_version: '>=0.11'
   code_home: https://github.com/ltalirz/aiida-gudhi
-  development_status: beta
+  development_status: alpha
   entry_point: gudhi
   entry_points:
     aiida.calculations:
