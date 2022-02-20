@@ -16,6 +16,7 @@ pwd = os.path.split(os.path.abspath(__file__))[0]
 PLUGINS_FILE_ABS = os.path.join(pwd, os.pardir, 'plugins.yaml')
 PLUGINS_METADATA = 'plugins_metadata.json'
 PLUGINS_METADATA_KEYS = ['author', 'author_email', 'version', 'description']
+PLUGINS_TEST_RESULTS = 'test_results.json'
 
 # These are the main entrypoints, the other will fall under 'other'
 main_entrypoints = [

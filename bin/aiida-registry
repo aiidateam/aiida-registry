@@ -19,9 +19,10 @@ def html():
     make_pages()
 
 @cli.command()
-def test_install():
-    from aiida_registry.test_install import test_install
-    test_install()
+@click.option('--container-image', default='aiidateam/aiida-core:latest', help='Container image to use for the install')
+def test_install(container_image):
+    from aiida_registry.test_install import test_install_all
+    test_install_all(container_image)
 
 
 if __name__ == '__main__':
