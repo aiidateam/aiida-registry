@@ -71,7 +71,7 @@ def handle_error(process_result, message):
 def test_install_one_docker(container_image, plugin):
     """Test installing one plugin in a Docker container."""
     import docker  # pylint: disable=import-outside-toplevel
-    client = docker.from_env()
+    client = docker.from_env(timeout=180)
 
     is_package_installed = False
     is_package_importable = False
@@ -115,6 +115,8 @@ def test_install_one_docker(container_image, plugin):
             f"Failed to import package {plugin['package_name']}")
         is_package_importable = True
 
+        print('   - Extracting entry point metadata for {}'.format(
+            plugin['package_name']))
         extract_metadata = container.exec_run(
             workdir=_DOCKER_WORKDIR,
             cmd='python ./bin/analyze_entrypoints.py -o result.json')
