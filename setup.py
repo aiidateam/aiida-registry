@@ -27,12 +27,14 @@ if __name__ == '__main__':
             'click~=7.1',
             'pyyaml~=6.0',
             'docker~=5.0',
+            # https://github.com/aws/aws-sam-cli/issues/3661
+            'markupsafe~=2.0.1'
         ],
         license='MIT',
         extras_require={
             'pre-commit': [
                 'pre-commit~=2.2',
-                'pylint~=2.5.0',
+                'pylint~=2.11.0',
             ],
             'testing': ['pytest', 'pytest-regressions'],
         },

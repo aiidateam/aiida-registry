@@ -6,14 +6,13 @@ Adapted from `aiida.cmdline.commands.cmd_plugin`.
 
 Note: This script should run inside the aiida-core docker container without requiring additional dependencies.
 """
-# pylint: disable=missing-class-docstring
+# pylint: disable=missing-class-docstring,import-outside-toplevel
 import inspect
 import json
 from dataclasses import asdict, dataclass
 from typing import Dict, List
 
 import click
-from aiida.plugins.entry_point import get_entry_point_names
 
 ENTRY_POINT_GROUPS = [
     'aiida.calculations',
@@ -54,6 +53,8 @@ def document_entry_point_group(entry_point_group) -> Dict[str, ProcessInfo]:
     :param entry_point_group: the entry point group
     :return: a dictionary with the entry point name as key and the entry point metadata as value
     """
+    from aiida.plugins.entry_point import \
+        get_entry_point_names  # pylint: disable=import-error
     entry_points = get_entry_point_names(entry_point_group)
 
     if not entry_points:
@@ -75,7 +76,7 @@ def document_entry_point(entry_point_group: str,
     :param entry_point_group: the entry point group
     :param entry_point: the entry point name
     """
-    # pylint: disable=import-outside-toplevel
+    # pylint: disable=import-outside-toplevel,import-error
     from aiida.common import EntryPointError
     from aiida.engine import Process
     from aiida.plugins.entry_point import load_entry_point
