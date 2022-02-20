@@ -8,8 +8,7 @@ This uses the aiida-core Docker container to test the installation of the plugin
 import json
 import os
 import sys
-
-import attrs
+from dataclasses import asdict, dataclass
 
 from . import PLUGINS_METADATA, PLUGINS_TEST_RESULTS
 
@@ -17,7 +16,7 @@ from . import PLUGINS_METADATA, PLUGINS_TEST_RESULTS
 _DOCKER_WORKDIR = '/tmp/scripts'
 
 
-@attrs.define
+@dataclass
 class TestResult:
     """Test result."""
     is_installable: bool
@@ -133,7 +132,7 @@ def test_install_one_docker(container_image, plugin):
     finally:
         container.remove(force=True)
 
-    return attrs.asdict(
+    return asdict(
         TestResult(is_installable=is_package_installed,
                    is_importable=is_package_importable,
                    process_metadata=process_metadata,
