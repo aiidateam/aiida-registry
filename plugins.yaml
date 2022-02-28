@@ -438,7 +438,6 @@ aiida-zeopp:
   plugin_info: https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json
 aiida-qp2:
   code_home: https://github.com/TREX-CoE/aiida-qp2
-  development_status: beta
   entry_point_prefix: qp2
   pip_url: aiida-qp2
   plugin_info: https://raw.githubusercontent.com/TREX-CoE/aiida-qp2/master/setup.json
