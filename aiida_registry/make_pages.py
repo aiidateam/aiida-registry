@@ -3,7 +3,7 @@
 
 Reads plugin-metadata.json produced by fetch_metadata.
 """
-# pylint: disable=missing-function-docstring,invalid-name,global-statement
+# pylint: disable=missing-function-docstring,invalid-name,global-statement,consider-using-f-string
 
 import codecs
 import copy
@@ -43,9 +43,9 @@ def get_html_plugin_fname(plugin_name):
 
 def get_summary_info(entry_points):
     """Get info for plugin detail page.
-    """
-    global entrypoints_count, other_entrypoint_names
 
+    Note: this updates the global variables entrypoints_count and other_entrypoint_names.
+    """
     summary_info = []
     ep = (entry_points or {}).copy()
 
@@ -111,8 +111,6 @@ def format_entry_points_list(ep_list):
 
 def global_summary():
     """Compute summary of plugin registry."""
-    global entrypoints_count, other_entrypoint_names
-
     summary = []
     for entrypoint_name in main_entrypoints:
         summary.append({
@@ -152,7 +150,7 @@ def get_pip_install_cmd(plugin_data):
     try:
         version = plugin_data['metadata']['version']
         pre_releases = ['a', 'b', 'rc']
-        if any([version.find(p_id) != -1 for p_id in pre_releases]):
+        if any(version.find(p_id) != -1 for p_id in pre_releases):
             return 'pip install --pre {}'.format(pip_url)
         return 'pip install {}'.format(pip_url)
     except (KeyError, TypeError):
@@ -173,7 +171,7 @@ def make_pages():
         autoescape=select_autoescape(['html', 'xml']),
     )
 
-    with open(PLUGINS_METADATA) as f:
+    with open(PLUGINS_METADATA, encoding='utf8') as f:
         plugins_metadata = json.load(f)
 
     # Create HTML view for each plugin

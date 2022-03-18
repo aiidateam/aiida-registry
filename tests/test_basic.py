@@ -65,7 +65,7 @@ def test_entrypoint_checks(capsys):
 
     The registry should check only entry points from the 'aiida.' groups.
     """
-    with open(TEST_PATH / 'plugins.yaml', 'r') as handle:
+    with open(TEST_PATH / 'plugins.yaml', 'r', encoding='utf8') as handle:
         test_data = yaml.safe_load(handle)
 
     # aiida-gulp example contains 'reaxff' entry point in 'gulp.potentials' group
@@ -78,7 +78,7 @@ def test_entrypoint_checks(capsys):
 
 def test_pip_install_cmd():
     """Test pip install command to display."""
-    with open(TEST_PATH / 'plugins.yaml', 'r') as handle:
+    with open(TEST_PATH / 'plugins.yaml', 'r', encoding='utf8') as handle:
         test_data = yaml.safe_load(handle)
 
     # aiida-crystal17 is beta version
