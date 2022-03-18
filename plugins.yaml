@@ -348,12 +348,6 @@ aiida-sshonly:
   entry_point_prefix: sshonly
   pip_url: aiida-sshonly
   plugin_info: https://raw.github.com/adegomme/aiida-sshonly/master/setup.json
-aiida-sssp:
-  code_home: https://github.com/aiidateam/aiida-sssp
-  development_status: inactive
-  entry_point_prefix: sssp
-  pip_url: git+https://github.com/aiidateam/aiida-sssp
-  plugin_info: https://raw.github.com/aiidateam/aiida-sssp/master/setup.json
 aiida-statefile-schedulers:
   code_home: https://github.com/dev-zero/aiida-statefile-schedulers
   development_status: beta
