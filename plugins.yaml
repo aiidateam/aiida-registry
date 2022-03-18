@@ -13,7 +13,7 @@ aiida-alloy:
   code_home: https://github.com/DanielMarchand/aiida-alloy
   development_status: beta
   entry_point_prefix: alloy
-  pip_url: git+https://github.com/aiidateam/aiida-alloy
+  pip_url: git+https://github.com/DanielMarchand/aiida-alloy
   plugin_info: https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json
 aiida-ase:
   code_home: https://github.com/aiidateam/aiida-ase
@@ -140,7 +140,7 @@ aiida-fireworks-scheduler:
   development_status: beta
   documentation_url: https://aiida-fireworks-scheduler.readthedocs.io
   entry_point_prefix: fireworks_scheduler
-  pip_url: git+https://https://github.com/zhubonan/aiida-fireworks-scheduler
+  pip_url: git+https://github.com/zhubonan/aiida-fireworks-scheduler
   plugin_info: https://raw.github.com/zhubonan/aiida-fireworks-scheduler/master/setup.json
 aiida-fleur:
   code_home: https://github.com/JuDFTteam/aiida-fleur/tree/develop
@@ -441,3 +441,9 @@ aiida-zeopp:
   entry_point_prefix: zeopp
   pip_url: aiida-zeopp
   plugin_info: https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json
+aiida-qp2:
+  code_home: https://github.com/TREX-CoE/aiida-qp2
+  entry_point_prefix: qp2
+  pip_url: aiida-qp2
+  plugin_info: https://raw.githubusercontent.com/TREX-CoE/aiida-qp2/master/setup.json
+  documentation_url: https://trex-coe.github.io/aiida-qp2/index.html
