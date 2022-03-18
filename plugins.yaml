@@ -319,6 +319,11 @@ aiida-raspa:
   entry_point_prefix: raspa
   pip_url: aiida-raspa
   plugin_info: https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json
+aiida-shell:
+  code_home: https://github.com/sphuber/aiida-shell
+  entry_point_prefix: core
+  pip_url: aiida-shell
+  plugin_info: https://raw.github.com/sphuber/aiida-shell/master/pyproject.toml
 aiida-siesta:
   code_home: https://github.com/siesta-project/aiida_siesta_plugin/tree/master
   documentation_url: https://aiida-siesta-plugin.readthedocs.io/
