@@ -4,6 +4,7 @@
 Data is primarily sourced from PyPI,
 with a fallback to the repository build file (setup.json, setup.cfg, pyproject.toml).
 """
+# pylint: disable=consider-using-f-string
 import json
 import os
 import re
@@ -27,8 +28,9 @@ def get_hosted_on(url):
     """Get the hosting service from a URL."""
     try:
         requests.get(url, timeout=30)
-    except Exception:
-        raise ValueError("Unable to open 'code_home' url: '{}'".format(url))
+    except Exception as exc:
+        raise ValueError(
+            "Unable to open 'code_home' url: '{}'".format(url)) from exc
 
     netloc = urllib.parse.urlparse(url).netloc
 
@@ -216,7 +218,7 @@ def is_pip_url_pypi(string: str) -> bool:
 
 def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
     """Fetch metadata from PyPI and AiiDA-Plugins."""
-    with open(PLUGINS_FILE_ABS) as handle:
+    with open(PLUGINS_FILE_ABS, encoding='utf8') as handle:
         plugins_raw_data: dict = yaml.safe_load(handle)
 
     plugins_metadata = OrderedDict()
@@ -231,7 +233,7 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
             fetch_pypi=fetch_pypi,
             fetch_pypi_wheel=fetch_pypi_wheel)
 
-    with open(PLUGINS_METADATA, 'w') as handle:
+    with open(PLUGINS_METADATA, 'w', encoding='utf8') as handle:
         json.dump(plugins_metadata, handle, indent=2, sort_keys=True)
     REPORTER.info(f'{PLUGINS_METADATA} dumped')
 
