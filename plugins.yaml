@@ -441,3 +441,9 @@ aiida-qp2:
   pip_url: aiida-qp2
   plugin_info: https://raw.githubusercontent.com/TREX-CoE/aiida-qp2/master/setup.json
   documentation_url: https://trex-coe.github.io/aiida-qp2/index.html
+aiida-aenet:
+  code_home: https://gitlab.com/lattice737/aiida-aenet
+  development_status: planning
+  entry_point_prefix: aenet
+  pip_url: aiida-aenet
+  plugin_info: https://gitlab.com/lattice737/aiida-aenet/-/raw/main/setup.json
