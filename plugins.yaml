@@ -424,6 +424,12 @@ aiida-yambo:
   entry_point_prefix: yambo
   pip_url: aiida-yambo
   plugin_info: https://raw.github.com/yambo-code/yambo-aiida/master/setup.json
+aiida-yascheduler:
+  code_home: https://github.com/tilde-lab/yascheduler
+  documentation_url: https://github.com/tilde-lab/yascheduler
+  entry_point_prefix: yascheduler
+  pip_url: yascheduler
+  plugin_info: https://raw.githubusercontent.com/tilde-lab/yascheduler/master/setup.json
 aiida-z2pack:
   code_home: https://github.com/AntimoMarrazzo/aiida-z2pack
   entry_point_prefix: z2pack
