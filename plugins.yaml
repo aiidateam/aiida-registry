@@ -35,7 +35,7 @@ aiida-bigdft:
   plugin_info: https://raw.github.com/BigDFT-group/aiida-bigdft-plugin/master/setup.json
 aiida-castep:
   code_home: https://gitlab.com/bz1/aiida-castep
-  development_status: beta
+  development_status: stable
   documentation_url: https://aiida-castep.readthedocs.io/
   entry_point_prefix: castep
   pip_url: aiida-castep
