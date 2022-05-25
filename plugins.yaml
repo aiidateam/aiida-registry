@@ -453,3 +453,9 @@ aiida-aenet:
   entry_point_prefix: aenet
   pip_url: aiida-aenet
   plugin_info: https://gitlab.com/lattice737/aiida-aenet/-/raw/main/setup.json
+aiida-grouppathx:
+  code_home: https://github.com/zhubonan/aiida-grouppathx
+  development_status: beta
+  entry_point_prefix: grouppathx
+  pip_url: aiida-grouppathx
+  plugin_info: https://raw.githubusercontent.com/zhubonan/aiida-grouppathx/master/pyproject.toml
