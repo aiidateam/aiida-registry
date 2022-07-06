@@ -459,3 +459,10 @@ aiida-grouppathx:
   entry_point_prefix: grouppathx
   pip_url: aiida-grouppathx
   plugin_info: https://raw.githubusercontent.com/zhubonan/aiida-grouppathx/master/pyproject.toml
+aiida-yambo-wannier90:
+  code_home: https://github.com/aiidaplugins/aiida-yambo-wannier90
+  entry_point_prefix: yambo_wannier90
+  pip_url: aiida-yambo-wannier90
+  plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-yambo-wannier90/main/pyproject.toml
+  documentation_url: https://aiida-yambo-wannier90.readthedocs.io/en/latest/
+  version_file: https://raw.githubusercontent.com/aiidaplugins/aiida-yambo-wannier90/main/aiida_yambo_wannier90/__init__.py
