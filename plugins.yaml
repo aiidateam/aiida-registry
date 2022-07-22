@@ -466,3 +466,10 @@ aiida-yambo-wannier90:
   plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-yambo-wannier90/main/pyproject.toml
   documentation_url: https://aiida-yambo-wannier90.readthedocs.io/en/latest/
   version_file: https://raw.githubusercontent.com/aiidaplugins/aiida-yambo-wannier90/main/aiida_yambo_wannier90/__init__.py
+aiida-catmat:
+  code_home: https://github.com/pzarabadip/aiida-catmat
+  entry_point_prefix: catmat
+  development_status: beta
+  documentation_url: https://aiida-catmat.readthedocs.io/
+  pip_url: aiida-catmat
+  plugin_info: https://raw.githubusercontent.com/pzarabadip/aiida-catmat/develop/setup.json
