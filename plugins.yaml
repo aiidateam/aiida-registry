@@ -478,3 +478,5 @@ aiida-dataframe:
   plugin_info: https://raw.github.com/janssenhenning/aiida-dataframe/main/pyproject.toml
   code_home: https://github.com/janssenhenning/aiida-dataframe
   version_file: https://raw.githubusercontent.com/janssenhenning/aiida-dataframe/main/aiida_dataframe/__init__.py
+  pip_url: aiida-dataframe
+  documentation_url: https://aiida-dataframe.readthedocs.io/en/latest/
