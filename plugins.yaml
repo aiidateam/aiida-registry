@@ -156,10 +156,9 @@ aiida-flexpart:
   plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-flexpart/main/setup.json
 aiida-gaussian:
   code_home: https://github.com/nanotech-empa/aiida-gaussian
-  development_status: beta
   entry_point_prefix: gaussian
   pip_url: aiida-gaussian
-  plugin_info: https://raw.github.com/nanotech-empa/aiida-gaussian/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/nanotech-empa/aiida-gaussian/master/pyproject.toml
 aiida-gaussian-datatypes:
   code_home: https://github.com/dev-zero/aiida-gaussian-datatypes
   documentation_url: https://github.com/dev-zero/aiida-gaussian-datatypes/blob/master/README.md
