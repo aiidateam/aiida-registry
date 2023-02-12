@@ -482,3 +482,9 @@ aiida-dataframe:
   version_file: https://raw.githubusercontent.com/janssenhenning/aiida-dataframe/main/aiida_dataframe/__init__.py
   pip_url: aiida-dataframe
   documentation_url: https://aiida-dataframe.readthedocs.io/en/latest/
+aiida-autocas:
+  entry_point_prefix: autocas
+  plugin_info: https://raw.githubusercontent.com/microsoft/aiida-autocas/main/pyproject.toml
+  code_home: https://github.com/microsoft/aiida-autocas
+  version_file: https://raw.githubusercontent.com/microsoft/aiida-autocas/main/aiida_autocas/__init__.py
+  pip_url: git+https://github.com/microsoft/aiida-autocas
