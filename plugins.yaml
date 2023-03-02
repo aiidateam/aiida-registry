@@ -78,10 +78,11 @@ aiida-cp2k:
   plugin_info: https://raw.githubusercontent.com/cp2k/aiida-cp2k/master/setup.json
 aiida-crystal-dft:
   code_home: https://github.com/tilde-lab/aiida-crystal-dft
+  development_status: beta
   documentation_url: https://github.com/tilde-lab/aiida-crystal-dft
   entry_point_prefix: crystal_dft
   pip_url: git+https://github.com/tilde-lab/aiida-crystal-dft
-  plugin_info: https://raw.githubusercontent.com/tilde-lab/aiida-crystal-dft/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/tilde-lab/aiida-crystal-dft/master/pyproject.toml
 aiida-crystal17:
   code_home: https://github.com/aiidaplugins/aiida-crystal17
   development_status: beta
