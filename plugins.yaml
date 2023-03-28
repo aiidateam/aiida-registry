@@ -297,6 +297,11 @@ aiida-psi4:
   entry_point_prefix: psi4
   pip_url: git+https://github.com/ltalirz/aiida-psi4
   plugin_info: https://raw.github.com/ltalirz/aiida-psi4/master/setup.json
+aiida-pyscf:
+  code_home: https://github.com/microsoft/aiida-pyscf
+  entry_point_prefix: pyscf
+  pip_url: aiida-pyscf
+  plugin_info: https://github.com/microsoft/aiida-pyscf/blob/main/pyproject.toml
 aiida-python:
   entry_point_prefix: aiidapython
   code_home: https://github.com/addman2/aiida-python
