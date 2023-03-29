@@ -459,7 +459,7 @@ aiida-aenet:
   code_home: https://gitlab.com/lattice737/aiida-aenet
   development_status: planning
   entry_point_prefix: aenet
-  pip_url: aiida-aenet
+  pip_url: https://gitlab.com/lattice737/aiida-aenet
   plugin_info: https://gitlab.com/lattice737/aiida-aenet/-/raw/main/setup.json
 aiida-grouppathx:
   code_home: https://github.com/zhubonan/aiida-grouppathx
