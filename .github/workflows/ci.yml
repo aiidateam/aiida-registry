@@ -69,12 +69,12 @@ jobs:
     - name: fetch metadata
       run: aiida-registry fetch
 
-    # See https://github.com/geerlingguy/raspberry-pi-dramble/issues/166
-    - name: Force GitHub Actions' docker daemon to use vfs.
-      run: |
-        sudo systemctl stop docker
-        echo '{"cgroup-parent":"/actions_job","storage-driver":"vfs"}' | sudo tee /etc/docker/daemon.json
-        sudo systemctl start docker
+#     # See https://github.com/geerlingguy/raspberry-pi-dramble/issues/166
+#     - name: Force GitHub Actions' docker daemon to use vfs.
+#       run: |
+#         sudo systemctl stop docker
+#         echo '{"cgroup-parent":"/actions_job","storage-driver":"vfs"}' | sudo tee /etc/docker/daemon.json
+#         sudo systemctl start docker
 
     - name: Try installing packages
       run: aiida-registry test-install
