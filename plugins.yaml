@@ -101,6 +101,11 @@ aiida-ddec:
   entry_point_prefix: ddec
   pip_url: git+https://github.com/yakutovicha/aiida-ddec
   plugin_info: https://raw.githubusercontent.com/lsmo-epfl/aiida-ddec/master/setup.json
+aiida-defects:
+  code_home: https://github.com/epfl-theos/aiida-defects
+  entry_point_prefix: defects
+  pip_url: aiida-defects
+  plugin_info: https://raw.githubusercontent.com/epfl-theos/aiida-defects/master/pyproject.toml
 aiida-diff:
   code_home: https://github.com/aiidateam/aiida-diff
   development_status: stable
