@@ -187,7 +187,7 @@ aiida-gromacs:
   documentation_url: https://aiida-gromacs.readthedocs.io/
   entry_point_prefix: gromacs
   pip_url: git+https://github.com/jimboid/aiida-gromacs
-  plugin_info: https://raw.githubusercontent.com/jimboid/aiida-gromacs/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/jimboid/aiida-gromacs/master/pyproject.toml
 aiida-gudhi:
   code_home: https://github.com/ltalirz/aiida-gudhi
   development_status: beta
