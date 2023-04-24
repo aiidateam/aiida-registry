@@ -499,3 +499,9 @@ aiida-autocas:
   code_home: https://github.com/microsoft/aiida-autocas
   version_file: https://raw.githubusercontent.com/microsoft/aiida-autocas/main/aiida_autocas/__init__.py
   pip_url: git+https://github.com/microsoft/aiida-autocas
+aiida-musconv:
+  entry_point_prefix: musconv
+  plugin_info: https://raw.githubusercontent.com/positivemuon/aiida-musconv/main/pyproject.toml
+  code_home: https://github.com/positivemuon/aiida-musconv
+  version_file: https://github.com/positivemuon/aiida-musconv/blob/main/aiida_musconv/__init__.py
+  pip_url: git+https://github.com/positivemuon/aiida-musconv
