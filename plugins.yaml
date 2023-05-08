@@ -505,3 +505,9 @@ aiida-musconv:
   code_home: https://github.com/positivemuon/aiida-musconv
   version_file: https://github.com/positivemuon/aiida-musconv/blob/main/aiida_musconv/__init__.py
   pip_url: git+https://github.com/positivemuon/aiida-musconv
+aiida-muon:
+  entry_point_prefix: muon
+  plugin_info: https://raw.githubusercontent.com/positivemuon/aiida-muon/main/pyproject.toml
+  code_home: https://github.com/positivemuon/aiida-muon
+  version_file: https://github.com/positivemuon/aiida-muon/blob/main/aiida_muon/__init__.py
+  pip_url: git+https://github.com/positivemuon/aiida-muon
