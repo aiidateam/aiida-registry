@@ -20,7 +20,7 @@ if __name__ == "__main__":
             scripts=["bin/aiida-registry"],
             install_requires=[
                 "jinja2~=2.11",
-                "requests~=2.24",
+                "requests~=2.28.1",
                 "requests-cache~=0.5.2",
                 "requirements-parser~=0.2.0",
                 "poetry~=1.1.15",
