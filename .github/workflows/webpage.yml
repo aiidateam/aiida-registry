@@ -35,6 +35,8 @@ jobs:
       run: pip install -e . -v
     - name: fetch metadata
       id: fetch_metadata
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch
     - name: Commit json file
       run: |
