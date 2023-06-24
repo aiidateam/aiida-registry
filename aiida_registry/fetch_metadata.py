@@ -8,10 +8,12 @@ with a fallback to the repository build file (setup.json, setup.cfg, pyproject.t
 import json
 import os
 import re
+import subprocess
 import sys
 import traceback
 import urllib
 from collections import OrderedDict
+from datetime import datetime, timedelta
 from typing import Optional
 
 import requests
@@ -27,6 +29,8 @@ from . import (
 from .parse_build_file import get_data_parser, identify_build_tool
 from .parse_pypi import PypiData, get_pypi_metadata
 from .utils import fetch_file
+
+GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
 
 
 def get_hosted_on(url):
@@ -48,6 +52,70 @@ def get_hosted_on(url):
     return netloc
 
 
+def get_github_commits_count(repo_url):
+    """
+    Get the commits count on the default branch of the repository.
+    """
+    owner, repo = repo_url.split("/")[3:5]
+    url = f"https://api.github.com/repos/{owner}/{repo}/commits"
+    today = datetime.today().date()
+    last_twelve_months = today - timedelta(days=365)
+
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json",
+    }
+    params = {
+        "since": last_twelve_months.isoformat(),
+        "until": today.isoformat(),
+        "per_page": 1,
+        "page": 1,
+    }
+
+    response = requests.get(url, params=params, headers=headers, timeout=60)
+    if response.status_code == 200:
+        if len(response.json()) == 0:
+            commits_count = 0
+        else:
+            # https://stackoverflow.com/a/70610670/1069467
+            link_header = response.headers.get("Link")
+            match = re.search(r'page=(\d+)>; rel="last"', link_header)
+            commits_count = int(match.group(1))
+    else:
+        commits_count = -1
+
+    return commits_count
+
+
+def clone_repository(url, repo_name):
+    """
+    clone the plugin repository.
+    """
+    if not os.path.exists("installed_plugins"):
+        os.makedirs("installed_plugins")
+    subprocess.run(["git", "clone", url, f"installed_plugins/{repo_name}"], check=False)
+
+
+def get_git_commits_count(repo_name):
+    """
+    get the number of commits in the last year.
+    """
+    last_twelve_months = datetime.now() - timedelta(days=365)
+    git_command = [
+        "git",
+        "rev-list",
+        "--count",
+        f'--since="{last_twelve_months}"',
+        "--all",
+    ]
+    commits_count = (
+        subprocess.check_output(git_command, cwd=f"./installed_plugins/{repo_name}")
+        .decode()
+        .strip()
+    )
+    return int(commits_count)
+
+
 def complete_plugin_data(
     plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=True
 ):  # pylint: disable=too-many-branches,too-many-statements
@@ -65,11 +133,23 @@ def complete_plugin_data(
     REPORTER.info(f'{plugin_data["package_name"]}')
 
     plugin_data["hosted_on"] = get_hosted_on(plugin_data["code_home"])
+
+    if plugin_data["hosted_on"] == "github.com" and GITHUB_TOKEN:
+        commits_count = get_github_commits_count(plugin_data["code_home"])
+    else:
+        try:
+            clone_repository(plugin_data["code_home"], plugin_data["name"])
+            commits_count = get_git_commits_count(plugin_data["name"])
+        except Exception as exc:  # pylint: disable=broad-except
+            commits_count = -1
+            print("Failed to clone the plugin repository:", str(exc))
+
     plugin_data.update(
         {
             "metadata": {},
             "aiida_version": None,
             "entry_points": None,
+            "commits_count": commits_count,
         }
     )
 
