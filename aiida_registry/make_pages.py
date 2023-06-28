@@ -5,15 +5,13 @@ Reads plugin-metadata.json produced by fetch_metadata.
 """
 # pylint: disable=missing-function-docstring,invalid-name,global-statement,consider-using-f-string
 
-import codecs
 import copy
 import json
 import os
-import shutil
 import string
 from collections import defaultdict
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from aiida_registry.fetch_metadata import fetch_metadata
 
 from . import (
     OTHERCOLORCLASS,
@@ -167,50 +165,25 @@ def get_pip_install_cmd(plugin_data):
 
 
 def make_pages():
-    # Create output folder, copy static files
-    if os.path.exists(OUT_FOLDER):
-        shutil.rmtree(OUT_FOLDER)
-    os.mkdir(OUT_FOLDER)
-    os.mkdir(os.path.join(OUT_FOLDER, HTML_FOLDER))
-    shutil.copytree(STATIC_FOLDER_ABS, os.path.join(OUT_FOLDER, STATIC_FOLDER))
+    """
+    Add additional information to the JSON data like plugins summary,
+    global summary, pip install command, and static data.
+    """
+    plugins_metadata = fetch_metadata()
 
-    env = Environment(
-        loader=PackageLoader("aiida_registry.mod"),
-        autoescape=select_autoescape(["html", "xml"]),
-    )
-
-    with open(PLUGINS_METADATA, encoding="utf8") as f:
-        plugins_metadata = json.load(f)
-
-    # Create HTML view for each plugin
     for plugin_name, plugin_data in plugins_metadata.items():
         print("  - {}".format(plugin_name))
 
-        subpage = os.path.join(HTML_FOLDER, get_html_plugin_fname(plugin_name))
-        subpage_abspath = os.path.join(OUT_FOLDER, subpage)
-
-        plugin_data["subpage"] = subpage
-        plugin_data[
-            "entrypointtypes"
-        ] = entrypointtypes  # add a static entrypointtypes dictionary
-
         plugin_data["summaryinfo"] = get_summary_info(plugin_data["entry_points"])
-        plugin_data["status_dict"] = status_dict
         plugin_data["pip_install_cmd"] = get_pip_install_cmd(plugin_data)
-
-        # Write plugin html
-        plugin_html = env.get_template("singlepage.html").render(**plugin_data)
-        with codecs.open(subpage_abspath, "w", "utf-8") as f:
-            f.write(plugin_html)
-        print("    - Page {} generated.".format(subpage))
 
     all_data = {}
     all_data["plugins"] = plugins_metadata
     all_data["globalsummary"] = global_summary()
+    all_data["status_dict"] = status_dict
+    all_data[
+        "entrypointtypes"
+    ] = entrypointtypes  # add a static entrypointtypes dictionary
 
-    print("[main index]")
-    rendered = env.get_template("main_index.html").render(**all_data)
-    outfile = os.path.join(OUT_FOLDER, "index.html")
-    with codecs.open(outfile, "w", "utf-8") as f:
-        f.write(rendered)
-    print("  - index.html generated")
+    with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
+        json.dump(all_data, handle, indent=2)

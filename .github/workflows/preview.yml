@@ -32,14 +32,27 @@ jobs:
       run: pip install -e . -v
     - name: fetch metadata
       id: fetch_metadata
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch
-    - name: make pages
-      run: aiida-registry html
+    - name: Move JSON file to the React project
+      run: |
+        mv plugins_metadata.json aiida-registry-app/src/
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - name: Build
+      run: |
+        cd aiida-registry-app
+        npm install
+        npm run build
+    - name: Add plugins_metadata.json to the build folder
+      run: cp ./aiida-registry-app/src/plugins_metadata.json ./aiida-registry-app/dist
 
     - name: Deploy preview
       uses: rossjrw/pr-preview-action@v1
       with:
-        source-dir: ./out
+        source-dir: ./aiida-registry-app/dist
         preview-branch: gh-pages
         umbrella-dir: pr-preview
         action: auto

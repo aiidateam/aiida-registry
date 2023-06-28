@@ -1,29 +1,51 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import click
+
 
 @click.group()
 def cli():
     pass
 
+
 @cli.command()
-@click.argument('package', required=False)
-@click.option('--fetch-pypi/--no-fetch-pypi', is_flag=True, default=True, help='Allow fetching data from PyPI')
-@click.option('--fetch-wheel/--no-fetch-wheel', is_flag=True, default=True, help='Allow fetching wheels from PyPI')
+@click.argument("package", required=False)
+@click.option(
+    "--fetch-pypi/--no-fetch-pypi",
+    is_flag=True,
+    default=True,
+    help="Allow fetching data from PyPI",
+)
+@click.option(
+    "--fetch-wheel/--no-fetch-wheel",
+    is_flag=True,
+    default=True,
+    help="Allow fetching wheels from PyPI",
+)
 def fetch(package, fetch_pypi, fetch_wheel):
-    from aiida_registry.fetch_metadata import fetch_metadata
-    fetch_metadata([package] if package else None, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_wheel)
+    from aiida_registry.make_pages import make_pages
+
+    make_pages()
+
 
 @cli.command()
 def html():
     from aiida_registry.make_pages import make_pages
+
     make_pages()
 
+
 @cli.command()
-@click.option('--container-image', default='aiidateam/aiida-core:latest', help='Container image to use for the install')
+@click.option(
+    "--container-image",
+    default="aiidateam/aiida-core:latest",
+    help="Container image to use for the install",
+)
 def test_install(container_image):
     from aiida_registry.test_install import test_install_all
+
     test_install_all(container_image)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()

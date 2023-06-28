@@ -9,13 +9,16 @@ on:
   - cron: "0 21 * * *"
   push:
     branches:
-    - master
+    - reactjs
 
 jobs:
   webpage:
-    if: github.repository == 'aiidateam/aiida-registry'
+    if: github.repository == 'ahmedbasem20/aiida-registry'
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-versions: [18.x]
     env:
       COMMIT_AUTHOR: Deploy Action
       COMMIT_AUTHOR_EMAIL: action@github.com
@@ -33,10 +36,27 @@ jobs:
     - name: fetch metadata
       id: fetch_metadata
       run: aiida-registry fetch
-    - name: make pages
-      run: aiida-registry html
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.1
+    - name: Commit json file
+      run: |
+        mv plugins_metadata.json aiida-registry-app/src/
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add aiida-registry-app/src/plugins_metadata.json
+        git commit -m "Add plugins data"
+        git push -f origin HEAD:reactjs
+    - uses: actions/setup-node@v3
       with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: out # The folder the action should deploy.
+        node-version: '18.x'
+    - name: Build
+      run: |
+        cd aiida-registry-app
+        npm install
+        npm run build
+    - name: Add plugins_metadata.json to the build folder
+      run: cp ./aiida-registry-app/src/plugins_metadata.json ./aiida-registry-app/dist
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./aiida-registry-app/dist

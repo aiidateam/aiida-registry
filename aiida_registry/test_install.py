@@ -152,6 +152,7 @@ def test_install_one_docker(container_image, plugin):
 def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
+        data = data["plugins"]
 
     test_results = []
 
