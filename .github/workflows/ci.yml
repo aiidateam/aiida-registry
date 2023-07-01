@@ -39,6 +39,8 @@ jobs:
       run: pip install -e . -v
     - name: fetch metadata
       id: fetch_metadata
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch
     - name: make pages
       run: aiida-registry html
@@ -67,6 +69,8 @@ jobs:
     - name: Install
       run: pip install -e . -v
     - name: fetch metadata
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch
 
 #     # See https://github.com/geerlingguy/raspberry-pi-dramble/issues/166
@@ -97,4 +101,6 @@ jobs:
     - name: Install
       run: pip install -e .[testing] -v
     - name: Run tests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: pytest tests/
