@@ -13,7 +13,7 @@ on:
 
 jobs:
   webpage:
-    if: github.repository == 'ahmedbasem20/aiida-registry'
+    if: github.repository == 'aiidateam/aiida-registry'
 
     runs-on: ubuntu-latest
     strategy:
