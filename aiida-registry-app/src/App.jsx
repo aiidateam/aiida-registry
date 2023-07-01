@@ -82,7 +82,7 @@ function MainIndex() {
         <div className='submenu-entry' key={key}>
           <Link to={`/aiida-registry/${key}`}><h2>{key}</h2></Link>
           <p className="currentstate">
-          <img className="svg-badge" src= {`/aiida-registry/${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />
+          <img className="svg-badge" src= {`/aiida-registry/${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
           {value.aiida_version && (
             <img
                 className="svg-badge"
@@ -146,7 +146,7 @@ function Details() {
     <h2>General information</h2>
     <div>
       <p>
-            Current state:
+            <strong>Current state: </strong>
             <img className="svg-badge" src= {`/aiida-registry/${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />
       </p>
       {value.metadata.description && (
@@ -236,7 +236,7 @@ function Details() {
                 <ul>
                   {Object.entries(entrypointlist).map(([ep_name, ep_module]) => (
                     <li key={ep_name}>
-                      <code>{ep_name}</code>
+                      <code>{ep_name} </code>
                       <div className="classbox">
                         class
                         <span className="tooltiptext"> {ep_module}</span>

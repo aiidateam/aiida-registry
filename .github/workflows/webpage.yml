@@ -9,11 +9,11 @@ on:
   - cron: "0 21 * * *"
   push:
     branches:
-    - reactjs
+    - master
 
 jobs:
   webpage:
-    if: github.repository == 'ahmedbasem20/aiida-registry'
+    if: github.repository == 'aiidateam/aiida-registry'
 
     runs-on: ubuntu-latest
     strategy:
@@ -45,7 +45,7 @@ jobs:
         git config --local user.name "GitHub Actions"
         git add aiida-registry-app/src/plugins_metadata.json
         git commit -m "Add plugins data"
-        git push -f origin HEAD:reactjs
+        git push -f origin HEAD:master
     - uses: actions/setup-node@v3
       with:
         node-version: '18.x'
