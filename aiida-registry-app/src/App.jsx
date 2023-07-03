@@ -15,8 +15,9 @@ const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
-
+const currentPath = window.location.pathname;
 function App() {
+  console.log(currentPath);
 
   return (
     <>
@@ -31,8 +32,8 @@ function App() {
 
     <div id='app-body'>
       <Routes>
-        <Route path="/aiida-registry/" element={<MainIndex />} />
-        <Route path="/aiida-registry/:key" element={<Details />} />
+        <Route path="/" element={<MainIndex />} />
+        <Route path="/:key" element={<Details />} />
       </Routes>
     </div>
     <footer className="footer">
@@ -80,9 +81,9 @@ function MainIndex() {
     </h1>
       {Object.entries(plugins).map(([key, value]) => (
         <div className='submenu-entry' key={key}>
-          <Link to={`/aiida-registry/${key}`}><h2>{key}</h2></Link>
+          <Link to={`/${key}`}><h2>{key}</h2></Link>
           <p className="currentstate">
-          <img className="svg-badge" src= {`/aiida-registry/${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
+          <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
           {value.aiida_version && (
             <img
                 className="svg-badge"
@@ -104,16 +105,16 @@ function MainIndex() {
             </li>
           )}
           <li>
-          <a href={`/aiida-registry/${key}`}>Plugin details</a>
+          <a href={`/${key}`}>Plugin details</a>
           </li>
 
           </ul>
 
           {value.summaryinfo && (
             <>
-              <p class="summaryinfo">
+              <p className="summaryinfo">
               {value.summaryinfo.map((summaryinfoelem) => (
-                <span className="badge">
+                <span className="badge" key={summaryinfoelem.text}>
                   <span className={`badge-left ${summaryinfoelem.colorclass}`}>
                     {summaryinfoelem.text}
                   </span>
@@ -139,15 +140,15 @@ function Details() {
   return (
     <>
     <div id="details" className='fade-enter'>
-    <h2>
+    <h1 className='plugin-header'>
         AiiDA plugin package &quot;<a href={value.code_home}>{value.name}</a>&quot;
-    </h2>
-    <Link to={'/aiida-registry/'}><p><a>&lt; back to the registry index</a></p></Link>
+    </h1>
+    <Link to={'/'}><p>&lt; back to the registry index</p></Link>
     <h2>General information</h2>
     <div>
       <p>
             <strong>Current state: </strong>
-            <img className="svg-badge" src= {`/aiida-registry/${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />
+            <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />
       </p>
       {value.metadata.description && (
       <p>
@@ -210,7 +211,7 @@ function Details() {
             <>
               <h3>Plugins provided by the package</h3>
               {value.summaryinfo.map((summaryinfoelem) => (
-                <span className="badge">
+                <span className="badge" key={summaryinfoelem.text}>
                   <span className={`badge-left ${summaryinfoelem.colorclass}`}>
                     {summaryinfoelem.text}
                   </span>
