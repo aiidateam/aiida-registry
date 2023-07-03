@@ -11,12 +11,8 @@ body {
   font-family: 'Noto Sans', sans-serif;
   padding: 0px;
   margin: 0px;
-  /*position: relative;*/
-  /*padding-bottom: 100px;*/
-  /* display: table; */
 }
 
-/* * {-moz-box-sizing: border-box; box-sizing: border-box;} */
 
 main {
   padding-left: 16px;
@@ -184,8 +180,6 @@ td {
   width: calc(100% - 64px);
   /* Distance with other content */
   margin-top: 16px;
-  /*background-color: #a00;*/
-  /* internal margin */
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-right: 32px;
@@ -263,9 +257,7 @@ td {
   margin-right: 5px;
   display: inline-block;
   vertical-align: middle;
-  /*vertical-align: baseline;*/
   font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
-  /*font-size: 90%;*/
 }
 
 span.badge-left {
@@ -274,7 +266,6 @@ span.badge-left {
   border-bottom-right-radius: 0;
   color: #212529;
   background-color: #A2CBFF;
-  /* color: #ffffff; */
   text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 
   padding: .25em .4em;
@@ -362,7 +353,6 @@ span.badge-right {
   color: rgba(255,255,255,0.5);
   mix-blend-mode: difference;
   text-decoration: none;
-  /* background-color: rgb(192, 219, 255); */
 }
 
 
