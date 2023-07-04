@@ -984,7 +984,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 348,
+      "commits_count": 349,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -4490,7 +4490,7 @@
           "wannier90.minimal": "aiida_wannier90.workflows.minimal:MinimalW90WorkChain"
         }
       },
-      "commits_count": 18,
+      "commits_count": 19,
       "development_status": "stable",
       "summaryinfo": [
         {
