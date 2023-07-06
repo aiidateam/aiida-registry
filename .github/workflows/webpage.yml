@@ -16,9 +16,6 @@ jobs:
     if: github.repository == 'aiidateam/aiida-registry'
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-versions: [18.x]
     env:
       COMMIT_AUTHOR: Deploy Action
       COMMIT_AUTHOR_EMAIL: action@github.com
@@ -49,11 +46,11 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-    - name: Build
+    - name: Install npm dependencies and build
       run: |
-        cd aiida-registry-app
         npm install
         npm run build
+      working-directory: ./aiida-registry-app
     - name: Add plugins_metadata.json to the build folder
       run: cp ./aiida-registry-app/src/plugins_metadata.json ./aiida-registry-app/dist
 
@@ -62,3 +59,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./aiida-registry-app/dist
+        keep_files: true

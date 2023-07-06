@@ -13,13 +13,9 @@ concurrency: preview-${{ github.ref }}
 jobs:
   deploy-preview:
     runs-on: ubuntu-20.04
-    strategy:
-        matrix:
-          node-versions: [18.x]
     env:
       COMMIT_AUTHOR: Deploy Action
       COMMIT_AUTHOR_EMAIL: action@github.com
-      BASE_PATH_FILE: '/aiida-registry/pr-preview/pr-1/'
     steps:
     - uses: actions/checkout@v2
     - run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
@@ -42,12 +38,12 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-    - name: Build
+    - name: Install npm dependencies and build
       run: |
-        cd aiida-registry-app
         npm install
         export BASE_PATH="/aiida-registry/pr-preview/pr-${{ github.event.number }}/"
         npm run build
+      working-directory: ./aiida-registry-app
     - name: Add plugins_metadata.json to the build folder
       run: cp ./aiida-registry-app/src/plugins_metadata.json ./aiida-registry-app/dist
 
