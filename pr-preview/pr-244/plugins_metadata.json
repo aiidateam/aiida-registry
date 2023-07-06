@@ -1480,7 +1480,7 @@
           "defects.formation_energy.siesta": "aiida_defects.formation_energy.formation_energy_siesta:FormatonEnergyWorkchainSiesta"
         }
       },
-      "commits_count": 11,
+      "commits_count": 10,
       "development_status": "beta",
       "summaryinfo": [
         {
