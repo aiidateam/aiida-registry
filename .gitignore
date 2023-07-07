@@ -7,5 +7,18 @@
 *.egg-info
 *.sqlite
 out/
-plugins_metadata.json
 installed_plugins/
+aiida-registry-app/package-lock.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+aiida-registry-app/node_modules
+aiida-registry-app/dist
+aiida-registry-app/dist-ssr

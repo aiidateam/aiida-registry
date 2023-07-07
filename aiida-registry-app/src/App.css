@@ -1,0 +1,402 @@
+#root {
+
+  text-align: left;
+}
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: 'Noto Sans', sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+main {
+  padding-left: 16px;
+  margin-left: 16px;
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-right: 16px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #00a;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #00a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+
+.keyword {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  color: #000;
+  border-radius: .25em;
+  background-color: #A2CBFF;
+}
+
+#entrytitle {
+  color: #fff;
+}
+
+#entrytitle a {
+  color: #fff;
+}
+#app-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.plugin-header, .plugin-header a {
+  color: #007;
+}
+
+h2 {
+  padding-top: 16px;
+  margin: 0;
+  font-size: 140%;
+  color: #005;
+}
+
+.description {
+  color: #333;
+}
+
+.details {
+  margin-top: 12px;
+}
+
+.currentstate {
+  color: #666;
+  font-size: 90%;
+  margin-bottom: 12px;
+}
+.fade-enter {
+  animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+   }
+}
+
+.summaryinfo {
+  color: #000;
+  font-size: 80%;
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+
+#entrylist .authors {
+  color: #666;
+  font-size: 90%;
+  margin-bottom: 9px;
+}
+
+
+#description p {
+  margin-left: 0px;
+}
+
+
+h3 {
+  padding-top: 20px;
+  padding-bottom: 5px;
+  margin:0;
+  font-size: 120%;
+  color: #005;
+}
+
+h4 {
+  padding-top: 20px;
+  padding-bottom: 5px;
+  margin:0;
+}
+
+ul {
+  margin-block-start: 0.1em;
+  margin-block-end: 0.1em;
+}
+
+
+table {
+  background-color: transparent;
+  display: table;
+  border-color: grey;
+  line-height: 1.5;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+  padding-right: 16px;
+  padding-left: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: left;
+}
+
+td {
+  vertical-align: top;
+  padding-right: 16px;
+  padding-left: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.footer {
+  display: table;
+  width: calc(100% - 64px);
+  /* Distance with other content */
+  margin-top: 16px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 32px;
+  padding-left: 32px;
+  color: #555;
+
+  font-size: 90%;
+}
+
+
+.globalsummary-box {
+  width:90%;
+  padding:10px;
+  margin: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: rgba(5,115,255,0.19);
+  border:1px solid rgba(0,65,127,0.4);
+  border-radius:4px;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+  line-height: 1.5;
+}
+
+.submenu-entry {
+  width:90%;
+  min-height:140px;
+  padding:10px;
+  margin: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color:rgba(192, 190, 190, 0.19);
+  border:1px solid rgba(152, 152, 152, 0.31);
+  border-radius:4px;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.classbox {
+  display: inline-block;
+  background-color: #777;
+  padding: 0em .2em 0em;
+  font-size: 75%;
+  color: #fff;
+  border-radius: .25em
+}
+
+/* Tooltip text */
+.classbox .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 3px;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.classbox:hover .tooltiptext {
+  visibility: visible;
+}
+
+.entrypointraw {
+  color: #777;
+}
+
+
+
+.badge {
+  white-space: nowrap;
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
+}
+
+span.badge-left {
+  border-radius: .25rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  color: #212529;
+  background-color: #A2CBFF;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+
+  padding: .25em .4em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  float: left;
+  display: block;
+}
+
+span.badge-right {
+  border-radius: .25rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+  color: #fff;
+  background-color: #343a40;
+
+  padding: .25em .4em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  float: left;
+  display: block;
+}
+
+.badge-right.light-blue, .badge-left.light-blue {
+  background-color: #A2CBFF;
+  color: #212529;
+}
+
+.badge-right.light-red, .badge-left.light-red {
+  background-color: rgb(255, 162, 162);
+  color: rgb(43, 14, 14);
+}
+
+.badge-right.red, .badge-left.red {
+  background-color: #e41a1c;
+  color: #fff;
+}
+
+.badge-right.blue, .badge-left.blue {
+  background-color: #377eb8;
+  color: #fff;
+}
+
+.badge-right.green, .badge-left.green {
+  background-color: #4daf4a;
+  color: #fff;
+}
+
+.badge-right.purple, .badge-left.purple {
+  background-color: #984ea3;
+  color: #fff;
+}
+
+.badge-right.orange, .badge-left.orange {
+  background-color: #ff7f00;
+  color: #fff;
+}
+
+.badge-right.brown, .badge-left.brown {
+  background-color: #a65628;
+  color: #fff;
+}
+
+.badge-right.dark-gray, .badge-left.dark-gray {
+  color: #fff;
+  background-color: #343a40;
+}
+
+
+.badge a {
+  text-decoration: none;
+  padding: 0;
+  border: 0;
+  color: inherit;
+}
+
+.badge a:visited, .badge a:active {
+  color: inherit;
+}
+
+.badge a:focus, .badge a:hover {
+  color: rgba(255,255,255,0.5);
+  mix-blend-mode: difference;
+  text-decoration: none;
+}
+
+
+.svg-badge {
+  vertical-align: middle;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  /* width: 120px; */
+  background-color: rgb(255, 247, 175);
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+ul.plugin-info {
+list-style: none;
+margin-left: 0;
+padding-left: 0;
+  padding-top: 5px;
+}
+
+ul.plugin-info li {
+padding-left: 1em;
+text-indent: -1em;
+}
+
+ul.plugin-info li:before {
+content: "→";
+padding-right: 5px;
+}

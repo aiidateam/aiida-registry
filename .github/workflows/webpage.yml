@@ -35,10 +35,28 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch
-    - name: make pages
-      run: aiida-registry html
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.1
+    - name: Commit json file
+      run: |
+        mv plugins_metadata.json aiida-registry-app/src/
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add aiida-registry-app/src/plugins_metadata.json
+        git commit -m "Add plugins data"
+        git push -f origin HEAD:master
+    - uses: actions/setup-node@v3
       with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: out # The folder the action should deploy.
+        node-version: '18.x'
+    - name: Install npm dependencies and build
+      run: |
+        npm install
+        npm run build
+      working-directory: ./aiida-registry-app
+    - name: Add plugins_metadata.json to the build folder
+      run: cp ./aiida-registry-app/src/plugins_metadata.json ./aiida-registry-app/dist
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./aiida-registry-app/dist
+        keep_files: true

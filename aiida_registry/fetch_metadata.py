@@ -5,7 +5,6 @@ Data is primarily sourced from PyPI,
 with a fallback to the repository build file (setup.json, setup.cfg, pyproject.toml).
 """
 # pylint: disable=consider-using-f-string
-import json
 import os
 import re
 import subprocess
@@ -325,9 +324,9 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
             plugin_data, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_pypi_wheel
         )
 
-    with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
-        json.dump(plugins_metadata, handle, indent=2, sort_keys=True)
     REPORTER.info(f"{PLUGINS_METADATA} dumped")
 
     if os.environ.get("GITHUB_ACTIONS") == "true":
         print("::set-output name=error::" + "%0A".join(REPORTER.warnings))
+
+    return plugins_metadata
