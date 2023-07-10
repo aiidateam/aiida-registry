@@ -10,10 +10,14 @@ import os
 import sys
 from dataclasses import asdict, dataclass
 
-from . import PLUGINS_METADATA, PLUGINS_TEST_RESULTS
+from . import PLUGINS_METADATA
 
 # Where to mount the workdir inside the Docker container
 _DOCKER_WORKDIR = "/tmp/scripts"
+ENTRY_POINT_GROUPS = [
+    "aiida.calculations",
+    "aiida.workflows",
+]
 
 
 @dataclass
@@ -133,6 +137,8 @@ def test_install_one_docker(container_image, plugin):
         with open("result.json", "r", encoding="utf8") as handle:
             process_metadata = json.load(handle)
 
+        process_metadata = filter_entry_points(process_metadata, plugin["entry_points"])
+
     except ValueError as exc:
         print(f"   >> ERROR: {str(exc)}")
 
@@ -149,15 +155,35 @@ def test_install_one_docker(container_image, plugin):
     )
 
 
+def filter_entry_points(process_metadata, entrypoints):
+    """
+    Extract entry points that belong to the plugin,
+    and delete any other entry points.
+    """
+
+    filtered_metadata = {}
+
+    for ep_group in ENTRY_POINT_GROUPS:
+        filtered_metadata[ep_group] = {}
+        try:
+            for entry_point in entrypoints[ep_group].keys():
+                filtered_metadata[ep_group][entry_point] = process_metadata[ep_group][
+                    entry_point
+                ]
+                filtered_metadata[ep_group][entry_point]["class"] = entrypoints[
+                    ep_group
+                ][entry_point]
+        except KeyError:
+            continue
+
+    return filtered_metadata
+
+
 def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
-        data = data["plugins"]
-
-    test_results = []
-
     print("[test installing plugins]")
-    for _k, plugin in data.items():
+    for plugin_name, plugin in data["plugins"].items():
         print(" - {}".format(plugin["name"]))
 
         # this currently checks for the wrong python version
@@ -178,8 +204,19 @@ def test_install_all(container_image):
                 print("    >> SKIPPING: No pip_url key provided")
             continue
 
-        test_results.append(test_install_one_docker(container_image, plugin))
+        results = test_install_one_docker(container_image, plugin)
+        process_metadata = results["process_metadata"]
+        for ep_group in ENTRY_POINT_GROUPS:
+            try:
+                if process_metadata[ep_group]:
+                    for key, _ in data["plugins"][plugin_name]["entry_points"][ep_group].items():
+                        data["plugins"][plugin_name]["entry_points"][ep_group][
+                            key
+                        ] = process_metadata[ep_group][key]
+            except KeyError:
+                continue
 
-    print(f"Dumping {PLUGINS_TEST_RESULTS}")
-    with open(PLUGINS_TEST_RESULTS, "w", encoding="utf8") as handle:
-        json.dump(test_results, handle, indent=2)
+    print("Dumping plugins.json")
+    with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
+        json.dump(data, handle, indent=2)
+    print(json.dumps(data, indent=4))

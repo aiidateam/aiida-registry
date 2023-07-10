@@ -8,7 +8,11 @@ import MaX from './assets/MaX.png'
 import './App.css'
 import jsonData from './plugins_metadata.json'
 import base64Icon from './base64Icon';
-
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 const entrypointtypes = jsonData["entrypointtypes"]
@@ -16,7 +20,8 @@ const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
-const currentPath = window.location.pathname;
+const currentPath = import.meta.env.VITE_BASE_PATH || "/aiida-registry/";
+
 function App() {
   console.log(currentPath);
 
@@ -53,6 +58,31 @@ function App() {
 }
 
 function MainIndex() {
+  const [sortOption, setSortOption] = useState('alpha');
+  const [sortedData, setSortedData] = useState(plugins);
+  const handleSort = (option) => {
+    setSortOption(option);
+    
+
+    let sortedPlugins;
+    if (option === 'commits') {
+      const pluginsArray = Object.entries(plugins);
+
+      // Sort the array based on the commit_count value
+      pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
+
+      // Create a new object with the sorted entries
+      sortedPlugins = Object.fromEntries(pluginsArray);
+      {Object.entries(sortedPlugins).map(([key, value]) => (
+        console.log(key + ": " + value.commits_count)
+      ))}
+    }
+    else if (option == 'alpha') {
+      sortedPlugins = plugins;
+    }
+    
+    setSortedData(sortedPlugins);
+  };
   return (
     <main className='fade-enter'>
 
@@ -77,10 +107,22 @@ function MainIndex() {
       </div>
     </div>
     <div id='entrylist'>
-      <h1>
-        Package list (alphabetical order)
+      <h1 style={{display: 'inline'}}>
+        Package list
     </h1>
-      {Object.entries(plugins).map(([key, value]) => (
+        <Box sx={{ minWidth: 120 }} style={{display:'inline', padding:'20px'}}>
+          <FormControl style={{width:'25%'}}>
+            <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+            <Select
+              value={sortOption} label = "Sort" onChange={(e) => handleSort(e.target.value)}
+            >
+              <MenuItem value= 'alpha'>Alphabetical</MenuItem>
+              <MenuItem value='commits'>Commits Count</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+
+      {Object.entries(sortedData).map(([key, value]) => (
         <div className='submenu-entry' key={key}>
           <Link to={`/${key}`}><h2>{key}</h2></Link>
           <p className="currentstate">
@@ -238,11 +280,15 @@ function Details() {
                 <ul>
                   {Object.entries(entrypointlist).map(([ep_name, ep_module]) => (
                     <li key={ep_name}>
-                      <code>{ep_name} </code>
+                      <code style={{fontSize: '20px'}}>{ep_name} </code>
+                      {typeof ep_module === "string" ? (
                       <div className="classbox">
                         class
                         <span className="tooltiptext"> {ep_module}</span>
                       </div>
+                      ) : (
+                        <EntryPoints entryPoints={ep_module} />
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -266,4 +312,79 @@ function Details() {
   );
 }
 
+const EntryPoints = ({entryPoints}) => {
+  return (
+
+<div>
+<table>
+    <tbody>
+        <tr>
+            <th>Class</th>
+            <td><code>{entryPoints.class}</code></td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    
+    <tr>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td colSpan={"4"}>{entryPoints.description}</td>
+    </tr>
+
+    <tr>
+        <th>Inputs</th>
+        <th>Required</th>
+        <th>Valid Types</th>
+        <th>Description</th>
+    </tr>
+    {entryPoints.spec.inputs.map((inputs) => (
+      <tr>
+        <td>{inputs.name}</td>
+        <td>{inputs.required.toString()}</td>
+        <td>{inputs.valid_types}</td>
+        <td>{inputs.info}</td>
+      </tr>
+    ))}
+    
+    <tr>
+        <th>Outputs</th>
+        <th>Required</th>
+        <th>Valid Types</th>
+        <th>Description</th>
+    </tr>
+
+    {entryPoints.spec.outputs.map((outputs) => (
+      <tr>
+        <td>{outputs.name}</td>
+        <td>{outputs.required.toString()}</td>
+        <td>{outputs.valid_types}</td>
+        <td>{outputs.info}</td>
+      </tr>
+    ))}
+
+</table>
+<table>
+
+<tr>
+        <th>Exit Codes</th>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <th>Message</th>
+    </tr>
+    {entryPoints.spec.exit_codes.map((exit_codes) => (
+      <tr>
+        <td>{exit_codes.status}</td>
+        <td>{exit_codes.message}</td>
+      </tr>
+    ))}
+
+</table>
+</div>
+  );
+
+};
 export default App;

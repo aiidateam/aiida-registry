@@ -35,6 +35,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch
+    - name: Get entry points data
+      run: aiida-registry test-install
     - name: Commit json file
       run: |
         mv plugins_metadata.json aiida-registry-app/src/
