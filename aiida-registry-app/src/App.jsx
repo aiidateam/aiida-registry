@@ -62,7 +62,7 @@ function MainIndex() {
   const [sortedData, setSortedData] = useState(plugins);
   const handleSort = (option) => {
     setSortOption(option);
-    
+
 
     let sortedPlugins;
     if (option === 'commits') {
@@ -80,7 +80,7 @@ function MainIndex() {
     else if (option == 'alpha') {
       sortedPlugins = plugins;
     }
-    
+
     setSortedData(sortedPlugins);
   };
   return (
@@ -326,7 +326,7 @@ const EntryPoints = ({entryPoints}) => {
 </table>
 
 <table>
-    
+
     <tr>
         <th>Description</th>
     </tr>
@@ -348,7 +348,7 @@ const EntryPoints = ({entryPoints}) => {
         <td>{inputs.info}</td>
       </tr>
     ))}
-    
+
     <tr>
         <th>Outputs</th>
         <th>Required</th>

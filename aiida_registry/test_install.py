@@ -209,7 +209,9 @@ def test_install_all(container_image):
         for ep_group in ENTRY_POINT_GROUPS:
             try:
                 if process_metadata[ep_group]:
-                    for key, _ in data["plugins"][plugin_name]["entry_points"][ep_group].items():
+                    for key, _ in data["plugins"][plugin_name]["entry_points"][
+                        ep_group
+                    ].items():
                         data["plugins"][plugin_name]["entry_points"][ep_group][
                             key
                         ] = process_metadata[ep_group][key]
