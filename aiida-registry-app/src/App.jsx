@@ -148,7 +148,7 @@ function MainIndex() {
             </li>
           )}
           <li>
-          <a href={`/${key}`}>Plugin details</a>
+          <Link to={`/${key}`}>Plugin details</Link>
           </li>
 
           </ul>
