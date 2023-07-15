@@ -134,7 +134,13 @@ function MainIndex() {
                 src={`https://img.shields.io/badge/AiiDA-${value.aiida_version}-007ec6.svg?logo=${base64Icon}`}
               />
           )}
-
+          {sortOption === 'commits' &&
+          <img
+                className="svg-badge"
+                style={{padding:'3px'}}
+                src={`https://img.shields.io/badge/Yearly%20Commits-${value.commits_count}-007ec6.svg`}
+              />
+          }
           </p>
 
           <p>{value.metadata.description}</p>
