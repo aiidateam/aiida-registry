@@ -23,7 +23,6 @@ const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_BASE_PATH || "/aiida-registry/";
 
 function App() {
-  console.log(currentPath);
 
   return (
     <>
@@ -124,11 +123,12 @@ function MainIndex() {
 
       {Object.entries(sortedData).map(([key, value]) => (
         <div className='submenu-entry' key={key}>
-          <Link to={`/${key}`}><h2>{key}</h2></Link>
-          {value.is_installable === "true" ? (
-            <p>Installable</p>
-          ):(
-            <p>Can't be installed</p>
+          <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
+          {value.is_installable === "True" && (
+            <div className='classbox' style={{backgroundColor:'transparent'}}>
+            <p style={{color:'green', fontSize:'25px'}}>&#10003;</p>
+            <span className='tooltiptext'>Plugin successfully installed</span>
+            </div>
           )}
           <p className="currentstate">
           <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
