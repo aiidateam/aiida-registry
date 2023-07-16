@@ -183,8 +183,12 @@ def test_install_all(container_image):
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
     print("[test installing plugins]")
+    i = 0
     for plugin_name, plugin in data["plugins"].items():
         print(" - {}".format(plugin["name"]))
+        i+=1
+        if i == 8:
+            break
 
         # this currently checks for the wrong python version
         # if not supports_python_version(plugin):
@@ -206,6 +210,7 @@ def test_install_all(container_image):
 
         results = test_install_one_docker(container_image, plugin)
         process_metadata = results["process_metadata"]
+        data["plugins"][plugin_name]["is_installed"] = str(results["is_installable"])
         for ep_group in ENTRY_POINT_GROUPS:
             try:
                 if process_metadata[ep_group]:

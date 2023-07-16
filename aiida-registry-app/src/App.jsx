@@ -125,6 +125,11 @@ function MainIndex() {
       {Object.entries(sortedData).map(([key, value]) => (
         <div className='submenu-entry' key={key}>
           <Link to={`/${key}`}><h2>{key}</h2></Link>
+          {value.is_installable === "true" ? (
+            <p>Installable</p>
+          ):(
+            <p>Can't be installed</p>
+          )}
           <p className="currentstate">
           <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
           {value.aiida_version && (
