@@ -31133,7 +31133,7 @@
           "yascheduler": "yascheduler.aiida_plugin:YaScheduler"
         }
       },
-      "commits_count": 126,
+      "commits_count": 125,
       "development_status": "beta",
       "summaryinfo": [
         {
