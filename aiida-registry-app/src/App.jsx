@@ -13,14 +13,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import Markdown from 'markdown-to-jsx';
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
-const currentPath = import.meta.env.VITE_BASE_PATH || "/aiida-registry/";
+const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
 function App() {
 
@@ -335,15 +335,18 @@ const EntryPoints = ({entryPoints}) => {
         </tr>
     </tbody>
 </table>
-
 <table>
-
-    <tr>
+<tr>
         <th>Description</th>
     </tr>
-    <tr>
-        <td colSpan={"4"}>{entryPoints.description}</td>
+      {entryPoints.description.map((description) => (
+    <tr className='ep_description'>
+        <Markdown>{description.trim()}</Markdown>
     </tr>
+      ))}
+</table>
+
+<table>
 
     <tr>
         <th>Inputs</th>
@@ -351,14 +354,7 @@ const EntryPoints = ({entryPoints}) => {
         <th>Valid Types</th>
         <th>Description</th>
     </tr>
-    {entryPoints.spec.inputs.map((inputs) => (
-      <tr>
-        <td>{inputs.name}</td>
-        <td>{inputs.required.toString()}</td>
-        <td>{inputs.valid_types}</td>
-        <td>{inputs.info}</td>
-      </tr>
-    ))}
+    <Specs spec={entryPoints.spec.inputs} />
 
     <tr>
         <th>Outputs</th>
@@ -367,14 +363,7 @@ const EntryPoints = ({entryPoints}) => {
         <th>Description</th>
     </tr>
 
-    {entryPoints.spec.outputs.map((outputs) => (
-      <tr>
-        <td>{outputs.name}</td>
-        <td>{outputs.required.toString()}</td>
-        <td>{outputs.valid_types}</td>
-        <td>{outputs.info}</td>
-      </tr>
-    ))}
+    <Specs spec={entryPoints.spec.outputs} />
 
 </table>
 <table>
@@ -387,9 +376,9 @@ const EntryPoints = ({entryPoints}) => {
         <th>Message</th>
     </tr>
     {entryPoints.spec.exit_codes.map((exit_codes) => (
-      <tr>
+      <tr className='ep_description'>
         <td>{exit_codes.status}</td>
-        <td>{exit_codes.message}</td>
+        <Markdown>{exit_codes.message}</Markdown>
       </tr>
     ))}
 
@@ -398,4 +387,19 @@ const EntryPoints = ({entryPoints}) => {
   );
 
 };
+const Specs = ({spec}) => {
+  return (
+    <>
+         {spec.map((inputs) => (
+           <tr className='ep_description'>
+          <td>{inputs.name}</td>
+          <td>{inputs.required.toString()}</td>
+          <td>{inputs.valid_types}</td>
+          <Markdown>{inputs.info}</Markdown>
+        </tr>
+      ))}
+    </>
+
+  )
+}
 export default App;
