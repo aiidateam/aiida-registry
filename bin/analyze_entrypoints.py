@@ -148,7 +148,6 @@ def document_process_spec(process_spec):
             )
             required = port.required
             info = port.help if port.help is not None else ""
-            info = f"{info[:75]} ..." if len(info) > 75 else info
             result.append(
                 ProcessSpecEntry(
                     name=name, required=required, valid_types=valid_types, info=info
