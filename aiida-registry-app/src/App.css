@@ -47,7 +47,9 @@ a:hover {
 h1 {
   font-weight: bold;
 }
-
+.ep_description code {
+  background-color: #d5cccc;
+}
 
 .keyword {
   display: inline;
