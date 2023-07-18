@@ -8,17 +8,21 @@ import MaX from './assets/MaX.png'
 import './App.css'
 import jsonData from './plugins_metadata.json'
 import base64Icon from './base64Icon';
-
-
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Markdown from 'markdown-to-jsx';
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
-const currentPath = window.location.pathname;
+const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
+
 function App() {
-  console.log(currentPath);
 
   return (
     <>
@@ -53,6 +57,31 @@ function App() {
 }
 
 function MainIndex() {
+  const [sortOption, setSortOption] = useState('alpha');
+  const [sortedData, setSortedData] = useState(plugins);
+  const handleSort = (option) => {
+    setSortOption(option);
+
+
+    let sortedPlugins;
+    if (option === 'commits') {
+      const pluginsArray = Object.entries(plugins);
+
+      // Sort the array based on the commit_count value
+      pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
+
+      // Create a new object with the sorted entries
+      sortedPlugins = Object.fromEntries(pluginsArray);
+      {Object.entries(sortedPlugins).map(([key, value]) => (
+        console.log(key + ": " + value.commits_count)
+      ))}
+    }
+    else if (option == 'alpha') {
+      sortedPlugins = plugins;
+    }
+
+    setSortedData(sortedPlugins);
+  };
   return (
     <main className='fade-enter'>
 
@@ -77,12 +106,30 @@ function MainIndex() {
       </div>
     </div>
     <div id='entrylist'>
-      <h1>
-        Package list (alphabetical order)
+      <h1 style={{display: 'inline'}}>
+        Package list
     </h1>
-      {Object.entries(plugins).map(([key, value]) => (
+        <Box sx={{ minWidth: 120 }} style={{display:'inline', padding:'20px'}}>
+          <FormControl style={{width:'25%'}}>
+            <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+            <Select
+              value={sortOption} label = "Sort" onChange={(e) => handleSort(e.target.value)}
+            >
+              <MenuItem value= 'alpha'>Alphabetical</MenuItem>
+              <MenuItem value='commits'>Commits Count</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+
+      {Object.entries(sortedData).map(([key, value]) => (
         <div className='submenu-entry' key={key}>
-          <Link to={`/${key}`}><h2>{key}</h2></Link>
+          <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
+          {value.is_installable === "True" && (
+            <div className='classbox' style={{backgroundColor:'transparent'}}>
+            <p style={{color:'green', fontSize:'25px'}}>&#10003;</p>
+            <span className='tooltiptext'>Plugin successfully installed</span>
+            </div>
+          )}
           <p className="currentstate">
           <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
           {value.aiida_version && (
@@ -92,7 +139,13 @@ function MainIndex() {
                 src={`https://img.shields.io/badge/AiiDA-${value.aiida_version}-007ec6.svg?logo=${base64Icon}`}
               />
           )}
-
+          {sortOption === 'commits' &&
+          <img
+                className="svg-badge"
+                style={{padding:'3px'}}
+                src={`https://img.shields.io/badge/Yearly%20Commits-${value.commits_count}-007ec6.svg`}
+              />
+          }
           </p>
 
           <p>{value.metadata.description}</p>
@@ -106,7 +159,7 @@ function MainIndex() {
             </li>
           )}
           <li>
-          <a href={`/${key}`}>Plugin details</a>
+          <Link to={`/${key}`}>Plugin details</Link>
           </li>
 
           </ul>
@@ -238,11 +291,15 @@ function Details() {
                 <ul>
                   {Object.entries(entrypointlist).map(([ep_name, ep_module]) => (
                     <li key={ep_name}>
-                      <code>{ep_name} </code>
+                      <code style={{fontSize: '20px'}}>{ep_name} </code>
+                      {typeof ep_module === "string" ? (
                       <div className="classbox">
                         class
                         <span className="tooltiptext"> {ep_module}</span>
                       </div>
+                      ) : (
+                        <EntryPoints entryPoints={ep_module} />
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -266,4 +323,83 @@ function Details() {
   );
 }
 
+const EntryPoints = ({entryPoints}) => {
+  return (
+
+<div>
+<table>
+    <tbody>
+        <tr>
+            <th>Class</th>
+            <td><code>{entryPoints.class}</code></td>
+        </tr>
+    </tbody>
+</table>
+<table>
+<tr>
+        <th>Description</th>
+    </tr>
+      {entryPoints.description.map((description) => (
+    <tr className='ep_description'>
+        <Markdown>{description.trim()}</Markdown>
+    </tr>
+      ))}
+</table>
+
+<table>
+
+    <tr>
+        <th>Inputs</th>
+        <th>Required</th>
+        <th>Valid Types</th>
+        <th>Description</th>
+    </tr>
+    <Specs spec={entryPoints.spec.inputs} />
+
+    <tr>
+        <th>Outputs</th>
+        <th>Required</th>
+        <th>Valid Types</th>
+        <th>Description</th>
+    </tr>
+
+    <Specs spec={entryPoints.spec.outputs} />
+
+</table>
+<table>
+
+<tr>
+        <th>Exit Codes</th>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <th>Message</th>
+    </tr>
+    {entryPoints.spec.exit_codes.map((exit_codes) => (
+      <tr className='ep_description'>
+        <td>{exit_codes.status}</td>
+        <Markdown>{exit_codes.message}</Markdown>
+      </tr>
+    ))}
+
+</table>
+</div>
+  );
+
+};
+const Specs = ({spec}) => {
+  return (
+    <>
+         {spec.map((inputs) => (
+           <tr className='ep_description'>
+          <td>{inputs.name}</td>
+          <td>{inputs.required.toString()}</td>
+          <td>{inputs.valid_types}</td>
+          <Markdown>{inputs.info}</Markdown>
+        </tr>
+      ))}
+    </>
+
+  )
+}
 export default App;
