@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Markdown from 'markdown-to-jsx';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const globalsummary = jsonData["globalsummary"]
@@ -126,7 +127,7 @@ function MainIndex() {
           <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
           {value.is_installable === "True" && (
             <div className='classbox' style={{backgroundColor:'transparent'}}>
-            <p style={{color:'green', fontSize:'25px'}}>&#10003;</p>
+            <CheckCircleIcon style={{color:'green', marginBottom:'-5'}}/>
             <span className='tooltiptext'>Plugin successfully installed</span>
             </div>
           )}
