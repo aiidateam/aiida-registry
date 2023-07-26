@@ -511,3 +511,10 @@ aiida-muon:
   code_home: https://github.com/positivemuon/aiida-muon
   version_file: https://github.com/positivemuon/aiida-muon/blob/main/aiida_muon/__init__.py
   pip_url: git+https://github.com/positivemuon/aiida-muon
+aiida-vibroscopy:
+  entry_point_prefix: vibroscopy
+  plugin_info: https://raw.githubusercontent.com/bastonero/aiida-vibroscopy/main/pyproject.toml
+  code_home: https://github.com/bastonero/aiida-vibroscopy
+  version_file: https://github.com/bastonero/aiida-vibroscopy/blob/main/src/aiida_vibroscopy/__init__.py
+  pip_url: aiida-vibroscopy
+  documentation_url: https://aiida-vibroscopy.readthedocs.io/en/latest/
