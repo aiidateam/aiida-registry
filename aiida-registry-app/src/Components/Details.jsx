@@ -153,7 +153,7 @@ function Details({pluginKey}) {
   const EntryPoints = ({entryPoints}) => {
     return (
   
-  <div>
+  <div style={{overflow:'auto'}}>
   <table>
       <tbody>
           <tr>

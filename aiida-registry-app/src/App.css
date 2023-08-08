@@ -1,9 +1,10 @@
 #root {
-
   text-align: left;
 }
 html {
   height: 100%;
+  scroll-behavior:smooth;
+  scroll-padding-top:160px;
 }
 
 body {
@@ -11,6 +12,7 @@ body {
   font-family: 'Noto Sans', sans-serif;
   padding: 0px;
   margin: 0px;
+  outline: dotted black;
 }
 
 
@@ -87,8 +89,9 @@ h2 {
   color: #333;
 }
 
-.details {
+#details {
   margin-top: 12px;
+  width: calc(100% - 340px);
 }
 
 .currentstate {
@@ -178,7 +181,7 @@ td {
 
 .footer {
   display: table;
-  width: calc(100% - 64px);
+  width: calc(100% - 370px);
   /* Distance with other content */
   margin-top: 16px;
   padding-top: 0.5rem;

@@ -29,7 +29,7 @@ function App() {
 
 function Header() {
   return (
-      <header id="entrytitle" style={{ backgroundColor: 'black', display: 'block', margin: '0', position:'sticky', top:'0', zIndex:'999', width:'100%', padding: '5px 20px 25px 20px' }}>
+      <header id="entrytitle" style={{ backgroundColor: 'black', display: 'block', margin: '0', position:'sticky', top:'0', zIndex:'999', width:'100%', padding: '5px 0px 34px 0px' }}>
         <h1>
           <a href="http://aiidateam.github.io/aiida-registry"><img src={whiteLogo} height="70px" /></a>
         </h1>
@@ -74,8 +74,10 @@ function DetailsContainer() {
 
   return (
       <>
+      <div style={{display:'flex'}}>
           <Details pluginKey={key} />
           <Sidebar pluginKey={key} />
+          </div>
       </>
   );
 }

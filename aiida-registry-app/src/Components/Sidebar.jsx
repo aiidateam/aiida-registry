@@ -18,7 +18,7 @@ function Sidebar({pluginKey}){
   const value = plugins[pluginKey]
 
   const sidebar = (
-    <div style={{padding:'10px'}}>
+    <div style={{paddingLeft: '10px'}}>
       <h1>Plugin content</h1>
       <Divider />
       <p><a style={{color:'black'}} href='#general.information'>General Information</a></p>
@@ -57,6 +57,7 @@ function Sidebar({pluginKey}){
                 width: sidebarWidth,
                 maxHeight:'calc(100vh - 11rem)', //Set the height to be under the header
                 mt:22,
+                backgroundColor:'lightgray',
 
             }
           }}
