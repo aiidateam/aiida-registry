@@ -16,12 +16,10 @@ function App() {
   return (
     <>
     <Header />
-    <div id='app-body'>
       <Routes>
         <Route path="/" element={<MainIndex />} />
         <Route path="/:key" element={<DetailsContainer />} />
       </Routes>
-    </div>
     <Footer />
     </>
   );
@@ -29,13 +27,15 @@ function App() {
 
 function Header() {
   return (
-      <header id="entrytitle" style={{ backgroundColor: 'black', display: 'block', margin: '0', position:'sticky', top:'0', zIndex:'999', width:'100%', padding: '5px 0px 34px 0px' }}>
+      <header id="entrytitle" style={{ backgroundColor: 'black', display: 'block', margin: '0', width:'100%', padding: '5px 0px 14px 0px' }}>
+        <div style={{paddingLeft:'20px'}}>
         <h1>
           <a href="http://aiidateam.github.io/aiida-registry"><img src={whiteLogo} height="70px" /></a>
         </h1>
         <p style={{ fontSize: '90%' }}>
           <a href="http://github.com/aiidateam/aiida-registry" style={{ color: '#999' }}>[View on GitHub/register your package]</a>
         </p>
+        </div>
       </header>
   )
 }
@@ -74,7 +74,7 @@ function DetailsContainer() {
 
   return (
       <>
-      <div style={{display:'flex'}}>
+      <div style={{display:'flex', marginLeft:'50px'}}>
           <Details pluginKey={key} />
           <Sidebar pluginKey={key} />
           </div>

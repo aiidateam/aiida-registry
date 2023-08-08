@@ -53,12 +53,12 @@ function Sidebar({pluginKey}){
             sx={{
               display: { xs: 'none', sm: 'block' }, //This disables the sidebar for small screens(mobile phones).
               '& .MuiDrawer-paper': {
-                boxSizing: 'border-box',
                 width: sidebarWidth,
-                maxHeight:'calc(100vh - 11rem)', //Set the height to be under the header
-                mt:22,
+                maxHeight:'calc(100vh)', //Set the height to be under the header
                 backgroundColor:'lightgray',
-
+                position: 'sticky',
+                border: '5px solid gray',
+                
             }
           }}
             open
