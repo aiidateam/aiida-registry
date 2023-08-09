@@ -6,12 +6,23 @@ html {
   height: 100%;
 }
 
+header {
+  background-color: black;
+  transition: top 0.5s;
+  display: block;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  margin: 0;
+  width: 100%;
+  padding: 5px 0px 14px 0px;
+}
+
 body {
   min-height: 100%;
   font-family: 'Noto Sans', sans-serif;
   padding: 0px;
   margin: 0px;
-  outline: dotted black;
 }
 
 
@@ -54,6 +65,14 @@ h1 {
   background-color: #d5cccc;
 }
 
+#sidebar .MuiDrawer-paper {
+  width: 340px;
+  max-height:calc(100vh);
+  background-color:lightgray;
+  border: 5px solid gray;
+  transition: 0.5s;
+  margin-top: 155px;
+}
 .keyword {
   display: inline;
   padding: .2em .6em .3em;
@@ -92,7 +111,7 @@ h2 {
 
 #details {
   margin-top: 12px;
-  width: calc(100% - 340px);
+  width: calc(100% - 370px);
 }
 
 .currentstate {
@@ -183,6 +202,7 @@ td {
 .footer {
   display: table;
   /* Distance with other content */
+  width: calc(100% - 380px);
   margin-top: 16px;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;

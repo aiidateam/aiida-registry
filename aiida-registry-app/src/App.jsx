@@ -16,10 +16,12 @@ function App() {
   return (
     <>
     <Header />
+      <div style={{marginTop:'155px'}}>
       <Routes>
         <Route path="/" element={<MainIndex />} />
         <Route path="/:key" element={<DetailsContainer />} />
       </Routes>
+      </div>
     <Footer />
     </>
   );
@@ -27,7 +29,7 @@ function App() {
 
 function Header() {
   return (
-      <header id="entrytitle" style={{ backgroundColor: 'black', display: 'block', margin: '0', width:'100%', padding: '5px 0px 14px 0px' }}>
+      <header>
         <div style={{paddingLeft:'20px'}}>
         <h1>
           <a href="http://aiidateam.github.io/aiida-registry"><img src={whiteLogo} height="70px" /></a>
@@ -71,6 +73,20 @@ function Footer() {
 
 function DetailsContainer() {
   const { key } = useParams();
+  var prevScrollpos = window.scrollY;
+  window.onscroll = function() {
+  var currentScrollPos = window.scrollY;
+    if (prevScrollpos > currentScrollPos) {
+      document.querySelector("header").style.top = "0";
+      document.querySelector("#sidebar .MuiDrawer-paper").style.marginTop = '155px';
+    } else {
+      if (prevScrollpos > 150) {
+      document.querySelector("header").style.top = "-155px";
+      document.querySelector("#sidebar .MuiDrawer-paper").style.marginTop = '0';
+      }
+    }
+    prevScrollpos = currentScrollPos;
+  }
 
   return (
       <>
