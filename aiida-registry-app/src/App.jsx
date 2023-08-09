@@ -7,7 +7,6 @@ import MaX from './assets/MaX.png'
 import './App.css'
 import Box from '@mui/material/Box';
 
-
 import MainIndex from './Components/MainIndex'
 import Details from './Components/Details'
 import Sidebar from './Components/Sidebar';
@@ -28,6 +27,14 @@ function App() {
 
 function Header() {
   return (
+      <header id="entrytitle" style={{ backgroundColor: 'black', display: 'block', margin: '0', width:'100%', padding: '5px 0px 14px 0px' }}>
+        <div style={{paddingLeft:'20px'}}>
+        <h1>
+          <a href="http://aiidateam.github.io/aiida-registry"><img src={whiteLogo} height="70px" /></a>
+        </h1>
+        <p style={{ fontSize: '90%' }}>
+          <a href="http://github.com/aiidateam/aiida-registry" style={{ color: '#999' }}>[View on GitHub/register your package]</a>
+        </p>
         </div>
       </header>
   )
