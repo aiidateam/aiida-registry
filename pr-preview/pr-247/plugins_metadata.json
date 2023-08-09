@@ -5913,7 +5913,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 335,
+      "commits_count": 333,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -13810,7 +13810,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 93,
+      "commits_count": 90,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr",
       "is_installable": "True"
