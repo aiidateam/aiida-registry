@@ -49,7 +49,7 @@ function Sidebar({pluginKey}){
                 ))
           )}
       <Divider />
-     
+
     </div>
   );
   return (

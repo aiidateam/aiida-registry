@@ -62,7 +62,7 @@ function Footer() {
 /**
  * DetailsContainer component displays the details of a specific plugin identified by the key parameter.
  * It renders the Details component on the left side and the Sidebar component on the right side.
- * 
+ *
  * @returns {JSX.Element} JSX element representing the DetailsContainer.
  */
 

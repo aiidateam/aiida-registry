@@ -16,7 +16,7 @@ function Details({pluginKey}) {
     document.documentElement.style.scrollBehavior = 'smooth';
     return (
       <>
-  
+
       <div id="details" className='fade-enter'>
       <h1 className='plugin-header'>
           AiiDA plugin package &quot;<a href={value.code_home}>{value.name}</a>&quot;
@@ -38,7 +38,7 @@ function Details({pluginKey}) {
             <strong>How to install</strong>: <code>{value.pip_install_cmd}</code>
         </p>
         )}
-  
+
         <p>
             <strong>Source code</strong>: <a href={ value.code_home } target="_blank">Go to the source code repository</a>
         </p>
@@ -50,10 +50,10 @@ function Details({pluginKey}) {
         <p>
           <strong>Documentation</strong>: No documentation provided by the package author
         </p>
-  
+
       )}
       </div>
-  
+
       <h2 id='detailed.information'>Detailed information</h2>
         {Object.keys(value.metadata).length !== 0 ? (
           <>
@@ -84,7 +84,7 @@ function Details({pluginKey}) {
               />
             </p>
             )}
-  
+
             {value.summaryinfo.length !== 0 && (
               <>
                 <h3 id = 'plugins'>Plugins provided by the package</h3>
@@ -98,7 +98,7 @@ function Details({pluginKey}) {
                 ))}
               </>
             )}
-  
+
             {value.entry_points ? (
               Object.entries(value.entry_points).map(([entrypointtype, entrypointlist]) => (
                 <>
@@ -145,14 +145,14 @@ function Details({pluginKey}) {
           </div>
         )}
       </div>
-  
+
       </>
     );
   }
-  
+
   const EntryPoints = ({entryPoints}) => {
     return (
-  
+
   <div style={{overflow:'auto'}}>
   <table>
       <tbody>
@@ -172,9 +172,9 @@ function Details({pluginKey}) {
       </tr>
         ))}
   </table>
-  
+
   <table>
-  
+
       <tr>
           <th>Inputs</th>
           <th>Required</th>
@@ -182,19 +182,19 @@ function Details({pluginKey}) {
           <th>Description</th>
       </tr>
       <Specs spec={entryPoints.spec.inputs} />
-  
+
       <tr>
           <th>Outputs</th>
           <th>Required</th>
           <th>Valid Types</th>
           <th>Description</th>
       </tr>
-  
+
       <Specs spec={entryPoints.spec.outputs} />
-  
+
   </table>
   <table>
-  
+
   <tr>
           <th>Exit Codes</th>
       </tr>
@@ -208,11 +208,11 @@ function Details({pluginKey}) {
           <Markdown>{exit_codes.message}</Markdown>
         </tr>
       ))}
-  
+
   </table>
   </div>
     );
-  
+
   };
   const Specs = ({spec}) => {
     return (
@@ -226,7 +226,7 @@ function Details({pluginKey}) {
           </tr>
         ))}
       </>
-  
+
     )
   }
 

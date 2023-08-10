@@ -38,27 +38,27 @@ function MainIndex() {
 
     const handleSort = (option) => {
       setSortOption(option);
-  
-  
+
+
       let sortedPlugins;
       if (option === 'commits') {
         const pluginsArray = Object.entries(plugins);
-  
+
         // Sort the array based on the commit_count value
         pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
-  
+
         // Create a new object with the sorted entries
         sortedPlugins = Object.fromEntries(pluginsArray);
       }
       else if (option == 'alpha') {
         sortedPlugins = plugins;
       }
-  
+
       setSortedData(sortedPlugins);
     };
     return (
       <main className='fade-enter'>
-  
+
       <h2>Registered plugin packages: {length}</h2>
       <div className='globalsummary-box'>
         <div style={{display: 'table'}}>
@@ -94,7 +94,7 @@ function MainIndex() {
               </Select>
             </FormControl>
           </Box>
-  
+
         {Object.entries(sortedData).map(([key, value]) => (
           <div className='submenu-entry' key={key}>
             <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
@@ -121,7 +121,7 @@ function MainIndex() {
                 />
             }
             </p>
-  
+
             <p>{value.metadata.description}</p>
             <ul className="plugin-info">
               <li>
@@ -135,9 +135,9 @@ function MainIndex() {
             <li>
             <Link to={`/${key}`}>Plugin details</Link>
             </li>
-  
+
             </ul>
-  
+
             {value.summaryinfo && (
               <>
                 <p className="summaryinfo">
@@ -152,7 +152,7 @@ function MainIndex() {
                 </p>
               </>
             )}
-  
+
           </div>
         ))}
       </div>
