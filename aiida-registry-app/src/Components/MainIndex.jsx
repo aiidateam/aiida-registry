@@ -19,6 +19,23 @@ function MainIndex() {
     const [sortOption, setSortOption] = useState('alpha');
     const [sortedData, setSortedData] = useState(plugins);
     document.documentElement.style.scrollBehavior = 'auto';
+
+    function setupScrollBehavior() {
+      var prevScrollpos = window.scrollY;
+      window.onscroll = function() {
+      var currentScrollPos = window.scrollY;
+        if (prevScrollpos > currentScrollPos) {
+          document.querySelector("header").style.top = "0"; //Display the header when scrolling up.
+        } else {
+          if (prevScrollpos > 150) {
+          document.querySelector("header").style.top = "-155px"; //Hide the header when scrolling down.
+          }
+        }
+        prevScrollpos = currentScrollPos;
+      }
+    }
+    setupScrollBehavior();
+
     const handleSort = (option) => {
       setSortOption(option);
   

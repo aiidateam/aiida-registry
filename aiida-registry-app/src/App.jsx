@@ -5,7 +5,7 @@ import whiteLogo from './assets/logo-white-text.svg'
 import MARVEL from './assets/MARVEL.png'
 import MaX from './assets/MaX.png'
 import './App.css'
-import Box from '@mui/material/Box';
+import { useEffect } from 'react';
 
 import MainIndex from './Components/MainIndex'
 import Details from './Components/Details'
@@ -62,35 +62,44 @@ function Footer() {
 /**
  * DetailsContainer component displays the details of a specific plugin identified by the key parameter.
  * It renders the Details component on the left side and the Sidebar component on the right side.
- *
- * @component
- * @example
- * // Render DetailsContainer with a specific plugin key:
- * <DetailsContainer />
- *
+ * 
  * @returns {JSX.Element} JSX element representing the DetailsContainer.
  */
 
 function DetailsContainer() {
   const { key } = useParams();
-  var prevScrollpos = window.scrollY;
-  window.onscroll = function() {
-  var currentScrollPos = window.scrollY;
-    if (prevScrollpos > currentScrollPos) {
-      document.querySelector("header").style.top = "0";
-      document.querySelector("#sidebar .MuiDrawer-paper").style.marginTop = '155px';
-    } else {
-      if (prevScrollpos > 150) {
-      document.querySelector("header").style.top = "-155px";
-      document.querySelector("#sidebar .MuiDrawer-paper").style.marginTop = '0';
+  useEffect(() => {
+    //Decrease the footer width on the details page to save some space for the sidebar.
+    document.querySelector('footer').style.width = 'calc(100% - 380px)';
+
+    // Clean up the styling when the component unmounts
+    return () => {
+      document.querySelector('footer').style.width = 'calc(100% - 64px)'; // Revert to default styles
+    };
+  }, []);
+  function setupScrollBehavior() {
+    //Display the header and move the sidebar under it when scrolling up
+    //& Hide the header and align sidebar to top when scrolling down.
+    var prevScrollpos = window.scrollY;
+    window.onscroll = function() {
+    var currentScrollPos = window.scrollY;
+      if (prevScrollpos > currentScrollPos) {
+        document.querySelector("header").style.top = "0";
+        document.querySelector("#sidebar .MuiDrawer-paper").style.marginTop = '155px';
+      } else {
+        if (prevScrollpos > 150) {
+        document.querySelector("header").style.top = "-155px";
+        document.querySelector("#sidebar .MuiDrawer-paper").style.marginTop = '0';
+        }
       }
+      prevScrollpos = currentScrollPos;
     }
-    prevScrollpos = currentScrollPos;
-  }
+    }
+    setupScrollBehavior();
 
   return (
       <>
-      <div style={{display:'flex', marginLeft:'50px'}}>
+      <div id='detailsContainer'>
           <Details pluginKey={key} />
           <Sidebar pluginKey={key} />
           </div>
