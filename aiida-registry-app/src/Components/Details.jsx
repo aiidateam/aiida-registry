@@ -21,7 +21,7 @@ function Details({pluginKey}) {
       <h1 className='plugin-header'>
           AiiDA plugin package &quot;<a href={value.code_home}>{value.name}</a>&quot;
       </h1>
-      <Link to={'/'}><p>&lt; back to the registry index</p></Link>
+      <Link to={'/'}><p style={{display:'inline'}}>&lt; back to the registry index</p></Link>
       <h2 id='general.information'>General information</h2>
       <div>
         <p>
