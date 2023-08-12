@@ -8,52 +8,83 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
+import SearchIcon from '@mui/icons-material/Search';
+import Fuse from 'fuse.js'
+import {useSearchContext} from '../App.jsx'
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
+//This is a global variable that will change based on search query or sort order.
+let sortedData = plugins
+
+
+//Convert the plugins object to a list and save it to plugins_index variable.
+//Needed because Fuse.js only accepts arrays.
+let plugins_index = []
+Object.entries(plugins).map(([key, value]) => (
+  plugins_index.push(value)
+))
+
+function Search() {
+  const { searchQuery, setSearchQuery } = useSearchContext();
+  // Update searchQuery when input changes
+  const handleSearch = (searchQuery) => {
+    setSearchQuery(searchQuery);
+  }
+  //Create a fuce instance for searching the provided keys.
+  //TODO: add entry points data to the keys to be searched.
+  const fuse = new Fuse(plugins_index, {
+    keys: [ 'name', 'metadata.description', 'entry_point_prefix', 'metadata.author'],
+    includeScore: true,
+    ignoreLocation: true,
+    threshold: 0.2
+  })
+  let searchRes = fuse.search(searchQuery)
+  const suggestions = searchRes.map((item) => item.item.name); //get the list searched plugins
+  const resultObject = {};
+
+  //Convert the search results array to object
+  searchRes.forEach(item => {
+    resultObject[item.item.name] = item.item;
+  });
+
+  //Update the sortedData object with the search results
+  //This method doesn't correctly display the plugins.
+  //TODO: try useContext or any state management instead.
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sortedData = resultObject;
+  };
+  
+  //return the suggestions list
+  return (
+    <>
+    <div className="search">
+      <form className="search-form">
+        <input type="text" placeholder="Search for plugins" value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
+        <button style={{fontSize:'20px'}} onClick={(e) => {handleSubmit(e);}}><SearchIcon /></button>
+      </form>
+    </div>
+    {/* Display the list of suggestions */}
+    <ul className="suggestions-list">
+        {suggestions.map((suggestion) => (
+          <Link to={`/${suggestion}`}><li key={suggestion} className="suggestion-item">
+            {suggestion}
+          </li></Link>
+        ))}
+      </ul>
+    </>
+  )
+}
+
+
 function MainIndex() {
-    const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
-    const [sortedData, setSortedData] = useState(plugins);
-
-    useEffect(() => {
-      document.documentElement.style.scrollBehavior = 'auto';
-      handleSort(sortOption);
-      setupScrollBehavior();
-    }, [sortOption]);
-
-    function sortByCommits(plugins) {
-      const pluginsArray = Object.entries(plugins);
-
-      // Sort the array based on the commit_count value
-      pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
-
-      // Return a new object with the sorted entries
-      return Object.fromEntries(pluginsArray);
-    }
-
-    function sortByRelease(plugins) {
-        //Sort plugins by the recent release date, the newer the release date the larger the value,
-        //and the higher ranking it get. Sorting in descending order by date.
-        const pluginsArray = Object.entries(plugins);
-        pluginsArray.sort(([, pluginA], [, pluginB]) => {
-          if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
-           return 0; // Both plugins have no release date, keep them in the current order
-          } else if (!pluginA.metadata.release_date) {
-            return 1; // Only pluginB has a release date, put pluginB higher ranking than pluginA.
-          } else if (!pluginB.metadata.release_date) {
-            return -1; // Only pluginA has a release date, put pluginA higher ranking than pluginB.
-          } else {
-            return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
-          }
-        });
-
-        //Return a new object with the sorted entries
-        return Object.fromEntries(pluginsArray);
-    }
+    const { searchQuery, setSearchQuery } = useSearchContext();
+    const [sortOption, setSortOption] = useState('alpha');
+    document.documentElement.style.scrollBehavior = 'auto';
 
     function setupScrollBehavior() {
       var prevScrollpos = window.scrollY;
@@ -85,8 +116,11 @@ function MainIndex() {
         sortedPlugins = sortByRelease(plugins);
       }
 
-      setSortedData(sortedPlugins);
+      sortedData = sortedPlugins
     };
+    if (searchQuery == "" && sortOption !== 'commits') {
+      sortedData = plugins
+    }
     return (
       <main className='fade-enter'>
 
@@ -111,10 +145,14 @@ function MainIndex() {
         </div>
       </div>
       <div id='entrylist'>
-        <h1 style={{display: 'inline'}}>
+        <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
+        <h1 style={{minHeight:'50px', padding:'15px 8px', display:'flex', flexDirection:'column'}}>
           Package list
       </h1>
-          <Box sx={{ minWidth: 120 }} style={{display:'inline', padding:'20px'}}>
+      <div style={{minHeight:'50px', padding:'15px 8px', borderRadius:'0 0 0 0', flex:'1'}}>
+        <Search />
+        </div>
+          <Box style={{minHeight:'50px', minWidth:'600px', padding:'15px 8px', display:'flex'}}>
             <FormControl style={{width:'25%'}}>
               <InputLabel id="demo-simple-select-label">Sort</InputLabel>
               <Select
@@ -126,6 +164,7 @@ function MainIndex() {
               </Select>
             </FormControl>
           </Box>
+          </div>
 
         {Object.entries(sortedData).map(([key, value]) => (
           <div className='submenu-entry' key={key}>
