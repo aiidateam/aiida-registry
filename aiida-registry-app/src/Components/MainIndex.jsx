@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { useState, createContext, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import jsonData from '../plugins_metadata.json'
 import base64Icon from '../base64Icon';
 import Box from '@mui/material/Box';
@@ -10,16 +10,27 @@ import Select from '@mui/material/Select';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import Fuse from 'fuse.js'
-import {useSearchContext} from '../App.jsx'
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
-//This is a global variable that will change based on search query or sort order.
-let sortedData = plugins
 
+//The search context enables accessing the search query and the plugins data among different components.
+const SearchContext = createContext();
+
+const useSearchContext = () => useContext(SearchContext);
+
+export const SearchContextProvider = ({ children }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortedData, setSortedData] = useState(plugins);
+  return (
+    <SearchContext.Provider value={{ searchQuery, setSearchQuery, sortedData, setSortedData}}>
+      {children}
+    </SearchContext.Provider>
+  );
+};
 
 //Convert the plugins object to a list and save it to plugins_index variable.
 //Needed because Fuse.js only accepts arrays.
@@ -29,10 +40,13 @@ Object.entries(plugins).map(([key, value]) => (
 ))
 
 function Search() {
-  const { searchQuery, setSearchQuery } = useSearchContext();
+  const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
   // Update searchQuery when input changes
   const handleSearch = (searchQuery) => {
     setSearchQuery(searchQuery);
+    if (searchQuery == "") {
+      setSortedData(plugins)
+    }
   }
   //Create a fuce instance for searching the provided keys.
   //TODO: add entry points data to the keys to be searched.
@@ -51,12 +65,10 @@ function Search() {
     resultObject[item.item.name] = item.item;
   });
 
-  //Update the sortedData object with the search results
-  //This method doesn't correctly display the plugins.
-  //TODO: try useContext or any state management instead.
+  //Update the sortedData state with the search results
   const handleSubmit = (e) => {
     e.preventDefault();
-    sortedData = resultObject;
+    setSortedData(resultObject);
   };
   
   //return the suggestions list
@@ -81,8 +93,8 @@ function Search() {
 }
 
 
-function MainIndex() {
-    const { searchQuery, setSearchQuery } = useSearchContext();
+export function MainIndex() {
+    const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
     const [sortOption, setSortOption] = useState('alpha');
     document.documentElement.style.scrollBehavior = 'auto';
 
@@ -116,11 +128,9 @@ function MainIndex() {
         sortedPlugins = sortByRelease(plugins);
       }
 
-      sortedData = sortedPlugins
+      setSortedData(sortedPlugins);
     };
-    if (searchQuery == "" && sortOption !== 'commits') {
-      sortedData = plugins
-    }
+
     return (
       <main className='fade-enter'>
 
@@ -239,4 +249,3 @@ function MainIndex() {
     );
   }
 
-export default MainIndex

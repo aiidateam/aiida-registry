@@ -5,24 +5,9 @@ import MARVEL from './assets/MARVEL.png'
 import MaX from './assets/MaX.png'
 import './App.css'
 import { useEffect, createContext, useState, useContext } from 'react';
-import MainIndex from './Components/MainIndex'
+import { MainIndex, SearchContextProvider } from './Components/MainIndex'
 import Details from './Components/Details'
 import Sidebar from './Components/Sidebar';
-
-//The search context enables accessing the search query among different components.
-const SearchContext = createContext();
-
-export const useSearchContext = () => useContext(SearchContext);
-
-const SearchContextProvider = ({ children }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  return (
-    <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
-      {children}
-    </SearchContext.Provider>
-  );
-};
 
 function App() {
 
