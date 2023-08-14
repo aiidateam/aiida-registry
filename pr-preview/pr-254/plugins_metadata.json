@@ -5913,7 +5913,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 333,
+      "commits_count": 336,
       "summaryinfo": [
         {
           "colorclass": "blue",
