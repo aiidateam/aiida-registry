@@ -32,12 +32,26 @@ export const SearchContextProvider = ({ children }) => {
   );
 };
 
-//Convert the plugins object to a list and save it to plugins_index variable.
-//Needed because Fuse.js only accepts arrays.
-let plugins_index = []
-Object.entries(plugins).map(([key, value]) => (
-  plugins_index.push(value)
-))
+/**
+ * Process the plugins object to prepare it for search by:
+ * - Converting the object to a list of plugins.
+ * - Stringifying the entry points object for search index compatibility.
+ * @param {object} plugins - The plugins object containing entry points.
+ * @returns {Array} List of plugins ready for search.
+ */
+function preparePluginsForSearch(plugins) {
+  const pluginsList = [];
+  const clonedPlugins = JSON.parse(JSON.stringify(plugins));
+
+  Object.entries(clonedPlugins).forEach(([key, pluginData]) => {
+    pluginData.entry_points = JSON.stringify(pluginData.entry_points);
+    pluginsList.push(pluginData);
+  });
+
+  return pluginsList;
+}
+
+const pluginsListForSearch = preparePluginsForSearch(plugins);
 
 function Search() {
   const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
@@ -49,12 +63,11 @@ function Search() {
     }
   }
   //Create a fuce instance for searching the provided keys.
-  //TODO: add entry points data to the keys to be searched.
-  const fuse = new Fuse(plugins_index, {
-    keys: [ 'name', 'metadata.description', 'entry_point_prefix', 'metadata.author'],
+  const fuse = new Fuse(pluginsListForSearch, {
+    keys: [ 'name', 'metadata.description', 'entry_point_prefix', 'metadata.author', 'entry_points'],
     includeScore: true,
     ignoreLocation: true,
-    threshold: 0.2
+    threshold: 0.1
   })
   let searchRes = fuse.search(searchQuery)
   const suggestions = searchRes.map((item) => item.item.name); //get the list searched plugins
@@ -62,7 +75,7 @@ function Search() {
 
   //Convert the search results array to object
   searchRes.forEach(item => {
-    resultObject[item.item.name] = item.item;
+    resultObject[item.item.name] = plugins[item.item.name];
   });
 
   //Update the sortedData state with the search results
