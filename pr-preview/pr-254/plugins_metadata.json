@@ -5913,7 +5913,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 336,
+      "commits_count": 335,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -6316,7 +6316,7 @@
           }
         }
       },
-      "commits_count": 18,
+      "commits_count": 19,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -7112,7 +7112,7 @@
           "crystal_dft": "aiida_crystal_dft.cli.basis:basis_set"
         }
       },
-      "commits_count": 19,
+      "commits_count": 18,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -18080,7 +18080,7 @@
           }
         }
       },
-      "commits_count": 63,
+      "commits_count": 64,
       "development_status": "alpha",
       "summaryinfo": [
         {
