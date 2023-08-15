@@ -61,6 +61,7 @@ function Search() {
     if (searchQuery == "") {
       setSortedData(plugins)
     }
+    document.querySelector(".suggestions-list").style.display = "block";
   }
   //Create a fuce instance for searching the provided keys.
   const fuse = new Fuse(pluginsListForSearch, {
@@ -81,7 +82,10 @@ function Search() {
   //Update the sortedData state with the search results
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (searchQuery) {
     setSortedData(resultObject);
+    document.querySelector(".suggestions-list").style.display = "none";
+    }
   };
   
   //return the suggestions list
@@ -89,10 +93,9 @@ function Search() {
     <>
     <div className="search">
       <form className="search-form">
+        <button style={{fontSize:'20px', minWidth:'90px', backgroundColor:'white', border: '1px solid #ccc', borderRadius: '4px'}} onClick={(e) => {handleSubmit(e);}}><SearchIcon /></button>
         <input type="text" placeholder="Search for plugins" value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
-        <button style={{fontSize:'20px'}} onClick={(e) => {handleSubmit(e);}}><SearchIcon /></button>
       </form>
-    </div>
     {/* Display the list of suggestions */}
     <ul className="suggestions-list">
         {suggestions.map((suggestion) => (
@@ -101,6 +104,7 @@ function Search() {
           </li></Link>
         ))}
       </ul>
+      </div>
     </>
   )
 }
@@ -168,15 +172,15 @@ export function MainIndex() {
         </div>
       </div>
       <div id='entrylist'>
-        <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-        <h1 style={{minHeight:'50px', padding:'15px 8px', display:'flex', flexDirection:'column'}}>
+        <h1>
           Package list
       </h1>
-      <div style={{minHeight:'50px', padding:'15px 8px', borderRadius:'0 0 0 0', flex:'1'}}>
+        <div style={{display:'flex', flexDirection:'row', margin:'0 2%'}}>
+      <div style={{ flex:'1', marginRight:'10px'}}>
         <Search />
         </div>
-          <Box style={{minHeight:'50px', minWidth:'600px', padding:'15px 8px', display:'flex'}}>
-            <FormControl style={{width:'25%'}}>
+          <Box >
+            <FormControl >
               <InputLabel id="demo-simple-select-label">Sort</InputLabel>
               <Select
                 value={sortOption} label = "Sort" onChange={(e) => handleSort(e.target.value)}
