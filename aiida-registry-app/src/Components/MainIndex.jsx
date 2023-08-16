@@ -89,8 +89,8 @@ function MainIndex() {
               <Select
                 value={sortOption} label = "Sort" onChange={(e) => handleSort(e.target.value)}
               >
-                <MenuItem value= 'alpha'>Alphabetical</MenuItem>
                 <MenuItem value='commits'>Commits Count</MenuItem>
+                <MenuItem value= 'alpha'>Alphabetical</MenuItem>
               </Select>
             </FormControl>
           </Box>
