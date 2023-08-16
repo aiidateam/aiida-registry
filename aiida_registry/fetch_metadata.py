@@ -4,6 +4,8 @@
 Data is primarily sourced from PyPI,
 with a fallback to the repository build file (setup.json, setup.cfg, pyproject.toml).
 """
+import json
+
 # pylint: disable=consider-using-f-string
 import os
 import re
@@ -13,6 +15,7 @@ import traceback
 import urllib
 from collections import OrderedDict
 from datetime import datetime, timedelta
+from functools import lru_cache
 from typing import Optional
 
 import requests
@@ -30,6 +33,39 @@ from .parse_pypi import PypiData, get_pypi_metadata
 from .utils import fetch_file
 
 GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
+
+
+@lru_cache(maxsize=None)
+def load_plugins_metadata(json_file_path):
+    """Load the plugins file."""
+    try:
+        with open(json_file_path, "r", encoding="utf-8") as json_file:
+            return json.load(json_file)
+    except FileNotFoundError:
+        print(f"Error: The file '{json_file_path}' was not found.")
+        return None
+
+
+def get_last_fetched_version(plugin_name):
+    """
+    Get the last fetched version of the plugin.
+
+    Args:
+        plugin_name (str): Name of the plugin.
+
+    Returns:
+        str or None: Version of the plugin if available, or None if not found.
+    """
+    json_file_path = "./aiida-registry-app/src/plugins_metadata.json"
+    metadata = load_plugins_metadata(json_file_path)
+
+    if metadata is not None:
+        try:
+            return metadata["plugins"][plugin_name]["metadata"]["version"]
+        except KeyError:
+            print("No version for the plugin")
+
+    return None
 
 
 def get_hosted_on(url):
@@ -191,6 +227,16 @@ def complete_plugin_data(
                     plugin_data["metadata"] = data.metadata
                     plugin_data["aiida_version"] = data.aiida_version
                     plugin_data["entry_points"] = data.entry_points
+
+    current_version = get_last_fetched_version(plugin_data["name"])
+    if current_version:
+        try:
+            if current_version != plugin_data["metadata"]["version"]:
+                plugin_data["metadata"]["release_date"] = datetime.today().strftime(
+                    "%Y-%m-%d"
+                )
+        except KeyError:
+            print("no version for the plugin")
 
     # ensure entry points are not None
     plugin_data["entry_points"] = plugin_data.get("entry_points") or {}

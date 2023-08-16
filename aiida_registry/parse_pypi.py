@@ -5,6 +5,7 @@ import configparser
 import json
 import tempfile
 import zipfile
+from datetime import datetime
 from pathlib import Path
 from typing import NamedTuple, Optional
 
@@ -44,6 +45,14 @@ def get_pypi_metadata(package_name: str, parse_wheel=True) -> Optional[PypiData]
     # get data from pypi JSON
     pypi_info_data = pypi_data.get("info", {})
 
+    # Get the recent release date and convert it to YYYY-MM-DD format.
+    version = pypi_info_data["version"]
+    latest_version_release_date = pypi_data["releases"][version][0]["upload_time"]
+    release_date_format = "%Y-%m-%dT%H:%M:%S"
+    desired_date_format = "%Y-%m-%d"
+    original_date = datetime.strptime(latest_version_release_date, release_date_format)
+    desired_date_string = original_date.strftime(desired_date_format)
+    metadata["release_date"] = desired_date_string
     # add required metadata
     for key_from, key_to in (
         ("summary", "description"),
