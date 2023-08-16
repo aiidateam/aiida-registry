@@ -40,7 +40,7 @@ function MainIndex() {
       setSortOption(option);
 
 
-      let sortedPlugins;
+      let sortedPlugins = {};
       if (option === 'commits') {
         const pluginsArray = Object.entries(plugins);
 
@@ -52,6 +52,24 @@ function MainIndex() {
       }
       else if (option == 'alpha') {
         sortedPlugins = plugins;
+      }
+      else if (option == 'release') {
+        //Sort plugins by the recent release date
+        const pluginsArray = Object.entries(plugins);
+        pluginsArray.sort(([, pluginA], [, pluginB]) => {
+          if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
+           return 0; // Both plugins have no release date, keep them in the current order
+          } else if (!pluginA.metadata.release_date) {
+            return 1; // Only pluginB has a release date, so pluginA should come first
+          } else if (!pluginB.metadata.release_date) {
+            return -1; // Only pluginA has a release date, so pluginB should come first
+          } else {
+            return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
+          }
+        });
+
+        // Convert the sorted array back to an object
+        sortedPlugins = Object.fromEntries(pluginsArray);
       }
 
       setSortedData(sortedPlugins);
@@ -91,6 +109,7 @@ function MainIndex() {
               >
                 <MenuItem value= 'alpha'>Alphabetical</MenuItem>
                 <MenuItem value='commits'>Commits Count</MenuItem>
+                <MenuItem value='release'>Recent Release</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -120,6 +139,14 @@ function MainIndex() {
                   src={`https://img.shields.io/badge/Yearly%20Commits-${value.commits_count}-007ec6.svg`}
                 />
             }
+
+            {sortOption === 'release' && value.metadata.release_date &&
+            <img
+                  className="svg-badge"
+                  style={{padding:'3px'}}
+                  src={`https://img.shields.io/badge/Recent%20Release-${value.metadata.release_date.replace(/-/g, '/')}-007ec6.svg`}
+                />
+          }
             </p>
 
             <p>{value.metadata.description}</p>
