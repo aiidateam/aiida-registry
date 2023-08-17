@@ -9254,7 +9254,7 @@
           "aiida-firecrest-cli": "aiida_firecrest.cli:main"
         }
       },
-      "commits_count": -1,
+      "commits_count": 19,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -9307,7 +9307,7 @@
           "arlaunch": "aiida_fireworks_scheduler.scripts.arlaunch_run:arlaunch"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "summaryinfo": [
         {
           "colorclass": "purple",
@@ -11881,7 +11881,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": -1,
+      "commits_count": 202,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -11944,7 +11944,7 @@
           "flexpart.multi_dates": "aiida_flexpart.workflows.multi_dates_workflow:FlexpartMultipleDatesWorkflow"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -12009,7 +12009,7 @@
           "gaussian.cubes": "aiida_gaussian.workchains:GaussianCubesWorkChain"
         }
       },
-      "commits_count": -1,
+      "commits_count": 20,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -12077,7 +12077,7 @@
           "gaussian.pseudo": "aiida_gaussian_datatypes.groups:PseudopotentialGroup"
         }
       },
-      "commits_count": -1,
+      "commits_count": 0,
       "development_status": "beta",
       "summaryinfo": [
         {
