@@ -16,14 +16,14 @@ const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
 function MainIndex() {
-    const [sortOption, setSortOption] = useState('commits');
+    const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
     const [sortedData, setSortedData] = useState(plugins);
 
     useEffect(() => {
       document.documentElement.style.scrollBehavior = 'auto';
-      setSortedData(sortByCommits(plugins));
+      handleSort(sortOption);
       setupScrollBehavior();
-    }, [plugins, setSortedData]);
+    }, [sortOption]);
 
     function sortByCommits(plugins) {
       const pluginsArray = Object.entries(plugins);
@@ -33,6 +33,26 @@ function MainIndex() {
 
       // Return a new object with the sorted entries
       return Object.fromEntries(pluginsArray);
+    }
+
+    function sortByRelease(plugins) {
+        //Sort plugins by the recent release date, the newer the release date the larger the value,
+        //and the higher ranking it get. Sorting in descending order by date.
+        const pluginsArray = Object.entries(plugins);
+        pluginsArray.sort(([, pluginA], [, pluginB]) => {
+          if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
+           return 0; // Both plugins have no release date, keep them in the current order
+          } else if (!pluginA.metadata.release_date) {
+            return 1; // Only pluginB has a release date, put pluginB higher ranking than pluginA.
+          } else if (!pluginB.metadata.release_date) {
+            return -1; // Only pluginA has a release date, put pluginA higher ranking than pluginB.
+          } else {
+            return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
+          }
+        });
+
+        //Return a new object with the sorted entries
+        return Object.fromEntries(pluginsArray);
     }
 
     function setupScrollBehavior() {
@@ -49,18 +69,20 @@ function MainIndex() {
         prevScrollpos = currentScrollPos;
       }
     }
-    setupScrollBehavior();
 
     const handleSort = (option) => {
       setSortOption(option);
 
 
-      let sortedPlugins;
+      let sortedPlugins = {};
       if (option === 'commits') {
         sortedPlugins = sortByCommits(plugins);
       }
       else if (option == 'alpha') {
         sortedPlugins = plugins;
+      }
+      else if (option == 'release') {
+        sortedPlugins = sortByRelease(plugins);
       }
 
       setSortedData(sortedPlugins);
@@ -100,6 +122,7 @@ function MainIndex() {
               >
                 <MenuItem value='commits'>Commits Count</MenuItem>
                 <MenuItem value= 'alpha'>Alphabetical</MenuItem>
+                <MenuItem value='release'>Recent Release</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -129,6 +152,14 @@ function MainIndex() {
                   src={`https://img.shields.io/badge/Yearly%20Commits-${value.commits_count}-007ec6.svg`}
                 />
             }
+
+            {sortOption === 'release' && value.metadata.release_date &&
+            <img
+                  className="svg-badge"
+                  style={{padding:'3px'}}
+                  src={`https://img.shields.io/badge/Recent%20Release-${value.metadata.release_date.replace(/-/g, '/')}-007ec6.svg`}
+                />
+          }
             </p>
 
             <p>{value.metadata.description}</p>
