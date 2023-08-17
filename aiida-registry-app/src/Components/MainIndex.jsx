@@ -87,7 +87,7 @@ function Search() {
     document.querySelector(".suggestions-list").style.display = "none";
     }
   };
-  
+
   //return the suggestions list
   return (
     <>
@@ -265,4 +265,3 @@ export function MainIndex() {
       </main>
     );
   }
-

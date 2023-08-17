@@ -434,12 +434,12 @@ padding-right: 5px;
     position: relative;
     margin-bottom: 10px;
   }
-  
+
   .search-form {
     display: flex;
     min-height: 56px;
   }
-  
+
   input[type='text'] {
     padding: 8px;
     border: 1px solid #ccc;
@@ -447,7 +447,7 @@ padding-right: 5px;
     font-size: large;
     flex: 1;
   }
-  
+
   /* Styles for the suggestions list */
   .suggestions-list {
     position: absolute;
@@ -461,17 +461,17 @@ padding-right: 5px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
+
   .suggestion-item {
     padding: 8px;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
   }
-  
+
   .suggestion-item:last-child {
     border-bottom: none;
   }
-  
+
   .suggestion-item:hover {
     background-color: #f2f2f2;
   }
