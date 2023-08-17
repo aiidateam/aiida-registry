@@ -7,7 +7,6 @@
 *.egg-info
 *.sqlite
 out/
-plugins_metadata.json
 installed_plugins/
 aiida-registry-app/package-lock.json
 
