@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import jsonData from '../plugins_metadata.json'
 import base64Icon from '../base64Icon';
@@ -16,9 +16,24 @@ const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
 function MainIndex() {
-    const [sortOption, setSortOption] = useState('alpha');
+    const [sortOption, setSortOption] = useState('commits');
     const [sortedData, setSortedData] = useState(plugins);
-    document.documentElement.style.scrollBehavior = 'auto';
+
+    useEffect(() => {
+      document.documentElement.style.scrollBehavior = 'auto';
+      setSortedData(sortByCommits(plugins));
+      setupScrollBehavior();
+    }, [plugins, setSortedData]);
+
+    function sortByCommits(plugins) {
+      const pluginsArray = Object.entries(plugins);
+
+      // Sort the array based on the commit_count value
+      pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
+
+      // Return a new object with the sorted entries
+      return Object.fromEntries(pluginsArray);
+    }
 
     function setupScrollBehavior() {
       var prevScrollpos = window.scrollY;
@@ -42,13 +57,7 @@ function MainIndex() {
 
       let sortedPlugins = {};
       if (option === 'commits') {
-        const pluginsArray = Object.entries(plugins);
-
-        // Sort the array based on the commit_count value
-        pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
-
-        // Create a new object with the sorted entries
-        sortedPlugins = Object.fromEntries(pluginsArray);
+        sortedPlugins = sortByCommits(plugins);
       }
       else if (option == 'alpha') {
         sortedPlugins = plugins;
