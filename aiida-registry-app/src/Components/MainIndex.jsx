@@ -16,14 +16,14 @@ const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
 function MainIndex() {
-    const [sortOption, setSortOption] = useState('commits');
+    const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
     const [sortedData, setSortedData] = useState(plugins);
 
     useEffect(() => {
       document.documentElement.style.scrollBehavior = 'auto';
-      setSortedData(sortByCommits(plugins));
+      handleSort(sortOption);
       setupScrollBehavior();
-    }, [plugins, setSortedData]);
+    }, [sortOption]);
 
     function sortByCommits(plugins) {
       const pluginsArray = Object.entries(plugins);
@@ -33,6 +33,26 @@ function MainIndex() {
 
       // Return a new object with the sorted entries
       return Object.fromEntries(pluginsArray);
+    }
+
+    function sortByRelease(plugins) {
+        //Sort plugins by the recent release date, the newer the release date the larger the value,
+        //and the higher ranking it get. Sorting in descending order by date.
+        const pluginsArray = Object.entries(plugins);
+        pluginsArray.sort(([, pluginA], [, pluginB]) => {
+          if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
+           return 0; // Both plugins have no release date, keep them in the current order
+          } else if (!pluginA.metadata.release_date) {
+            return 1; // Only pluginB has a release date, put pluginB higher ranking than pluginA.
+          } else if (!pluginB.metadata.release_date) {
+            return -1; // Only pluginA has a release date, put pluginA higher ranking than pluginB.
+          } else {
+            return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
+          }
+        });
+
+        //Return a new object with the sorted entries
+        return Object.fromEntries(pluginsArray);
     }
 
     function setupScrollBehavior() {
@@ -49,7 +69,6 @@ function MainIndex() {
         prevScrollpos = currentScrollPos;
       }
     }
-    setupScrollBehavior();
 
     const handleSort = (option) => {
       setSortOption(option);
@@ -63,22 +82,7 @@ function MainIndex() {
         sortedPlugins = plugins;
       }
       else if (option == 'release') {
-        //Sort plugins by the recent release date
-        const pluginsArray = Object.entries(plugins);
-        pluginsArray.sort(([, pluginA], [, pluginB]) => {
-          if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
-           return 0; // Both plugins have no release date, keep them in the current order
-          } else if (!pluginA.metadata.release_date) {
-            return 1; // Only pluginB has a release date, so pluginA should come first
-          } else if (!pluginB.metadata.release_date) {
-            return -1; // Only pluginA has a release date, so pluginB should come first
-          } else {
-            return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
-          }
-        });
-
-        // Convert the sorted array back to an object
-        sortedPlugins = Object.fromEntries(pluginsArray);
+        sortedPlugins = sortByRelease(plugins);
       }
 
       setSortedData(sortedPlugins);
