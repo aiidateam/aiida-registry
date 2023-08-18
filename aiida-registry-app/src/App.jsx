@@ -1,13 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import Logo from './assets/logo.svg'
 import whiteLogo from './assets/logo-white-text.svg'
 import MARVEL from './assets/MARVEL.png'
 import MaX from './assets/MaX.png'
 import './App.css'
-import { useEffect } from 'react';
-
-import MainIndex from './Components/MainIndex'
+import { useEffect, createContext, useState, useContext } from 'react';
+import { MainIndex, SearchContextProvider } from './Components/MainIndex'
 import Details from './Components/Details'
 import Sidebar from './Components/Sidebar';
 
@@ -17,10 +15,12 @@ function App() {
     <>
     <Header />
       <div style={{marginTop:'155px'}}>
+        <SearchContextProvider>
       <Routes>
         <Route path="/" element={<MainIndex />} />
         <Route path="/:key" element={<DetailsContainer />} />
       </Routes>
+      </SearchContextProvider>
       </div>
     <Footer />
     </>

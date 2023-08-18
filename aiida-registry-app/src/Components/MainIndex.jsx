@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { useState, createContext, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import jsonData from '../plugins_metadata.json'
 import base64Icon from '../base64Icon';
 import Box from '@mui/material/Box';
@@ -8,16 +8,120 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
+import SearchIcon from '@mui/icons-material/Search';
+import Fuse from 'fuse.js'
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
 const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
-function MainIndex() {
+
+//The search context enables accessing the search query and the plugins data among different components.
+const SearchContext = createContext();
+
+const useSearchContext = () => useContext(SearchContext);
+
+export const SearchContextProvider = ({ children }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortedData, setSortedData] = useState(plugins);
+  return (
+    <SearchContext.Provider value={{ searchQuery, setSearchQuery, sortedData, setSortedData}}>
+      {children}
+    </SearchContext.Provider>
+  );
+};
+let ep_keys = [ 'name', 'metadata.description', 'entry_point_prefix', 'metadata.author']
+
+/**
+ * Process the plugins object to prepare it for search by:
+ * - Converting the object to a list of plugins.
+ * - Stringifying the entry points object for search index compatibility.
+ * @param {object} plugins - The plugins object containing entry points.
+ * @returns {Array} List of plugins ready for search.
+ */
+function preparePluginsForSearch(plugins) {
+  const pluginsList = [];
+  const clonedPlugins = JSON.parse(JSON.stringify(plugins));
+
+  Object.entries(clonedPlugins).forEach(([key, pluginData]) => {
+    Object.entries(pluginData.entry_points).forEach(([key, entry_points]) => {
+      for (const k in entry_points) {
+        let ep_entries = ['entry_points', key, k]
+        pluginData.entry_points[key][k] = JSON.stringify(pluginData.entry_points[key][k]);
+        ep_keys.push(ep_entries);
+      }
+    });
+    pluginsList.push(pluginData);
+  });
+
+  return pluginsList;
+}
+
+const pluginsListForSearch = preparePluginsForSearch(plugins);
+
+function Search() {
+  const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
+  // Update searchQuery when input changes
+  const handleSearch = (searchQuery) => {
+    setSearchQuery(searchQuery);
+    if (searchQuery == "") {
+      setSortedData(plugins)
+    }
+    document.querySelector(".suggestions-list").style.display = "block";
+  }
+  //Create a fuce instance for searching the provided keys.
+  const fuse = new Fuse(pluginsListForSearch, {
+    keys: ep_keys,
+    includeScore: true,
+    ignoreLocation: true,
+    threshold: 0.1,
+    includeMatches: true,
+  })
+  let searchRes = fuse.search(searchQuery)
+  console.log(searchRes)
+  const suggestions = searchRes.map((item) => item.item.name); //get the list searched plugins
+  const resultObject = {};
+
+  //Convert the search results array to object
+  searchRes.forEach(item => {
+    resultObject[item.item.name] = plugins[item.item.name];
+  });
+
+  //Update the sortedData state with the search results
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery) {
+    setSortedData(resultObject);
+    document.querySelector(".suggestions-list").style.display = "none";
+    }
+  };
+
+  //return the suggestions list
+  return (
+    <>
+    <div className="search">
+      <form className="search-form">
+        <button style={{fontSize:'20px', minWidth:'90px', backgroundColor:'white', border: '1px solid #ccc', borderRadius: '4px'}} onClick={(e) => {handleSubmit(e);}}><SearchIcon /></button>
+        <input type="text" placeholder="Search for plugins" value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
+      </form>
+    {/* Display the list of suggestions */}
+    <ul className="suggestions-list">
+        {suggestions.map((suggestion) => (
+          <Link to={`/${suggestion}`}><li key={suggestion} className="suggestion-item">
+            {suggestion}
+          </li></Link>
+        ))}
+      </ul>
+      </div>
+    </>
+  )
+}
+
+
+export function MainIndex() {
+    const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
     const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
-    const [sortedData, setSortedData] = useState(plugins);
 
     useEffect(() => {
       document.documentElement.style.scrollBehavior = 'auto';
@@ -27,33 +131,31 @@ function MainIndex() {
 
     function sortByCommits(plugins) {
       const pluginsArray = Object.entries(plugins);
-
       // Sort the array based on the commit_count value
       pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
-
       // Return a new object with the sorted entries
       return Object.fromEntries(pluginsArray);
     }
 
     function sortByRelease(plugins) {
-        //Sort plugins by the recent release date, the newer the release date the larger the value,
-        //and the higher ranking it get. Sorting in descending order by date.
-        const pluginsArray = Object.entries(plugins);
-        pluginsArray.sort(([, pluginA], [, pluginB]) => {
-          if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
-           return 0; // Both plugins have no release date, keep them in the current order
-          } else if (!pluginA.metadata.release_date) {
-            return 1; // Only pluginB has a release date, put pluginB higher ranking than pluginA.
-          } else if (!pluginB.metadata.release_date) {
-            return -1; // Only pluginA has a release date, put pluginA higher ranking than pluginB.
-          } else {
-            return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
-          }
-        });
+      //Sort plugins by the recent release date, the newer the release date the larger the value,
+      //and the higher ranking it get. Sorting in descending order by date.
+      const pluginsArray = Object.entries(plugins);
+      pluginsArray.sort(([, pluginA], [, pluginB]) => {
+        if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
+         return 0; // Both plugins have no release date, keep them in the current order
+        } else if (!pluginA.metadata.release_date) {
+          return 1; // Only pluginB has a release date, put pluginB higher ranking than pluginA.
+        } else if (!pluginB.metadata.release_date) {
+          return -1; // Only pluginA has a release date, put pluginA higher ranking than pluginB.
+        } else {
+          return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
+        }
+      });
 
-        //Return a new object with the sorted entries
-        return Object.fromEntries(pluginsArray);
-    }
+      //Return a new object with the sorted entries
+      return Object.fromEntries(pluginsArray);
+  }
 
     function setupScrollBehavior() {
       var prevScrollpos = window.scrollY;
@@ -87,6 +189,7 @@ function MainIndex() {
 
       setSortedData(sortedPlugins);
     };
+
     return (
       <main className='fade-enter'>
 
@@ -111,11 +214,15 @@ function MainIndex() {
         </div>
       </div>
       <div id='entrylist'>
-        <h1 style={{display: 'inline'}}>
+        <h1>
           Package list
       </h1>
-          <Box sx={{ minWidth: 120 }} style={{display:'inline', padding:'20px'}}>
-            <FormControl style={{width:'25%'}}>
+        <div style={{display:'flex', flexDirection:'row', margin:'0 2%'}}>
+      <div style={{ flex:'1', marginRight:'10px'}}>
+        <Search />
+        </div>
+          <Box >
+            <FormControl >
               <InputLabel id="demo-simple-select-label">Sort</InputLabel>
               <Select
                 value={sortOption} label = "Sort" onChange={(e) => handleSort(e.target.value)}
@@ -126,6 +233,7 @@ function MainIndex() {
               </Select>
             </FormControl>
           </Box>
+          </div>
 
         {Object.entries(sortedData).map(([key, value]) => (
           <div className='submenu-entry' key={key}>
@@ -199,5 +307,3 @@ function MainIndex() {
       </main>
     );
   }
-
-export default MainIndex

@@ -116,6 +116,7 @@ h2 {
 #details {
   margin-top: 12px;
   width: calc(100% - 370px);
+  min-height: 80vh;
 }
 
 .currentstate {
@@ -428,6 +429,53 @@ ul.plugin-info li:before {
 content: "→";
 padding-right: 5px;
 }
+
+  .search {
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .search-form {
+    display: flex;
+    min-height: 56px;
+  }
+
+  input[type='text'] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: large;
+    flex: 1;
+  }
+
+  /* Styles for the suggestions list */
+  .suggestions-list {
+    position: absolute;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* Add a max-height to limit the suggestions' height */
+    overflow-y: auto; /* Enable vertical scrolling if there are too many suggestions */
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .suggestion-item:last-child {
+    border-bottom: none;
+  }
+
+  .suggestion-item:hover {
+    background-color: #f2f2f2;
+  }
+
 
 @media only screen and (min-width : 150px) and (max-width : 780px)
   {
