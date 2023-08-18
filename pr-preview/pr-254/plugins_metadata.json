@@ -5922,7 +5922,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 335,
+      "commits_count": 334,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -28797,7 +28797,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 110,
+      "commits_count": 113,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -30299,7 +30299,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 1,
+      "commits_count": 7,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -30666,7 +30666,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 61,
+      "commits_count": 56,
       "development_status": "beta",
       "summaryinfo": [
         {
