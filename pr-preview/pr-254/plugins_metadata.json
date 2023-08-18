@@ -18165,7 +18165,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 56,
+      "commits_count": 55,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -23551,7 +23551,7 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 93,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -23627,7 +23627,7 @@
           "launch_workflow_hp_hubbard": "aiida_quantumespresso_hp.cli.workflows.hubbard:launch"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -23931,7 +23931,7 @@
           }
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -24146,7 +24146,7 @@
           "core.shell": "aiida_shell.parsers.shell:ShellParser"
         }
       },
-      "commits_count": 46,
+      "commits_count": -1,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -24195,7 +24195,7 @@
       },
       "aiida_version": ">=2.0.0,<3.0.0",
       "entry_points": {},
-      "commits_count": 8,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-siesta",
@@ -24236,7 +24236,7 @@
           "spex.job": "aiida_spex.workflows.job:SpexJobWorkchain"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -24295,7 +24295,7 @@
           "spirit": "aiida_spirit.parsers:SpiritParser"
         }
       },
-      "commits_count": 9,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -24322,7 +24322,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 13,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/edan-bainglass/aiida-ssh2win"
@@ -24357,7 +24357,7 @@
           "ssh_only": "aiida_sshonly.transports.sshonly:SshOnlyTransport"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -24398,7 +24398,7 @@
           "statefile_schedulers.direct": "aiida_statefile_schedulers.schedulers.direct:StatefileDirectScheduler"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -24572,7 +24572,7 @@
           }
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -24760,7 +24760,7 @@
           "supercell": "aiida_supercell.parsers:SupercellParser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24926,7 +24926,7 @@
           "symmetry_representation.symmetry": "aiida_symmetry_representation.parsers.symmetries:SymmetriesParser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -24986,7 +24986,7 @@
           "tbextraction.optimize_strained_fp_tb": "aiida_tbextraction.optimize_strained_fp_tb:OptimizeStrainedFirstPrinciplesTightBinding"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -25464,7 +25464,7 @@
           "tbmodels.model": "aiida_tbmodels.parsers.model:ModelParser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -25504,7 +25504,7 @@
           "tcod": "aiida.tools.dbexporters.tcod"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -25545,7 +25545,7 @@
           "UppASD_core_parsers": "UppASD_AiiDA.parsers.core_parser:SpinDynamic_core_parser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -28797,7 +28797,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 113,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -29574,7 +29574,7 @@
           }
         }
       },
-      "commits_count": 68,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -30187,7 +30187,7 @@
           }
         }
       },
-      "commits_count": 20,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -30264,7 +30264,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 42,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -30299,7 +30299,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 7,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -30538,7 +30538,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": 59,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -30593,7 +30593,7 @@
           "aiida-yambo-wannier90": "aiida_yambo_wannier90.cli:cmd_root"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -30666,7 +30666,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 56,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -30693,7 +30693,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 18,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/AntimoMarrazzo/aiida-z2pack"
@@ -30848,7 +30848,7 @@
         },
         "aiida.workflows": {}
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
