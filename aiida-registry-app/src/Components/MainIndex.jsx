@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import jsonData from '../plugins_metadata.json'
 import base64Icon from '../base64Icon';
@@ -112,8 +112,41 @@ function Search() {
 
 export function MainIndex() {
     const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
-    const [sortOption, setSortOption] = useState('alpha');
-    document.documentElement.style.scrollBehavior = 'auto';
+    const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
+
+    useEffect(() => {
+      document.documentElement.style.scrollBehavior = 'auto';
+      handleSort(sortOption);
+      setupScrollBehavior();
+    }, [sortOption]);
+
+    function sortByCommits(plugins) {
+      const pluginsArray = Object.entries(plugins);
+      // Sort the array based on the commit_count value
+      pluginsArray.sort(([, pluginA], [, pluginB]) => pluginB.commits_count - pluginA.commits_count);
+      // Return a new object with the sorted entries
+      return Object.fromEntries(pluginsArray);
+    }
+
+    function sortByRelease(plugins) {
+      //Sort plugins by the recent release date, the newer the release date the larger the value,
+      //and the higher ranking it get. Sorting in descending order by date.
+      const pluginsArray = Object.entries(plugins);
+      pluginsArray.sort(([, pluginA], [, pluginB]) => {
+        if (!pluginA.metadata.release_date && !pluginB.metadata.release_date) {
+         return 0; // Both plugins have no release date, keep them in the current order
+        } else if (!pluginA.metadata.release_date) {
+          return 1; // Only pluginB has a release date, put pluginB higher ranking than pluginA.
+        } else if (!pluginB.metadata.release_date) {
+          return -1; // Only pluginA has a release date, put pluginA higher ranking than pluginB.
+        } else {
+          return new Date(pluginB.metadata.release_date) - new Date(pluginA.metadata.release_date);
+        }
+      });
+
+      //Return a new object with the sorted entries
+      return Object.fromEntries(pluginsArray);
+  }
 
     function setupScrollBehavior() {
       var prevScrollpos = window.scrollY;
