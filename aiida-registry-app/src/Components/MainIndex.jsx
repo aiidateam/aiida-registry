@@ -31,6 +31,7 @@ export const SearchContextProvider = ({ children }) => {
     </SearchContext.Provider>
   );
 };
+let ep_keys = [ 'name', 'metadata.description', 'entry_point_prefix', 'metadata.author']
 
 /**
  * Process the plugins object to prepare it for search by:
@@ -44,7 +45,13 @@ function preparePluginsForSearch(plugins) {
   const clonedPlugins = JSON.parse(JSON.stringify(plugins));
 
   Object.entries(clonedPlugins).forEach(([key, pluginData]) => {
-    pluginData.entry_points = JSON.stringify(pluginData.entry_points);
+    Object.entries(pluginData.entry_points).forEach(([key, entry_points]) => {
+      for (const k in entry_points) {
+        let ep_entries = ['entry_points', key, k]
+        pluginData.entry_points[key][k] = JSON.stringify(pluginData.entry_points[key][k]);
+        ep_keys.push(ep_entries);
+      }
+    });
     pluginsList.push(pluginData);
   });
 
@@ -65,12 +72,14 @@ function Search() {
   }
   //Create a fuce instance for searching the provided keys.
   const fuse = new Fuse(pluginsListForSearch, {
-    keys: [ 'name', 'metadata.description', 'entry_point_prefix', 'metadata.author', 'entry_points'],
+    keys: ep_keys,
     includeScore: true,
     ignoreLocation: true,
-    threshold: 0.1
+    threshold: 0.1,
+    includeMatches: true,
   })
   let searchRes = fuse.search(searchQuery)
+  console.log(searchRes)
   const suggestions = searchRes.map((item) => item.item.name); //get the list searched plugins
   const resultObject = {};
 
