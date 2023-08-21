@@ -7,8 +7,6 @@ Reads plugin-metadata.json produced by fetch_metadata.
 
 import copy
 import json
-import os
-import string
 from collections import defaultdict
 
 from aiida_registry.fetch_metadata import fetch_metadata
@@ -23,28 +21,8 @@ from . import (
     status_no_pip_url_allowed,
 )
 
-# Subfolders
-OUT_FOLDER = "out"
-STATIC_FOLDER = "static"
-HTML_FOLDER = (
-    "plugins"  # Name for subfolder where HTMLs for plugins are going to be sitting
-)
-TEMPLATES_FOLDER = "templates"
-
-# Absolute paths
-pwd = os.path.split(os.path.abspath(__file__))[0]
-STATIC_FOLDER_ABS = os.path.join(pwd, STATIC_FOLDER)
-
 entrypoints_count = defaultdict(list)
 other_entrypoint_names = set()
-
-
-def get_html_plugin_fname(plugin_name):
-    valid_characters = set(string.ascii_letters + string.digits + "_-")
-
-    simple_string = "".join(c for c in plugin_name if c in valid_characters)
-
-    return "{}.html".format(simple_string)
 
 
 def get_summary_info(entry_points):
