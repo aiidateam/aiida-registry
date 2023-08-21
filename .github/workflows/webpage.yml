@@ -30,6 +30,12 @@ jobs:
       run: pip install --upgrade wheel setuptools
     - name: Install
       run: pip install -e . -v
+    - name: Get cloned data from gh-pages
+      run: |
+        git remote set-url origin https://github.com/aiidateam/aiida-registry.git
+        git fetch origin gh-pages
+        git checkout origin/gh-pages plugins_metadata.json || true
+        mv plugins_metadata.json cloned_plugins_metadata.json || true
     - name: fetch metadata
       id: fetch_metadata
       env:
@@ -37,14 +43,9 @@ jobs:
       run: aiida-registry fetch
     - name: Get entry points data
       run: aiida-registry test-install
-    - name: Commit json file
+    - name: Move the JSON file to the React directory
       run: |
         mv plugins_metadata.json aiida-registry-app/src/
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
-        git add aiida-registry-app/src/plugins_metadata.json
-        git commit -m "Add plugins data"
-        git push -f origin HEAD:master
     - uses: actions/setup-node@v3
       with:
         node-version: '18.x'

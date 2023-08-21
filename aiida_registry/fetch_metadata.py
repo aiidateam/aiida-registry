@@ -56,7 +56,7 @@ def get_last_fetched_version(plugin_name):
     Returns:
         str or None: Version of the plugin if available, or None if not found.
     """
-    json_file_path = "./aiida-registry-app/src/plugins_metadata.json"
+    json_file_path = "./cloned_plugins_metadata.json"
     metadata = load_plugins_metadata(json_file_path)
 
     if metadata is not None:
