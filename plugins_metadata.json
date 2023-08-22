@@ -13510,7 +13510,7 @@
       },
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 86,
+      "commits_count": 79,
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr",
       "is_installable": "True"
@@ -17843,7 +17843,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 55,
+      "commits_count": 49,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -30344,7 +30344,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 56,
+      "commits_count": 54,
       "development_status": "beta",
       "summaryinfo": [
         {
