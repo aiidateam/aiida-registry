@@ -8399,7 +8399,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 64,
+      "commits_count": 55,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -17230,7 +17230,7 @@
       "package_name": "aiida_pseudo",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2023-06-20",
+        "release_date": "2023-08-23",
         "description": "AiiDA plugin that simplifies working with pseudo potentials.",
         "author_email": "\"Sebastiaan P. Huber\" <mail@sphuber.net>",
         "classifiers": [
@@ -17245,7 +17245,7 @@
           "Programming Language :: Python :: 3.8",
           "Programming Language :: Python :: 3.9"
         ],
-        "version": "1.1.0"
+        "version": "1.2.0"
       },
       "aiida_version": ">=2.1,<3.0",
       "entry_points": {
@@ -17268,7 +17268,7 @@
           "aiida-pseudo": "aiida_pseudo.cli:cmd_root"
         }
       },
-      "commits_count": 25,
+      "commits_count": 26,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -17843,7 +17843,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 49,
+      "commits_count": 46,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -28475,7 +28475,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 113,
+      "commits_count": 110,
       "development_status": "stable",
       "summaryinfo": [
         {
