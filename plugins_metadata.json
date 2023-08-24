@@ -481,7 +481,7 @@
           "lammps.ann": "aiida_aenet.data.potentials.lammps:ANN"
         }
       },
-      "commits_count": 1,
+      "commits_count": 0,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -5998,7 +5998,7 @@
           }
         }
       },
-      "commits_count": 20,
+      "commits_count": 22,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -8399,7 +8399,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 55,
+      "commits_count": 53,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -28475,7 +28475,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 110,
+      "commits_count": 109,
       "development_status": "stable",
       "summaryinfo": [
         {
