@@ -870,7 +870,7 @@
           }
         }
       },
-      "commits_count": 8,
+      "commits_count": 7,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -17843,7 +17843,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 46,
+      "commits_count": 45,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
