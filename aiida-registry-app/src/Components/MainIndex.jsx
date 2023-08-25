@@ -217,13 +217,13 @@ export function MainIndex() {
         <h1>
           Package list
       </h1>
-        <div style={{display:'flex', flexDirection:'row', margin:'0 2%'}}>
+        <div className='bar-container'>
       <div style={{ flex:'1', marginRight:'10px'}}>
         <Search />
         </div>
-          <Box >
+          <Box>
             <FormControl >
-              <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+              <InputLabel>Sort</InputLabel>
               <Select
                 value={sortOption} label = "Sort" onChange={(e) => handleSort(e.target.value)}
               >
