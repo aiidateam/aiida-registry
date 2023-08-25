@@ -17,16 +17,17 @@ const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
 
-//The search context enables accessing the search query and the plugins data among different components.
+//The search context enables accessing the search query, search status, and search results among different components.
 const SearchContext = createContext();
 
 const useSearchContext = () => useContext(SearchContext);
 
 export const SearchContextProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortedData, setSortedData] = useState(plugins);
+  const [searchResults, setSearchResults] = useState();
+  const [isSearchSubmitted, setIsSearchSubmitted] = useState(false);
   return (
-    <SearchContext.Provider value={{ searchQuery, setSearchQuery, sortedData, setSortedData}}>
+    <SearchContext.Provider value={{ searchQuery, setSearchQuery, searchResults, setSearchResults, isSearchSubmitted, setIsSearchSubmitted }}>
       {children}
     </SearchContext.Provider>
   );
@@ -61,12 +62,12 @@ function preparePluginsForSearch(plugins) {
 const pluginsListForSearch = preparePluginsForSearch(plugins);
 
 function Search() {
-  const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
+  const { searchQuery, setSearchQuery, setSearchResults, setIsSearchSubmitted } = useSearchContext();
   // Update searchQuery when input changes
   const handleSearch = (searchQuery) => {
     setSearchQuery(searchQuery);
     if (searchQuery == "") {
-      setSortedData(plugins)
+      setIsSearchSubmitted(false);
     }
     document.querySelector(".suggestions-list").style.display = "block";
   }
@@ -78,21 +79,35 @@ function Search() {
     threshold: 0.1,
     includeMatches: true,
   })
-  let searchRes = fuse.search(searchQuery)
-  console.log(searchRes)
-  const suggestions = searchRes.map((item) => item.item.name); //get the list searched plugins
-  const resultObject = {};
+  let searchResults = fuse.search(searchQuery)
+  const suggestions = searchResults.map((item) => item.item.name).slice(0, 3); //get the top 3 search suggestions.
 
-  //Convert the search results array to object
-  searchRes.forEach(item => {
-    resultObject[item.item.name] = plugins[item.item.name];
+  /*Simplify the search output structure to be in this format:
+  [
+    {
+    name: plugin name,
+    matches: [
+      {
+        key,
+        value
+      }
+    ]
+    }
+  ]
+  */
+  const simplifiedSearchResults = searchResults.map((item) => {
+    return {
+      name: item.item.name,
+      matches: item.matches
+    };
   });
 
   //Update the sortedData state with the search results
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchQuery) {
-    setSortedData(resultObject);
+    setSearchResults(simplifiedSearchResults);
+    setIsSearchSubmitted(true);
     document.querySelector(".suggestions-list").style.display = "none";
     }
   };
@@ -120,8 +135,9 @@ function Search() {
 
 
 export function MainIndex() {
-    const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
+    const { searchQuery, setSearchQuery, searchResults, isSearchSubmitted, setIsSearchSubmitted } = useSearchContext();
     const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
+    const [sortedData, setSortedData] = useState(plugins);
 
     useEffect(() => {
       document.documentElement.style.scrollBehavior = 'auto';
@@ -174,6 +190,8 @@ export function MainIndex() {
 
     const handleSort = (option) => {
       setSortOption(option);
+      setSearchQuery('');
+      setIsSearchSubmitted(false);
 
 
       let sortedPlugins = {};
@@ -189,6 +207,16 @@ export function MainIndex() {
 
       setSortedData(sortedPlugins);
     };
+    function extractSentenceAroundKeyword(sentence, keyword) {
+        const regex = new RegExp(`"([^"]*${keyword}[^"]*)"`, 'gi');
+        const match = sentence.match(regex);
+
+        if (match) {
+          return match[0];
+        } else {
+          return null;
+        }
+    }
 
     return (
       <main className='fade-enter'>
@@ -235,6 +263,42 @@ export function MainIndex() {
           </Box>
           </div>
 
+          {isSearchSubmitted === true ? (
+            <>
+            <h2>Showing {searchResults.length} pages matching the search query.</h2>
+            {searchResults.length === 0 && (
+              <div>
+            <h3 className='submenu-entry' style={{textAlign:'center'}}>Can't find what you're looking for?<br/> Join the AiiDA community on Discourse and open a discussion here. <br/> <a href='https://aiida.discourse.group' target="_blank">https://aiida.discourse.group</a></h3>
+            </div>
+            )}
+                {searchResults.map((suggestion) => (
+                  <>
+                <div className='submenu-entry'>
+                    <Link to={`/${suggestion.name}`}><h3 key={suggestion.name} className="suggestion-item">
+                      {suggestion.name}
+                    </h3></Link>
+                    <ul>
+
+                    {suggestion.matches.map((match) => (
+                      <>
+                      {typeof match.key === 'object' && (
+                        <>
+                    <Link to={`/${suggestion.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
+                      {match.key[2]}
+                    </li></Link>
+                    <p>...{extractSentenceAroundKeyword(match.value, searchQuery)}...</p>
+                        </>
+                      )}
+                    </>
+                    ))}
+                </ul>
+                    </div>
+                    </>
+                  ))}
+            </>
+
+        ):(
+          <>
         {Object.entries(sortedData).map(([key, value]) => (
           <div className='submenu-entry' key={key}>
             <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
@@ -303,6 +367,8 @@ export function MainIndex() {
 
           </div>
         ))}
+        </>
+        )}
       </div>
       </main>
     );
