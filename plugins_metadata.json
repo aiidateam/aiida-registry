@@ -23336,25 +23336,27 @@
       "code_home": "https://github.com/yakutovicha/aiida-raspa",
       "entry_point_prefix": "raspa",
       "pip_url": "aiida-raspa",
+      "plugin_info": "https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json",
       "name": "aiida-raspa",
       "package_name": "aiida_raspa",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2020-09-08",
+        "release_date": "2023-08-26",
         "description": "AiiDA plugin for RASPA code",
-        "author": "Aliaksandr Yakutovich",
-        "author_email": "aliaksandr.yakutovich@epfl.ch",
-        "license": "MIT License",
-        "home_page": "https://github.com/yakutovicha/aiida-raspa",
+        "author_email": "Aliaksandr Yakutovich <aliaksandr.yakutovich@epfl.ch>, Miriam Pougin <miriam.pougin@epfl.ch>",
         "classifiers": [
           "Development Status :: 5 - Production/Stable",
           "Framework :: AiiDA",
           "License :: OSI Approved :: MIT License",
-          "Programming Language :: Python :: 3"
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9"
         ],
-        "version": "1.2.0"
+        "version": "2.0.0"
       },
-      "aiida_version": null,
+      "aiida_version": ">=2.3,<3.0",
       "entry_points": {
         "aiida.calculations": {
           "raspa": {
@@ -23364,12 +23366,6 @@
             ],
             "spec": {
               "inputs": [
-                {
-                  "name": "code",
-                  "required": true,
-                  "valid_types": "Code",
-                  "info": "The `Code` to use for this job."
-                },
                 {
                   "name": "parameters",
                   "required": true,
@@ -23381,6 +23377,12 @@
                   "required": false,
                   "valid_types": "SinglefileData",
                   "info": "Zeo++ block pocket file"
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
                 },
                 {
                   "name": "file",
@@ -23401,21 +23403,33 @@
                   "info": ""
                 },
                 {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
                   "name": "parent_folder",
                   "required": false,
-                  "valid_types": "RemoteData",
+                  "valid_types": "RemoteData, NoneType",
                   "info": "Remote folder used to continue the same simulation stating from the binary restarts."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
                 },
                 {
                   "name": "retrieved_parent_folder",
                   "required": false,
-                  "valid_types": "FolderData",
+                  "valid_types": "FolderData, NoneType",
                   "info": "To use an old calculation as a starting poing for a new one."
                 },
                 {
                   "name": "settings",
                   "required": false,
-                  "valid_types": "Dict",
+                  "valid_types": "Dict, NoneType",
                   "info": "Additional input parameters"
                 }
               ],
@@ -23489,6 +23503,18 @@
                   "message": "The job ran out of walltime."
                 },
                 {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                },
+                {
                   "status": 500,
                   "message": "The calculation could not be completed due to the lack of time."
                 }
@@ -23510,7 +23536,7 @@
                 {
                   "name": "raspa",
                   "required": true,
-                  "valid_types": "",
+                  "valid_types": "Data",
                   "info": ""
                 },
                 {
@@ -23522,8 +23548,8 @@
                 {
                   "name": "handler_overrides",
                   "required": false,
-                  "valid_types": "Dict",
-                  "info": "Mapping where keys are process handler names and the values are a boolean, where `True` will enable the corresponding handler and `False` will disable it. This overrides the default value set by the `enabled` keyword of the `process_handler` decorator with which the method is decorated."
+                  "valid_types": "Dict, NoneType",
+                  "info": "Mapping where keys are process handler names and the values are a dictionary, where each dictionary can define the ``enabled`` and ``priority`` key, which can be used to toggle the values set on the original process handler declaration."
                 },
                 {
                   "name": "max_iterations",
@@ -23609,7 +23635,7 @@
           }
         }
       },
-      "commits_count": 0,
+      "commits_count": 2,
       "development_status": "stable",
       "summaryinfo": [
         {
