@@ -62,11 +62,11 @@ function preparePluginsForSearch(plugins) {
 const pluginsListForSearch = preparePluginsForSearch(plugins);
 
 function Search() {
-  const { searchQuery, setSearchQuery, setSearchResults, setIsSearchSubmitted } = useSearchContext();
+  const { searchQuery, setSearchQuery, setSearchResults, isSearchSubmitted, setIsSearchSubmitted } = useSearchContext();
   // Update searchQuery when input changes
   const handleSearch = (searchQuery) => {
     setSearchQuery(searchQuery);
-    if (searchQuery == "") {
+    if (searchQuery == "" || isSearchSubmitted == true) {
       setIsSearchSubmitted(false);
     }
     document.querySelector(".suggestions-list").style.display = "block";
@@ -80,33 +80,12 @@ function Search() {
     includeMatches: true,
   })
   let searchResults = fuse.search(searchQuery)
-  const suggestions = searchResults.map((item) => item.item.name).slice(0, 3); //get the top 3 search suggestions.
 
-  /*Simplify the search output structure to be in this format:
-  [
-    {
-    name: plugin name,
-    matches: [
-      {
-        key,
-        value
-      }
-    ]
-    }
-  ]
-  */
-  const simplifiedSearchResults = searchResults.map((item) => {
-    return {
-      name: item.item.name,
-      matches: item.matches
-    };
-  });
-
-  //Update the sortedData state with the search results
+  //Update the searchResults state with the search results
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchQuery) {
-    setSearchResults(simplifiedSearchResults);
+    setSearchResults(searchResults);
     setIsSearchSubmitted(true);
     document.querySelector(".suggestions-list").style.display = "none";
     }
@@ -122,11 +101,22 @@ function Search() {
       </form>
     {/* Display the list of suggestions */}
     <ul className="suggestions-list">
-        {suggestions.map((suggestion) => (
-          <Link to={`/${suggestion}`}><li key={suggestion} className="suggestion-item">
-            {suggestion}
-          </li></Link>
-        ))}
+    {searchResults.slice(0,3).map((suggestion) => (
+        <>
+            <Link to={`/${suggestion.item.name}`}><h3 key={suggestion.item.name} className="suggestion-item">
+              {suggestion.item.name} </h3></Link>
+            <ul>
+              {suggestion.matches.map((match) => (
+                <>
+                {typeof match.key === 'object' && (
+              <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
+                {match.key[2]} </li></Link>
+                )}
+              </>
+              ))}
+            </ul>
+          </>
+            ))}
       </ul>
       </div>
     </>
@@ -212,7 +202,7 @@ export function MainIndex() {
         const match = sentence.match(regex);
 
         if (match) {
-          return match[0];
+          return match[0].substring(1, match[0].length - 1);
         } else {
           return null;
         }
@@ -274,8 +264,8 @@ export function MainIndex() {
                 {searchResults.map((suggestion) => (
                   <>
                 <div className='submenu-entry'>
-                    <Link to={`/${suggestion.name}`}><h3 key={suggestion.name} className="suggestion-item">
-                      {suggestion.name}
+                    <Link to={`/${suggestion.item.name}`}><h3 key={suggestion.item.name} className="suggestion-item">
+                      {suggestion.item.name}
                     </h3></Link>
                     <ul>
 
@@ -283,10 +273,10 @@ export function MainIndex() {
                       <>
                       {typeof match.key === 'object' && (
                         <>
-                    <Link to={`/${suggestion.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
+                    <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
                       {match.key[2]}
                     </li></Link>
-                    <p>...{extractSentenceAroundKeyword(match.value, searchQuery)}...</p>
+                    <p>{extractSentenceAroundKeyword(match.value, searchQuery)} ...</p>
                         </>
                       )}
                     </>
