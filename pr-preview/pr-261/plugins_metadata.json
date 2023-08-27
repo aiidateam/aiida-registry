@@ -8489,171 +8489,13 @@
       "name": "aiida-ddec",
       "package_name": "aiida_ddec",
       "hosted_on": "github.com",
-      "metadata": {
-        "author": "Aliaksandr Yakutovich",
-        "author_email": "aliaksandr.yakutovich@epfl.ch",
-        "version": "1.1.0",
-        "description": "AiiDA plugin for DDEC code",
-        "classifiers": [
-          "License :: OSI Approved :: MIT License",
-          "Programming Language :: Python :: 2.7",
-          "Programming Language :: Python :: 3.6",
-          "Programming Language :: Python :: 3.7",
-          "Framework :: AiiDA",
-          "Development Status :: 5 - Production/Stable"
-        ]
-      },
-      "aiida_version": ">=1.1.0,<3",
-      "entry_points": {
-        "aiida.calculations": {
-          "ddec": {
-            "description": [
-              "AiiDA plugin for the ddec code that performs density derived",
-              "    electrostatic and chemical atomic population analysis."
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "Input parameters such as net charge, protocol, atomic densities path, ..."
-                },
-                {
-                  "name": "charge_density_folder",
-                  "required": false,
-                  "valid_types": "RemoteData, NoneType",
-                  "info": "Use a remote folder (for restarts and similar)"
-                },
-                {
-                  "name": "code",
-                  "required": false,
-                  "valid_types": "AbstractCode, NoneType",
-                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "monitors",
-                  "required": false,
-                  "valid_types": "Dict",
-                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
-                },
-                {
-                  "name": "remote_folder",
-                  "required": false,
-                  "valid_types": "RemoteData, NoneType",
-                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
-                },
-                {
-                  "name": "structure_ddec",
-                  "required": true,
-                  "valid_types": "CifData",
-                  "info": "structure with DDEC charges"
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 100,
-                  "message": "The retrieved folder data node could not be accessed."
-                },
-                {
-                  "status": 101,
-                  "message": "The retrieved folder does not contain an output file."
-                },
-                {
-                  "status": 110,
-                  "message": "The job ran out of memory."
-                },
-                {
-                  "status": 120,
-                  "message": "The job ran out of walltime."
-                },
-                {
-                  "status": 131,
-                  "message": "The specified account is invalid."
-                },
-                {
-                  "status": 140,
-                  "message": "The node running the job failed."
-                },
-                {
-                  "status": 150,
-                  "message": "{message}"
-                }
-              ]
-            },
-            "class": "aiida_ddec.calculations:DdecCalculation"
-          }
-        },
-        "aiida.parsers": {
-          "ddec": "aiida_ddec.parsers:DdecParser"
-        },
-        "aiida.workflows": {
-          "ddec.cp2k_ddec": "aiida_ddec.workchains:Cp2kDdecWorkChain"
-        }
-      },
-      "commits_count": 9,
-      "development_status": "stable",
-      "summaryinfo": [
-        {
-          "colorclass": "blue",
-          "text": "Calculations",
-          "count": 1
-        },
-        {
-          "colorclass": "brown",
-          "text": "Parsers",
-          "count": 1
-        },
-        {
-          "colorclass": "green",
-          "text": "Workflows",
-          "count": 1
-        }
-      ],
-      "pip_install_cmd": "pip install git+https://github.com/yakutovicha/aiida-ddec",
-      "is_installable": "True"
+      "metadata": {},
+      "aiida_version": null,
+      "entry_points": {},
+      "commits_count": 13,
+      "development_status": "planning",
+      "summaryinfo": [],
+      "pip_install_cmd": "pip install git+https://github.com/yakutovicha/aiida-ddec"
     },
     "aiida-defects": {
       "code_home": "https://github.com/epfl-theos/aiida-defects",
@@ -23336,25 +23178,27 @@
       "code_home": "https://github.com/yakutovicha/aiida-raspa",
       "entry_point_prefix": "raspa",
       "pip_url": "aiida-raspa",
+      "plugin_info": "https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json",
       "name": "aiida-raspa",
       "package_name": "aiida_raspa",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2020-09-08",
+        "release_date": "2023-08-26",
         "description": "AiiDA plugin for RASPA code",
-        "author": "Aliaksandr Yakutovich",
-        "author_email": "aliaksandr.yakutovich@epfl.ch",
-        "license": "MIT License",
-        "home_page": "https://github.com/yakutovicha/aiida-raspa",
+        "author_email": "Aliaksandr Yakutovich <aliaksandr.yakutovich@epfl.ch>, Miriam Pougin <miriam.pougin@epfl.ch>",
         "classifiers": [
           "Development Status :: 5 - Production/Stable",
           "Framework :: AiiDA",
           "License :: OSI Approved :: MIT License",
-          "Programming Language :: Python :: 3"
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9"
         ],
-        "version": "1.2.0"
+        "version": "2.0.0"
       },
-      "aiida_version": null,
+      "aiida_version": ">=2.3,<3.0",
       "entry_points": {
         "aiida.calculations": {
           "raspa": {
@@ -23364,12 +23208,6 @@
             ],
             "spec": {
               "inputs": [
-                {
-                  "name": "code",
-                  "required": true,
-                  "valid_types": "Code",
-                  "info": "The `Code` to use for this job."
-                },
                 {
                   "name": "parameters",
                   "required": true,
@@ -23381,6 +23219,12 @@
                   "required": false,
                   "valid_types": "SinglefileData",
                   "info": "Zeo++ block pocket file"
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
                 },
                 {
                   "name": "file",
@@ -23401,21 +23245,33 @@
                   "info": ""
                 },
                 {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
                   "name": "parent_folder",
                   "required": false,
-                  "valid_types": "RemoteData",
+                  "valid_types": "RemoteData, NoneType",
                   "info": "Remote folder used to continue the same simulation stating from the binary restarts."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
                 },
                 {
                   "name": "retrieved_parent_folder",
                   "required": false,
-                  "valid_types": "FolderData",
+                  "valid_types": "FolderData, NoneType",
                   "info": "To use an old calculation as a starting poing for a new one."
                 },
                 {
                   "name": "settings",
                   "required": false,
-                  "valid_types": "Dict",
+                  "valid_types": "Dict, NoneType",
                   "info": "Additional input parameters"
                 }
               ],
@@ -23489,6 +23345,18 @@
                   "message": "The job ran out of walltime."
                 },
                 {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                },
+                {
                   "status": 500,
                   "message": "The calculation could not be completed due to the lack of time."
                 }
@@ -23510,7 +23378,7 @@
                 {
                   "name": "raspa",
                   "required": true,
-                  "valid_types": "",
+                  "valid_types": "Data",
                   "info": ""
                 },
                 {
@@ -23522,8 +23390,8 @@
                 {
                   "name": "handler_overrides",
                   "required": false,
-                  "valid_types": "Dict",
-                  "info": "Mapping where keys are process handler names and the values are a boolean, where `True` will enable the corresponding handler and `False` will disable it. This overrides the default value set by the `enabled` keyword of the `process_handler` decorator with which the method is decorated."
+                  "valid_types": "Dict, NoneType",
+                  "info": "Mapping where keys are process handler names and the values are a dictionary, where each dictionary can define the ``enabled`` and ``priority`` key, which can be used to toggle the values set on the original process handler declaration."
                 },
                 {
                   "name": "max_iterations",
@@ -23609,7 +23477,7 @@
           }
         }
       },
-      "commits_count": 0,
+      "commits_count": 3,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -29252,7 +29120,7 @@
           }
         }
       },
-      "commits_count": 68,
+      "commits_count": 69,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -30381,23 +30249,27 @@
       "development_status": "stable",
       "entry_point_prefix": "zeopp",
       "pip_url": "aiida-zeopp",
+      "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
       "name": "aiida-zeopp",
       "package_name": "aiida_zeopp",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2021-04-26",
+        "release_date": "2023-08-26",
         "description": "AiiDA plugin for zeo++",
-        "author": "Leopold Talirz",
-        "author_email": "leopold.talirz@epfl.ch",
-        "license": "Creative Commons",
-        "home_page": "https://github.com/ltalirz/aiida-zeopp",
+        "author_email": "Leopold Talirz <leopold.talirz@epfl.ch>, Miriam Pougin <miriam.pougin@epfl.ch>",
         "classifiers": [
+          "Development Status :: 5 - Production/Stable",
           "Framework :: AiiDA",
-          "Programming Language :: Python"
+          "License :: OSI Approved :: MIT License",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9"
         ],
-        "version": "1.1.2"
+        "version": "2.0.0"
       },
-      "aiida_version": null,
+      "aiida_version": ">=2.3,<3.0",
       "entry_points": {
         "aiida.calculations": {
           "zeopp.network": {
@@ -30406,12 +30278,6 @@
             ],
             "spec": {
               "inputs": [
-                {
-                  "name": "code",
-                  "required": true,
-                  "valid_types": "Code",
-                  "info": "The `Code` to use for this job."
-                },
                 {
                   "name": "parameters",
                   "required": true,
@@ -30427,14 +30293,32 @@
                 {
                   "name": "atomic_radii",
                   "required": false,
-                  "valid_types": "SinglefileData",
+                  "valid_types": "SinglefileData, NoneType",
                   "info": "atomic radii file"
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
                 },
                 {
                   "name": "metadata",
                   "required": false,
                   "valid_types": "",
                   "info": ""
+                },
+                {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
                 }
               ],
               "outputs": [
@@ -30509,24 +30393,32 @@
                 {
                   "status": 120,
                   "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
                 }
               ]
             },
             "class": "aiida_zeopp.calculations.network:NetworkCalculation"
           }
         },
-        "aiida.parsers": {
-          "zeopp.network": "aiida_zeopp.parsers.network:NetworkParser"
-        },
         "aiida.data": {
           "zeopp.parameters": "aiida_zeopp.data.parameters:NetworkParameters"
         },
-        "console_scripts": {
-          "zeopp-submit": "aiida_zeopp.console_scripts.data_cli:cli"
-        },
-        "aiida.workflows": {}
+        "aiida.parsers": {
+          "zeopp.network": "aiida_zeopp.parsers.network:NetworkParser"
+        }
       },
-      "commits_count": 0,
+      "commits_count": 4,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -30542,11 +30434,6 @@
           "colorclass": "red",
           "text": "Data",
           "count": 1
-        },
-        {
-          "colorclass": "purple",
-          "text": "Console scripts",
-          "count": 1
         }
       ],
       "pip_install_cmd": "pip install aiida-zeopp",
@@ -30557,14 +30444,14 @@
     {
       "name": "Calculations",
       "colorclass": "blue",
-      "num_entries": 54,
-      "total_num": 132
+      "num_entries": 53,
+      "total_num": 131
     },
     {
       "name": "Parsers",
       "colorclass": "brown",
-      "num_entries": 55,
-      "total_num": 110
+      "num_entries": 54,
+      "total_num": 109
     },
     {
       "name": "Data",
@@ -30575,14 +30462,14 @@
     {
       "name": "Workflows",
       "colorclass": "green",
-      "num_entries": 40,
-      "total_num": 136
+      "num_entries": 39,
+      "total_num": 135
     },
     {
       "name": "Console scripts",
       "colorclass": "purple",
-      "num_entries": 16,
-      "total_num": 27
+      "num_entries": 15,
+      "total_num": 26
     },
     {
       "name": "Other",
