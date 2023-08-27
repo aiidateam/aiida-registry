@@ -10,6 +10,9 @@ import Select from '@mui/material/Select';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import Fuse from 'fuse.js'
+
+import { extractSentenceAroundKeyword } from './utils'
+
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
@@ -106,11 +109,14 @@ function Search() {
             <Link to={`/${suggestion.item.name}`}><h3 key={suggestion.item.name} className="suggestion-item">
               {suggestion.item.name} </h3></Link>
             <ul>
-              {suggestion.matches.map((match) => (
+              {suggestion.matches.slice(0,1).map((match) => (
                 <>
                 {typeof match.key === 'object' && (
+                  <>
               <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
                 {match.key[2]} </li></Link>
+                <p>{extractSentenceAroundKeyword(match.value, searchQuery)} ...</p>
+                </>
                 )}
               </>
               ))}
@@ -197,16 +203,6 @@ export function MainIndex() {
 
       setSortedData(sortedPlugins);
     };
-    function extractSentenceAroundKeyword(sentence, keyword) {
-        const regex = new RegExp(`"([^"]*${keyword}[^"]*)"`, 'gi');
-        const match = sentence.match(regex);
-
-        if (match) {
-          return match[0].substring(1, match[0].length - 1);
-        } else {
-          return null;
-        }
-    }
 
     return (
       <main className='fade-enter'>
