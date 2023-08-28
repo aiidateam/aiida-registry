@@ -29120,7 +29120,7 @@
           }
         }
       },
-      "commits_count": 69,
+      "commits_count": 70,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -30245,11 +30245,11 @@
       "pip_install_cmd": "pip install git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
     "aiida-zeopp": {
-      "code_home": "https://github.com/ltalirz/aiida-zeopp",
+      "code_home": "https://github.com/lsmo-epfl/aiida-zeopp",
       "development_status": "stable",
       "entry_point_prefix": "zeopp",
       "pip_url": "aiida-zeopp",
-      "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
+      "plugin_info": "https://raw.github.com/lsmo-epfl/aiida-zeopp/master/setup.json",
       "name": "aiida-zeopp",
       "package_name": "aiida_zeopp",
       "hosted_on": "github.com",
