@@ -25091,7 +25091,7 @@
           "UppASD_core_parsers": "UppASD_AiiDA.parsers.core_parser:SpinDynamic_core_parser"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [
         {
@@ -28343,7 +28343,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 109,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -29120,7 +29120,7 @@
           }
         }
       },
-      "commits_count": 69,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -29733,7 +29733,7 @@
           }
         }
       },
-      "commits_count": 20,
+      "commits_count": -1,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -29810,7 +29810,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 42,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -29845,7 +29845,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 7,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
@@ -30084,7 +30084,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": 79,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -30139,7 +30139,7 @@
           "aiida-yambo-wannier90": "aiida_yambo_wannier90.cli:cmd_root"
         }
       },
-      "commits_count": 0,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -30212,7 +30212,7 @@
           "yasubmit": "yascheduler.utils:submit"
         }
       },
-      "commits_count": 54,
+      "commits_count": -1,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -30239,17 +30239,17 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 18,
+      "commits_count": -1,
       "development_status": "planning",
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
     "aiida-zeopp": {
-      "code_home": "https://github.com/ltalirz/aiida-zeopp",
+      "code_home": "https://github.com/lsmo-epfl/aiida-zeopp",
       "development_status": "stable",
       "entry_point_prefix": "zeopp",
       "pip_url": "aiida-zeopp",
-      "plugin_info": "https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json",
+      "plugin_info": "https://raw.github.com/lsmo-epfl/aiida-zeopp/master/setup.json",
       "name": "aiida-zeopp",
       "package_name": "aiida_zeopp",
       "hosted_on": "github.com",
@@ -30418,7 +30418,7 @@
           "zeopp.network": "aiida_zeopp.parsers.network:NetworkParser"
         }
       },
-      "commits_count": 4,
+      "commits_count": -1,
       "summaryinfo": [
         {
           "colorclass": "blue",
