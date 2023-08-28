@@ -460,6 +460,7 @@ padding-right: 5px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 99;
   }
 
   .suggestion-item {
@@ -474,6 +475,11 @@ padding-right: 5px;
 
   .suggestion-item:hover {
     background-color: #f2f2f2;
+  }
+  .bar-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 2%;
   }
 
 
@@ -519,5 +525,9 @@ padding-right: 5px;
       .footer
       {
         width: calc(100% - 70px) !important;
+      }
+      .bar-container
+      {
+        display: block;
       }
   }
