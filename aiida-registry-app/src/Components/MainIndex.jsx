@@ -254,7 +254,8 @@ export function MainIndex() {
             <h2>Showing {searchResults.length} pages matching the search query.</h2>
             {searchResults.length === 0 && (
               <div>
-            <h3 className='submenu-entry' style={{textAlign:'center'}}>Can't find what you're looking for?<br/> Join the AiiDA community on Discourse and open a discussion here. <br/> <a href='https://aiida.discourse.group' target="_blank">https://aiida.discourse.group</a></h3>
+            <h3 className='submenu-entry' style={{textAlign:'center', color:'black'}}>Can't find what you're looking for?<br/>
+             Join the AiiDA community on Discourse and request a plugin <a href='https://aiida.discourse.group/new-topic?title=Request%20for%20Plugin...&category=community/plugin-requests' target="_blank">here.</a></h3>
             </div>
             )}
                 {searchResults.map((suggestion) => (
