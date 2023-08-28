@@ -449,11 +449,11 @@ aiida-z2pack:
   pip_url: git+https://github.com/AntimoMarrazzo/aiida-z2pack
   plugin_info: https://raw.githubusercontent.com/antimomarrazzo/aiida-z2pack/master/setup.json
 aiida-zeopp:
-  code_home: https://github.com/ltalirz/aiida-zeopp
+  code_home: https://github.com/lsmo-epfl/aiida-zeopp
   development_status: stable
   entry_point_prefix: zeopp
   pip_url: aiida-zeopp
-  plugin_info: https://raw.github.com/ltalirz/aiida-zeopp/master/setup.json
+  plugin_info: https://raw.github.com/lsmo-epfl/aiida-zeopp/master/setup.json
 aiida-qp2:
   code_home: https://github.com/TREX-CoE/aiida-qp2
   entry_point_prefix: qp2
