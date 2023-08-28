@@ -446,7 +446,7 @@ padding-right: 5px;
     flex: 1;
     display: flex;
   }
-  
+
   .input-container input[type="text"] {
     flex: 1;
     border: none;
