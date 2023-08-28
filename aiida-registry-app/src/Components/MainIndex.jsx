@@ -72,6 +72,11 @@ function Search() {
     if (searchQuery == "" || isSearchSubmitted == true) {
       setIsSearchSubmitted(false);
     }
+      // Hide the Enter symbol when the input is empty
+  const enterSymbol = document.querySelector('.enter-symbol');
+  if (enterSymbol) {
+    enterSymbol.style.opacity = searchQuery ? '1' : '0';
+  }
     document.querySelector(".suggestions-list").style.display = "block";
   }
   //Create a fuce instance for searching the provided keys.
@@ -100,7 +105,10 @@ function Search() {
     <div className="search">
       <form className="search-form">
         <button style={{fontSize:'20px', minWidth:'90px', backgroundColor:'white', border: '1px solid #ccc', borderRadius: '4px'}} onClick={(e) => {handleSubmit(e);}}><SearchIcon /></button>
+        <div className='input-container'>
         <input type="text" placeholder="Search for plugins" value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
+        <p className='enter-symbol'>⏎</p>
+        </div>
       </form>
     {/* Display the list of suggestions */}
     <ul className="suggestions-list">

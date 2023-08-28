@@ -439,12 +439,29 @@ padding-right: 5px;
     min-height: 56px;
   }
 
-  input[type='text'] {
+  .input-container {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: large;
     flex: 1;
+    display: flex;
+  }
+  
+  .input-container input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: large;
+  }
+
+  .enter-symbol {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: lightgray;
+    opacity: 0;
   }
 
   /* Styles for the suggestions list */
