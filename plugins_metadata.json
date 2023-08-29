@@ -401,13 +401,341 @@
       "aiida_version": ">=1.6.3,<1.7.0",
       "entry_points": {
         "aiida.calculations": {
-          "abinit": "aiida_abinit.calculations:AbinitCalculation"
+          "abinit": {
+            "description": [
+              "AiiDA calculation plugin wrapping the abinit executable."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "Code",
+                  "info": "The `Code` to use for this job."
+                },
+                {
+                  "name": "kpoints",
+                  "required": true,
+                  "valid_types": "KpointsData",
+                  "info": "The k-point mesh or path"
+                },
+                {
+                  "name": "parameters",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "The ABINIT input parameters."
+                },
+                {
+                  "name": "pseudos",
+                  "required": true,
+                  "valid_types": "Psp8Data, JthXmlData",
+                  "info": "The pseudopotentials."
+                },
+                {
+                  "name": "structure",
+                  "required": true,
+                  "valid_types": "StructureData",
+                  "info": "The input structure."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "parent_calc_folder",
+                  "required": false,
+                  "valid_types": "RemoteData",
+                  "info": "A remote folder used for restarts."
+                },
+                {
+                  "name": "settings",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Various special settings."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "Various output quantities."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "output_bands",
+                  "required": false,
+                  "valid_types": "BandsData",
+                  "info": "Final electronic bands if present."
+                },
+                {
+                  "name": "output_structure",
+                  "required": false,
+                  "valid_types": "StructureData",
+                  "info": "Final structure of the calculation if present."
+                },
+                {
+                  "name": "output_trajectory",
+                  "required": false,
+                  "valid_types": "TrajectoryData",
+                  "info": "Trajectory of various output quantities over the calculation if present."
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 100,
+                  "message": "Calculation did not produce all expected output files."
+                },
+                {
+                  "status": 101,
+                  "message": "Calculation did not produce the expected `[prefix]o_GSR.nc` output file."
+                },
+                {
+                  "status": 102,
+                  "message": "Calculation did not produce the expected `[prefix]o_HIST.nc` output file."
+                },
+                {
+                  "status": 110,
+                  "message": "The job ran out of memory."
+                },
+                {
+                  "status": 120,
+                  "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 200,
+                  "message": "The retrieved folder data node could not be accessed."
+                },
+                {
+                  "status": 210,
+                  "message": "The retrieved folder did not contain the `stdout` output file."
+                },
+                {
+                  "status": 301,
+                  "message": "The `stdout` output file could not be read."
+                },
+                {
+                  "status": 302,
+                  "message": "The `stdout` output file could not be parsed."
+                },
+                {
+                  "status": 303,
+                  "message": "The `abipy` `EventsParser` reports that the runw as not completed."
+                },
+                {
+                  "status": 304,
+                  "message": "The output file contains one or more error messages."
+                },
+                {
+                  "status": 305,
+                  "message": "The output file contains one or more warning messages."
+                },
+                {
+                  "status": 312,
+                  "message": "The output structure could not be parsed."
+                },
+                {
+                  "status": 400,
+                  "message": "The calculation stopped prematurely because it ran out of walltime."
+                },
+                {
+                  "status": 500,
+                  "message": "The SCF minimization cycle did not converge."
+                },
+                {
+                  "status": 501,
+                  "message": "The ionic minimization cycle did not converge."
+                }
+              ]
+            },
+            "class": "aiida_abinit.calculations:AbinitCalculation"
+          }
         },
         "aiida.parsers": {
           "abinit": "aiida_abinit.parsers:AbinitParser"
         },
         "aiida.workflows": {
-          "abinit.base": "aiida_abinit.workflows.base:AbinitBaseWorkChain"
+          "abinit.base": {
+            "description": [
+              "Base Abinit Workchain to perform a DFT calculation. Validates parameters and restart."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "abinit",
+                  "required": true,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called calculation jobs will be cleaned at the end of execution."
+                },
+                {
+                  "name": "handler_overrides",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Mapping where keys are process handler names and the values are a boolean, where `True` will enable the corresponding handler and `False` will disable it. This overrides the default value set by the `enabled` keyword of the `process_handler` decorator with which the method is decorated."
+                },
+                {
+                  "name": "kpoints",
+                  "required": false,
+                  "valid_types": "KpointsData",
+                  "info": "An explicit k-points mesh or list. Either this or `kpoints_distance` must be provided."
+                },
+                {
+                  "name": "kpoints_distance",
+                  "required": false,
+                  "valid_types": "Float",
+                  "info": "The minimum desired distance in 1/\u212b between k-points in reciprocal space. The explicit k-point mesh will be generated automatically by a calculation function based on the input structure."
+                },
+                {
+                  "name": "max_iterations",
+                  "required": false,
+                  "valid_types": "Int",
+                  "info": "Maximum number of iterations the work chain will restart the process to finish successfully."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "Various output quantities."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "output_bands",
+                  "required": false,
+                  "valid_types": "BandsData",
+                  "info": "Final electronic bands if present."
+                },
+                {
+                  "name": "output_structure",
+                  "required": false,
+                  "valid_types": "StructureData",
+                  "info": "Final structure of the calculation if present."
+                },
+                {
+                  "name": "output_trajectory",
+                  "required": false,
+                  "valid_types": "TrajectoryData",
+                  "info": "Trajectory of various output quantities over the calculation if present."
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 201,
+                  "message": "`pseudos` could not be used to get the necessary pseudos."
+                },
+                {
+                  "status": 202,
+                  "message": "Neither the `kpoints` nor the `kpoints_distance` input was specified."
+                },
+                {
+                  "status": 203,
+                  "message": "Neither the `options` nor `automatic_parallelization` input was specified."
+                },
+                {
+                  "status": 204,
+                  "message": "The `metadata.options` did not specify both `resources.num_machines` and `max_wallclock_seconds`."
+                },
+                {
+                  "status": 301,
+                  "message": "The sub process excepted."
+                },
+                {
+                  "status": 302,
+                  "message": "The sub process was killed."
+                },
+                {
+                  "status": 401,
+                  "message": "The maximum number of iterations was exceeded."
+                },
+                {
+                  "status": 402,
+                  "message": "The process failed for an unknown reason, twice in a row."
+                }
+              ]
+            },
+            "class": "aiida_abinit.workflows.base:AbinitBaseWorkChain"
+          }
         }
       },
       "commits_count": 12,
@@ -2995,7 +3323,7 @@
           "castep.mock": "aiida_castep.cmdline.mock_castep:mock_castep"
         }
       },
-      "commits_count": 9,
+      "commits_count": 6,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -13170,7 +13498,7 @@
           "gpx": "aiida_grouppathx.cli:grouppathx_cli"
         }
       },
-      "commits_count": 7,
+      "commits_count": 3,
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -28343,7 +28671,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 109,
+      "commits_count": 108,
       "development_status": "stable",
       "summaryinfo": [
         {
