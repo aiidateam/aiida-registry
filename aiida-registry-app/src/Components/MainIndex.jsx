@@ -123,7 +123,7 @@ function Search() {
                   <>
               <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
                 {match.key[2]} </li></Link>
-                <p>{extractSentenceAroundKeyword(match.value, searchQuery)} ...</p>
+                <SearchResultSnippet match_value={match.value} />
                 </>
                 )}
               </>
@@ -281,7 +281,7 @@ export function MainIndex() {
                     <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
                       {match.key[2]}
                     </li></Link>
-                    <p>{extractSentenceAroundKeyword(match.value, searchQuery)} ...</p>
+                    <SearchResultSnippet match_value={match.value} />
                         </>
                       )}
                     </>
@@ -368,3 +368,17 @@ export function MainIndex() {
       </main>
     );
   }
+
+function SearchResultSnippet({match_value}) {
+  const {searchQuery} = useSearchContext();
+  const [before, after] = extractSentenceAroundKeyword(match_value, searchQuery);
+  return (
+    <>
+    {before != null && (
+      <p>{before} 
+      <span style={{backgroundColor:'yellow'}}>{searchQuery}</span>
+      {after}...</p>
+    )}
+    </>
+  )
+}
