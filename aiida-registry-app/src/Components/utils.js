@@ -1,4 +1,4 @@
-/** 
+/**
 * Find the sentence where the search query mentioned.
 * @param {string} matchedEntryPoint Entry point data dumped as string.
 * @param {string} keyword search query.
