@@ -9,8 +9,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SearchIcon from '@mui/icons-material/Search';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import Fuse from 'fuse.js'
-
 import { extractSentenceAroundKeyword } from './utils'
 
 const globalsummary = jsonData["globalsummary"]
@@ -69,15 +69,18 @@ function Search() {
   // Update searchQuery when input changes
   const handleSearch = (searchQuery) => {
     setSearchQuery(searchQuery);
+    document.querySelector(".suggestions-list").style.display = "block";
+    document.querySelector(".dropdown-search").style.display = "block";
     if (searchQuery == "" || isSearchSubmitted == true) {
       setIsSearchSubmitted(false);
+      document.querySelector(".dropdown-search").style.display = "none";
     }
       // Hide the Enter symbol when the input is empty
   const enterSymbol = document.querySelector('.enter-symbol');
   if (enterSymbol) {
     enterSymbol.style.opacity = searchQuery ? '1' : '0';
   }
-    document.querySelector(".suggestions-list").style.display = "block";
+
   }
   //Create a fuce instance for searching the provided keys.
   const fuse = new Fuse(pluginsListForSearch, {
@@ -96,6 +99,7 @@ function Search() {
     setSearchResults(searchResults);
     setIsSearchSubmitted(true);
     document.querySelector(".suggestions-list").style.display = "none";
+    document.querySelector(".dropdown-search").style.display = "none";
     }
   };
 
@@ -107,7 +111,7 @@ function Search() {
         <button style={{fontSize:'20px', minWidth:'90px', backgroundColor:'white', border: '1px solid #ccc', borderRadius: '4px'}} onClick={(e) => {handleSubmit(e);}}><SearchIcon /></button>
         <div className='input-container'>
         <input type="text" placeholder="Search for plugins" value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
-        <p className='enter-symbol'>⏎</p>
+        <KeyboardReturnIcon className='enter-symbol' />
         </div>
       </form>
     {/* Display the list of suggestions */}
@@ -131,6 +135,7 @@ function Search() {
             </ul>
           </>
             ))}
+            <button className='dropdown-search' onClick={(e) => {handleSubmit(e);}}> Search</button>
       </ul>
       </div>
     </>
@@ -371,12 +376,12 @@ export function MainIndex() {
 
 function SearchResultSnippet({match_value}) {
   const {searchQuery} = useSearchContext();
-  const [before, after] = extractSentenceAroundKeyword(match_value, searchQuery);
+  const [before, matchedText, after] = extractSentenceAroundKeyword(match_value, searchQuery);
   return (
     <>
     {before != null && (
-      <p>{before} 
-      <span style={{backgroundColor:'yellow'}}>{searchQuery}</span>
+      <p>{before}
+       <span style={{backgroundColor:'yellow'}}>{matchedText}</span>
       {after}...</p>
     )}
     </>

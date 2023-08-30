@@ -478,6 +478,16 @@ padding-right: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 99;
   }
+  .dropdown-search {
+    display: none;
+    font-size: 20px;
+    margin: auto;
+    width: inherit;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    min-height: 50px;
+  }
 
   .suggestion-item {
     padding: 8px;
