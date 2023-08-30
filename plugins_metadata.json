@@ -8727,7 +8727,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 53,
+      "commits_count": 49,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -13133,7 +13133,7 @@
             },
             "class": "aiida_gromacs.calculations.solvate:SolvateCalculation"
           },
-          "general-MD": {
+          "genericMD": {
             "description": [
               "AiiDA calculation plugin wrapping an executable with user defined",
               "    input and output files."
@@ -13260,7 +13260,7 @@
                 }
               ]
             },
-            "class": "aiida_gromacs.calculations.generalMD:GeneralCalculation"
+            "class": "aiida_gromacs.calculations.genericMD:GenericCalculation"
           }
         },
         "aiida.parsers": {
@@ -13270,7 +13270,7 @@
           "gromacs.grompp": "aiida_gromacs.parsers.grompp:GromppParser",
           "gromacs.mdrun": "aiida_gromacs.parsers.mdrun:MdrunParser",
           "gromacs.solvate": "aiida_gromacs.parsers.solvate:SolvateParser",
-          "general-MD": "aiida_gromacs.parsers.generalMD:GeneralParser"
+          "genericMD": "aiida_gromacs.parsers.genericMD:GenericParser"
         },
         "aiida.workflows": {
           "gromacs.setup": {
@@ -13443,7 +13443,7 @@
           }
         }
       },
-      "commits_count": 116,
+      "commits_count": 118,
       "development_status": "alpha",
       "summaryinfo": [
         {
