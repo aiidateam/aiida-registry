@@ -8,13 +8,12 @@ on:
       - synchronize
       - closed
 
-concurrency: preview-${{ github.ref }}
-
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:
     # only cancel in-progress jobs or runs for the current workflow - matches against branch & tags
     group: ${{ github.workflow }}-${{ github.ref }}
     cancel-in-progress: true
+
 jobs:
   deploy-preview:
     runs-on: ubuntu-20.04
@@ -32,13 +31,20 @@ jobs:
       run: pip install --upgrade wheel setuptools
     - name: Install
       run: pip install -e . -v
-    - name: fetch metadata
-      id: fetch_metadata
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: aiida-registry fetch
-    - name: Get entry points data
-      run: aiida-registry test-install
+    - name: Get cloned data from gh-pages
+      run: |
+        git remote set-url origin https://github.com/aiidateam/aiida-registry.git
+        git fetch origin gh-pages
+        git checkout origin/gh-pages plugins_metadata.json || true
+
+    # - name: fetch metadata
+    #   id: fetch_metadata
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   run: aiida-registry fetch
+    # - name: Get entry points data
+    #   run: aiida-registry test-install
+
     - name: Move JSON file to the React project
       run: |
         mv plugins_metadata.json aiida-registry-app/src/
