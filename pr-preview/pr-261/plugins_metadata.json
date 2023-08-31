@@ -11816,7 +11816,7 @@
       "package_name": "aiida_gaussian",
       "hosted_on": "github.com",
       "metadata": {
-        "release_date": "2023-03-26",
+        "release_date": "2023-08-31",
         "description": "AiiDA plugin for the Gaussian quantum chemistry software.",
         "author": "Kristjan Eimre, Pezhman Zarabadi-Poor, Aliaksandr Yakutovich",
         "license": "MIT",
@@ -11832,14 +11832,468 @@
           "Topic :: Scientific/Engineering :: Physics",
           "Topic :: Software Development :: Libraries :: Python Modules"
         ],
-        "version": "2.0.4"
+        "version": "2.1.0"
       },
       "aiida_version": ">=2.0.0,<3.0.0",
       "entry_points": {
         "aiida.calculations": {
-          "gaussian": "aiida_gaussian.calculations:GaussianCalculation",
-          "gaussian.cubegen": "aiida_gaussian.calculations:CubegenCalculation",
-          "gaussian.formchk": "aiida_gaussian.calculations:FormchkCalculation"
+          "gaussian": {
+            "description": [
+              "AiiDA calculation plugin wrapping Gaussian",
+              "",
+              "    Template:",
+              "",
+              "    parameters = Dict(dict={",
+              "        'link0_parameters': {",
+              "            '%chk':'aiida.chk',",
+              "            '%mem': '1024MB',",
+              "            '%nprocshared': '2',",
+              "        },",
+              "        'functional':'PBE1PBE',",
+              "        'basis_set':'6-31g',",
+              "        'charge': 0,",
+              "        'multiplicity': 1,",
+              "        'route_parameters': {",
+              "            'scf': {'cdiis': None}",
+              "            'nosymm': None,",
+              "            'opt': 'tight',",
+              "        },",
+              "    })"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "parameters",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "Input parameters"
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
+                  "name": "parent_calc_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "the folder of a completed gaussian calculation"
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
+                },
+                {
+                  "name": "settings",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "additional input parameters"
+                },
+                {
+                  "name": "structure",
+                  "required": false,
+                  "valid_types": "StructureData, NoneType",
+                  "info": "Input structure; will be converted to pymatgen object"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "The result parameters of the calculation"
+                },
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "energy_ev",
+                  "required": false,
+                  "valid_types": "Float",
+                  "info": "Final energy in electronvolts"
+                },
+                {
+                  "name": "output_structure",
+                  "required": false,
+                  "valid_types": "StructureData",
+                  "info": "Final optimized structure, if available"
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 110,
+                  "message": "The job ran out of memory."
+                },
+                {
+                  "status": 120,
+                  "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                },
+                {
+                  "status": 200,
+                  "message": "The retrieved folder data node could not be accessed."
+                },
+                {
+                  "status": 210,
+                  "message": "The retrieved folder did not contain the output file."
+                },
+                {
+                  "status": 211,
+                  "message": "The retrieved output log could not be read."
+                },
+                {
+                  "status": 220,
+                  "message": "The output file could not be parsed."
+                },
+                {
+                  "status": 301,
+                  "message": "The SCF did not converge and the calculation was terminated."
+                },
+                {
+                  "status": 302,
+                  "message": "The calculation was terminated due to a logic error in ASyTop."
+                },
+                {
+                  "status": 303,
+                  "message": "The calculation was terminated due to an inaccurate quadrature in CalDSu."
+                },
+                {
+                  "status": 390,
+                  "message": "The calculation was terminated due to an error."
+                },
+                {
+                  "status": 391,
+                  "message": "The log did not contain 'Normal termination' (probably out of time)."
+                }
+              ]
+            },
+            "class": "aiida_gaussian.calculations:GaussianCalculation"
+          },
+          "gaussian.cubegen": {
+            "description": [
+              "Plugin to run the cubegen utility",
+              "",
+              "    Example:",
+              "",
+              "    parameters = {",
+              "        \"homo-5\": {",
+              "            \"kind\": \"AMO=16\",",
+              "            \"npts\": -2,",
+              "        },",
+              "        \"spin\": {",
+              "            \"kind\": \"Spin=SCF\",",
+              "            \"npts\": 0,",
+              "        },",
+              "    }",
+              "    Each key corresponds to one produced cube.",
+              "    key specifies the name of the output node",
+              "",
+              "    In case of \"npts\": -1, you have to use the stencil file input:",
+              "",
+              "        IFlag X0 Y0 Z0  # Output unit number and initial point.",
+              "        N1 X1 Y1 Z1     # Number of points and step-size in the X-direction.",
+              "        N2 X2 Y2 Z2     # Number of points and step-size in the Y-direction.",
+              "        N3 X3 Y3 Z3     # Number of points and step-size in the Z-direction.",
+              "",
+              "    See more details at https://gaussian.com/cubegen/"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "parameters",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "dictionary containing entries for cubes to be printed."
+                },
+                {
+                  "name": "parent_calc_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "the folder of a containing the .fchk"
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
+                },
+                {
+                  "name": "gauss_memdef",
+                  "required": false,
+                  "valid_types": "Int, NoneType",
+                  "info": "Set the GAUSS_MEMDEF env variable to set the max memory in MB."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
+                },
+                {
+                  "name": "retrieve_cubes",
+                  "required": false,
+                  "valid_types": "Bool, NoneType",
+                  "info": "should the cubes be retrieved?"
+                },
+                {
+                  "name": "stencil",
+                  "required": false,
+                  "valid_types": "SinglefileData, NoneType",
+                  "info": "In case of npts=-1, use this cube specification."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 110,
+                  "message": "The job ran out of memory."
+                },
+                {
+                  "status": 120,
+                  "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                },
+                {
+                  "status": 300,
+                  "message": "The retrieved folder could not be accessed."
+                },
+                {
+                  "status": 301,
+                  "message": "The retrieved temporary folder could not be accessed."
+                }
+              ]
+            },
+            "class": "aiida_gaussian.calculations:CubegenCalculation"
+          },
+          "gaussian.formchk": {
+            "description": [
+              "Very simple plugin to run the formchk utility"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "parent_calc_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "the folder of a containing the .chk"
+                },
+                {
+                  "name": "chk_name",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": "name of the checkpoint file"
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
+                },
+                {
+                  "name": "retrieve_fchk",
+                  "required": false,
+                  "valid_types": "Bool, NoneType",
+                  "info": "retrieve the fchk file"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 100,
+                  "message": "The process did not have the required `retrieved` output."
+                },
+                {
+                  "status": 110,
+                  "message": "The job ran out of memory."
+                },
+                {
+                  "status": 120,
+                  "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                }
+              ]
+            },
+            "class": "aiida_gaussian.calculations:FormchkCalculation"
+          }
         },
         "aiida.parsers": {
           "gaussian.advanced": "aiida_gaussian.parsers.gaussian:GaussianAdvancedParser",
@@ -11847,11 +12301,219 @@
           "gaussian.cubegen_base": "aiida_gaussian.parsers.cubegen:CubegenBaseParser"
         },
         "aiida.workflows": {
-          "gaussian.base": "aiida_gaussian.workchains:GaussianBaseWorkChain",
-          "gaussian.cubes": "aiida_gaussian.workchains:GaussianCubesWorkChain"
+          "gaussian.base": {
+            "description": [
+              "Workchain to run a Gaussian calculation with automated error handling and restarts."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "gaussian",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": ""
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called calculation jobs will be cleaned at the end of execution."
+                },
+                {
+                  "name": "handler_overrides",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Mapping where keys are process handler names and the values are a dictionary, where each dictionary can define the ``enabled`` and ``priority`` key, which can be used to toggle the values set on the original process handler declaration."
+                },
+                {
+                  "name": "max_iterations",
+                  "required": false,
+                  "valid_types": "Int",
+                  "info": "Maximum number of iterations the work chain will restart the process to finish successfully."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "outputs": [],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 301,
+                  "message": "The sub process excepted."
+                },
+                {
+                  "status": 302,
+                  "message": "The sub process was killed."
+                },
+                {
+                  "status": 350,
+                  "message": "The calculation failed with an unrecoverable SCF convergence error."
+                },
+                {
+                  "status": 399,
+                  "message": "The calculation failed with an unrecoverable error."
+                },
+                {
+                  "status": 401,
+                  "message": "The maximum number of iterations was exceeded."
+                },
+                {
+                  "status": 402,
+                  "message": "The process failed for an unknown reason, twice in a row."
+                }
+              ]
+            },
+            "class": "aiida_gaussian.workchains:GaussianBaseWorkChain"
+          },
+          "gaussian.cubes": {
+            "description": [
+              "No description available"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "cubegen_code",
+                  "required": true,
+                  "valid_types": "Code",
+                  "info": ""
+                },
+                {
+                  "name": "formchk_code",
+                  "required": true,
+                  "valid_types": "Code",
+                  "info": ""
+                },
+                {
+                  "name": "gaussian_calc_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "The gaussian calculation output folder."
+                },
+                {
+                  "name": "gaussian_output_params",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "The gaussian calculation output parameters."
+                },
+                {
+                  "name": "cubegen_parser_name",
+                  "required": false,
+                  "valid_types": "str",
+                  "info": ""
+                },
+                {
+                  "name": "cubegen_parser_params",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Additional parameters to cubegen parser."
+                },
+                {
+                  "name": "dx",
+                  "required": false,
+                  "valid_types": "Float, NoneType",
+                  "info": "Cube file spacing [ang]."
+                },
+                {
+                  "name": "edge_space",
+                  "required": false,
+                  "valid_types": "Float, NoneType",
+                  "info": "Extra cube space in addition to molecule bounding box [ang]."
+                },
+                {
+                  "name": "generate_density",
+                  "required": false,
+                  "valid_types": "Bool, NoneType",
+                  "info": "Generate density cube."
+                },
+                {
+                  "name": "generate_spin_density",
+                  "required": false,
+                  "valid_types": "Bool, NoneType",
+                  "info": "Generate spin density cube (if applicable)."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "natural_orbitals",
+                  "required": false,
+                  "valid_types": "Bool, NoneType",
+                  "info": "The cube files are natural orbitals."
+                },
+                {
+                  "name": "orbital_index_ref",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": "Reference index, possible choices: 'half_num_el', 'abs'."
+                },
+                {
+                  "name": "orbital_indexes",
+                  "required": false,
+                  "valid_types": "List, NoneType",
+                  "info": "Indexes of the orbital cubes to generate."
+                },
+                {
+                  "name": "retrieve_cubes",
+                  "required": false,
+                  "valid_types": "Bool, NoneType",
+                  "info": "should the cubes be retrieved?"
+                }
+              ],
+              "outputs": [],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 302,
+                  "message": "Input options are invalid."
+                },
+                {
+                  "status": 390,
+                  "message": "One or more steps of the work chain failed."
+                }
+              ]
+            },
+            "class": "aiida_gaussian.workchains:GaussianCubesWorkChain"
+          }
         }
       },
-      "commits_count": 22,
+      "commits_count": 23,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -11871,7 +12533,7 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-gaussian",
-      "is_installable": "False"
+      "is_installable": "True"
     },
     "aiida-gaussian-datatypes": {
       "code_home": "https://github.com/dev-zero/aiida-gaussian-datatypes",
@@ -13133,7 +13795,7 @@
             },
             "class": "aiida_gromacs.calculations.solvate:SolvateCalculation"
           },
-          "general-MD": {
+          "genericMD": {
             "description": [
               "AiiDA calculation plugin wrapping an executable with user defined",
               "    input and output files."
@@ -13260,7 +13922,7 @@
                 }
               ]
             },
-            "class": "aiida_gromacs.calculations.generalMD:GeneralCalculation"
+            "class": "aiida_gromacs.calculations.genericMD:GenericCalculation"
           }
         },
         "aiida.parsers": {
@@ -13270,7 +13932,7 @@
           "gromacs.grompp": "aiida_gromacs.parsers.grompp:GromppParser",
           "gromacs.mdrun": "aiida_gromacs.parsers.mdrun:MdrunParser",
           "gromacs.solvate": "aiida_gromacs.parsers.solvate:SolvateParser",
-          "general-MD": "aiida_gromacs.parsers.generalMD:GeneralParser"
+          "genericMD": "aiida_gromacs.parsers.genericMD:GenericParser"
         },
         "aiida.workflows": {
           "gromacs.setup": {
@@ -13443,7 +14105,7 @@
           }
         }
       },
-      "commits_count": 116,
+      "commits_count": 118,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -15479,7 +16141,7 @@
       "commits_count": 31,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa",
-      "is_installable": "False"
+      "is_installable": "True"
     },
     "aiida-nims-scheduler": {
       "code_home": "https://github.com/atztogo/aiida-nims-scheduler",
@@ -29448,7 +30110,7 @@
           }
         }
       },
-      "commits_count": 70,
+      "commits_count": 71,
       "development_status": "beta",
       "summaryinfo": [
         {
