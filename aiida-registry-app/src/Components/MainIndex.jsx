@@ -9,6 +9,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SearchIcon from '@mui/icons-material/Search';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 import Fuse from 'fuse.js'
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
@@ -239,10 +244,7 @@ export function MainIndex() {
           <div className='submenu-entry' key={key}>
             <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
             {value.is_installable === "True" && (
-              <div className='classbox' style={{backgroundColor:'transparent'}}>
-               <CheckCircleIcon style={{color:'green', marginBottom:'-5'}}/>
-              <span className='tooltiptext'>Plugin successfully installed</span>
-              </div>
+              <CheckMark />
             )}
             <p className="currentstate">
             <img className="svg-badge" src= {`${currentPath}${status_dict[value.development_status][1]}`} title={status_dict[value.development_status][0]} />&nbsp;
@@ -305,5 +307,42 @@ export function MainIndex() {
         ))}
       </div>
       </main>
+    );
+  }
+
+  function CheckMark() {
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    return (
+      <>
+        <div className='classbox' style={{backgroundColor:'transparent'}}>
+          <CheckCircleIcon onClick={handleClickOpen} style={{color:'green', cursor:'pointer', marginBottom:'-5'}}/>
+        <span className='tooltiptext'>Plugin successfully installed</span>
+        </div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+        >
+          <DialogTitle>
+            {"This plugin works with the latest aiida-core version."}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              This check mark indicates that this plugin can work with the latest <code>aiida-core </code>
+              version. We try to install the plugin inside the <code>aiida-core</code> docker image
+              (<a href='https://hub.docker.com/r/aiidateam/aiida-core' target='_blank'>https://hub.docker.com/r/aiidateam/aiida-core</a>)
+              and if it is installed without any problems the plugin get this check mark.
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+      </>
     );
   }
