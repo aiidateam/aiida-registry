@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import jsonData from '../plugins_metadata.json'
 import base64Icon from '../base64Icon';
-
+import { useEffect } from 'react';
 import Markdown from 'markdown-to-jsx';
 
 const entrypointtypes = jsonData["entrypointtypes"]
@@ -12,8 +12,26 @@ const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
 function Details({pluginKey}) {
     const value = plugins[pluginKey];
-    window.scrollTo(0, 0);
-    document.documentElement.style.scrollBehavior = 'smooth';
+    useEffect(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.style.scrollBehavior = 'smooth';
+      const scrollToAnchor = () => {
+        const hash = window.location.hash;
+
+        if (hash) {
+          //Add a space to the url and remove it again, this trick allows to scroll to the specified section.
+          let cur = window.location.href
+          window.location.href = cur+' ';
+          window.location.href = cur;
+          const targetSection = document.getElementById(hash);
+          if (targetSection) {
+            targetSection.scrollIntoView();
+          }
+        }
+      };
+
+      scrollToAnchor();
+  }, []);
     return (
       <>
 

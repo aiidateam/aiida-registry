@@ -235,7 +235,6 @@ td {
 
 .submenu-entry {
   width:90%;
-  min-height:140px;
   padding:10px;
   margin: 20px;
   padding-left: 40px;
@@ -440,12 +439,29 @@ padding-right: 5px;
     min-height: 56px;
   }
 
-  input[type='text'] {
+  .input-container {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: large;
     flex: 1;
+    display: flex;
+  }
+
+  .input-container input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: large;
+  }
+
+  .enter-symbol {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: lightgray;
+    opacity: 0;
   }
 
   /* Styles for the suggestions list */
@@ -461,6 +477,16 @@ padding-right: 5px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 99;
+  }
+  .dropdown-search {
+    display: none;
+    font-size: 20px;
+    margin: auto;
+    width: inherit;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    min-height: 50px;
   }
 
   .suggestion-item {
