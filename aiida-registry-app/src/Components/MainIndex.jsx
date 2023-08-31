@@ -121,15 +121,14 @@ function Search() {
             <Link to={`/${suggestion.item.name}`}><h3 key={suggestion.item.name} className="suggestion-item">
               {suggestion.item.name} </h3></Link>
             <ul>
-              {suggestion.matches.slice(0,1).map((match) => (
+              {/* Filter by object means to filter the entry points keys where we need to highlight and redirect.
+              As entry points keys = ['entry_points', 'ep_group', 'ep_name'] while other keys are strings.
+               */}
+              {suggestion.matches.filter(match => typeof match.key == 'object').slice(0,1).map((match) => (
                 <>
-                {typeof match.key === 'object' && (
-                  <>
               <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
                 {match.key[2]} </li></Link>
                 <SearchResultSnippet match_value={match.value} />
-                </>
-                )}
               </>
               ))}
             </ul>
@@ -279,16 +278,12 @@ export function MainIndex() {
                     </h3></Link>
                     <ul>
 
-                    {suggestion.matches.map((match) => (
+                    {suggestion.matches.filter(match => typeof match.key == 'object').map((match) => (
                       <>
-                      {typeof match.key === 'object' && (
-                        <>
                     <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
                       {match.key[2]}
                     </li></Link>
                     <SearchResultSnippet match_value={match.value} />
-                        </>
-                      )}
                     </>
                     ))}
                 </ul>
