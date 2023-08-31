@@ -37,13 +37,6 @@ jobs:
         git fetch origin gh-pages
         git checkout origin/gh-pages plugins_metadata.json || true
 
-    # - name: fetch metadata
-    #   id: fetch_metadata
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   run: aiida-registry fetch
-    # - name: Get entry points data
-    #   run: aiida-registry test-install
 
     - name: Move JSON file to the React project
       run: |
