@@ -1,0 +1,8 @@
+#sidebar .MuiDrawer-paper {
+    width: 340px;
+    max-height:calc(100vh);
+    background-color:lightgray;
+    border: 5px solid gray;
+    transition: 0.5s;
+    margin-top: 155px;
+  }

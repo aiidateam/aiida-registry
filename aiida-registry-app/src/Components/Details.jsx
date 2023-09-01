@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
-import jsonData from '../plugins_metadata.json'
-import base64Icon from '../base64Icon';
-import { useEffect } from 'react';
 import Markdown from 'markdown-to-jsx';
+import { useEffect } from 'react';
+
+import jsonData from '../plugins_metadata.json'
+import './Details.css'
+import base64Icon from '../base64Icon';
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const plugins  = jsonData["plugins"]

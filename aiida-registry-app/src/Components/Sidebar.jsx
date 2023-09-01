@@ -1,9 +1,10 @@
 import jsonData from '../plugins_metadata.json'
+
+import './Sidebar.css'
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 
 const plugins  = jsonData["plugins"]
-const sidebarWidth = 340;
 
 /**
  * Sidebar component displays a sidebar with navigation links related to a specific plugin identified by the pluginKey prop.
