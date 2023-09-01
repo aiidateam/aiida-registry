@@ -2,6 +2,12 @@ name: CI
 
 on: [push, pull_request]
 
+# https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+    # only cancel in-progress jobs or runs for the current workflow - matches against branch & tags
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
 jobs:
 
   pre-commit:
@@ -38,11 +44,30 @@ jobs:
       run: pip install --upgrade wheel setuptools
     - name: Install
       run: pip install -e . -v
+
+    - name: Restore cached Plugins
+      id: cache-plugins-restore
+      uses: actions/cache/restore@v3
+      with:
+        path: |
+          plugins_metadata.json
+        key: plugins_metadata
+
     - name: fetch metadata
+      if: steps.cache-plugins-restore.outputs.cache-hit != 'true'
       id: fetch_metadata
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch
+
+    - name: Cache plugins metadata
+      id: cache-plugins-save
+      uses: actions/cache/save@v3
+      with:
+        path: |
+          plugins_metadata.json
+        key: ${{ steps.cache-plugins-restore.outputs.cache-primary-key }}
+
     - name: Move JSON file to the React project
       run: |
         mv plugins_metadata.json aiida-registry-app/src/
@@ -78,7 +103,17 @@ jobs:
       run: pip install --upgrade pip
     - name: Install
       run: pip install -e . -v
+    - name: Restore cached Plugins
+      id: cache-plugins-restore
+      uses: actions/cache/restore@v3
+      with:
+        path: |
+          plugins_metadata.json
+        key: plugins_metadata
+
     - name: fetch metadata
+      if: steps.cache-plugins-restore.outputs.cache-hit != 'true'
+      id: fetch_metadata
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: aiida-registry fetch

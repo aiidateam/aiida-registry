@@ -13,8 +13,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 import Fuse from 'fuse.js'
+import { extractSentenceAroundKeyword } from './utils'
+
 const globalsummary = jsonData["globalsummary"]
 const plugins  = jsonData["plugins"]
 const status_dict = jsonData["status_dict"]
@@ -22,16 +25,17 @@ const length = Object.keys(plugins).length;
 const currentPath = import.meta.env.VITE_PR_PREVIEW_PATH || "/aiida-registry/";
 
 
-//The search context enables accessing the search query and the plugins data among different components.
+//The search context enables accessing the search query, search status, and search results among different components.
 const SearchContext = createContext();
 
 const useSearchContext = () => useContext(SearchContext);
 
 export const SearchContextProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortedData, setSortedData] = useState(plugins);
+  const [searchResults, setSearchResults] = useState();
+  const [isSearchSubmitted, setIsSearchSubmitted] = useState(false);
   return (
-    <SearchContext.Provider value={{ searchQuery, setSearchQuery, sortedData, setSortedData}}>
+    <SearchContext.Provider value={{ searchQuery, setSearchQuery, searchResults, setSearchResults, isSearchSubmitted, setIsSearchSubmitted }}>
       {children}
     </SearchContext.Provider>
   );
@@ -66,14 +70,22 @@ function preparePluginsForSearch(plugins) {
 const pluginsListForSearch = preparePluginsForSearch(plugins);
 
 function Search() {
-  const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
+  const { searchQuery, setSearchQuery, setSearchResults, isSearchSubmitted, setIsSearchSubmitted } = useSearchContext();
   // Update searchQuery when input changes
   const handleSearch = (searchQuery) => {
     setSearchQuery(searchQuery);
-    if (searchQuery == "") {
-      setSortedData(plugins)
-    }
     document.querySelector(".suggestions-list").style.display = "block";
+    document.querySelector(".dropdown-search").style.display = "block";
+    if (searchQuery == "" || isSearchSubmitted == true) {
+      setIsSearchSubmitted(false);
+      document.querySelector(".dropdown-search").style.display = "none";
+    }
+      // Hide the Enter symbol when the input is empty
+  const enterSymbol = document.querySelector('.enter-symbol');
+  if (enterSymbol) {
+    enterSymbol.style.opacity = searchQuery ? '1' : '0';
+  }
+
   }
   //Create a fuce instance for searching the provided keys.
   const fuse = new Fuse(pluginsListForSearch, {
@@ -83,22 +95,16 @@ function Search() {
     threshold: 0.1,
     includeMatches: true,
   })
-  let searchRes = fuse.search(searchQuery)
-  console.log(searchRes)
-  const suggestions = searchRes.map((item) => item.item.name); //get the list searched plugins
-  const resultObject = {};
+  let searchResults = fuse.search(searchQuery)
 
-  //Convert the search results array to object
-  searchRes.forEach(item => {
-    resultObject[item.item.name] = plugins[item.item.name];
-  });
-
-  //Update the sortedData state with the search results
+  //Update the searchResults state with the search results
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchQuery) {
-    setSortedData(resultObject);
+    setSearchResults(searchResults);
+    setIsSearchSubmitted(true);
     document.querySelector(".suggestions-list").style.display = "none";
+    document.querySelector(".dropdown-search").style.display = "none";
     }
   };
 
@@ -108,15 +114,32 @@ function Search() {
     <div className="search">
       <form className="search-form">
         <button style={{fontSize:'20px', minWidth:'90px', backgroundColor:'white', border: '1px solid #ccc', borderRadius: '4px'}} onClick={(e) => {handleSubmit(e);}}><SearchIcon /></button>
+        <div className='input-container'>
         <input type="text" placeholder="Search for plugins" value={searchQuery} label = "search" onChange={(e) => handleSearch(e.target.value)} />
+        <KeyboardReturnIcon className='enter-symbol' />
+        </div>
       </form>
     {/* Display the list of suggestions */}
     <ul className="suggestions-list">
-        {suggestions.map((suggestion) => (
-          <Link to={`/${suggestion}`}><li key={suggestion} className="suggestion-item">
-            {suggestion}
-          </li></Link>
-        ))}
+    {searchResults.slice(0,3).map((suggestion) => (
+        <>
+            <Link to={`/${suggestion.item.name}`}><h3 key={suggestion.item.name} className="suggestion-item">
+              {suggestion.item.name} </h3></Link>
+            <ul>
+              {/* Filter by object means to filter the entry points keys where we need to highlight and redirect.
+              As entry points keys = ['entry_points', 'ep_group', 'ep_name'] while other keys are strings.
+               */}
+              {suggestion.matches.filter(match => typeof match.key == 'object').slice(0,1).map((match) => (
+                <>
+              <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
+                {match.key[2]} </li></Link>
+                <SearchResultSnippet match_value={match.value} />
+              </>
+              ))}
+            </ul>
+          </>
+            ))}
+            <button className='dropdown-search' onClick={(e) => {handleSubmit(e);}}> Search</button>
       </ul>
       </div>
     </>
@@ -125,8 +148,9 @@ function Search() {
 
 
 export function MainIndex() {
-    const { searchQuery, setSearchQuery, sortedData, setSortedData } = useSearchContext();
+    const { searchQuery, setSearchQuery, searchResults, isSearchSubmitted, setIsSearchSubmitted } = useSearchContext();
     const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
+    const [sortedData, setSortedData] = useState(plugins);
 
     useEffect(() => {
       document.documentElement.style.scrollBehavior = 'auto';
@@ -179,6 +203,8 @@ export function MainIndex() {
 
     const handleSort = (option) => {
       setSortOption(option);
+      setSearchQuery('');
+      setIsSearchSubmitted(false);
 
 
       let sortedPlugins = {};
@@ -240,6 +266,39 @@ export function MainIndex() {
           </Box>
           </div>
 
+          {isSearchSubmitted === true ? (
+            <>
+            <h2>Showing {searchResults.length} pages matching the search query.</h2>
+            {searchResults.length === 0 && (
+              <div>
+            <h3 className='submenu-entry' style={{textAlign:'center', color:'black'}}>Can't find what you're looking for?<br/>
+             Join the AiiDA community on Discourse and request a plugin <a href='https://aiida.discourse.group/new-topic?title=Request%20for%20Plugin...&category=community/plugin-requests' target="_blank">here.</a></h3>
+            </div>
+            )}
+                {searchResults.map((suggestion) => (
+                  <>
+                <div className='submenu-entry'>
+                    <Link to={`/${suggestion.item.name}`}><h3 key={suggestion.item.name} className="suggestion-item">
+                      {suggestion.item.name}
+                    </h3></Link>
+                    <ul>
+
+                    {suggestion.matches.filter(match => typeof match.key == 'object').map((match) => (
+                      <>
+                    <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
+                      {match.key[2]}
+                    </li></Link>
+                    <SearchResultSnippet match_value={match.value} />
+                    </>
+                    ))}
+                </ul>
+                    </div>
+                    </>
+                  ))}
+            </>
+
+        ):(
+          <>
         {Object.entries(sortedData).map(([key, value]) => (
           <div className='submenu-entry' key={key}>
             <Link to={`/${key}`}><h2 style={{display:'inline'}}>{key} </h2></Link>
@@ -305,6 +364,8 @@ export function MainIndex() {
 
           </div>
         ))}
+        </>
+        )}
       </div>
       </main>
     );
@@ -345,3 +406,17 @@ export function MainIndex() {
       </>
     );
   }
+
+function SearchResultSnippet({match_value}) {
+  const {searchQuery} = useSearchContext();
+  const [before, matchedText, after] = extractSentenceAroundKeyword(match_value, searchQuery);
+  return (
+    <>
+    {before != null && (
+      <p>{before}
+       <span style={{backgroundColor:'yellow'}}>{matchedText}</span>
+      {after}...</p>
+    )}
+    </>
+  )
+}
