@@ -5922,7 +5922,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 339,
+      "commits_count": 341,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24061,7 +24061,7 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 93,
+      "commits_count": 94,
       "development_status": "stable",
       "summaryinfo": [
         {
