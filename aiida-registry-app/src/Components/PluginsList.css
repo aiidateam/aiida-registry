@@ -1,0 +1,12 @@
+.submenu-entry {
+    width:90%;
+    padding:10px;
+    margin: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color:rgba(192, 190, 190, 0.19);
+    border:1px solid rgba(152, 152, 152, 0.31);
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.05);
+}

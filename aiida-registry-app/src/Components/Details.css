@@ -1,0 +1,48 @@
+#details {
+    margin-top: 12px;
+    width: calc(100% - 370px);
+    min-height: 80vh;
+}
+
+#description p {
+  margin-left: 0px;
+}
+
+.ep_description code {
+  background-color: #d5cccc;
+}
+
+.entrypointraw {
+  color: #777;
+}
+
+.plugin-header, .plugin-header a {
+  color: #007;
+}
+
+table {
+  background-color: transparent;
+  display: table;
+  border-color: grey;
+  line-height: 1.5;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+  padding-right: 16px;
+  padding-left: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: left;
+}
+
+td {
+  vertical-align: top;
+  padding-right: 16px;
+  padding-left: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}

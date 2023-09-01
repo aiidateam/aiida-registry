@@ -1,0 +1,72 @@
+.search {
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+.search-form {
+display: flex;
+min-height: 56px;
+}
+
+.input-container {
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 4px;
+flex: 1;
+display: flex;
+}
+
+.input-container input[type="text"] {
+flex: 1;
+border: none;
+outline: none;
+font-size: large;
+}
+
+.enter-symbol {
+position: absolute;
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+font-size: 20px;
+color: lightgray;
+opacity: 0;
+}
+
+/* Styles for the suggestions list */
+.suggestions-list {
+position: absolute;
+list-style: none;
+width: 100%;
+padding: 0;
+margin: 0;
+overflow-y: auto; /* Enable vertical scrolling if there are too many suggestions */
+background-color: #fff;
+border-radius: 4px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+z-index: 99;
+}
+.dropdown-search {
+display: none;
+font-size: 20px;
+margin: auto;
+width: inherit;
+background-color: white;
+border: 1px solid #ccc;
+cursor: pointer;
+min-height: 50px;
+}
+
+.suggestion-item {
+padding: 8px;
+cursor: pointer;
+border-bottom: 1px solid #ccc;
+}
+
+.suggestion-item:last-child {
+border-bottom: none;
+}
+
+.suggestion-item:hover {
+background-color: #f2f2f2;
+}

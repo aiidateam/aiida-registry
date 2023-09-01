@@ -5,7 +5,9 @@ import MARVEL from './assets/MARVEL.png'
 import MaX from './assets/MaX.png'
 import './App.css'
 import { useEffect, createContext, useState, useContext } from 'react';
-import { MainIndex, SearchContextProvider } from './Components/MainIndex'
+import { MainIndex } from './Components/MainIndex'
+import { SearchContextProvider } from './Contexts/SearchContext';
+import { SortContextProvider } from './Contexts/SortContext';
 import Details from './Components/Details'
 import Sidebar from './Components/Sidebar';
 
@@ -15,12 +17,14 @@ function App() {
     <>
     <Header />
       <div style={{marginTop:'155px'}}>
+        <SortContextProvider>
         <SearchContextProvider>
       <Routes>
         <Route path="/" element={<MainIndex />} />
         <Route path="/:key" element={<DetailsContainer />} />
       </Routes>
       </SearchContextProvider>
+      </SortContextProvider>
       </div>
     <Footer />
     </>
