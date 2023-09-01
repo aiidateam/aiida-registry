@@ -337,8 +337,8 @@ export function MainIndex() {
           <DialogContent>
             <DialogContentText>
               This check mark indicates that this plugin was installed successfully inside the latest 
-              <a href='(https://hub.docker.com/r/aiidateam/aiida-core' target='_blank'><code>aiida-core</code> docker image
-              </a>.
+              <a href='(https://hub.docker.com/r/aiidateam/aiida-core' target='_blank'><code>aiida-core</code> docker image</a>.
+              For in-depth compatibility tests see the source code repository of the plugin.
             </DialogContentText>
           </DialogContent>
         </Dialog>
