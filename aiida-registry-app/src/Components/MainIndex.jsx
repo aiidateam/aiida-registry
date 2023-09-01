@@ -332,14 +332,13 @@ export function MainIndex() {
           onClose={handleClose}
         >
           <DialogTitle>
-            {"This plugin works with the latest aiida-core version."}
+            {"This plugin can be installed with the latest aiida-core version."}
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              This check mark indicates that this plugin can work with the latest <code>aiida-core </code>
-              version. We try to install the plugin inside the <code>aiida-core</code> docker image
-              (<a href='https://hub.docker.com/r/aiidateam/aiida-core' target='_blank'>https://hub.docker.com/r/aiidateam/aiida-core</a>)
-              and if it is installed without any problems the plugin get this check mark.
+              This check mark indicates that this plugin was installed successfully inside the latest 
+              <a href='(https://hub.docker.com/r/aiidateam/aiida-core' target='_blank'><code>aiida-core</code> docker image
+              </a>.
             </DialogContentText>
           </DialogContent>
         </Dialog>
