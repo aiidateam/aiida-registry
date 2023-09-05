@@ -149,13 +149,17 @@ export function SearchResults () {
               <ul>
 
               {suggestion.matches.filter(match => typeof match.key == 'object').map((match) => (
-                      <>
-                    <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
-                      {match.key[2]}
-                    </li></Link>
-                    <SearchResultSnippet match_value={match.value} />
-                    </>
-                    ))}
+                <>
+                {extractSentenceAroundKeyword(match.value, searchQuery)[0] != null && (
+                  <>
+              <Link to={`/${suggestion.item.name}#${match.key[1]}.${match.key[2]}`}><li key={match.key} className="suggestion-item">
+                {match.key[2]}
+              </li></Link>
+              <SearchResultSnippet match_value={match.value} />
+                  </>
+                )}
+              </>
+              ))}
           </ul>
               </div>
               </>
