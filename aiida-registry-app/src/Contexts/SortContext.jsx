@@ -8,7 +8,7 @@ const SortContext = createContext();
 export const useSortContext = () => useContext(SortContext);
 
 export const SortContextProvider = ({ children }) => {
-  const [sortOption, setSortOption] = useState('commits'); //Available options: 'commits', 'release', and 'alpha'.
+  const [sortOption, setSortOption] = useState('release'); //Available options: 'commits', 'release', and 'alpha'.
   const [sortedData, setSortedData] = useState(plugins);
   return (
     <SortContext.Provider value={{ sortOption, setSortOption, sortedData, setSortedData }}>
