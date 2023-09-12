@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import jsonData from '../plugins_metadata.json'
 import './Details.css'
 import base64Icon from '../base64Icon';
+import Alert from '@mui/material/Alert';
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const plugins  = jsonData["plugins"]
@@ -74,6 +75,17 @@ function Details({pluginKey}) {
       )}
       </div>
 
+      <h3>Registry checks</h3>
+      {value.warnings ? (
+        <>
+        {value.warnings.map((warning) => (
+          <Alert severity="warning">{warning}</Alert>
+        ))}
+        </>
+      ):(
+        <Alert severity="success">All checks passed!</Alert>
+      )}
+
       <h2 id='detailed.information'>Detailed information</h2>
         {Object.keys(value.metadata).length !== 0 ? (
           <>
@@ -118,6 +130,7 @@ function Details({pluginKey}) {
                 ))}
               </>
             )}
+
 
             {value.entry_points ? (
               Object.entries(value.entry_points).map(([entrypointtype, entrypointlist]) => (
