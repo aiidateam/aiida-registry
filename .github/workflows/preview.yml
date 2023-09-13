@@ -31,12 +31,15 @@ jobs:
       run: pip install --upgrade wheel setuptools
     - name: Install
       run: pip install -e . -v
-    - name: Get cloned data from gh-pages
-      run: |
-        git remote set-url origin https://github.com/aiidateam/aiida-registry.git
-        git fetch origin gh-pages
-        git checkout origin/gh-pages plugins_metadata.json || true
 
+    - name: fetch metadata
+      id: fetch_metadata
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: aiida-registry fetch
+
+    - name: Get entry points data
+      run: aiida-registry test-install
 
     - name: Move JSON file to the React project
       run: |

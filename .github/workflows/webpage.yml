@@ -43,16 +43,7 @@ jobs:
         git checkout origin/gh-pages plugins_metadata.json || true
         mv plugins_metadata.json cloned_plugins_metadata.json || true
 
-    - name: Restore cached Plugins
-      id: cache-plugins-restore
-      uses: actions/cache/restore@v3
-      with:
-        path: |
-          plugins_metadata.json
-        key: plugins_metadata
-
     - name: fetch metadata
-      if: steps.cache-plugins-restore.outputs.cache-hit != 'true'
       id: fetch_metadata
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
