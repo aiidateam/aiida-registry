@@ -3,7 +3,6 @@
     padding:10px;
     margin: 20px;
     padding-left: 40px;
-    padding-right: 40px;
     background-color: rgba(5,115,255,0.19);
     border:1px solid rgba(0,65,127,0.4);
     border-radius:4px;
@@ -28,7 +27,7 @@ main {
 .bar-container {
     display: flex;
     flex-direction: row;
-    margin: 0 2%;
+    margin: 0 4.5% 0 1.5%;
 }
 
 .summaryinfo {
@@ -59,11 +58,9 @@ padding-right: 5px;
   {
     .globalsummary-box
       {
-        width:90%;
-        padding:1px;
+        width:95%;
+        padding: 0 0 0 5px;
         margin: 20px 0px 20px 0px;
-        padding-left: 4px;
-        padding-right: 4px;
       }
 
     .globalsummary-box .badge

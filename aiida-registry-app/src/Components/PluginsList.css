@@ -3,7 +3,6 @@
     padding:10px;
     margin: 20px;
     padding-left: 40px;
-    padding-right: 40px;
     background-color:rgba(192, 190, 190, 0.19);
     border:1px solid rgba(152, 152, 152, 0.31);
     border-radius:4px;
@@ -15,12 +14,10 @@
   {
     .submenu-entry
       {
-        width:70%;
+        width:95%;
         min-height:140px;
-        padding:10px;
-        margin: 10px;
-        padding-left: 40px;
-        padding-right: 40px;
+        padding: 5px 0 0 5px;
+        margin: 10px 0 0 0;
         overflow: auto;
       }
   }
