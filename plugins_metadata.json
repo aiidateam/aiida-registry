@@ -738,7 +738,7 @@
           }
         }
       },
-      "commits_count": 12,
+      "commits_count": 11,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -5922,7 +5922,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 341,
+      "commits_count": 360,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -6326,7 +6326,7 @@
           }
         }
       },
-      "commits_count": 22,
+      "commits_count": 23,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -8727,7 +8727,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 49,
+      "commits_count": 43,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -8793,7 +8793,7 @@
           "dataframe.frame": "aiida_dataframe.data.dataframe:PandasFrameData"
         }
       },
-      "commits_count": 13,
+      "commits_count": 11,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -11723,7 +11723,7 @@
           "aiida-fleur": "aiida_fleur.cmdline:cmd_root"
         }
       },
-      "commits_count": 202,
+      "commits_count": 201,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14105,7 +14105,7 @@
           }
         }
       },
-      "commits_count": 118,
+      "commits_count": 185,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -16155,7 +16155,7 @@
       "metadata": {},
       "aiida_version": null,
       "entry_points": {},
-      "commits_count": 21,
+      "commits_count": 23,
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/atztogo/aiida-nims-scheduler",
       "is_installable": "True"
@@ -17212,7 +17212,7 @@
           }
         }
       },
-      "commits_count": 41,
+      "commits_count": 40,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -17739,7 +17739,7 @@
           }
         }
       },
-      "commits_count": 66,
+      "commits_count": 64,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -18100,7 +18100,7 @@
           "aiida-pseudo": "aiida_pseudo.cli:cmd_root"
         }
       },
-      "commits_count": 26,
+      "commits_count": 27,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -24061,7 +24061,7 @@
           "aiida-quantumespresso": "aiida_quantumespresso.cli:cmd_root"
         }
       },
-      "commits_count": 94,
+      "commits_count": 92,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -29333,7 +29333,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 108,
+      "commits_count": 106,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -30800,7 +30800,7 @@
           "aiida-wannier90-workflows": "aiida_wannier90_workflows.cli:cmd_root"
         }
       },
-      "commits_count": 42,
+      "commits_count": 40,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -31074,7 +31074,7 @@
           "yambo.yambo": "aiida_yambo.parsers.parsers:YamboParser"
         }
       },
-      "commits_count": 79,
+      "commits_count": 77,
       "summaryinfo": [
         {
           "colorclass": "blue",
