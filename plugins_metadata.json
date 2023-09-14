@@ -8727,7 +8727,7 @@
           "potcar": "aiida_cusp.cli.potcar_cmd:potcar"
         }
       },
-      "commits_count": 43,
+      "commits_count": 30,
       "development_status": "beta",
       "summaryinfo": [
         {
@@ -29333,7 +29333,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 106,
+      "commits_count": 105,
       "development_status": "stable",
       "summaryinfo": [
         {
