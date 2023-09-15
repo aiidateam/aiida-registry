@@ -363,6 +363,9 @@
         }
       },
       "commits_count": 5,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -810,6 +813,10 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -863,6 +870,11 @@
         }
       },
       "commits_count": 1,
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'elastic' does not start with prefix 'alloy.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -1244,6 +1256,9 @@
       },
       "commits_count": 11,
       "development_status": "planning",
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1624,6 +1639,10 @@
       },
       "commits_count": 0,
       "development_status": "beta",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -2207,6 +2226,9 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -3324,6 +3346,9 @@
         }
       },
       "commits_count": 6,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -3439,6 +3464,14 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found",
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'vasp_base_parser' does not start with prefix 'catmat.'",
+        "Entry point 'vasp.base' does not start with prefix 'catmat.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "brown",
@@ -3497,6 +3530,9 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -3733,6 +3769,15 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'CHAMP' does not start with prefix 'champ.'",
+        "Entry point 'CHAMP' does not start with prefix 'champ.'",
+        "Entry point 'CHAMP' does not start with prefix 'champ.'",
+        "Entry point 'CHAMP' does not start with prefix 'champ.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -5923,6 +5968,9 @@
         }
       },
       "commits_count": 360,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -7123,6 +7171,9 @@
         }
       },
       "commits_count": 18,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8642,6 +8693,9 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8729,6 +8783,9 @@
       },
       "commits_count": 30,
       "development_status": "beta",
+      "warnings": [
+        "Entry point 'potcar' does not start with prefix 'cusp.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8822,6 +8879,10 @@
       "entry_points": {},
       "commits_count": 13,
       "development_status": "planning",
+      "warnings": [
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/lsmo-epfl/aiida-ddec/master/setup.json",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/yakutovicha/aiida-ddec"
     },
@@ -8916,6 +8977,10 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "Development status in classifiers (alpha) does not match development_status in metadata (stable)",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8996,6 +9061,10 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
+      "warnings": [
+        "Cannot fetch all data from PyPI and missing plugin_info key!",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -9011,6 +9080,10 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
+      "warnings": [
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/environ-developers/aiida-environ/master/setup.json",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/environ-developers/aiida-environ"
     },
@@ -9025,6 +9098,10 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
+      "warnings": [
+        "Cannot fetch all data from PyPI and missing plugin_info key!",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -9039,6 +9116,10 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
+      "warnings": [
+        "Cannot fetch all data from PyPI and missing plugin_info key!",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -9054,6 +9135,10 @@
       "entry_points": {},
       "commits_count": -1,
       "development_status": "planning",
+      "warnings": [
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/sphuber/aiida-fenics/master/setup.json",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/sphuber/aiida-fenics"
     },
@@ -9150,6 +9235,12 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "AiiDA version not found",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'fireworks' does not start with prefix 'fireworks_scheduler.'",
+        "Entry point 'fireworks-scheduler' does not start with prefix 'fireworks_scheduler.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "purple",
@@ -11724,6 +11815,9 @@
         }
       },
       "commits_count": 201,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -12583,6 +12677,9 @@
       },
       "commits_count": 0,
       "development_status": "beta",
+      "warnings": [
+        "Prefix 'gaussian' does not follow naming convention."
+      ],
       "summaryinfo": [
         {
           "colorclass": "red",
@@ -12673,6 +12770,10 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "alpha",
+      "warnings": [
+        "Unable to read wheel file from PyPI release: No entry_points.txt found in wheel",
+        "Missing classifier 'Framework :: AiiDA'"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-graphql",
       "is_installable": "True"
@@ -14107,6 +14208,10 @@
       },
       "commits_count": 185,
       "development_status": "alpha",
+      "warnings": [
+        "Entry point 'genericMD' does not start with prefix 'gromacs.'",
+        "Entry point 'genericMD' does not start with prefix 'gromacs.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14161,6 +14266,12 @@
         }
       },
       "commits_count": 3,
+      "warnings": [
+        "Unable to read wheel file from PyPI release: No entry_points.txt found in wheel",
+        "Development status in classifiers (alpha) does not match development_status in metadata (beta)",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'gpx' does not start with prefix 'grouppathx.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -14205,6 +14316,10 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14281,6 +14396,9 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14343,6 +14461,13 @@
       "aiida_version": null,
       "entry_points": {},
       "commits_count": 79,
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/JuDFTteam/aiida-kkr/develop/setup.json",
+        "AiiDA version not found",
+        "Development status in classifiers (beta) does not match development_status in metadata (stable)",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr",
       "is_installable": "True"
@@ -14400,6 +14525,11 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'dynaphopy' does not start with prefix 'lammps.'",
+        "Entry point 'dynaphopy' does not start with prefix 'lammps.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -15737,6 +15867,10 @@
         }
       },
       "commits_count": 17,
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -15794,6 +15928,12 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'sshmetavo' does not start with prefix 'metavo_scheduler.'",
+        "Entry point 'pbsprometavo' does not start with prefix 'metavo_scheduler.'",
+        "Entry point 'sshmetavo' does not start with prefix 'metavo_scheduler.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -15841,6 +15981,12 @@
         }
       },
       "commits_count": 6,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'crystal.mpds' does not start with prefix 'mpds.'",
+        "Entry point 'crystal.cif' does not start with prefix 'mpds.'",
+        "Entry point 'crystal.aiida' does not start with prefix 'mpds.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -16139,6 +16285,11 @@
       "aiida_version": null,
       "entry_points": {},
       "commits_count": 31,
+      "warnings": [
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/nanotech-empa/aiida-nanotech-empa/master/setup.json",
+        "AiiDA version not found",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa",
       "is_installable": "True"
@@ -16156,6 +16307,11 @@
       "aiida_version": null,
       "entry_points": {},
       "commits_count": 23,
+      "warnings": [
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/atztogo/aiida-nims-scheduler/master/setup.json",
+        "AiiDA version not found",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/atztogo/aiida-nims-scheduler",
       "is_installable": "True"
@@ -16671,6 +16827,9 @@
       },
       "commits_count": 27,
       "development_status": "alpha",
+      "warnings": [
+        "Prefix 'quantumespresso.ocv' does not follow naming convention."
+      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -17213,6 +17372,9 @@
         }
       },
       "commits_count": 40,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -17802,6 +17964,9 @@
       },
       "commits_count": 0,
       "development_status": "planning",
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -18038,6 +18203,11 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -18259,6 +18429,9 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -18677,6 +18850,11 @@
       "entry_points": {},
       "commits_count": 45,
       "development_status": "planning",
+      "warnings": [
+        "Cannot fetch all data from PyPI and missing plugin_info key!",
+        "AiiDA version not found",
+        "Prefix 'aiidapython' does not follow naming convention."
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -18901,6 +19079,10 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -19083,6 +19265,10 @@
       },
       "commits_count": 0,
       "development_status": "beta",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24063,6 +24249,10 @@
       },
       "commits_count": 92,
       "development_status": "stable",
+      "warnings": [
+        "Entry point 'noncollinearhydrogen' does not start with prefix 'quantumespresso.'",
+        "Entry point 'spinorbithydrogen' does not start with prefix 'quantumespresso.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24139,6 +24329,10 @@
       },
       "commits_count": 0,
       "development_status": "beta",
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "Prefix 'quantumespresso.hp' does not follow naming convention."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24684,6 +24878,9 @@
       },
       "commits_count": 46,
       "development_status": "alpha",
+      "warnings": [
+        "Prefix 'core' does not follow naming convention."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24733,6 +24930,10 @@
       "entry_points": {},
       "commits_count": 8,
       "development_status": "stable",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/siesta-project/aiida_siesta_plugin/master/setup.json"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-siesta",
       "is_installable": "True"
@@ -24833,6 +25034,10 @@
       },
       "commits_count": 9,
       "development_status": "planning",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24860,6 +25065,10 @@
       "entry_points": {},
       "commits_count": 13,
       "development_status": "planning",
+      "warnings": [
+        "Cannot fetch all data from PyPI and missing plugin_info key!",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/edan-bainglass/aiida-ssh2win"
     },
@@ -24894,6 +25103,10 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
+        "Entry point 'ssh_only' does not start with prefix 'sshonly.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -24935,6 +25148,11 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -25110,6 +25328,10 @@
       },
       "commits_count": 0,
       "development_status": "alpha",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -25297,6 +25519,10 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -25464,6 +25690,10 @@
       },
       "commits_count": 0,
       "development_status": "stable",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -25524,6 +25754,10 @@
       },
       "commits_count": 0,
       "development_status": "beta",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -26002,6 +26236,10 @@
       },
       "commits_count": 0,
       "development_status": "alpha",
+      "warnings": [
+        "No bdist_wheel available for PyPI release",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -26041,6 +26279,10 @@
         }
       },
       "commits_count": 0,
+      "warnings": [
+        "Missing classifier 'Framework :: AiiDA'",
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -26083,6 +26325,10 @@
       },
       "commits_count": 0,
       "development_status": "planning",
+      "warnings": [
+        "Entry point 'UppASD_core_calculations' does not start with prefix 'uppasd.'",
+        "Entry point 'UppASD_core_parsers' does not start with prefix 'uppasd.'"
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -29333,7 +29579,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 105,
+      "commits_count": 102,
       "development_status": "stable",
       "summaryinfo": [
         {
@@ -30801,6 +31047,9 @@
         }
       },
       "commits_count": 40,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -30837,6 +31086,10 @@
       "entry_points": {},
       "commits_count": 7,
       "development_status": "planning",
+      "warnings": [
+        "Cannot fetch all data from PyPI and missing plugin_info key!",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -31075,6 +31328,9 @@
         }
       },
       "commits_count": 77,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -31204,6 +31460,9 @@
       },
       "commits_count": 54,
       "development_status": "beta",
+      "warnings": [
+        "AiiDA version not found"
+      ],
       "summaryinfo": [
         {
           "colorclass": "purple",
@@ -31231,6 +31490,10 @@
       "entry_points": {},
       "commits_count": 18,
       "development_status": "planning",
+      "warnings": [
+        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/antimomarrazzo/aiida-z2pack/master/setup.json",
+        "AiiDA version not found"
+      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
@@ -31409,6 +31672,9 @@
         }
       },
       "commits_count": 4,
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
