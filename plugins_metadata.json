@@ -29333,7 +29333,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 105,
+      "commits_count": 102,
       "development_status": "stable",
       "summaryinfo": [
         {
