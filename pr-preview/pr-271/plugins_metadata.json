@@ -363,9 +363,6 @@
         }
       },
       "commits_count": 5,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -374,7 +371,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/rikigigi/aiida-QECpWorkChain",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-QECpWorkChain",
+        "Failed to import package aiida_QECpWorkChain",
+        "Failed to fetch entry point metadata for package aiida_QECpWorkChain"
+      ]
     },
     "aiida-abinit": {
       "code_home": "https://github.com/sponce24/aiida-abinit",
@@ -761,7 +763,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-abinit",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-abinit",
+        "Failed to import package aiida_abinit",
+        "Failed to fetch entry point metadata for package aiida_abinit"
+      ]
     },
     "aiida-aenet": {
       "code_home": "https://gitlab.com/lattice737/aiida-aenet",
@@ -813,10 +820,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -870,11 +873,6 @@
         }
       },
       "commits_count": 1,
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'elastic' does not start with prefix 'alloy.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -1230,7 +1228,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-ase",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-ase",
+        "Failed to import package aiida_ase",
+        "Failed to fetch entry point metadata for package aiida_ase"
+      ]
     },
     "aiida-autocas": {
       "entry_point_prefix": "autocas",
@@ -1256,9 +1259,6 @@
       },
       "commits_count": 11,
       "development_status": "planning",
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1639,10 +1639,6 @@
       },
       "commits_count": 0,
       "development_status": "beta",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -1656,7 +1652,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-bands-inspect",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-bands-inspect",
+        "Failed to import package aiida_bands_inspect",
+        "Failed to fetch entry point metadata for package aiida_bands_inspect"
+      ]
     },
     "aiida-bigdft": {
       "code_home": "https://github.com/BigDFT-group/aiida-bigdft-plugin",
@@ -2226,9 +2227,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -2257,7 +2255,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-bigdft",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-bigdft",
+        "Failed to import package aiida_bigdft",
+        "Failed to fetch entry point metadata for package aiida_bigdft"
+      ]
     },
     "aiida-castep": {
       "code_home": "https://gitlab.com/bz1/aiida-castep",
@@ -3346,9 +3349,6 @@
         }
       },
       "commits_count": 6,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -3382,7 +3382,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-castep",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-castep",
+        "Failed to import package aiida_castep",
+        "Failed to fetch entry point metadata for package aiida_castep"
+      ]
     },
     "aiida-catmap": {
       "code_home": "https://github.com/sudarshanv01/aiida-catmap",
@@ -3464,14 +3469,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found",
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'vasp_base_parser' does not start with prefix 'catmat.'",
-        "Entry point 'vasp.base' does not start with prefix 'catmat.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "brown",
@@ -3530,9 +3527,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -3556,7 +3550,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/unkcpz/aiida-ce",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-ce",
+        "Failed to import package aiida_ce",
+        "Failed to fetch entry point metadata for package aiida_ce"
+      ]
     },
     "aiida-champ": {
       "code_home": "https://github.com/TREX-CoE/aiida-champ",
@@ -3769,15 +3768,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'CHAMP' does not start with prefix 'champ.'",
-        "Entry point 'CHAMP' does not start with prefix 'champ.'",
-        "Entry point 'CHAMP' does not start with prefix 'champ.'",
-        "Entry point 'CHAMP' does not start with prefix 'champ.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -3801,7 +3791,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-champ",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-champ",
+        "Failed to import package aiida_champ",
+        "Failed to fetch entry point metadata for package aiida_champ"
+      ]
     },
     "aiida-codtools": {
       "code_home": "https://github.com/aiidateam/aiida-codtools",
@@ -5260,7 +5255,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-codtools",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-codtools",
+        "Failed to import package aiida_codtools",
+        "Failed to fetch entry point metadata for package aiida_codtools"
+      ]
     },
     "aiida-core": {
       "code_home": "https://github.com/aiidateam/aiida-core",
@@ -5968,9 +5968,6 @@
         }
       },
       "commits_count": 360,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -6004,7 +6001,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-core",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-core",
+        "Failed to import package aiida",
+        "Failed to fetch entry point metadata for package aiida"
+      ]
     },
     "aiida-cp2k": {
       "code_home": "https://github.com/cp2k/aiida-cp2k",
@@ -6394,7 +6396,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-cp2k",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-cp2k",
+        "Failed to import package aiida_cp2k",
+        "Failed to fetch entry point metadata for package aiida_cp2k"
+      ]
     },
     "aiida-crystal-dft": {
       "code_home": "https://github.com/tilde-lab/aiida-crystal-dft",
@@ -7171,9 +7178,6 @@
         }
       },
       "commits_count": 18,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -7202,7 +7206,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/tilde-lab/aiida-crystal-dft",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-crystal-dft",
+        "Failed to import package aiida_crystal_dft",
+        "Failed to fetch entry point metadata for package aiida_crystal_dft"
+      ]
     },
     "aiida-crystal17": {
       "code_home": "https://github.com/aiidaplugins/aiida-crystal17",
@@ -8693,9 +8702,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8729,7 +8735,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-crystal17",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-crystal17",
+        "Failed to import package aiida_crystal17",
+        "Failed to fetch entry point metadata for package aiida_crystal17"
+      ]
     },
     "aiida-cusp": {
       "code_home": "https://github.com/aiida-cusp/aiida-cusp",
@@ -8783,9 +8794,6 @@
       },
       "commits_count": 30,
       "development_status": "beta",
-      "warnings": [
-        "Entry point 'potcar' does not start with prefix 'cusp.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -8865,7 +8873,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-dataframe",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-dataframe",
+        "Failed to import package aiida_dataframe",
+        "Failed to fetch entry point metadata for package aiida_dataframe"
+      ]
     },
     "aiida-ddec": {
       "code_home": "https://github.com/lsmo-epfl/aiida-ddec",
@@ -8879,10 +8892,6 @@
       "entry_points": {},
       "commits_count": 13,
       "development_status": "planning",
-      "warnings": [
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/lsmo-epfl/aiida-ddec/master/setup.json",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/yakutovicha/aiida-ddec"
     },
@@ -8938,7 +8947,11 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-defects",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-defects",
+        "Failed to import package aiida_defects"
+      ]
     },
     "aiida-diff": {
       "code_home": "https://github.com/aiidateam/aiida-diff",
@@ -8977,10 +8990,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "Development status in classifiers (alpha) does not match development_status in metadata (stable)",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -9061,10 +9070,6 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
-      "warnings": [
-        "Cannot fetch all data from PyPI and missing plugin_info key!",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -9080,10 +9085,6 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
-      "warnings": [
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/environ-developers/aiida-environ/master/setup.json",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/environ-developers/aiida-environ"
     },
@@ -9098,10 +9099,6 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
-      "warnings": [
-        "Cannot fetch all data from PyPI and missing plugin_info key!",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -9116,10 +9113,6 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "planning",
-      "warnings": [
-        "Cannot fetch all data from PyPI and missing plugin_info key!",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -9135,10 +9128,6 @@
       "entry_points": {},
       "commits_count": -1,
       "development_status": "planning",
-      "warnings": [
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/sphuber/aiida-fenics/master/setup.json",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/sphuber/aiida-fenics"
     },
@@ -9196,7 +9185,12 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-firecrest",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-firecrest",
+        "Failed to import package aiida_firecrest",
+        "Failed to fetch entry point metadata for package aiida_firecrest"
+      ]
     },
     "aiida-fireworks-scheduler": {
       "code_home": "https://github.com/zhubonan/aiida-fireworks-scheduler",
@@ -9235,12 +9229,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "AiiDA version not found",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'fireworks' does not start with prefix 'fireworks_scheduler.'",
-        "Entry point 'fireworks-scheduler' does not start with prefix 'fireworks_scheduler.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "purple",
@@ -9254,7 +9242,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/zhubonan/aiida-fireworks-scheduler",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-fireworks-scheduler",
+        "Failed to import package aiida_fireworks_scheduler",
+        "Failed to fetch entry point metadata for package aiida_fireworks_scheduler"
+      ]
     },
     "aiida-fleur": {
       "code_home": "https://github.com/JuDFTteam/aiida-fleur/tree/develop",
@@ -11815,9 +11808,6 @@
         }
       },
       "commits_count": 201,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -11846,7 +11836,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-fleur",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-fleur",
+        "Failed to import package aiida_fleur",
+        "Failed to fetch entry point metadata for package aiida_fleur"
+      ]
     },
     "aiida-flexpart": {
       "code_home": "https://github.com/aiidaplugins/aiida-flexpart",
@@ -12627,7 +12622,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-gaussian",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-gaussian",
+        "Failed to import package aiida_gaussian",
+        "Failed to fetch entry point metadata for package aiida_gaussian"
+      ]
     },
     "aiida-gaussian-datatypes": {
       "code_home": "https://github.com/dev-zero/aiida-gaussian-datatypes",
@@ -12677,9 +12677,6 @@
       },
       "commits_count": 0,
       "development_status": "beta",
-      "warnings": [
-        "Prefix 'gaussian' does not follow naming convention."
-      ],
       "summaryinfo": [
         {
           "colorclass": "red",
@@ -12693,7 +12690,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-gaussian-datatypes",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-gaussian-datatypes",
+        "Failed to import package aiida_gaussian_datatypes",
+        "Failed to fetch entry point metadata for package aiida_gaussian_datatypes"
+      ]
     },
     "aiida-gollum": {
       "code_home": "https://github.com/garsua/aiida-gollum/",
@@ -12770,13 +12772,14 @@
       "entry_points": {},
       "commits_count": 0,
       "development_status": "alpha",
-      "warnings": [
-        "Unable to read wheel file from PyPI release: No entry_points.txt found in wheel",
-        "Missing classifier 'Framework :: AiiDA'"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-graphql",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-graphql",
+        "Failed to import package aiida_graphql",
+        "Failed to fetch entry point metadata for package aiida_graphql"
+      ]
     },
     "aiida-gromacs": {
       "code_home": "https://github.com/jimboid/aiida-gromacs",
@@ -14208,10 +14211,6 @@
       },
       "commits_count": 185,
       "development_status": "alpha",
-      "warnings": [
-        "Entry point 'genericMD' does not start with prefix 'gromacs.'",
-        "Entry point 'genericMD' does not start with prefix 'gromacs.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14235,7 +14234,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/jimboid/aiida-gromacs",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-gromacs",
+        "Failed to import package aiida_gromacs",
+        "Failed to fetch entry point metadata for package aiida_gromacs"
+      ]
     },
     "aiida-grouppathx": {
       "code_home": "https://github.com/zhubonan/aiida-grouppathx",
@@ -14266,12 +14270,6 @@
         }
       },
       "commits_count": 3,
-      "warnings": [
-        "Unable to read wheel file from PyPI release: No entry_points.txt found in wheel",
-        "Development status in classifiers (alpha) does not match development_status in metadata (beta)",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'gpx' does not start with prefix 'grouppathx.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -14280,7 +14278,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-grouppathx",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-grouppathx",
+        "Failed to import package aiida_grouppathx",
+        "Failed to fetch entry point metadata for package aiida_grouppathx"
+      ]
     },
     "aiida-gudhi": {
       "code_home": "https://github.com/ltalirz/aiida-gudhi",
@@ -14316,10 +14319,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14338,7 +14337,12 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-gudhi",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-gudhi",
+        "Failed to import package aiida_gudhi",
+        "Failed to fetch entry point metadata for package aiida_gudhi"
+      ]
     },
     "aiida-gulp": {
       "code_home": "https://github.com/aiidaplugins/aiida-gulp",
@@ -14396,9 +14400,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14427,7 +14428,11 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-gulp",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-gulp",
+        "Failed to import package aiida_gulp"
+      ]
     },
     "aiida-kkr": {
       "code_home": "https://github.com/JuDFTteam/aiida-kkr/tree/develop",
@@ -14461,16 +14466,14 @@
       "aiida_version": null,
       "entry_points": {},
       "commits_count": 79,
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/JuDFTteam/aiida-kkr/develop/setup.json",
-        "AiiDA version not found",
-        "Development status in classifiers (beta) does not match development_status in metadata (stable)",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-kkr",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-kkr",
+        "Failed to import package aiida_kkr",
+        "Failed to fetch entry point metadata for package aiida_kkr"
+      ]
     },
     "aiida-lammps": {
       "code_home": "https://github.com/aiidaplugins/aiida-lammps",
@@ -14525,11 +14528,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'dynaphopy' does not start with prefix 'lammps.'",
-        "Entry point 'dynaphopy' does not start with prefix 'lammps.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -14553,7 +14551,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/aiidaplugins/aiida-lammps",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-lammps",
+        "Failed to import package aiida_lammps",
+        "Failed to fetch entry point metadata for package aiida_lammps"
+      ]
     },
     "aiida-lsmo": {
       "code_home": "https://github.com/lsmo-epfl/aiida-lsmo",
@@ -15867,10 +15870,6 @@
         }
       },
       "commits_count": 17,
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -15889,7 +15888,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/lsmo-epfl/aiida-lsmo",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-lsmo",
+        "Failed to import package aiida_lsmo",
+        "Failed to fetch entry point metadata for package aiida_lsmo"
+      ]
     },
     "aiida-metavo-scheduler": {
       "code_home": "https://github.com/pzarabadip/aiida-metavo-scheduler",
@@ -15928,12 +15932,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'sshmetavo' does not start with prefix 'metavo_scheduler.'",
-        "Entry point 'pbsprometavo' does not start with prefix 'metavo_scheduler.'",
-        "Entry point 'sshmetavo' does not start with prefix 'metavo_scheduler.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -15981,12 +15979,6 @@
         }
       },
       "commits_count": 6,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'crystal.mpds' does not start with prefix 'mpds.'",
-        "Entry point 'crystal.cif' does not start with prefix 'mpds.'",
-        "Entry point 'crystal.aiida' does not start with prefix 'mpds.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -16138,7 +16130,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/positivemuon/aiida-muon",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-muon",
+        "Failed to import package aiida_muon",
+        "Failed to fetch entry point metadata for package aiida_muon"
+      ]
     },
     "aiida-musconv": {
       "entry_point_prefix": "musconv",
@@ -16271,7 +16268,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/positivemuon/aiida-musconv",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-musconv",
+        "Failed to import package aiida_musconv",
+        "Failed to fetch entry point metadata for package aiida_musconv"
+      ]
     },
     "aiida-nanotech-empa": {
       "code_home": "https://github.com/nanotech-empa/aiida-nanotech-empa",
@@ -16285,14 +16287,14 @@
       "aiida_version": null,
       "entry_points": {},
       "commits_count": 31,
-      "warnings": [
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/nanotech-empa/aiida-nanotech-empa/master/setup.json",
-        "AiiDA version not found",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/nanotech-empa/aiida-nanotech-empa",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-nanotech-empa",
+        "Failed to import package aiida_nanotech_empa",
+        "Failed to fetch entry point metadata for package aiida_nanotech_empa"
+      ]
     },
     "aiida-nims-scheduler": {
       "code_home": "https://github.com/atztogo/aiida-nims-scheduler",
@@ -16307,14 +16309,14 @@
       "aiida_version": null,
       "entry_points": {},
       "commits_count": 23,
-      "warnings": [
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/atztogo/aiida-nims-scheduler/master/setup.json",
-        "AiiDA version not found",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/atztogo/aiida-nims-scheduler",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-nims-scheduler",
+        "Failed to import package aiida_nims_scheduler",
+        "Failed to fetch entry point metadata for package aiida_nims_scheduler"
+      ]
     },
     "aiida-nwchem": {
       "code_home": "https://github.com/aiidateam/aiida-nwchem",
@@ -16797,7 +16799,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-nwchem",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-nwchem",
+        "Failed to import package aiida_nwchem",
+        "Failed to fetch entry point metadata for package aiida_nwchem"
+      ]
     },
     "aiida-open_circuit_voltage": {
       "entry_point_prefix": "quantumespresso.ocv",
@@ -16827,9 +16834,6 @@
       },
       "commits_count": 27,
       "development_status": "alpha",
-      "warnings": [
-        "Prefix 'quantumespresso.ocv' does not follow naming convention."
-      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -17219,7 +17223,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-optimize",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-optimize",
+        "Failed to import package aiida_optimize",
+        "Failed to fetch entry point metadata for package aiida_optimize"
+      ]
     },
     "aiida-orca": {
       "code_home": "https://github.com/pzarabadip/aiida-orca",
@@ -17372,9 +17381,6 @@
         }
       },
       "commits_count": 40,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -17393,7 +17399,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/pzarabadip/aiida-orca",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-orca",
+        "Failed to import package aiida_orca",
+        "Failed to fetch entry point metadata for package aiida_orca"
+      ]
     },
     "aiida-phonopy": {
       "code_home": "https://github.com/aiida-phonopy/aiida-phonopy",
@@ -17926,7 +17937,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-phonopy",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-phonopy",
+        "Failed to import package aiida_phonopy",
+        "Failed to fetch entry point metadata for package aiida_phonopy"
+      ]
     },
     "aiida-phtools": {
       "code_home": "https://github.com/ltalirz/aiida-phtools",
@@ -17964,9 +17980,6 @@
       },
       "commits_count": 0,
       "development_status": "planning",
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -18051,7 +18064,12 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-plumed",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-plumed",
+        "Failed to import package aiida_plumed",
+        "Failed to fetch entry point metadata for package aiida_plumed"
+      ]
     },
     "aiida-porousmaterials": {
       "code_home": "https://github.com/pzarabadip/aiida-porousmaterials",
@@ -18203,11 +18221,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -18221,7 +18234,12 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-porousmaterials",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-porousmaterials",
+        "Failed to import package aiida_porousmaterials",
+        "Failed to fetch entry point metadata for package aiida_porousmaterials"
+      ]
     },
     "aiida-pseudo": {
       "code_home": "https://github.com/aiidateam/aiida-pseudo",
@@ -18290,7 +18308,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-pseudo",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-pseudo",
+        "Failed to import package aiida_pseudo",
+        "Failed to fetch entry point metadata for package aiida_pseudo"
+      ]
     },
     "aiida-psi4": {
       "code_home": "https://github.com/ltalirz/aiida-psi4/tree/master",
@@ -18429,9 +18452,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -18450,7 +18470,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/ltalirz/aiida-psi4",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-psi4",
+        "Failed to import package aiida_psi4",
+        "Failed to fetch entry point metadata for package aiida_psi4"
+      ]
     },
     "aiida-pyscf": {
       "code_home": "https://github.com/microsoft/aiida-pyscf",
@@ -18837,7 +18862,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-pyscf",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-pyscf",
+        "Failed to import package aiida_pyscf",
+        "Failed to fetch entry point metadata for package aiida_pyscf"
+      ]
     },
     "aiida-python": {
       "entry_point_prefix": "aiidapython",
@@ -18850,11 +18880,6 @@
       "entry_points": {},
       "commits_count": 45,
       "development_status": "planning",
-      "warnings": [
-        "Cannot fetch all data from PyPI and missing plugin_info key!",
-        "AiiDA version not found",
-        "Prefix 'aiidapython' does not follow naming convention."
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -19079,10 +19104,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -19101,7 +19122,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-qeq",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-qeq",
+        "Failed to import package aiida_qeq",
+        "Failed to fetch entry point metadata for package aiida_qeq"
+      ]
     },
     "aiida-qp2": {
       "code_home": "https://github.com/TREX-CoE/aiida-qp2",
@@ -19265,10 +19291,6 @@
       },
       "commits_count": 0,
       "development_status": "beta",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -19282,7 +19304,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-qp2",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-qp2",
+        "Failed to import package aiida_qp2",
+        "Failed to fetch entry point metadata for package aiida_qp2"
+      ]
     },
     "aiida-quantumespresso": {
       "code_home": "https://github.com/aiidateam/aiida-quantumespresso",
@@ -24249,10 +24276,6 @@
       },
       "commits_count": 92,
       "development_status": "stable",
-      "warnings": [
-        "Entry point 'noncollinearhydrogen' does not start with prefix 'quantumespresso.'",
-        "Entry point 'spinorbithydrogen' does not start with prefix 'quantumespresso.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24286,7 +24309,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-quantumespresso",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-quantumespresso",
+        "Failed to import package aiida_quantumespresso",
+        "Failed to fetch entry point metadata for package aiida_quantumespresso"
+      ]
     },
     "aiida-quantumespresso-hp": {
       "code_home": "https://github.com/sphuber/aiida-quantumespresso-hp",
@@ -24329,10 +24357,6 @@
       },
       "commits_count": 0,
       "development_status": "beta",
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "Prefix 'quantumespresso.hp' does not follow naming convention."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24356,7 +24380,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/sphuber/aiida-quantumespresso-hp",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-quantumespresso-hp",
+        "Failed to import package aiida_quantumespresso_hp",
+        "Failed to fetch entry point metadata for package aiida_quantumespresso_hp"
+      ]
     },
     "aiida-raspa": {
       "code_home": "https://github.com/yakutovicha/aiida-raspa",
@@ -24681,7 +24710,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-raspa",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-raspa",
+        "Failed to import package aiida_raspa",
+        "Failed to fetch entry point metadata for package aiida_raspa"
+      ]
     },
     "aiida-shell": {
       "code_home": "https://github.com/sphuber/aiida-shell",
@@ -24878,9 +24912,6 @@
       },
       "commits_count": 46,
       "development_status": "alpha",
-      "warnings": [
-        "Prefix 'core' does not follow naming convention."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -24899,7 +24930,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-shell",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-shell",
+        "Failed to import package aiida_shell",
+        "Failed to fetch entry point metadata for package aiida_shell"
+      ]
     },
     "aiida-siesta": {
       "code_home": "https://github.com/siesta-project/aiida_siesta_plugin/tree/master",
@@ -24930,13 +24966,14 @@
       "entry_points": {},
       "commits_count": 8,
       "development_status": "stable",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.github.com/siesta-project/aiida_siesta_plugin/master/setup.json"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install aiida-siesta",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-siesta",
+        "Failed to import package aiida_siesta",
+        "Failed to fetch entry point metadata for package aiida_siesta"
+      ]
     },
     "aiida-spex": {
       "code_home": "https://github.com/JuDFTteam/aiida-spex",
@@ -25034,10 +25071,6 @@
       },
       "commits_count": 9,
       "development_status": "planning",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -25065,10 +25098,6 @@
       "entry_points": {},
       "commits_count": 13,
       "development_status": "planning",
-      "warnings": [
-        "Cannot fetch all data from PyPI and missing plugin_info key!",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/edan-bainglass/aiida-ssh2win"
     },
@@ -25103,10 +25132,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
-        "Entry point 'ssh_only' does not start with prefix 'sshonly.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -25115,7 +25140,12 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-sshonly",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-sshonly",
+        "Failed to import package aiida_sshonly",
+        "Failed to fetch entry point metadata for package aiida_sshonly"
+      ]
     },
     "aiida-statefile-schedulers": {
       "code_home": "https://github.com/dev-zero/aiida-statefile-schedulers",
@@ -25148,11 +25178,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -25161,7 +25186,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-statefile-schedulers",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-statefile-schedulers",
+        "Failed to import package aiida_statefile_schedulers",
+        "Failed to fetch entry point metadata for package aiida_statefile_schedulers"
+      ]
     },
     "aiida-strain": {
       "code_home": "https://github.com/greschd/aiida-strain",
@@ -25328,10 +25358,6 @@
       },
       "commits_count": 0,
       "development_status": "alpha",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -25340,7 +25366,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-strain",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-strain",
+        "Failed to import package aiida_strain",
+        "Failed to fetch entry point metadata for package aiida_strain"
+      ]
     },
     "aiida-supercell": {
       "code_home": "https://github.com/pzarabadip/aiida-supercell",
@@ -25519,10 +25550,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -25536,7 +25563,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/pzarabadip/aiida-supercell",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-supercell",
+        "Failed to import package aiida_supercell",
+        "Failed to fetch entry point metadata for package aiida_supercell"
+      ]
     },
     "aiida-symmetry-representation": {
       "code_home": "https://github.com/greschd/aiida_symmetry_representation",
@@ -25690,10 +25722,6 @@
       },
       "commits_count": 0,
       "development_status": "stable",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -25707,7 +25735,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-symmetry-representation",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-symmetry-representation",
+        "Failed to import package aiida_symmetry_representation",
+        "Failed to fetch entry point metadata for package aiida_symmetry_representation"
+      ]
     },
     "aiida-tbextraction": {
       "code_home": "https://github.com/greschd/aiida-tbextraction",
@@ -25754,10 +25787,6 @@
       },
       "commits_count": 0,
       "development_status": "beta",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "green",
@@ -25766,7 +25795,10 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-tbextraction",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-tbextraction"
+      ]
     },
     "aiida-tbmodels": {
       "code_home": "https://github.com/greschd/aiida-tbmodels",
@@ -26236,10 +26268,6 @@
       },
       "commits_count": 0,
       "development_status": "alpha",
-      "warnings": [
-        "No bdist_wheel available for PyPI release",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -26253,7 +26281,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-tbmodels",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-tbmodels",
+        "Failed to import package aiida_tbmodels",
+        "Failed to fetch entry point metadata for package aiida_tbmodels"
+      ]
     },
     "aiida-tcod": {
       "code_home": "https://github.com/aiidateam/aiida-tcod",
@@ -26279,10 +26312,6 @@
         }
       },
       "commits_count": 0,
-      "warnings": [
-        "Missing classifier 'Framework :: AiiDA'",
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "orange",
@@ -26291,7 +26320,12 @@
         }
       ],
       "pip_install_cmd": "pip install git+https://github.com/aiidateam/aiida-tcod",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-tcod",
+        "Failed to import package aiida_tcod",
+        "Failed to fetch entry point metadata for package aiida_tcod"
+      ]
     },
     "aiida-uppasd": {
       "code_home": "https://github.com/uppasd/aiida-uppasd",
@@ -26325,10 +26359,6 @@
       },
       "commits_count": 0,
       "development_status": "planning",
-      "warnings": [
-        "Entry point 'UppASD_core_calculations' does not start with prefix 'uppasd.'",
-        "Entry point 'UppASD_core_parsers' does not start with prefix 'uppasd.'"
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -29614,7 +29644,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-vasp",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-vasp",
+        "Failed to import package aiida_vasp",
+        "Failed to fetch entry point metadata for package aiida_vasp"
+      ]
     },
     "aiida-vibroscopy": {
       "entry_point_prefix": "vibroscopy",
@@ -30371,7 +30406,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-vibroscopy",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-vibroscopy",
+        "Failed to import package aiida_vibroscopy",
+        "Failed to fetch entry point metadata for package aiida_vibroscopy"
+      ]
     },
     "aiida-wannier90": {
       "code_home": "https://github.com/aiidateam/aiida-wannier90",
@@ -30989,7 +31029,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-wannier90",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-wannier90",
+        "Failed to import package aiida_wannier90",
+        "Failed to fetch entry point metadata for package aiida_wannier90"
+      ]
     },
     "aiida-wannier90-workflows": {
       "code_home": "https://github.com/aiidateam/aiida-wannier90-workflows",
@@ -31047,9 +31092,6 @@
         }
       },
       "commits_count": 40,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -31073,7 +31115,11 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-wannier90-workflows",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-wannier90-workflows",
+        "Failed to import package aiida_wannier90_workflows"
+      ]
     },
     "aiida-wien2k": {
       "code_home": "https://github.com/rubel75/aiida-wien2k",
@@ -31086,10 +31132,6 @@
       "entry_points": {},
       "commits_count": 7,
       "development_status": "planning",
-      "warnings": [
-        "Cannot fetch all data from PyPI and missing plugin_info key!",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "See source code repository."
     },
@@ -31328,9 +31370,6 @@
         }
       },
       "commits_count": 77,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -31344,7 +31383,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-yambo",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-yambo",
+        "Failed to import package aiida_yambo",
+        "Failed to fetch entry point metadata for package aiida_yambo"
+      ]
     },
     "aiida-yambo-wannier90": {
       "code_home": "https://github.com/aiidaplugins/aiida-yambo-wannier90",
@@ -31410,7 +31454,11 @@
         }
       ],
       "pip_install_cmd": "pip install --pre aiida-yambo-wannier90",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-yambo-wannier90",
+        "Failed to import package aiida_yambo_wannier90"
+      ]
     },
     "aiida-yascheduler": {
       "code_home": "https://github.com/tilde-lab/yascheduler",
@@ -31460,9 +31508,6 @@
       },
       "commits_count": 54,
       "development_status": "beta",
-      "warnings": [
-        "AiiDA version not found"
-      ],
       "summaryinfo": [
         {
           "colorclass": "purple",
@@ -31476,7 +31521,10 @@
         }
       ],
       "pip_install_cmd": "pip install yascheduler",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-yascheduler"
+      ]
     },
     "aiida-z2pack": {
       "code_home": "https://github.com/AntimoMarrazzo/aiida-z2pack",
@@ -31490,10 +31538,6 @@
       "entry_points": {},
       "commits_count": 18,
       "development_status": "planning",
-      "warnings": [
-        "  > WARNING! Unable to retrieve plugin info from: https://raw.githubusercontent.com/antimomarrazzo/aiida-z2pack/master/setup.json",
-        "AiiDA version not found"
-      ],
       "summaryinfo": [],
       "pip_install_cmd": "pip install git+https://github.com/AntimoMarrazzo/aiida-z2pack"
     },
@@ -31672,9 +31716,6 @@
         }
       },
       "commits_count": 4,
-      "warnings": [
-        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
-      ],
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -31693,7 +31734,12 @@
         }
       ],
       "pip_install_cmd": "pip install aiida-zeopp",
-      "is_installable": "True"
+      "is_installable": "True",
+      "warnings": [
+        "Failed to install plugin aiida-zeopp",
+        "Failed to import package aiida_zeopp",
+        "Failed to fetch entry point metadata for package aiida_zeopp"
+      ]
     }
   },
   "globalsummary": [
