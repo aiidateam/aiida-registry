@@ -10,7 +10,9 @@ import os
 import sys
 from dataclasses import asdict, dataclass
 
-from . import PLUGINS_METADATA
+from aiida_registry.fetch_metadata import add_registry_checks
+
+from . import PLUGINS_METADATA, REPORTER
 
 # Where to mount the workdir inside the Docker container
 _DOCKER_WORKDIR = "/tmp/scripts"
@@ -72,6 +74,7 @@ def handle_error(process_result, message):
 
     if process_result.exit_code != 0:
         error_message = process_result.output.decode("utf8")
+        REPORTER.warn(f"{message}\n{error_message}")
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -87,6 +90,7 @@ def test_install_one_docker(container_image, plugin):
     is_package_importable = False
     process_metadata = {}
     error_message = ""
+    REPORTER.set_plugin_name(plugin["name"])
 
     print("   - Starting container for {}".format(plugin["name"]))
     container = client.containers.run(
@@ -218,6 +222,8 @@ def test_install_all(container_image):
                         ] = process_metadata[ep_group][key]
             except KeyError:
                 continue
+
+    data = add_registry_checks(data, include_errors=True)
 
     print("Dumping plugins.json")
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:

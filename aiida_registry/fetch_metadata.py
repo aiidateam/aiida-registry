@@ -32,7 +32,10 @@ from .parse_build_file import get_data_parser, identify_build_tool
 from .parse_pypi import PypiData, get_pypi_metadata
 from .utils import fetch_file
 
-GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
+try:
+    GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
+except KeyError:
+    GITHUB_TOKEN = ""
 
 
 @lru_cache(maxsize=None)
@@ -354,12 +357,16 @@ def is_pip_url_pypi(string: str) -> bool:
     return PYPI_NAME_RE.match(string) is not None
 
 
-def add_warnings(metadata):
-    """Add fetch warnings to the data object."""
+def add_registry_checks(metadata, include_errors=False):
+    """Add fetch warnings/errors to the data object."""
     plugins_warnings = REPORTER.plugins_warnings
 
-    for name, warnings in plugins_warnings.items():
-        metadata[name]["warnings"] = warnings
+    if include_errors:
+        for name, error_list in plugins_warnings.items():
+            metadata["plugins"][name]["errors"] = error_list
+    else:
+        for name, warning_list in plugins_warnings.items():
+            metadata[name]["warnings"] = warning_list
 
     return metadata
 
@@ -379,9 +386,7 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
         plugins_metadata[plugin_name] = complete_plugin_data(
             plugin_data, fetch_pypi=fetch_pypi, fetch_pypi_wheel=fetch_pypi_wheel
         )
-
-    plugins_metadata = add_warnings(plugins_metadata)
-
+    plugins_metadata = add_registry_checks(plugins_metadata)
     REPORTER.info(f"{PLUGINS_METADATA} dumped")
 
     if os.environ.get("GITHUB_ACTIONS") == "true":
