@@ -1,0 +1,18 @@
+---
+name: Build environment
+description: Create build environment
+
+runs:
+    using: composite
+    steps:
+        - name: Set Up Python 🐍
+          uses: actions/setup-python@v4
+          with:
+              python-version: "3.10"
+              cache: "pip"
+
+        - name: Install Dev Dependencies 📦
+          run: |
+              pip install -U pip
+              pip install -U -e .[dev]
+          shell: bash

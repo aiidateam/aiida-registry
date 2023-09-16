@@ -32,10 +32,7 @@ from .parse_build_file import get_data_parser, identify_build_tool
 from .parse_pypi import PypiData, get_pypi_metadata
 from .utils import fetch_file
 
-try:
-    GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
-except KeyError:
-    GITHUB_TOKEN = ""
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
 
 @lru_cache(maxsize=None)
@@ -99,10 +96,15 @@ def get_github_commits_count(repo_url):
     today = datetime.today().date()
     last_twelve_months = today - timedelta(days=365)
 
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json",
-    }
+    # Run locally without GITHUB_TOKEN
+    if GITHUB_TOKEN is None:
+        headers = {"Accept": "application/vnd.github+json"}
+    else:
+        headers = {
+            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Accept": "application/vnd.github+json",
+        }
+
     params = {
         "since": last_twelve_months.isoformat(),
         "until": today.isoformat(),
@@ -175,6 +177,9 @@ def complete_plugin_data(
     if plugin_data["hosted_on"] == "github.com" and GITHUB_TOKEN:
         commits_count = get_github_commits_count(plugin_data["code_home"])
     else:
+        # when running locally, we don't have a GITHUB_TOKEN
+        # all the repositories are cloned locally
+        # this may take a while (10s per plugin)
         try:
             clone_repository(plugin_data["code_home"], plugin_data["name"])
             commits_count = get_git_commits_count(plugin_data["name"])

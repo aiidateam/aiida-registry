@@ -1,0 +1,5 @@
+# This file is also used as the placeholder for the folder
+# because github action will cp newly generated plugins_metadata.json
+# to the folder, and the folder will be committed to the repo
+
+*
