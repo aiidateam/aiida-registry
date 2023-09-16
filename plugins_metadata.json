@@ -5922,7 +5922,7 @@
           "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
         }
       },
-      "commits_count": 360,
+      "commits_count": 361,
       "summaryinfo": [
         {
           "colorclass": "blue",
@@ -16669,7 +16669,7 @@
           "quantumespresso.ocv.ocvwc": "aiida_open_circuit_voltage.workflows.workchain:OCVWorkChain"
         }
       },
-      "commits_count": 27,
+      "commits_count": 26,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -18644,7 +18644,7 @@
           }
         }
       },
-      "commits_count": 66,
+      "commits_count": 67,
       "development_status": "alpha",
       "summaryinfo": [
         {
@@ -29333,7 +29333,7 @@
           "mock-vasp-strict": "aiida_vasp.commands.mock_vasp:mock_vasp_strict"
         }
       },
-      "commits_count": 102,
+      "commits_count": 101,
       "development_status": "stable",
       "summaryinfo": [
         {
