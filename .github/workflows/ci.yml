@@ -68,6 +68,8 @@ jobs:
       working-directory: ./aiida-registry-app
 
   preview:
+    # This job is triggered by (only) a PR.
+    if: github.event_name == 'pull_request'
     needs: [test-webpage-build]
     runs-on: ubuntu-latest
     strategy:
@@ -112,3 +114,6 @@ jobs:
         umbrella-dir: pr-preview
         action: auto
         custom-url:
+      # preview will failed if the PR is from a forked repo
+      # should be fixed after https://github.com/aiidateam/aiida-registry/issues/272
+      if: (!github.event.pull_request.head.repo.fork)

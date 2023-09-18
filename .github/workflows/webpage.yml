@@ -26,16 +26,11 @@ jobs:
     - name: Create dev environment
       uses: ./.github/actions/create-dev-env
 
-    - name: fetch metadata
-      id: fetch_metadata
-      env:
-        # Use the GITHUB_TOKEN for github API calls
-        # otherwise the rate limit will be exceeded
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: aiida-registry fetch
-    - name: Check plugins installation
-      # This step will attach plugin installation inforamtion to the metadata, e.g. if the plugin can be installed or not
-      run: aiida-registry test-install
+    - name: Generate metadata
+      uses: ./.github/actions/generate-metadata
+      with:
+        gh_token: ${{ secrets.GITHUB_TOKEN }}
+        cache: false
 
     - name: Move JSON file to the React project
       run: |
