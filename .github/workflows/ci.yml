@@ -68,6 +68,8 @@ jobs:
       working-directory: ./aiida-registry-app
 
   preview:
+    # This job is triggered by (only) a PR to the main branch (not from a fork, not from push)
+    if: (!github.event.pull_request.head.repo.fork) && github.event_name == 'pull_request'
     needs: [test-webpage-build]
     runs-on: ubuntu-latest
     strategy:
