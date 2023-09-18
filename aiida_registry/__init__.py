@@ -9,7 +9,7 @@
 
 import os
 
-__version__ = "0.1.0"
+__version__ = "0.3.0"
 
 # Absolute paths
 pwd = os.path.split(os.path.abspath(__file__))[0]

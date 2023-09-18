@@ -1,0 +1,51 @@
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "aiida-registry"
+dynamic = ["version"]  # read from aiida_registry/__init__.py
+description = "Registry of AiiDA plugins"
+authors = [{name = "The AiiDA team", email = "developers@aiida.net"}]
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: AiiDA",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering"
+]
+keywords = ["aiida", "workflows"]
+requires-python = ">=3.9"
+dependencies = [
+    "jinja2~=2.11",
+    "requests~=2.28.1",
+    "requests-cache~=0.5.2",
+    "requirements-parser~=0.2.0",
+    "poetry~=1.1.15",
+    "tomlkit",
+    "click~=7.1",
+    "pyyaml~=6.0",
+    "docker~=5.0",
+    # https://github.com/aws/aws-sam-cli/issues/3661
+    "markupsafe~=2.0.1",
+    # dev dependencies
+    "pre-commit~=2.2",
+    "pylint~=2.16.1",
+    "pytest~=6.2.2",
+    "pytest-regressions~=2.5.0",
+]
+
+[project.urls]
+Home = "https://aiida-registry.github.io/"
+Documentation = "https://github.com/aiidateam/aiida-registry/wiki"
+Source = "https://github.com/aiidateam/aiida-core"
+
+[project.scripts]
+aiida-registry = "aiida_registry.cli:cli"

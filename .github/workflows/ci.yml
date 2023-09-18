@@ -11,141 +11,104 @@ concurrency:
 jobs:
 
   pre-commit:
-
     runs-on: ubuntu-latest
-    timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v3
-      with:
-        python-version: 3.8
-    - name: Install prerequisites
-      run: pip install --upgrade pip
-    - name: Install
-      run: pip install -e .[pre-commit]
+    - name: Checkout Repo ⚡️
+      uses: actions/checkout@v3
+    - name: Create dev environment
+      uses: ./.github/actions/create-dev-env
     - name: Run pre-commit
       run:
         pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
 
-  test-webpage-build:
+  test-utils:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v2
-    - run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Install prerequisites
-      run: pip install --upgrade wheel setuptools
-    - name: Install
-      run: pip install -e . -v
-
-    - name: Restore cached Plugins
-      id: cache-plugins-restore
-      uses: actions/cache/restore@v3
-      with:
-        path: |
-          plugins_metadata.json
-        key: plugins_metadata
-
-    - name: fetch metadata
-      if: steps.cache-plugins-restore.outputs.cache-hit != 'true'
-      id: fetch_metadata
+    - name: Checkout Repo ⚡️
+      uses: actions/checkout@v3
+    - name: Create dev environment
+      uses: ./.github/actions/create-dev-env
+    - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: aiida-registry fetch
+      run: pytest tests/
 
-    - name: Cache plugins metadata
-      id: cache-plugins-save
-      uses: actions/cache/save@v3
+  test-webpage-build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    timeout-minutes: 30
+
+    # This is a CI job that checks if the webpage can be built
+    # We use the plugins metadata from caching since we don't want to
+    # fetch it twice and it is not essential for this job to have
+    # the latest generated metadata
+    steps:
+    - name: Checkout Repo ⚡️
+      uses: actions/checkout@v3
+    - name: Create dev environment
+      uses: ./.github/actions/create-dev-env
+
+    - name: Generate metadata
+      uses: ./.github/actions/generate-metadata
       with:
-        path: |
-          plugins_metadata.json
-        key: ${{ steps.cache-plugins-restore.outputs.cache-primary-key }}
+        gh_token: ${{ secrets.GITHUB_TOKEN }}
+        cache: true
 
-    - name: Move JSON file to the React project
-      run: |
-        mv plugins_metadata.json aiida-registry-app/src/
     - uses: actions/setup-node@v3
       with:
         node-version: '18.x'
     - name: Install npm dependencies and build
       run: |
+        echo $VITE_PR_PREVIEW_PATH
         npm install
         npm run build
       working-directory: ./aiida-registry-app
 
-  install-plugins:
+  preview:
+    needs: [test-webpage-build]
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        python-version: [3.8]
       fail-fast: false
-    timeout-minutes: 55
+    timeout-minutes: 60
+    env:
+      COMMIT_AUTHOR: Deploy Action
+      COMMIT_AUTHOR_EMAIL: action@github.com
+      VITE_PR_PREVIEW_PATH: "/aiida-registry/pr-preview/pr-${{ github.event.number }}/"
 
+    # This is a CI job that checks if the webpage can be built
+    # We use the plugins metadata from caching since we don't want to
+    # fetch it twice and it is not essential for this job to have
+    # the latest generated metadata
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - name: Checkout Repo ⚡️
+      uses: actions/checkout@v3
+    - name: Create dev environment
+      uses: ./.github/actions/create-dev-env
+
+    - name: Generate metadata
+      uses: ./.github/actions/generate-metadata
       with:
-        python-version: ${{ matrix.python-version }}
-    # Idea: create individual conda env for every tested package
-    # - uses: goanpeca/setup-miniconda@v1
-    #   with:
-    #     # auto-update-conda: true
-    #     python-version: ${{ matrix.python-version }}
-    - name: Install prerequisites
-      run: pip install --upgrade pip
-    - name: Install
-      run: pip install -e . -v
-    - name: Restore cached Plugins
-      id: cache-plugins-restore
-      uses: actions/cache/restore@v3
+        gh_token: ${{ secrets.GITHUB_TOKEN }}
+        cache: false
+
+    - uses: actions/setup-node@v3
       with:
-        path: |
-          plugins_metadata.json
-        key: plugins_metadata
+        node-version: '18.x'
+    - name: Install npm dependencies and build
+      run: |
+        echo $VITE_PR_PREVIEW_PATH
+        npm install
+        npm run build
+      working-directory: ./aiida-registry-app
 
-    - name: fetch metadata
-      if: steps.cache-plugins-restore.outputs.cache-hit != 'true'
-      id: fetch_metadata
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: aiida-registry fetch
-
-#     # See https://github.com/geerlingguy/raspberry-pi-dramble/issues/166
-#     - name: Force GitHub Actions' docker daemon to use vfs.
-#       run: |
-#         sudo systemctl stop docker
-#         echo '{"cgroup-parent":"/actions_job","storage-driver":"vfs"}' | sudo tee /etc/docker/daemon.json
-#         sudo systemctl start docker
-
-    - name: Try installing packages
-      run: aiida-registry test-install
-
-  unit-tests:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
-    timeout-minutes: 5
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - name: Deploy preview
+      uses: rossjrw/pr-preview-action@v1
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install prerequisites
-      run: pip install --upgrade pip
-    - name: Install
-      run: pip install -e .[testing] -v
-    - name: Run tests
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: pytest tests/
+        source-dir: ./aiida-registry-app/dist
+        preview-branch: gh-pages
+        umbrella-dir: pr-preview
+        action: auto
+        custom-url:

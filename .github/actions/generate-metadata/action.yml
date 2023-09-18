@@ -1,0 +1,49 @@
+---
+name: Build environment
+description: Create build environment
+
+inputs:
+    gh_token:
+        description: GitHub token
+        required: true
+        type: string
+    cache:
+        description: use caching or not
+        required: true
+        type: boolean
+
+runs:
+    using: composite
+    steps:
+        - name: Restore cached Plugins
+          id: cache-plugins-restore
+          uses: actions/cache/restore@v3
+          with:
+            path: plugins_metadata.json
+            key: plugins_metadata
+
+        - name: fetch metadata
+          if: ${{ inputs.cache == 'false' }}
+          id: fetch_metadata
+          env:
+            GITHUB_TOKEN: ${{ inputs.gh_token }}
+          run: aiida-registry fetch
+          shell: bash
+        - name: Check plugins installation
+          if: ${{ inputs.cache == 'false' }}
+          # This step will attach plugin installation inforamtion to the metadata, e.g. if the plugin can be installed or not
+          run: aiida-registry test-install
+          shell: bash
+        - name: Cache plugins metadata
+          if: ${{ inputs.cache == 'false' }}
+          id: cache-plugins-save
+          uses: actions/cache/save@v3
+          with:
+            path: plugins_metadata.json
+            key: ${{ steps.cache-plugins-restore.outputs.cache-primary-key }}
+
+        - name: Move JSON file to the React project
+          run: |
+            cp plugins_metadata.json aiida-registry-app/src/
+            cp plugins_metadata.json aiida-registry-app/dist/
+          shell: bash
