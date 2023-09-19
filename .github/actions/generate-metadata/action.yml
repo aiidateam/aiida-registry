@@ -61,7 +61,10 @@ runs:
 
         - name: Check installation of plugins
           if: ${{ inputs.cache == 'false' }}
+          # This step will attach plugin installation inforamtion to the metadata, e.g. if the plugin can be installed or not
+          # Make sure the folder is writable
           run: |
+            umask 000 && chmod +w ../aiida-registry
             aiida-registry test-install
           shell: bash
 
