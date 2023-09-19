@@ -107,6 +107,10 @@ def test_install_one_docker(container_image, plugin):
             install_package, f"Failed to install plugin {plugin['name']}"
         )
 
+        # Should make this depend on the AiiDA version inside the container,
+        # at least after 2.0 is out that removes reentry
+        _reentry_scan = container.exec_run("reentry scan -r aiida")
+
         is_package_installed = True
 
         if "package_name" not in list(plugin.keys()):
