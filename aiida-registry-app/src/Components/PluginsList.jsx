@@ -122,7 +122,7 @@ function CheckMark() {
           <DialogContent>
             <DialogContentText>
               This check mark indicates that this plugin was installed successfully inside the latest
-              <a rel='noopener noreferrer'  tanget='_blank' href='https://hub.docker.com/r/aiidateam/aiida-core'><code> aiida-core</code> docker image</a>.
+              <a rel='noopener noreferrer'  target='_blank' href='https://hub.docker.com/r/aiidateam/aiida-core'><code> aiida-core</code> docker image</a>.
               For in-depth compatibility tests see the source code repository of the plugin.
             </DialogContentText>
           </DialogContent>
