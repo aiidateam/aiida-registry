@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-    timeout-minutes: 90
+    timeout-minutes: 180
     env:
       COMMIT_AUTHOR: Deploy Action
       COMMIT_AUTHOR_EMAIL: action@github.com
