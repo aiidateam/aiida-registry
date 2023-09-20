@@ -84,7 +84,7 @@ def test_install_one_docker(container_image, plugin):
     """Test installing one plugin in a Docker container."""
     import docker  # pylint: disable=import-outside-toplevel
 
-    client = docker.from_env(timeout=180)
+    client = docker.from_env(timeout=120)
 
     is_package_installed = False
     is_package_importable = False
