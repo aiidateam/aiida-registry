@@ -72,3 +72,22 @@ The development status of a plugin used to be recorded explicitly on the plugin 
 Over time, we've moved closer and closer to adopting the [development status trove classifer](https://pypi.org/classifiers/), so we now suggest to just use those in your `setup.json`/`setup.cfg`/... file of your plugin.
 
 If no development status is specified, the status will default to 'planning'.
+
+## How to run the registry check locally
+
+You may want to check that your plugin is correctly registered before making the changes to your plugin repository.
+To do so, you can run the registry check locally.
+
+Clone this repository and install the dependencies:
+```bash
+git clone https://github.com/aiidateam/aiida-registry.git
+pip install aiida-registry
+```
+
+Fetch the metadata and run installation test or your plugin
+```bash
+aiida-registry fetch-metadata <plugin-name>
+aiida-registry test-install
+```
+
+You'll see the warnings and errors as what you can see from the registry page.
