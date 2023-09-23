@@ -88,7 +88,7 @@ function Details({pluginKey}) {
           {value.errors && (
             <>
           {value.errors.map((error) => (
-            <Alert severity="error"><pre>{error}</pre></Alert>
+            <Alert severity="error">{error}</Alert>
           ))}
             </>
           )}

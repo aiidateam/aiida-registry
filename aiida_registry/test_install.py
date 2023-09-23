@@ -74,7 +74,10 @@ def handle_error(process_result, message):
 
     if process_result.exit_code != 0:
         error_message = process_result.output.decode("utf8")
-        REPORTER.error(f"{message}\n{error_message}")
+        REPORTER.error(f"{message}")
+
+        # the error_message is formatted as code block
+        REPORTER.error(f"<pre>{error_message}</pre>")
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
