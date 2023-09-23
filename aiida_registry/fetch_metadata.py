@@ -30,7 +30,7 @@ from . import (
 )
 from .parse_build_file import get_data_parser, identify_build_tool
 from .parse_pypi import PypiData, get_pypi_metadata
-from .utils import fetch_file
+from .utils import add_registry_checks, fetch_file
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
@@ -44,28 +44,6 @@ def load_plugins_metadata(json_file_path):
     except FileNotFoundError:
         print(f"Error: The file '{json_file_path}' was not found.")
         return None
-
-
-def get_last_fetched_version(plugin_name):
-    """
-    Get the last fetched version of the plugin.
-
-    Args:
-        plugin_name (str): Name of the plugin.
-
-    Returns:
-        str or None: Version of the plugin if available, or None if not found.
-    """
-    json_file_path = "./cloned_plugins_metadata.json"
-    metadata = load_plugins_metadata(json_file_path)
-
-    if metadata is not None:
-        try:
-            return metadata["plugins"][plugin_name]["metadata"]["version"]
-        except KeyError:
-            print("No version for the plugin")
-
-    return None
 
 
 def get_hosted_on(url):
@@ -236,16 +214,6 @@ def complete_plugin_data(
                     plugin_data["aiida_version"] = data.aiida_version
                     plugin_data["entry_points"] = data.entry_points
 
-    current_version = get_last_fetched_version(plugin_data["name"])
-    if current_version:
-        try:
-            if current_version != plugin_data["metadata"]["version"]:
-                plugin_data["metadata"]["release_date"] = datetime.today().strftime(
-                    "%Y-%m-%d"
-                )
-        except KeyError:
-            print("no version for the plugin")
-
     # ensure entry points are not None
     plugin_data["entry_points"] = plugin_data.get("entry_points") or {}
 
@@ -360,20 +328,6 @@ def is_pip_url_pypi(string: str) -> bool:
     """Check if the `pip_url` points to a PyPI package."""
     # for example git+https://... is not a PyPI package
     return PYPI_NAME_RE.match(string) is not None
-
-
-def add_registry_checks(metadata, include_errors=False):
-    """Add fetch warnings/errors to the data object."""
-    plugins_warnings = REPORTER.plugins_warnings
-
-    if include_errors:
-        for name, error_list in plugins_warnings.items():
-            metadata["plugins"][name]["errors"] = error_list
-    else:
-        for name, warning_list in plugins_warnings.items():
-            metadata[name]["warnings"] = warning_list
-
-    return metadata
 
 
 def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
