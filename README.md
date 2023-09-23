@@ -15,6 +15,9 @@ We strongly encourage to **register at early stages of development**,
 since this both "reserves" the name of your plugin and informs the developer
 community of your ongoing work.
 
+By default, the list of plugins is now sorted by the latest release, so plugins that are under active development automatically bubble up to the top.
+The release date is determined by the date of the latest [PyPI](https://pypi.org/) release, so try to release to [PyPI](https://pypi.org/) whenever you make a new release of your plugin.
+
 ## How to register a plugin
 
 1. Fork this repository
@@ -73,7 +76,7 @@ Over time, we've moved closer and closer to adopting the [development status tro
 
 If no development status is specified, the status will default to 'planning'.
 
-## How to run the registry check locally
+## How to fix registry warnings and errors
 
 You may want to check that your plugin is correctly registered before making the changes to your plugin repository.
 To do so, you can run the registry check locally.
@@ -91,3 +94,47 @@ aiida-registry test-install
 ```
 
 You'll see the warnings and errors as what you can see from the registry page.
+
+### Warning/Error codes
+
+#### W001
+
+- **Message**: Cannot fetch all data from PyPI and missing plugin_info key!
+- **Cause**: The plugin is not registered on PyPI and the `plugin_info` key is missing.
+- **Solution**: Register your plugin on PyPI or add the `plugin_info` key pointing to the correct plugin_info file.
+
+#### W002
+
+- **Message**: AiiDA version not found
+- **Cause**: `aiida-core` is not found in the plugin requirements.
+- **Solution**: Add `aiida-core` to the plugin requirements with the version specifier.
+
+#### W003
+
+- **Message**: Missing classifier 'Framework :: AiiDA'
+- **Cause**: The plugin does not have the classifier `Framework :: AiiDA` in the plugin metadata (e.g. `setup.json`, `pyproject.toml`, `setup.cfg`).
+- **Solution**: Add the classifier `Framework :: AiiDA` to the plugin metadata.
+
+#### E001
+
+- **Message**: Failed to install the plugin
+- **Cause**: The plugin cannot be installed with `pip install --pre`.
+- **Solution**: Fix the installation of the plugin.
+
+#### E002
+
+- **Message**: Failed to import the plugin
+- **Cause**: The plugin cannot be imported.
+- **Solution**: Fix the import of the plugin.
+
+#### E003
+
+- **Message**: Failed to fetch entry point metadata for package
+- **Cause**: The entry point metadata cannot be fetched.
+- **Solution**: Check to see if the entry point metadata is correct.
+
+#### E004
+
+- **Message**: Unable to retrieve plugin metadata
+- **Cause**: The plugin metadata cannot be retrieved.
+- **Solution**: Check the URL of your plugin info URL in [plugins.yaml](plugins.yaml) is correct.
