@@ -10,7 +10,7 @@ import os
 import sys
 from dataclasses import asdict, dataclass
 
-from aiida_registry.fetch_metadata import add_registry_checks
+from aiida_registry.utils import add_registry_checks
 
 from . import PLUGINS_METADATA, REPORTER
 
@@ -74,7 +74,7 @@ def handle_error(process_result, message):
 
     if process_result.exit_code != 0:
         error_message = process_result.output.decode("utf8")
-        REPORTER.warn(f"{message}\n{error_message}")
+        REPORTER.error(f"{message}\n{error_message}")
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -223,7 +223,7 @@ def test_install_all(container_image):
             except KeyError:
                 continue
 
-    data = add_registry_checks(data, include_errors=True)
+        data["plugins"] = add_registry_checks(data["plugins"])
 
     print("Dumping plugins.json")
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:

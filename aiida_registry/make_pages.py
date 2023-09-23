@@ -142,12 +142,12 @@ def get_pip_install_cmd(plugin_data):
         return "pip install {}".format(pip_url)
 
 
-def make_pages():
+def make_pages(package=None):
     """
     Add additional information to the JSON data like plugins summary,
     global summary, pip install command, and static data.
     """
-    plugins_metadata = fetch_metadata()
+    plugins_metadata = fetch_metadata(filter_list=list(package))
 
     for plugin_name, plugin_data in plugins_metadata.items():
         print("  - {}".format(plugin_name))

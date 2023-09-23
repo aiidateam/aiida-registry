@@ -147,8 +147,10 @@ class Reporter:
     def __init__(self):
         """Initialize the reporter."""
         self.warnings = []
+        self.errors = []
         self.plugin_name = None
         self.plugins_warnings = {}
+        self.plugins_errors = {}
 
     def reset(self):
         """Reset the warnings list."""
@@ -174,6 +176,19 @@ class Reporter:
                 self.plugins_warnings[self.plugin_name] = [string]
         else:
             self.warnings.append(message)
+        print(message)
+
+    def error(self, string):
+        """Write to stdout and log."""
+        message = f"  > ERROR! {string}"
+        if self.plugin_name:
+            self.errors.append(f"{message} [{self.plugin_name}]")
+            try:
+                self.plugins_errors[self.plugin_name].append(string)
+            except KeyError:
+                self.plugins_errors[self.plugin_name] = [string]
+        else:
+            self.errors.append(message)
         print(message)
 
     def info(self, string):
