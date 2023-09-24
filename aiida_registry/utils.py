@@ -24,8 +24,7 @@ def fetch_file(file_url: str, warn=True) -> str:
         if warn:
             REPORTER.error(
                 "<a href='https://github.com/aiidateam/aiida-registry#E004'>E004</a>: "
-                f"Unable to retrieve plugin metadata, retrieve plugin info from {file_url} failed."
-                "</br>"
+                f"Unable to retrieve plugin metadata, retrieve plugin info from '{file_url}' failed."
                 f"<pre>{traceback.format_exc()}</pre>"
             )
             REPORTER.debug(traceback.format_exc())

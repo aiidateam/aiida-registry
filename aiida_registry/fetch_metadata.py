@@ -277,7 +277,7 @@ def validate_dev_status(plugin_data: dict):
     if "development_status" in plugin_data:
         REPORTER.warn(
             "<a href='https://github.com/aiidateam/aiida-registry#W006'>W006</a>: "
-            "`development_status` key is deprecated. "
+            "<code>development_status</code> key is deprecated. "
             "Use PyPI Trove classifiers in the plugin repository instead."
         )
     else:

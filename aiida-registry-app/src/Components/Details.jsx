@@ -94,7 +94,7 @@ function Details({pluginKey}) {
             </>
           )}
           <Alert severity="info">
-            Please check <a href="https://github.com/aiidateam/aiida-registry#how-to-fix-registry-warnings-and-errors">the registry checks troubleshooting guide</a> to see how to run checks locally to anchor and fix the warnings/errors.
+            Click the warning/error code will redirect to <a href="https://github.com/aiidateam/aiida-registry#how-to-fix-registry-warnings-and-errors">troubleshooting section</a> for the fix of the issue.
           </Alert>
         </>
       ) : (
