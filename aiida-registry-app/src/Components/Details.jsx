@@ -82,7 +82,7 @@ function Details({pluginKey}) {
           {value.warnings && (
             <>
             {value.warnings.map((warning) => (
-              <Alert severity="warning">{warning}</Alert>
+              <Alert severity="warning">{parse(`${warning}`)}</Alert>
             ))}
             </>
           )}

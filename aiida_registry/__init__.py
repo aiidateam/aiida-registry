@@ -165,30 +165,28 @@ class Reporter:
         self.plugins_warnings[self.plugin_name] = []
         self.plugins_errors[self.plugin_name] = []
 
-    def warn(self, string):
+    def warn(self, message):
         """Write to stdout and log.
 
         Used to display log in actions.
         """
-        message = f"  > WARNING! {string}"
         # Set the step output error message which can be used,
         # e.g., for display as part of an issue comment.
         if self.plugin_name:
             self.warnings.append(f"{message} [{self.plugin_name}]")
-            self.plugins_warnings[self.plugin_name].append(string)
+            self.plugins_warnings[self.plugin_name].append(message)
         else:
-            self.warnings.append(message)
-        print(message)
+            self.warnings.append(f"{message}")
+        print(f"{message}")
 
-    def error(self, string):
+    def error(self, message):
         """Write to stdout and log."""
-        message = f"  > ERROR! {string}"
         if self.plugin_name:
             self.errors.append(f"{message} [{self.plugin_name}]")
-            self.plugins_errors[self.plugin_name].append(string)
+            self.plugins_errors[self.plugin_name].append(message)
         else:
-            self.errors.append(message)
-        print(message)
+            self.errors.append(f"{message}")
+        print(f"{message}")
 
     def info(self, string):
         """Write to stdout."""
