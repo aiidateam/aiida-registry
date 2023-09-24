@@ -6,6 +6,7 @@ import jsonData from '../plugins_metadata.json'
 import './Details.css'
 import base64Icon from '../base64Icon';
 import Alert from '@mui/material/Alert';
+import parse from 'html-react-parser';
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const plugins  = jsonData["plugins"]
@@ -88,7 +89,7 @@ function Details({pluginKey}) {
           {value.errors && (
             <>
           {value.errors.map((error) => (
-            <Alert severity="error">{error}</Alert>
+            <Alert severity="error">{parse(`${error}`)}</Alert>
           ))}
             </>
           )}
