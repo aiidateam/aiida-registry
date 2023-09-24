@@ -100,9 +100,11 @@ function Details({pluginKey}) {
       <h2 id='detailed.information'>Detailed information</h2>
         {Object.keys(value.metadata).length !== 0 ? (
           <>
-            <p>
-              <strong>Author(s)</strong>: {value.metadata.author}
-            </p>
+            {value.metadata.author && (
+              <p>
+                <strong>Author(s)</strong>: {value.metadata.author}
+              </p>
+            )}
             {value.metadata.author_email && (
               <p>
                 <strong>Contact</strong>:
