@@ -76,7 +76,7 @@ def handle_error(process_result, message):
         error_message = process_result.output.decode("utf8")
 
         # the error_message is formatted as code block
-        REPORTER.error(f"{message}</br><pre>{error_message}</pre>")
+        REPORTER.error(f"{message}" "</br>" f"<pre>{error_message}</pre>")
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -106,7 +106,11 @@ def test_install_one_docker(container_image, plugin):
         install_package = container.exec_run(f'pip install --pre {plugin["pip_url"]}')
 
         error_message = handle_error(
-            install_package, f"Failed to install plugin {plugin['name']}"
+            install_package,
+            (
+                "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: "
+                f"Failed to install plugin {plugin['name']}"
+            ),
         )
 
         # Should make this depend on the AiiDA version inside the container,
@@ -124,7 +128,11 @@ def test_install_one_docker(container_image, plugin):
         )
 
         error_message = handle_error(
-            import_package, f"Failed to import package {plugin['package_name']}"
+            import_package,
+            (
+                "<a href='https://github.com/aiidateam/aiida-registry#E002'>E002</a>: "
+                f"Failed to import package {plugin['package_name']}"
+            ),
         )
         is_package_importable = True
 
@@ -137,7 +145,10 @@ def test_install_one_docker(container_image, plugin):
         )
         error_message = handle_error(
             extract_metadata,
-            f"Failed to fetch entry point metadata for package {plugin['package_name']}",
+            (
+                "<a href='https://github.com/aiidateam/aiida-registry#E003'>E003</a>: "
+                f"Failed to fetch entry point metadata for package {plugin['package_name']}"
+            ),
         )
 
         with open("result.json", "r", encoding="utf8") as handle:

@@ -40,9 +40,8 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:
     # pylint: disable=too-many-return-statements
     if "pyproject.toml" in url:
         try:
-            pyproject = tomlkit.parse(content)
-        except tomlkit.exceptions.TOMLKitError as exc:
-            REPORTER.warn(f"Unable to parse TOML: {exc}")
+            pyproject = parse_toml(content)
+        except tomlkit.exceptions.TOMLKitError:
             return None
 
         if "project" in pyproject:
@@ -54,7 +53,10 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:
         if "flit" in tool_name:
             return "FLIT_OLD"
 
-        REPORTER.warn(f"Unknown build system in pyproject.toml: {tool_name}")
+        REPORTER.warn(
+            "<a href='https://github.com/aiidateam/aiida-registry#W012'>W012</a>: "
+            f"Unknown build system in pyproject.toml: {tool_name}"
+        )
         return None
 
     if "setup.cfg" in url:
@@ -63,7 +65,10 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:
     if "setup.json" in url:
         return "SETUPTOOLS_JSON"
 
-    REPORTER.warn(f"Unknown build system: {url}")
+    REPORTER.warn(
+        "<a href='https://github.com/aiidateam/aiida-registry#W013'>W013</a>: "
+        f"Unknown build system: {url}"
+    )
     return None
 
 
@@ -83,8 +88,11 @@ def parse_toml(content: str) -> Optional[TOMLDocument]:
     try:
         return tomlkit.parse(content)
     except tomlkit.exceptions.TOMLKitError as exc:
-        REPORTER.warn(f"Unable to parse TOML: {exc}")
-    return None
+        REPORTER.warn(
+            "<a href='https://github.com/aiidateam/aiida-registry#W011'>W011</a>: "
+            f"Unable to parse TOML: {exc}"
+        )
+        raise exc
 
 
 def parse_pep_621(content: str, ep_only=False) -> SourceData:
@@ -124,7 +132,10 @@ def parse_setup_json(content: str, ep_only=False) -> SourceData:
     try:
         data = json.loads(content)
     except ValueError as exc:
-        REPORTER.warn(f"Unable to parse JSON: {exc}")
+        REPORTER.warn(
+            "<a href='https://github.com/aiidateam/aiida-registry#W014'>W014</a>: "
+            f"Unable to parse JSON: {exc}"
+        )
         return SourceData()
 
     entry_points = {
@@ -193,8 +204,9 @@ def parse_flit_old(content: str, ep_only=False) -> SourceData:
     # author is a mandatory field in Flit
 
     REPORTER.warn(
-        "version & description metadata"
-        " are not (yet) parsed from the Flit buildsystem pyproject.toml"
+        "<a href='https://github.com/aiidateam/aiida-registry#W015'>W015</a>: "
+        "Version & description metadata are not (yet) "
+        "parsed from the flit build system `pyproject.toml`."
     )
     metadata = data["tool"]["flit"].get("metadata", {})
     infos = {
@@ -216,7 +228,10 @@ def parse_setup_cfg(content: str, ep_only=False) -> SourceData:
         config = ConfigParser()
         config.read_string(content)
     except Exception as exc:  # pylint: disable=broad-except
-        REPORTER.warn(f"Unable to parse setup.cfg: {exc}")
+        REPORTER.warn(
+            "<a href='https://github.com/aiidateam/aiida-registry#W016'>W016</a>: "
+            f"Unable to parse setup.cfg: {exc}"
+        )
         return SourceData()
 
     entry_points = {}
@@ -306,7 +321,8 @@ def get_aiida_version_poetry(pyproject):
         return str(parse_constraint(version))
     except ValueError:
         REPORTER.warn(
-            "Invalid version encountered in Poetry pyproject.toml for aiida-core"
+            "<a href='https://github.com/aiidateam/aiida-registry#W017'>W017</a>: "
+            "Invalid version encountered in Poetry `pyproject.toml` for aiida-core"
         )
 
     return None
@@ -318,7 +334,10 @@ def get_version_from_module(content: str) -> Optional[str]:
     try:
         module = ast.parse(content)
     except SyntaxError as exc:
-        REPORTER.warn(f"Unable to parse module: {exc}")
+        REPORTER.warn(
+            "<a href='https://github.com/aiidateam/aiida-registry#W018'>W018</a>: "
+            f"Unable to parse module of the package to futher parse the version from: {exc}"
+        )
         return None
     try:
         return next(

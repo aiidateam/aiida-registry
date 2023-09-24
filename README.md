@@ -115,6 +115,78 @@ You'll see the warnings and errors as what you can see from the registry page.
 - **Cause**: The plugin does not have the classifier `Framework :: AiiDA` in the plugin metadata (e.g. `setup.json`, `pyproject.toml`, `setup.cfg`).
 - **Solution**: Add the classifier `Framework :: AiiDA` to the plugin metadata.
 
+#### W004
+
+- **Message**: Multiple development statuses found in classifiers
+
+#### W005
+
+- **Message**: Development status in classifiers not match development status in metadata
+
+#### W006
+
+- **Message**: `development_status` is deprecated.
+
+#### W007
+
+- **Message**: Invalid development status.
+
+#### W008
+
+- **Message**: Unable to reach documentation URL.
+
+#### W009
+
+- **Message**: Prefix of entry points does not follow naming convention.
+- **Cause**: The prefix of entry points does not match the convention of package name, where if you have package `aiida-xxx`, the prefix of entry points should be `xxx`.
+- **Solution**: Change the prefix of entry points to match the convention.
+
+#### W010
+
+- **Message**: Entry point does not start with proper prefix.
+
+#### W011
+
+- **Message**: Unable to parse TOML.
+
+
+#### W012
+
+- **Message**: Unknown build system in `pyproject.toml`.
+
+#### W013
+
+- **Message**: Unknown build system.
+
+#### W014
+
+- **Message**: Unable to parse JSON.
+
+
+#### W015
+
+- **Message**: Version & description metadata are not (yet) parsed from the flit build system in `pyproject.toml`.
+
+#### W016
+
+- **Message**: Unable to parse `setup.cfg`.
+
+#### W017
+
+- **Message**: Invalid version encontered in Poery `pyproject.toml` for `aiida-core`.
+
+#### W018
+
+- **Message**: Unable to parse module of the package to futher parse the version from.
+
+#### W019
+
+- **Message**: No `bdist_wheel` available for PyPI release.
+
+#### W020
+
+- **Message**: Unable to read wheel file from PyPI release.
+
 #### E001
 
 - **Message**: Failed to install the plugin
