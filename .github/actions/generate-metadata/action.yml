@@ -56,7 +56,7 @@ runs:
           env:
             GITHUB_TOKEN: ${{ inputs.gh_token }}
           run: |
-            aiida-registry fetch
+            aiida-registry fetch aiida-kkr aiida-fleur aiida-gudhi aiida-defects
           shell: bash
 
         - name: Check installation of plugins
