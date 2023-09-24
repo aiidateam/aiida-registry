@@ -105,10 +105,13 @@ function Details({pluginKey}) {
             </p>
             {value.metadata.author_email && (
               <p>
-                <strong>Contact</strong>:{" "}
-                <a href={`mailto:${value.metadata.author_email}`}>
-                  {value.metadata.author_email}
-                </a>
+                <strong>Contact</strong>:
+                  {value.metadata.author_email.split(',').map(email => (
+                    <span key={email}>
+                      <a href={`mailto:${email.trim()}`}>{email.trim()}</a>
+                      {', '}
+                    </span>
+                  ))}
               </p>
             )}
             <p>
