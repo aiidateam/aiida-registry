@@ -84,8 +84,8 @@ def get_pypi_metadata(package_name: str, parse_wheel=True) -> Optional[PypiData]
             build_types[data.get("packagetype")] = data.get("url")
     if "bdist_wheel" not in build_types:
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W019'>W019</a>: "
-            "No <code>bdist_wheel</code> available for PyPI release."
+            "No <code>bdist_wheel</code> available for PyPI release.",
+            check_id="W019",
         )
 
     # We cannot read 'entry_points' from PyPI JSON so must download the wheel file
@@ -119,9 +119,8 @@ def get_pypi_metadata(package_name: str, parse_wheel=True) -> Optional[PypiData]
 
     except Exception as err:  # pylint: disable=broad-except
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W020'>W020</a>: "
-            "Unable to read wheel file from PyPI release: "
-            f"<pre>{err}</pre>"
+            "Unable to read wheel file from PyPI release: " f"<pre>{err}</pre>",
+            check_id="W020",
         )
 
     return PypiData(metadata, aiida_version=aiida_version, entry_points=entry_points)

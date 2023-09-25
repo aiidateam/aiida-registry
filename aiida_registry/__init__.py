@@ -165,13 +165,16 @@ class Reporter:
         self.plugins_warnings[self.plugin_name] = []
         self.plugins_errors[self.plugin_name] = []
 
-    def warn(self, message):
+    def warn(self, message, check_id=None):
         """Write to stdout and log.
 
         Used to display log in actions.
         """
         # Set the step output error message which can be used,
         # e.g., for display as part of an issue comment.
+        if check_id is not None:
+            message = f"<a href='https://github.com/aiidateam/aiida-registry#{check_id}'>{check_id}</a>: {message}"
+
         if self.plugin_name:
             self.warnings.append(f"{message} [{self.plugin_name}]")
             self.plugins_warnings[self.plugin_name].append(message)
@@ -179,8 +182,11 @@ class Reporter:
             self.warnings.append(f"{message}")
         print(f"{message}")
 
-    def error(self, message):
+    def error(self, message, check_id=None):
         """Write to stdout and log."""
+        if check_id is not None:
+            message = f"<a href='https://github.com/aiidateam/aiida-registry#{check_id}'>{check_id}</a>: {message}"
+
         if self.plugin_name:
             self.errors.append(f"{message} [{self.plugin_name}]")
             self.plugins_errors[self.plugin_name].append(message)

@@ -118,22 +118,32 @@ You'll see the warnings and errors as what you can see from the registry page.
 #### W004
 
 - **Message**: Multiple development statuses found in classifiers
+- **Cause**: The plugin has multiple development statuses in the plugin metadata.
+- **Solution**: Remove the extra development status from the plugin metadata.
 
 #### W005
 
 - **Message**: Development status in classifiers not match development status in metadata
+- **Cause**: The development status in the plugin metadata does not match the "developments_status" (deprecated, and defined in `plugins.yaml`).
+- **Solution**: Use [development status trove classifer](https://pypi.org/classifiers/) only.
 
 #### W006
 
 - **Message**: `development_status` is deprecated.
+- **Cause**: The `development_status` key is found in `plugins.yaml`.
+- **Solution**: Use [development status trove classifer](https://pypi.org/classifiers/).
 
 #### W007
 
 - **Message**: Invalid development status.
+- **Cause**: The development status is not one of the following: `planning`, `pre-alpha`, `alpha`, `beta`, `stable`, `mature`, `inactive`.
+- **Solution**: Use one of the following development status: `planning`, `pre-alpha`, `alpha`, `beta`, `stable`, `mature`, `inactive`. But note that `development_status` is deprecated and you should use [development status trove classifer](https://pypi.org/classifiers/) instead.
 
 #### W008
 
 - **Message**: Unable to reach documentation URL.
+- **Cause**: The documentation URL is not reachable.
+- **Solution**: Check the documentation URL is correctly defined in `plugins.yaml`.
 
 #### W009
 
@@ -144,48 +154,68 @@ You'll see the warnings and errors as what you can see from the registry page.
 #### W010
 
 - **Message**: Entry point does not start with proper prefix.
+- **Cause**: The entry point does not start with the prefix defined in `plugins.yaml`.
+- **Solution**: Change the entry point to start with the prefix defined in `plugins.yaml`.
 
 #### W011
 
 - **Message**: Unable to parse TOML.
-
+- **Cause**: The `pyproject.toml` cannot be parsed.
+- **Solution**: Check the `pyproject.toml` is correctly formatted.
 
 #### W012
 
 - **Message**: Unknown build system in `pyproject.toml`.
+- **Cause**: The build system in `pyproject.toml` is not one of the following, check [PEP621](https://peps.python.org/pep-0621/): `setuptools`, `flit`, `poetry`.
+- **Solution**: Use one of the following build system: `setuptools`, `flit`, `poetry`.
 
 #### W013
 
 - **Message**: Unknown build system.
+- **Cause**: The build tool is not valid. We support setuptools (`setup.cfg`, `setup.json`), flit (`pyproject.toml`), poetry (`pyproject.toml`).
+- **Solution**: Use one of the following build system: `setuptools`, `flit`, `poetry`.
 
 #### W014
 
-- **Message**: Unable to parse JSON.
-
+- **Message**: Unable to parse setup JSON.
+- **Cause**: The `setup.json` cannot be parsed.
+- **Solution**: Check the `setup.json` is correctly formatted.
 
 #### W015
 
 - **Message**: Version & description metadata are not (yet) parsed from the flit build system in `pyproject.toml`.
+- **Cause**: The version & description metadata are not (yet) parsed from the flit build system in `pyproject.toml`.
+- **Solution**: Add the version & description metadata to the `pyproject.toml`.
 
 #### W016
 
 - **Message**: Unable to parse `setup.cfg`.
+- **Cause**: The `setup.cfg` cannot be parsed.
+- **Solution**: Check the `setup.cfg` is correctly formatted.
 
 #### W017
 
 - **Message**: Invalid version encontered in Poery `pyproject.toml` for `aiida-core`.
+- **Cause**: The version of `aiida-core` in `pyproject.toml` is not valid.
+- **Solution**: Check the version of `aiida-core` in `pyproject.toml` is valid and correct.
 
 #### W018
 
 - **Message**: Unable to parse module of the package to futher parse the version from.
+- **Cause**: The module of the package cannot be parsed.
+- **Solution**: Check the module of the package is correctly formatted.
 
 #### W019
 
 - **Message**: No `bdist_wheel` available for PyPI release.
+- **Cause**: The `bdist_wheel` is not available for PyPI release.
+- **Solution**: Check the `bdist_wheel` is available for PyPI release.
 
 #### W020
 
 - **Message**: Unable to read wheel file from PyPI release.
+- **Cause**: The wheel file cannot be read from PyPI release.
+- **Solution**: Check the wheel file is correctly formatted.
 
 #### E001
 

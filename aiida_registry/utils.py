@@ -23,9 +23,9 @@ def fetch_file(file_url: str, warn=True) -> str:
     except Exception:  # pylint: disable=broad-except
         if warn:
             REPORTER.error(
-                "<a href='https://github.com/aiidateam/aiida-registry#E004'>E004</a>: "
                 f"Unable to retrieve plugin metadata, retrieve plugin info from '{file_url}' failed."
-                f"<pre>{traceback.format_exc()}</pre>"
+                f"<pre>{traceback.format_exc()}</pre>",
+                check_id="E004",
             )
             REPORTER.debug(traceback.format_exc())
         return None

@@ -69,14 +69,14 @@ def supports_python_version(plugin_info):
     return False
 
 
-def handle_error(process_result, message):
+def handle_error(process_result, message, check_id=None):
     error_message = ""
 
     if process_result.exit_code != 0:
         error_message = process_result.output.decode("utf8")
 
         # the error_message is formatted as code block
-        REPORTER.error(f"{message}" f"<pre>{error_message}</pre>")
+        REPORTER.error(f"{message}" f"<pre>{error_message}</pre>", check_id=check_id)
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -107,10 +107,8 @@ def test_install_one_docker(container_image, plugin):
 
         error_message = handle_error(
             install_package,
-            (
-                "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: "
-                f"Failed to install plugin {plugin['name']}"
-            ),
+            f"Failed to install plugin {plugin['name']}",
+            check_id="E001",
         )
 
         # Should make this depend on the AiiDA version inside the container,
@@ -129,10 +127,8 @@ def test_install_one_docker(container_image, plugin):
 
         error_message = handle_error(
             import_package,
-            (
-                "<a href='https://github.com/aiidateam/aiida-registry#E002'>E002</a>: "
-                f"Failed to import package {plugin['package_name']}"
-            ),
+            f"Failed to import package {plugin['package_name']}",
+            check_id="E002",
         )
         is_package_importable = True
 
@@ -145,10 +141,8 @@ def test_install_one_docker(container_image, plugin):
         )
         error_message = handle_error(
             extract_metadata,
-            (
-                "<a href='https://github.com/aiidateam/aiida-registry#E003'>E003</a>: "
-                f"Failed to fetch entry point metadata for package {plugin['package_name']}"
-            ),
+            f"Failed to fetch entry point metadata for package {plugin['package_name']}",
+            check_id="E003",
         )
 
         with open("result.json", "r", encoding="utf8") as handle:

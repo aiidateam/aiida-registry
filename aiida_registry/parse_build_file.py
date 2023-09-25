@@ -54,8 +54,8 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:
             return "FLIT_OLD"
 
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W012'>W012</a>: "
-            f"Unknown build system in pyproject.toml: {tool_name}"
+            f"Unknown build system in pyproject.toml: {tool_name}",
+            check_id="W012",
         )
         return None
 
@@ -66,8 +66,8 @@ def identify_build_tool(url: str, content: str) -> Optional[str]:
         return "SETUPTOOLS_JSON"
 
     REPORTER.warn(
-        "<a href='https://github.com/aiidateam/aiida-registry#W013'>W013</a>: "
-        f"Unknown build system: {url}"
+        f"Unknown build tool: {url}",
+        check_id="W013",
     )
     return None
 
@@ -89,8 +89,8 @@ def parse_toml(content: str) -> Optional[TOMLDocument]:
         return tomlkit.parse(content)
     except tomlkit.exceptions.TOMLKitError as exc:
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W011'>W011</a>: "
-            f"Unable to parse TOML: {exc}"
+            f"Unable to parse TOML: {exc}",
+            check_id="W011",
         )
         raise exc
 
@@ -133,8 +133,8 @@ def parse_setup_json(content: str, ep_only=False) -> SourceData:
         data = json.loads(content)
     except ValueError as exc:
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W014'>W014</a>: "
-            f"Unable to parse JSON: {exc}"
+            f"Unable to parse setup JSON: {exc}",
+            check_id="W014",
         )
         return SourceData()
 
@@ -204,9 +204,9 @@ def parse_flit_old(content: str, ep_only=False) -> SourceData:
     # author is a mandatory field in Flit
 
     REPORTER.warn(
-        "<a href='https://github.com/aiidateam/aiida-registry#W015'>W015</a>: "
         "Version & description metadata are not (yet) "
-        "parsed from the flit build system `pyproject.toml`."
+        "parsed from the flit build system `pyproject.toml`.",
+        check_id="W015",
     )
     metadata = data["tool"]["flit"].get("metadata", {})
     infos = {
@@ -229,8 +229,8 @@ def parse_setup_cfg(content: str, ep_only=False) -> SourceData:
         config.read_string(content)
     except Exception as exc:  # pylint: disable=broad-except
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W016'>W016</a>: "
-            f"Unable to parse setup.cfg: {exc}"
+            f"Unable to parse setup.cfg: {exc}",
+            check_id="W016",
         )
         return SourceData()
 
@@ -321,8 +321,8 @@ def get_aiida_version_poetry(pyproject):
         return str(parse_constraint(version))
     except ValueError:
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W017'>W017</a>: "
-            "Invalid version encountered in Poetry `pyproject.toml` for aiida-core"
+            "Invalid version encountered in Poetry `pyproject.toml` for aiida-core",
+            check_id="W017",
         )
 
     return None
@@ -335,8 +335,8 @@ def get_version_from_module(content: str) -> Optional[str]:
         module = ast.parse(content)
     except SyntaxError as exc:
         REPORTER.warn(
-            "<a href='https://github.com/aiidateam/aiida-registry#W018'>W018</a>: "
-            f"Unable to parse module of the package to futher parse the version from: {exc}"
+            f"Unable to parse module of the package to futher parse the version from: {exc}",
+            check_id="W018",
         )
         return None
     try:
