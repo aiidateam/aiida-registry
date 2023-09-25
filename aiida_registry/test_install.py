@@ -223,7 +223,10 @@ def test_install_all(container_image):
             except KeyError:
                 continue
 
-        data["plugins"] = add_registry_checks(data["plugins"])
+    # Add warnings and errors to the data object
+    # This will loop over the plugins and add the warnings/errors to
+    # the data object there for MUST NOT be called in the loop above
+    data["plugins"] = add_registry_checks(data["plugins"])
 
     print("Dumping plugins.json")
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
