@@ -155,10 +155,15 @@ class Reporter:
     def reset(self):
         """Reset the warnings list."""
         self.warnings = []
+        self.errors = []
 
     def set_plugin_name(self, name):
         """Set the plugin name."""
         self.plugin_name = name
+        self.reset()
+
+        self.plugins_warnings[self.plugin_name] = []
+        self.plugins_errors[self.plugin_name] = []
 
     def warn(self, string):
         """Write to stdout and log.
@@ -170,10 +175,7 @@ class Reporter:
         # e.g., for display as part of an issue comment.
         if self.plugin_name:
             self.warnings.append(f"{message} [{self.plugin_name}]")
-            try:
-                self.plugins_warnings[self.plugin_name].append(string)
-            except KeyError:
-                self.plugins_warnings[self.plugin_name] = [string]
+            self.plugins_warnings[self.plugin_name].append(string)
         else:
             self.warnings.append(message)
         print(message)
@@ -183,10 +185,7 @@ class Reporter:
         message = f"  > ERROR! {string}"
         if self.plugin_name:
             self.errors.append(f"{message} [{self.plugin_name}]")
-            try:
-                self.plugins_errors[self.plugin_name].append(string)
-            except KeyError:
-                self.plugins_errors[self.plugin_name] = [string]
+            self.plugins_errors[self.plugin_name].append(string)
         else:
             self.errors.append(message)
         print(message)
