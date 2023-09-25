@@ -100,15 +100,20 @@ function Details({pluginKey}) {
       <h2 id='detailed.information'>Detailed information</h2>
         {Object.keys(value.metadata).length !== 0 ? (
           <>
-            <p>
-              <strong>Author(s)</strong>: {value.metadata.author}
-            </p>
+            {value.metadata.author && (
+              <p>
+                <strong>Author(s)</strong>: {value.metadata.author}
+              </p>
+            )}
             {value.metadata.author_email && (
               <p>
-                <strong>Contact</strong>:{" "}
-                <a href={`mailto:${value.metadata.author_email}`}>
-                  {value.metadata.author_email}
-                </a>
+                <strong>Contact</strong>:
+                  {value.metadata.author_email.split(',').map(email => (
+                    <span key={email}>
+                      <a href={`mailto:${email.trim()}`}>{email.trim()}</a>
+                      {', '}
+                    </span>
+                  ))}
               </p>
             )}
             <p>
