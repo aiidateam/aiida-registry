@@ -15,35 +15,59 @@ inputs:
 runs:
     using: composite
     steps:
-        - name: Restore cached Plugins
-          id: cache-plugins-restore
-          uses: actions/cache/restore@v3
+        - name: Set cache key name
+          id: set-cache-key
+          # if it is a PR, the cache key should be the PR number
+          # if it is a push, the cache key should be the branch name
+          run: |
+            if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+              key_name="${{ github.event.pull_request.number }}"
+            else
+              key_name="${{ github.head_ref || github.ref_name }}"
+            fi
+            echo "cache_key=${key_name}" >> $GITHUB_OUTPUT
+          shell: bash
+
+        - name: Caching plugins metadata
+          # if it is a PR, we want to cache the metadata
+          id: cache-plugins-metadata
+          uses: actions/cache@v3
           with:
             path: plugins_metadata.json
-            key: plugins_metadata
+            key: |
+              plugins-metadata-${{ steps.set-cache-key.outputs.cache_key }}
 
-        - name: fetch metadata
-          if: ${{ inputs.cache == 'false' }}
-          id: fetch_metadata
+        # - name: debug
+        #   run: |
+        #     echo "cache-key: ${{ steps.set-cache-key.outputs.cache_key }}"
+        #     echo "cache-hit: ${{ steps.cache-plugins-metadata.outputs.cache-hit }}"
+        #     echo "cache-hit00: ${{ steps.cache-plugins-metadata.outputs.cache-hit != 'true' }}"
+        #     echo "cache-hit01: ${{ steps.cache-plugins-metadata.outputs.cache-hit == 'false' }}"
+        #     echo "inputs.cache: ${{ inputs.cache }}"
+        #     echo "run-generate: ${{ steps.cache-plugins-metadata.outputs.cache-hit != 'true' || inputs.cache == 'false' }}"
+        #   shell: bash
+
+        # cache: true, cache-hit: true -> false (no need to run)
+        # cache: true, cache-hit: false -> true (need to run)
+        # cache: false, cache-hit: true -> true (need to run)
+        # cache: false, cache-hit: false -> true (need to run)
+        - name: Fetch metadata
+          if: ${{ inputs.cache == 'false' || steps.cache-plugins-metadata.outputs.cache-hit != 'true' }}
           env:
             GITHUB_TOKEN: ${{ inputs.gh_token }}
-          run: aiida-registry fetch
+          run: |
+            aiida-registry fetch
           shell: bash
-        - name: Check plugins installation
+
+        - name: Check installation of plugins
           if: ${{ inputs.cache == 'false' }}
-          # This step will attach plugin installation inforamtion to the metadata, e.g. if the plugin can be installed or not
-          run: aiida-registry test-install
+          run: |
+            aiida-registry test-install
           shell: bash
-        - name: Cache plugins metadata
-          if: ${{ inputs.cache == 'false' }}
-          id: cache-plugins-save
-          uses: actions/cache/save@v3
-          with:
-            path: plugins_metadata.json
-            key: ${{ steps.cache-plugins-restore.outputs.cache-primary-key }}
 
         - name: Move JSON file to the React project
           run: |
+            mkdir -p aiida-registry-app/dist
             cp plugins_metadata.json aiida-registry-app/src/
             cp plugins_metadata.json aiida-registry-app/dist/
           shell: bash

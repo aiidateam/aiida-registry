@@ -12,22 +12,10 @@ def cli():
 
 
 @cli.command()
-@click.argument("package", required=False)
-@click.option(
-    "--fetch-pypi/--no-fetch-pypi",
-    is_flag=True,
-    default=True,
-    help="Allow fetching data from PyPI",
-)
-@click.option(
-    "--fetch-wheel/--no-fetch-wheel",
-    is_flag=True,
-    default=True,
-    help="Allow fetching wheels from PyPI",
-)
-def fetch(package, fetch_pypi, fetch_wheel):  # pylint: disable=unused-argument
+@click.argument("package", nargs=-1, required=False)
+def fetch(package):
     """Fetch data from PyPI and write to JSON file."""
-    make_pages()
+    make_pages(package)
 
 
 @cli.command()
