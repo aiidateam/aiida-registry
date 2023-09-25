@@ -241,7 +241,7 @@ def test_install_all(container_image):
     # the data object there for MUST NOT be called in the loop above
     data["plugins"] = add_registry_checks(data["plugins"])
 
-    print("Dumping plugins.json")
+    print("Dumping plugins_metadata.json")
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
         json.dump(data, handle, indent=2)
     print(json.dumps(data, indent=4))

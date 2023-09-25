@@ -172,7 +172,6 @@ class Reporter:
         """
         # Set the step output error message which can be used,
         # e.g., for display as part of an issue comment.
-        output = f" > <strong>WARNING!</strong> {string}"
         if self.plugin_name:
             self.warnings.append(f"{message} [{self.plugin_name}]")
             self.plugins_warnings[self.plugin_name].append(message)
