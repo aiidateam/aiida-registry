@@ -77,7 +77,7 @@ function Details({pluginKey}) {
       </div>
 
       <h3>Registry checks</h3>
-      {value.warnings.length === 0 || value.errors.length === 0 ? (
+      {value.warnings.length !== 0 || value.errors.length !== 0 ? (
         <>
           {value.warnings && (
             <>
