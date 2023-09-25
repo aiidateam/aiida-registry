@@ -1,0 +1,832 @@
+{
+  "plugins": {
+    "aiida-core": {
+      "code_home": "https://github.com/aiidateam/aiida-core",
+      "development_status": "stable",
+      "documentation_url": "https://aiida-core.readthedocs.io/",
+      "entry_point_prefix": "",
+      "package_name": "aiida",
+      "pip_url": "aiida-core",
+      "plugin_info": "https://raw.githubusercontent.com/aiidateam/aiida-core/master/setup.json",
+      "name": "aiida-core",
+      "hosted_on": "github.com",
+      "metadata": {
+        "release_date": "2023-06-23",
+        "description": "AiiDA is a workflow manager for computational science with a strong focus on provenance, performance and extensibility.",
+        "author_email": "The AiiDA team <developers@aiida.net>",
+        "classifiers": [
+          "Development Status :: 5 - Production/Stable",
+          "Framework :: AiiDA",
+          "License :: OSI Approved :: MIT License",
+          "Operating System :: MacOS :: MacOS X",
+          "Operating System :: POSIX :: Linux",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.9",
+          "Topic :: Scientific/Engineering"
+        ],
+        "version": "2.4.0"
+      },
+      "aiida_version": "==2.4.0",
+      "entry_points": {
+        "aiida.calculations": {
+          "core.arithmetic.add": {
+            "description": [
+              "`CalcJob` implementation to add two numbers using bash for testing and demonstration purposes."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "x",
+                  "required": true,
+                  "valid_types": "Int, Float",
+                  "info": "The left operand."
+                },
+                {
+                  "name": "y",
+                  "required": true,
+                  "valid_types": "Int, Float",
+                  "info": "The right operand."
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "sum",
+                  "required": true,
+                  "valid_types": "Int, Float",
+                  "info": "The sum of the left and right operand."
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 100,
+                  "message": "The process did not have the required `retrieved` output."
+                },
+                {
+                  "status": 110,
+                  "message": "The job ran out of memory."
+                },
+                {
+                  "status": 120,
+                  "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                },
+                {
+                  "status": 310,
+                  "message": "The output file could not be read."
+                },
+                {
+                  "status": 320,
+                  "message": "The output file contains invalid output."
+                },
+                {
+                  "status": 410,
+                  "message": "The sum of the operands is a negative number."
+                }
+              ]
+            },
+            "class": "aiida.calculations.arithmetic.add:ArithmeticAddCalculation"
+          },
+          "core.templatereplacer": {
+            "description": [
+              "Simple stub of a plugin that can be used to replace some text in a given template.",
+              "    Can be used for many different codes, or as a starting point to develop a new plugin.",
+              "",
+              "    This simple plugin takes two node inputs, both of type Dict, with the labels",
+              "    'parameters' and 'template'",
+              "",
+              "    You can also add other SinglefileData nodes as input, that will be copied according to",
+              "    what is written in 'template' (see below).",
+              "",
+              "    * parameters: a set of parameters that will be used for substitution.",
+              "",
+              "    * template: can contain the following parameters:",
+              "",
+              "        * input_file_template: a string with substitutions to be managed with the format()",
+              "          function of python, i.e. if you want to substitute a variable called 'varname', you write",
+              "          {varname} in the text. See http://www.python.org/dev/peps/pep-3101/ for more",
+              "          details. The replaced file will be the input file.",
+              "",
+              "        * input_file_name: a string with the file name for the input. If it is not provided, no",
+              "          file will be created.",
+              "",
+              "        * output_file_name: a string with the file name for the output. If it is not provided, no",
+              "          redirection will be done and the output will go in the scheduler output file.",
+              "",
+              "        * cmdline_params: a list of strings, to be passed as command line parameters.",
+              "          Each one is substituted with the same rule of input_file_template. Optional",
+              "",
+              "        * input_through_stdin: if True, the input file name is passed via stdin. Default is False if missing.",
+              "",
+              "        * files_to_copy: if defined, a list of tuple pairs, with format ('link_name', 'dest_rel_path');",
+              "            for each tuple, an input link to this calculation is looked for, with link labeled 'link_label',",
+              "            and with file type 'Singlefile', and the content is copied to a remote file named 'dest_rel_path'",
+              "            Errors are raised in the input links are non-existent, or of the wrong type, or if there are",
+              "            unused input files.",
+              "",
+              "        * retrieve_temporary_files: a list of relative filepaths, that if defined, will be retrieved and",
+              "            temporarily stored in an unstored FolderData node that will be available during the",
+              "            Parser.parser_with_retrieved call under the key specified by the Parser.retrieved_temporary_folder key"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "template",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "A template for the input file."
+                },
+                {
+                  "name": "code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
+                },
+                {
+                  "name": "files",
+                  "required": false,
+                  "valid_types": "RemoteData, SinglefileData",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
+                  "name": "parameters",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Parameters used to replace placeholders in the template."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": ""
+                },
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 100,
+                  "message": "The process did not have the required `retrieved` output."
+                },
+                {
+                  "status": 110,
+                  "message": "The job ran out of memory."
+                },
+                {
+                  "status": 120,
+                  "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                },
+                {
+                  "status": 301,
+                  "message": "The temporary retrieved folder data node could not be accessed."
+                },
+                {
+                  "status": 305,
+                  "message": "The `template` input node did not specify the key `output_file_name`."
+                },
+                {
+                  "status": 310,
+                  "message": "The output file could not be read from the retrieved folder."
+                },
+                {
+                  "status": 311,
+                  "message": "A temporary retrieved file could not be read from the temporary retrieved folder."
+                },
+                {
+                  "status": 320,
+                  "message": "The output file contains invalid output."
+                }
+              ]
+            },
+            "class": "aiida.calculations.templatereplacer:TemplatereplacerCalculation"
+          },
+          "core.transfer": {
+            "description": [
+              "Utility to copy files from different FolderData and RemoteData nodes into a single place.",
+              "",
+              "    The final destination for these files can be either the local repository (by creating a",
+              "    new FolderData node to store them) or in the remote computer (by leaving the files in a",
+              "    new remote folder saved in a RemoteData node).",
+              "",
+              "    Only files from the local computer and from remote folders in the same external computer",
+              "    can be moved at the same time with a single instance of this CalcJob.",
+              "",
+              "    The user needs to provide three inputs:",
+              "",
+              "        * ``instructions``: a dict node specifying which files to copy from which nodes.",
+              "        * ``source_nodes``: a dict of nodes, each with a unique identifier label as its key.",
+              "        * ``metadata.computer``: the computer that contains the remote files and will contain",
+              "          the final RemoteData node.",
+              "",
+              "    The ``instructions`` dict must have the ``retrieve_files`` flag. The CalcJob will create a",
+              "    new folder in the remote machine (``RemoteData``) and put all the files there and will either:",
+              "",
+              "        (1) leave them there (``retrieve_files = False``) or ...",
+              "        (2) retrieve all the files and store them locally in a ``FolderData``  (``retrieve_files = True``)",
+              "",
+              "    The `instructions` dict must also contain at least one list with specifications of which files",
+              "    to copy and from where. All these lists take tuples of 3 that have the following format:",
+              "",
+              "    .. code-block:: python",
+              "",
+              "        ( source_node_key, path_to_file_in_source, path_to_file_in_target)",
+              "",
+              "    where the ``source_node_key`` has to be the respective one used when providing the node in the",
+              "    ``source_nodes`` input nodes dictionary.",
+              "",
+              "",
+              "    The two main lists to include are ``local_files`` (for files to be taken from FolderData nodes)",
+              "    and ``remote_files`` (for files to be taken from RemoteData nodes). Alternatively, files inside",
+              "    of RemoteData nodes can instead be put in the ``symlink_files`` list: the only difference is that",
+              "    files from the first list will be fully copied in the target RemoteData folder, whereas for the",
+              "    files in second list only a symlink to the original file will be created there. This will only",
+              "    affect the content of the final RemoteData target folder, but in both cases the full file will",
+              "    be copied back in the local target FolderData (if ``retrieve_files = True``)."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "instructions",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "A dictionary containing the `retrieve_files` flag and at least one of the file lists:`local_files`, `remote_files` and/or `symlink_files`."
+                },
+                {
+                  "name": "source_nodes",
+                  "required": true,
+                  "valid_types": "FolderData, RemoteData",
+                  "info": "All the nodes that contain files referenced in the instructions."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "monitors",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
+                },
+                {
+                  "name": "remote_folder",
+                  "required": false,
+                  "valid_types": "RemoteData, NoneType",
+                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "remote_folder",
+                  "required": true,
+                  "valid_types": "RemoteData",
+                  "info": "Input files necessary to run the process will be stored in this folder node."
+                },
+                {
+                  "name": "retrieved",
+                  "required": true,
+                  "valid_types": "FolderData",
+                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
+                },
+                {
+                  "name": "remote_stash",
+                  "required": false,
+                  "valid_types": "RemoteStashData",
+                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 100,
+                  "message": "The process did not have the required `retrieved` output."
+                },
+                {
+                  "status": 110,
+                  "message": "The job ran out of memory."
+                },
+                {
+                  "status": 120,
+                  "message": "The job ran out of walltime."
+                },
+                {
+                  "status": 131,
+                  "message": "The specified account is invalid."
+                },
+                {
+                  "status": 140,
+                  "message": "The node running the job failed."
+                },
+                {
+                  "status": 150,
+                  "message": "{message}"
+                }
+              ]
+            },
+            "class": "aiida.calculations.transfer:TransferCalculation"
+          }
+        },
+        "aiida.calculations.importers": {
+          "core.arithmetic.add": "aiida.calculations.importers.arithmetic.add:ArithmeticAddCalculationImporter"
+        },
+        "aiida.calculations.monitors": {
+          "core.always_kill": "aiida.calculations.monitors.base:always_kill"
+        },
+        "aiida.cmdline.computer.configure": {
+          "core.local": "aiida.transports.plugins.local:CONFIGURE_LOCAL_CMD",
+          "core.ssh": "aiida.transports.plugins.ssh:CONFIGURE_SSH_CMD"
+        },
+        "aiida.cmdline.data": {
+          "core.array": "aiida.cmdline.commands.cmd_data.cmd_array:array",
+          "core.bands": "aiida.cmdline.commands.cmd_data.cmd_bands:bands",
+          "core.cif": "aiida.cmdline.commands.cmd_data.cmd_cif:cif",
+          "core.dict": "aiida.cmdline.commands.cmd_data.cmd_dict:dictionary",
+          "core.remote": "aiida.cmdline.commands.cmd_data.cmd_remote:remote",
+          "core.singlefile": "aiida.cmdline.commands.cmd_data.cmd_singlefile:singlefile",
+          "core.structure": "aiida.cmdline.commands.cmd_data.cmd_structure:structure",
+          "core.trajectory": "aiida.cmdline.commands.cmd_data.cmd_trajectory:trajectory",
+          "core.upf": "aiida.cmdline.commands.cmd_data.cmd_upf:upf"
+        },
+        "aiida.cmdline.data.structure.import": {},
+        "aiida.data": {
+          "core.array": "aiida.orm.nodes.data.array.array:ArrayData",
+          "core.array.bands": "aiida.orm.nodes.data.array.bands:BandsData",
+          "core.array.kpoints": "aiida.orm.nodes.data.array.kpoints:KpointsData",
+          "core.array.projection": "aiida.orm.nodes.data.array.projection:ProjectionData",
+          "core.array.trajectory": "aiida.orm.nodes.data.array.trajectory:TrajectoryData",
+          "core.array.xy": "aiida.orm.nodes.data.array.xy:XyData",
+          "core.base": "aiida.orm.nodes.data:BaseType",
+          "core.bool": "aiida.orm.nodes.data.bool:Bool",
+          "core.cif": "aiida.orm.nodes.data.cif:CifData",
+          "core.code": "aiida.orm.nodes.data.code.legacy:Code",
+          "core.code.containerized": "aiida.orm.nodes.data.code.containerized:ContainerizedCode",
+          "core.code.installed": "aiida.orm.nodes.data.code.installed:InstalledCode",
+          "core.code.portable": "aiida.orm.nodes.data.code.portable:PortableCode",
+          "core.dict": "aiida.orm.nodes.data.dict:Dict",
+          "core.enum": "aiida.orm.nodes.data.enum:EnumData",
+          "core.float": "aiida.orm.nodes.data.float:Float",
+          "core.folder": "aiida.orm.nodes.data.folder:FolderData",
+          "core.int": "aiida.orm.nodes.data.int:Int",
+          "core.jsonable": "aiida.orm.nodes.data.jsonable:JsonableData",
+          "core.list": "aiida.orm.nodes.data.list:List",
+          "core.numeric": "aiida.orm.nodes.data.numeric:NumericType",
+          "core.orbital": "aiida.orm.nodes.data.orbital:OrbitalData",
+          "core.remote": "aiida.orm.nodes.data.remote.base:RemoteData",
+          "core.remote.stash": "aiida.orm.nodes.data.remote.stash.base:RemoteStashData",
+          "core.remote.stash.folder": "aiida.orm.nodes.data.remote.stash.folder:RemoteStashFolderData",
+          "core.singlefile": "aiida.orm.nodes.data.singlefile:SinglefileData",
+          "core.str": "aiida.orm.nodes.data.str:Str",
+          "core.structure": "aiida.orm.nodes.data.structure:StructureData",
+          "core.upf": "aiida.orm.nodes.data.upf:UpfData"
+        },
+        "aiida.groups": {
+          "core": "aiida.orm.groups:Group",
+          "core.auto": "aiida.orm.groups:AutoGroup",
+          "core.import": "aiida.orm.groups:ImportGroup",
+          "core.upf": "aiida.orm.groups:UpfFamily"
+        },
+        "aiida.node": {
+          "data": "aiida.orm.nodes.data.data:Data",
+          "process": "aiida.orm.nodes.process.process:ProcessNode",
+          "process.calculation": "aiida.orm.nodes.process.calculation.calculation:CalculationNode",
+          "process.calculation.calcfunction": "aiida.orm.nodes.process.calculation.calcfunction:CalcFunctionNode",
+          "process.calculation.calcjob": "aiida.orm.nodes.process.calculation.calcjob:CalcJobNode",
+          "process.workflow": "aiida.orm.nodes.process.workflow.workflow:WorkflowNode",
+          "process.workflow.workchain": "aiida.orm.nodes.process.workflow.workchain:WorkChainNode",
+          "process.workflow.workfunction": "aiida.orm.nodes.process.workflow.workfunction:WorkFunctionNode"
+        },
+        "aiida.parsers": {
+          "core.arithmetic.add": "aiida.parsers.plugins.arithmetic.add:ArithmeticAddParser",
+          "core.templatereplacer": "aiida.parsers.plugins.templatereplacer.parser:TemplatereplacerParser"
+        },
+        "aiida.schedulers": {
+          "core.direct": "aiida.schedulers.plugins.direct:DirectScheduler",
+          "core.lsf": "aiida.schedulers.plugins.lsf:LsfScheduler",
+          "core.pbspro": "aiida.schedulers.plugins.pbspro:PbsproScheduler",
+          "core.sge": "aiida.schedulers.plugins.sge:SgeScheduler",
+          "core.slurm": "aiida.schedulers.plugins.slurm:SlurmScheduler",
+          "core.torque": "aiida.schedulers.plugins.torque:TorqueScheduler"
+        },
+        "aiida.storage": {
+          "core.psql_dos": "aiida.storage.psql_dos.backend:PsqlDosBackend",
+          "core.sqlite_temp": "aiida.storage.sqlite_temp.backend:SqliteTempBackend",
+          "core.sqlite_zip": "aiida.storage.sqlite_zip.backend:SqliteZipBackend"
+        },
+        "aiida.tools.calculations": {},
+        "aiida.tools.data.orbitals": {
+          "core.orbital": "aiida.tools.data.orbital.orbital:Orbital",
+          "core.realhydrogen": "aiida.tools.data.orbital.realhydrogen:RealhydrogenOrbital"
+        },
+        "aiida.tools.dbexporters": {},
+        "aiida.tools.dbimporters": {
+          "core.cod": "aiida.tools.dbimporters.plugins.cod:CodDbImporter",
+          "core.icsd": "aiida.tools.dbimporters.plugins.icsd:IcsdDbImporter",
+          "core.materialsproject": "aiida.tools.dbimporters.plugins.materialsproject:MaterialsProjectImporter",
+          "core.mpds": "aiida.tools.dbimporters.plugins.mpds:MpdsDbImporter",
+          "core.mpod": "aiida.tools.dbimporters.plugins.mpod:MpodDbImporter",
+          "core.nninc": "aiida.tools.dbimporters.plugins.nninc:NnincDbImporter",
+          "core.oqmd": "aiida.tools.dbimporters.plugins.oqmd:OqmdDbImporter",
+          "core.pcod": "aiida.tools.dbimporters.plugins.pcod:PcodDbImporter",
+          "core.tcod": "aiida.tools.dbimporters.plugins.tcod:TcodDbImporter"
+        },
+        "aiida.transports": {
+          "core.local": "aiida.transports.plugins.local:LocalTransport",
+          "core.ssh": "aiida.transports.plugins.ssh:SshTransport"
+        },
+        "aiida.workflows": {
+          "core.arithmetic.add_multiply": {
+            "description": [
+              "Add two numbers and multiply it with a third."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "x",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": ""
+                },
+                {
+                  "name": "y",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": ""
+                },
+                {
+                  "name": "z",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "outputs": [],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                }
+              ]
+            },
+            "class": "aiida.workflows.arithmetic.add_multiply:add_multiply"
+          },
+          "core.arithmetic.multiply_add": {
+            "description": [
+              "WorkChain to multiply two numbers and add a third, for testing and demonstration purposes."
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": ""
+                },
+                {
+                  "name": "x",
+                  "required": true,
+                  "valid_types": "Int",
+                  "info": ""
+                },
+                {
+                  "name": "y",
+                  "required": true,
+                  "valid_types": "Int",
+                  "info": ""
+                },
+                {
+                  "name": "z",
+                  "required": true,
+                  "valid_types": "Int",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "result",
+                  "required": true,
+                  "valid_types": "Int",
+                  "info": ""
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 400,
+                  "message": "The result is a negative number."
+                }
+              ]
+            },
+            "class": "aiida.workflows.arithmetic.multiply_add:MultiplyAddWorkChain"
+          }
+        },
+        "console_scripts": {
+          "runaiida": "aiida.cmdline.commands.cmd_run:run",
+          "verdi": "aiida.cmdline.commands.cmd_verdi:verdi"
+        }
+      },
+      "commits_count": 351,
+      "errors": [],
+      "warnings": [
+        "`development_status` key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
+      ],
+      "summaryinfo": [
+        {
+          "colorclass": "blue",
+          "text": "Calculations",
+          "count": 3
+        },
+        {
+          "colorclass": "brown",
+          "text": "Parsers",
+          "count": 2
+        },
+        {
+          "colorclass": "red",
+          "text": "Data",
+          "count": 29
+        },
+        {
+          "colorclass": "green",
+          "text": "Workflows",
+          "count": 2
+        },
+        {
+          "colorclass": "purple",
+          "text": "Console scripts",
+          "count": 2
+        },
+        {
+          "colorclass": "orange",
+          "text": "Other (Calculations importers, Calculations monitors, Cmdline computer configure, ...)",
+          "count": 47
+        }
+      ],
+      "pip_install_cmd": "pip install aiida-core",
+      "is_installable": "True"
+    }
+  },
+  "globalsummary": [
+    {
+      "name": "Calculations",
+      "colorclass": "blue",
+      "num_entries": 1,
+      "total_num": 3
+    },
+    {
+      "name": "Parsers",
+      "colorclass": "brown",
+      "num_entries": 1,
+      "total_num": 2
+    },
+    {
+      "name": "Data",
+      "colorclass": "red",
+      "num_entries": 1,
+      "total_num": 29
+    },
+    {
+      "name": "Workflows",
+      "colorclass": "green",
+      "num_entries": 1,
+      "total_num": 2
+    },
+    {
+      "name": "Console scripts",
+      "colorclass": "purple",
+      "num_entries": 1,
+      "total_num": 2
+    },
+    {
+      "name": "Other",
+      "tooltip": "Calculations importers, Calculations monitors, Cmdline computer configure, ...",
+      "colorclass": "orange",
+      "num_entries": 1,
+      "total_num": 47
+    }
+  ],
+  "status_dict": {
+    "planning": [
+      "Not yet ready to use. Developers welcome!",
+      "status-planning-d9644d.svg"
+    ],
+    "pre-alpha": [
+      "Not yet ready to use. Developers welcome!",
+      "status-planning-d9644d.svg"
+    ],
+    "alpha": [
+      "Adds new functionality, not yet ready for production. Testing welcome!",
+      "status-alpha-d6af23.svg"
+    ],
+    "beta": [
+      "Adds new functionality, not yet ready for production. Testing welcome!",
+      "status-beta-d6af23.svg"
+    ],
+    "stable": [
+      "Ready for production calculations. Bug reports welcome!",
+      "status-stable-4cc61e.svg"
+    ],
+    "mature": [
+      "Ready for production calculations. Bug reports welcome!",
+      "status-stable-4cc61e.svg"
+    ],
+    "inactive": [
+      "No longer maintained.",
+      "status-inactive-bbbbbb.svg"
+    ]
+  },
+  "entrypointtypes": {
+    "aiida.calculations": "CalcJobs and calculation functions",
+    "aiida.parsers": "CalcJob parsers",
+    "aiida.data": "Data node types",
+    "aiida.cmdline.data": "verdi data commands",
+    "aiida.groups": "Group types",
+    "aiida.workflows": "WorkChains and work functions",
+    "aiida.schedulers": "Job scheduler support",
+    "aiida.transports": "Data transport protocols",
+    "aiida.tests": "Development test modules",
+    "aiida.tools.dbexporters": "Support for exporting to external databases",
+    "aiida.tools.dbimporters": "Support for importing from external databases",
+    "console_scripts": "Console scripts"
+  }
+}
