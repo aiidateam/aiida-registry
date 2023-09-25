@@ -66,7 +66,6 @@ runs:
           shell: bash
 
         - name: Move JSON file to the React project
-          if: always()
           run: |
             mkdir -p aiida-registry-app/dist
             cp plugins_metadata.json aiida-registry-app/src/
