@@ -16,7 +16,7 @@ since this both "reserves" the name of your plugin and informs the developer
 community of your ongoing work.
 
 By default, the list of plugins is now sorted by the latest release, so plugins that are under active development automatically bubble up to the top.
-The release date is determined by the date of the latest [PyPI](https://pypi.org/) release, so try to release to [PyPI](https://pypi.org/) whenever you make a new release of your plugin.
+The release date is determined by the date of the latest [PyPI](https://pypi.org/) release. Plugins not released to PyPI will have no release date.
 
 ## How to register a plugin
 
