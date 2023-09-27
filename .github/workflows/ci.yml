@@ -62,7 +62,6 @@ jobs:
         node-version: '18.x'
     - name: Install npm dependencies and build
       run: |
-        echo $VITE_PR_PREVIEW_PATH
         npm install
         npm run build
       working-directory: ./aiida-registry-app
@@ -105,6 +104,9 @@ jobs:
         npm install
         npm run build
       working-directory: ./aiida-registry-app
+
+    - name: Add plugins file to the build folder
+      run: cp plugins_metadata.json aiida-registry-app/dist/
 
     - name: Deploy preview
       uses: rossjrw/pr-preview-action@v1
