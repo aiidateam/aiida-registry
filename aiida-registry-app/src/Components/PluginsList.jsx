@@ -122,8 +122,8 @@ function CheckMark() {
           <DialogContent>
             <DialogContentText>
               This check mark indicates that this plugin was installed successfully inside the latest
-              <a rel='noopener noreferrer'  target='_blank' href='https://hub.docker.com/r/aiidateam/aiida-core'><code> aiida-core</code> docker image</a>.
-              For in-depth compatibility tests see the source code repository of the plugin.
+              <a rel='noopener noreferrer'  target='_blank' href='https://hub.docker.com/r/aiidateam/aiida-core-with-services'><code>aiida-core-with-services</code> docker image</a>.
+              For in-depth compatibility tests see <a rel='noopener noreferrer' target='_blank' href='https://github.com/aiidateam/aiida-registry/tree/master#how-to-fix-registry-warnings-and-errors'>how to reproduce it locally</a>.
             </DialogContentText>
           </DialogContent>
         </Dialog>
