@@ -207,7 +207,7 @@ aiida-kkr:
   documentation_url: https://aiida-kkr.readthedocs.io/
   entry_point_prefix: kkr
   pip_url: aiida-kkr
-  plugin_info: https://raw.github.com/JuDFTteam/aiida-kkr/develop/setup.json
+  plugin_info: https://raw.githubusercontent.com/JuDFTteam/aiida-kkr/master/pyproject.toml
 aiida-lammps:
   code_home: https://github.com/aiidaplugins/aiida-lammps
   development_status: beta
@@ -342,7 +342,7 @@ aiida-siesta:
   documentation_url: https://aiida-siesta-plugin.readthedocs.io/
   entry_point_prefix: siesta
   pip_url: aiida-siesta
-  plugin_info: https://raw.github.com/siesta-project/aiida_siesta_plugin/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/siesta-project/aiida_siesta_plugin/master/pyproject.toml
 aiida-spex:
   code_home: https://github.com/JuDFTteam/aiida-spex
   entry_point_prefix: spex
