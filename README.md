@@ -78,22 +78,7 @@ If no development status is specified, the status will default to 'planning'.
 
 ## How to fix registry warnings and errors
 
-You may want to check that your plugin is correctly registered before making the changes to your plugin repository.
-To do so, you can run the registry check locally.
-
-Clone this repository and install the dependencies:
-```bash
-git clone https://github.com/aiidateam/aiida-registry.git
-pip install aiida-registry
-```
-
-Fetch the metadata and run installation test or your plugin
-```bash
-aiida-registry fetch-metadata <plugin-name>
-aiida-registry test-install
-```
-
-You'll see the warnings and errors as what you can see from the registry page.
+You can reproduce the warnings/errors locally through the [instructions](https://github.com/aiidateam/aiida-registry/wiki#how-to-fix-registry-warnings-and-errors).
 
 ### Warning/Error codes
 
