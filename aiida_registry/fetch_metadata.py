@@ -188,7 +188,8 @@ def complete_plugin_data(
         plugin_info_url = plugin_data.pop("plugin_info", None)
         if plugin_info_url is None:
             REPORTER.warn(
-                "Cannot fetch all data from PyPI and missing plugin_info key!"
+                "Cannot fetch all data from PyPI and missing plugin_info key!",
+                check_id="E001",
             )
         else:
             # retrieve content of build file
@@ -222,7 +223,10 @@ def complete_plugin_data(
     if plugin_data["name"] == "aiida-core" and plugin_data["metadata"].get("version"):
         plugin_data["aiida_version"] = f'=={plugin_data["metadata"]["version"]}'
     if plugin_data.get("aiida_version") is None:
-        REPORTER.warn("AiiDA version not found")
+        REPORTER.warn(
+            "AiiDA version not found",
+            check_id="W002",
+        )
 
     validate_dev_status(plugin_data)
 
@@ -242,14 +246,20 @@ def validate_dev_status(plugin_data: dict):
         else []
     )
     if plugin_data["metadata"] and "Framework :: AiiDA" not in classifiers:
-        REPORTER.warn("Missing classifier 'Framework :: AiiDA'")
+        REPORTER.warn(
+            "Missing classifier 'Framework :: AiiDA'",
+            check_id="W003",
+        )
 
     # Read development status from plugin repo
     development_status = None
     for classifier in classifiers:
         if classifier in classifier_to_status:
             if development_status is not None:
-                REPORTER.warn("Multiple development statuses found in classifiers")
+                REPORTER.warn(
+                    "Multiple development statuses found in classifiers",
+                    check_id="W004",
+                )
             development_status = classifier_to_status[classifier]
 
     if (
@@ -259,14 +269,16 @@ def validate_dev_status(plugin_data: dict):
     ):
         REPORTER.warn(
             f"Development status in classifiers ({development_status}) "
-            f"does not match development_status in metadata ({plugin_data['development_status']})"
+            f"does not match development_status in metadata ({plugin_data['development_status']})",
+            check_id="W005",
         )
 
     # prioritise development_status from plugins.yaml
     if "development_status" in plugin_data:
         REPORTER.warn(
-            "`development_status` key is deprecated. "
-            "Use PyPI Trove classifiers in the plugin repository instead."
+            "'development_status' key is deprecated. "
+            "Use PyPI Trove classifiers in the plugin repository instead.",
+            check_id="W006",
         )
     else:
         plugin_data["development_status"] = development_status or "planning"
@@ -274,7 +286,8 @@ def validate_dev_status(plugin_data: dict):
     # note: for more validation, it might be sensible to switch to voluptuous
     if plugin_data["development_status"] not in status_dict:
         REPORTER.warn(
-            "Invalid development status '{}'".format(plugin_data["development_status"])
+            f"Invalid development status '{plugin_data['development_status']}'",
+            check_id="W007",
         )
 
 
@@ -284,7 +297,10 @@ def validate_doc_url(url):
         response = requests.get(url, timeout=60)
         response.raise_for_status()  # raise an exception for all 4xx/5xx errors
     except Exception:  # pylint: disable=broad-except
-        REPORTER.warn("Unable to reach documentation URL: {}".format(url))
+        REPORTER.warn(
+            f"Unable to reach documentation URL: {url}",
+            check_id="W008",
+        )
         REPORTER.debug(traceback.print_exc(file=sys.stdout))
 
 
@@ -300,7 +316,8 @@ def validate_plugin_entry_points(plugin_data):
             == plugin_data["package_name"].lower()
         ):
             REPORTER.warn(
-                f"Prefix '{plugin_data['entry_point_prefix']}' does not follow naming convention."
+                f"Prefix '{plugin_data['entry_point_prefix']}' does not follow naming convention.",
+                check_id="W009",
             )
     else:
         # plugin should not specify any entry points
@@ -317,7 +334,8 @@ def validate_plugin_entry_points(plugin_data):
                 ept_string = ept_string.strip()
             if not ept_string.startswith(entry_point_root):
                 REPORTER.warn(
-                    f"Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'"
+                    f"Entry point '{ept_string}' does not start with prefix '{entry_point_root}.'",
+                    check_id="W010",
                 )
 
 
@@ -347,8 +365,5 @@ def fetch_metadata(filter_list=None, fetch_pypi=True, fetch_pypi_wheel=True):
         )
     plugins_metadata = add_registry_checks(plugins_metadata)
     REPORTER.info(f"{PLUGINS_METADATA} dumped")
-
-    if os.environ.get("GITHUB_ACTIONS") == "true":
-        print("::set-output name=error::" + "%0A".join(REPORTER.warnings))
 
     return plugins_metadata

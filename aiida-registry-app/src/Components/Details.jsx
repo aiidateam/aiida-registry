@@ -93,6 +93,9 @@ function Details({pluginKey}) {
           ))}
             </>
           )}
+          <Alert severity="info">
+            Click the warning/error code will redirect to <a href="https://github.com/aiidateam/aiida-registry#how-to-fix-registry-warnings-and-errors">troubleshooting section</a> for the fix of the issue.
+          </Alert>
         </>
       ) : (
         <Alert severity="success">All checks passed!</Alert>
