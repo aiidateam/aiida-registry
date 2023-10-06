@@ -523,3 +523,8 @@ aiida-ssh2win:
   code_home: https://github.com/edan-bainglass/aiida-ssh2win
   version_file: https://raw.githubusercontent.com/edan-bainglass/aiida-ssh2win/develop/aiida_ssh2win/__init__.py
   pip_url: git+https://github.com/edan-bainglass/aiida-ssh2win
+aiida-bader:
+  entry_point_prefix: bader
+  pip_url: aiida-bader
+  code_home: https://github.com/superstar54/aiida-bader
+  documentation_url: https://aiida-bader.readthedocs.io/en/latest/
