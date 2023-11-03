@@ -308,8 +308,12 @@ aiida-pyscf:
   pip_url: aiida-pyscf
   plugin_info: https://raw.githubusercontent.com/microsoft/aiida-pyscf/main/pyproject.toml
 aiida-python:
-  entry_point_prefix: aiidapython
+  entry_point_prefix: aiida-python
+  development_status: beta
   code_home: https://github.com/addman2/aiida-python
+  plugin_info: https://raw.githubusercontent.com/addman2/aiida-python/develop/setup.json
+  pip_url: aiida-python
+  documentation_url: https://aiida-python.readthedocs.io
 aiida-qeq:
   code_home: https://github.com/ltalirz/aiida-qeq
   development_status: stable
