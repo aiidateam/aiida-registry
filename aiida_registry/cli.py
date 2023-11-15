@@ -22,7 +22,7 @@ def fetch(package):
 @click.option(
     "--container-image",
     # should use aiidateam/aiida-core-with-services:lastest after the version is released
-    default="aiidateam/aiida-core-with-services:edge",
+    default="aiidateam/aiida-core-with-services:latest",
     help="Container image to use for the install",
 )
 def test_install(container_image):
