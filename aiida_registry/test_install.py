@@ -69,14 +69,14 @@ def supports_python_version(plugin_info):
     return False
 
 
-def handle_error(process_result, message):
+def handle_error(process_result, message, check_id=None):
     error_message = ""
 
     if process_result.exit_code != 0:
         error_message = process_result.output.decode("utf8")
 
         # the error_message is formatted as code block
-        REPORTER.error(f"{message}</br><pre>{error_message}</pre>")
+        REPORTER.error(f"{message}" f"<pre>{error_message}</pre>", check_id=check_id)
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -125,7 +125,9 @@ def test_install_one_docker(container_image, plugin):
         )
 
         error_message = handle_error(
-            install_package, f"Failed to install plugin {plugin['name']}"
+            install_package,
+            f"Failed to install plugin {plugin['name']}",
+            check_id="E001",
         )
 
         is_package_installed = True
@@ -140,7 +142,9 @@ def test_install_one_docker(container_image, plugin):
         )
 
         error_message = handle_error(
-            import_package, f"Failed to import package {plugin['package_name']}"
+            import_package,
+            f"Failed to import package {plugin['package_name']}",
+            check_id="E002",
         )
         is_package_importable = True
 
@@ -155,6 +159,7 @@ def test_install_one_docker(container_image, plugin):
         error_message = handle_error(
             extract_metadata,
             f"Failed to fetch entry point metadata for package {plugin['package_name']}",
+            check_id="E003",
         )
 
         with open("result.json", "r", encoding="utf8") as handle:
@@ -247,7 +252,7 @@ def test_install_all(container_image):
     # the data object there for MUST NOT be called in the loop above
     data["plugins"] = add_registry_checks(data["plugins"])
 
-    print("Dumping plugins.json")
+    print("Dumping plugins_metadata.json")
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
         json.dump(data, handle, indent=2)
     print(json.dumps(data, indent=4))

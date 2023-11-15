@@ -14,7 +14,7 @@ if os.environ.get("CACHE_REQUESTS"):
     requests_cache.install_cache("demo_cache", expire_after=60 * 60 * 24)
 
 
-def fetch_file(file_url: str, file_type: str = "plugin info", warn=True) -> str:
+def fetch_file(file_url: str, warn=True) -> str:
     """Fetch plugin info from a URL to a file."""
     try:
         response = requests.get(file_url, timeout=60)
@@ -23,8 +23,9 @@ def fetch_file(file_url: str, file_type: str = "plugin info", warn=True) -> str:
     except Exception:  # pylint: disable=broad-except
         if warn:
             REPORTER.error(
-                f"Unable to retrieve {file_type} from: {file_url}."
-                "Please check the URL of your plugin in the registry yaml."
+                f"Unable to retrieve plugin metadata, retrieve plugin info from '{file_url}' failed."
+                f"<pre>{traceback.format_exc()}</pre>",
+                check_id="E004",
             )
             REPORTER.debug(traceback.format_exc())
         return None

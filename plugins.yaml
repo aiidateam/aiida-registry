@@ -308,8 +308,12 @@ aiida-pyscf:
   pip_url: aiida-pyscf
   plugin_info: https://raw.githubusercontent.com/microsoft/aiida-pyscf/main/pyproject.toml
 aiida-python:
-  entry_point_prefix: aiidapython
+  entry_point_prefix: aiida-python
+  development_status: beta
   code_home: https://github.com/addman2/aiida-python
+  plugin_info: https://raw.githubusercontent.com/addman2/aiida-python/develop/setup.json
+  pip_url: aiida-python
+  documentation_url: https://aiida-python.readthedocs.io
 aiida-qeq:
   code_home: https://github.com/ltalirz/aiida-qeq
   development_status: stable
@@ -523,10 +527,8 @@ aiida-ssh2win:
   code_home: https://github.com/edan-bainglass/aiida-ssh2win
   version_file: https://raw.githubusercontent.com/edan-bainglass/aiida-ssh2win/develop/aiida_ssh2win/__init__.py
   pip_url: git+https://github.com/edan-bainglass/aiida-ssh2win
-aiida-sssp-workflow:
-  entry_point_prefix: sssp_workflow
-  code_home: https://github.com/aiidateam/aiida-sssp-workflow
-  version_file: https://github.com/aiidateam/aiida-sssp-workflow/blob/main/aiida_sssp_workflow/version.py
-  documentation_url: https://github.com/aiidateam/aiida-sssp-workflow#readme
-  pip_url: aiida-sssp-workflow
-  plugin_info: https://github.com/aiidateam/aiida-sssp-workflow/blob/main/setup.cfg
+aiida-bader:
+  entry_point_prefix: bader
+  pip_url: aiida-bader
+  code_home: https://github.com/superstar54/aiida-bader
+  documentation_url: https://aiida-bader.readthedocs.io/en/latest/
