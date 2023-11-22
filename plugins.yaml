@@ -15,6 +15,11 @@ aiida-alloy:
   entry_point_prefix: alloy
   pip_url: git+https://github.com/DanielMarchand/aiida-alloy
   plugin_info: https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json
+aiida-amber:
+  code_home: https://github.com/PSDI-Biomolecular-team/aiida-amber
+  entry_point_prefix: amber
+  pip_url: git+https://github.com/PSDI-Biomolecular-team/aiida-amber
+  plugin_info: https://raw.githubusercontent.com/PSDI-Biomolecular-team/aiida-amber/main/pyproject.toml
 aiida-ase:
   code_home: https://github.com/aiidateam/aiida-ase
   documentation_url: https://aiida-ase.readthedocs.io/
