@@ -537,3 +537,8 @@ aiida-bader:
   pip_url: aiida-bader
   code_home: https://github.com/superstar54/aiida-bader
   documentation_url: https://aiida-bader.readthedocs.io/en/latest/
+aiida-fhiaims:
+  entry_point_prefix: fhiaims
+  code_home: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
+  pip_url: git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
+
