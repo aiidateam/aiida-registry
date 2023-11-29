@@ -541,4 +541,3 @@ aiida-fhiaims:
   entry_point_prefix: fhiaims
   code_home: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
   pip_url: git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
-
