@@ -15,6 +15,11 @@ aiida-alloy:
   entry_point_prefix: alloy
   pip_url: git+https://github.com/DanielMarchand/aiida-alloy
   plugin_info: https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json
+aiida-amber:
+  code_home: https://github.com/PSDI-Biomolecular-team/aiida-amber
+  entry_point_prefix: amber
+  pip_url: git+https://github.com/PSDI-Biomolecular-team/aiida-amber
+  plugin_info: https://raw.githubusercontent.com/PSDI-Biomolecular-team/aiida-amber/main/pyproject.toml
 aiida-ase:
   code_home: https://github.com/aiidateam/aiida-ase
   documentation_url: https://aiida-ase.readthedocs.io/
@@ -183,11 +188,11 @@ aiida-graphql:
   pip_url: aiida-graphql
   plugin_info: https://raw.github.com/dev-zero/aiida-graphql/develop/pyproject.toml
 aiida-gromacs:
-  code_home: https://github.com/jimboid/aiida-gromacs
+  code_home: https://github.com/PSDI-Biomolecular-team/aiida-gromacs
   documentation_url: https://aiida-gromacs.readthedocs.io/
   entry_point_prefix: gromacs
-  pip_url: git+https://github.com/jimboid/aiida-gromacs
-  plugin_info: https://raw.githubusercontent.com/jimboid/aiida-gromacs/master/pyproject.toml
+  pip_url: aiida-gromacs
+  plugin_info: https://raw.githubusercontent.com/PSDI-Biomolecular-team/aiida-gromacs/master/pyproject.toml
 aiida-gudhi:
   code_home: https://github.com/ltalirz/aiida-gudhi
   development_status: beta
@@ -532,3 +537,7 @@ aiida-bader:
   pip_url: aiida-bader
   code_home: https://github.com/superstar54/aiida-bader
   documentation_url: https://aiida-bader.readthedocs.io/en/latest/
+aiida-fhiaims:
+  entry_point_prefix: fhiaims
+  code_home: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
+  pip_url: git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
