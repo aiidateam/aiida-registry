@@ -147,34 +147,52 @@ class Reporter:
     def __init__(self):
         """Initialize the reporter."""
         self.warnings = []
+        self.errors = []
         self.plugin_name = None
         self.plugins_warnings = {}
+        self.plugins_errors = {}
 
     def reset(self):
         """Reset the warnings list."""
         self.warnings = []
+        self.errors = []
 
     def set_plugin_name(self, name):
         """Set the plugin name."""
         self.plugin_name = name
+        self.reset()
 
-    def warn(self, string):
+        self.plugins_warnings[self.plugin_name] = []
+        self.plugins_errors[self.plugin_name] = []
+
+    def warn(self, message, check_id=None):
         """Write to stdout and log.
 
         Used to display log in actions.
         """
-        message = f"  > WARNING! {string}"
         # Set the step output error message which can be used,
         # e.g., for display as part of an issue comment.
+        if check_id is not None:
+            message = f"<a href='https://github.com/aiidateam/aiida-registry#{check_id}'>{check_id}</a>: {message}"
+
         if self.plugin_name:
             self.warnings.append(f"{message} [{self.plugin_name}]")
-            try:
-                self.plugins_warnings[self.plugin_name].append(string)
-            except KeyError:
-                self.plugins_warnings[self.plugin_name] = [string]
+            self.plugins_warnings[self.plugin_name].append(message)
         else:
-            self.warnings.append(message)
-        print(message)
+            self.warnings.append(f"{message}")
+        print(f"{message}")
+
+    def error(self, message, check_id=None):
+        """Write to stdout and log."""
+        if check_id is not None:
+            message = f"<a href='https://github.com/aiidateam/aiida-registry#{check_id}'>{check_id}</a>: {message}"
+
+        if self.plugin_name:
+            self.errors.append(f"{message} [{self.plugin_name}]")
+            self.plugins_errors[self.plugin_name].append(message)
+        else:
+            self.errors.append(f"{message}")
+        print(f"{message}")
 
     def info(self, string):
         """Write to stdout."""

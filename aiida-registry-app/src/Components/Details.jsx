@@ -6,6 +6,7 @@ import jsonData from '../plugins_metadata.json'
 import './Details.css'
 import base64Icon from '../base64Icon';
 import Alert from '@mui/material/Alert';
+import parse from 'html-react-parser';
 
 const entrypointtypes = jsonData["entrypointtypes"]
 const plugins  = jsonData["plugins"]
@@ -76,22 +77,25 @@ function Details({pluginKey}) {
       </div>
 
       <h3>Registry checks</h3>
-      {value.warnings || value.errors ? (
+      {value.warnings.length !== 0 || value.errors.length !== 0 ? (
         <>
           {value.warnings && (
             <>
             {value.warnings.map((warning) => (
-              <Alert severity="warning">{warning}</Alert>
+              <Alert severity="warning">{parse(`${warning}`)}</Alert>
             ))}
             </>
           )}
           {value.errors && (
             <>
           {value.errors.map((error) => (
-            <Alert severity="error"><pre>{error}</pre></Alert>
+            <Alert severity="error">{parse(`${error}`)}</Alert>
           ))}
             </>
           )}
+          <Alert severity="info">
+            Click the warning/error code will redirect to <a href="https://github.com/aiidateam/aiida-registry#how-to-fix-registry-warnings-and-errors">troubleshooting section</a> for the fix of the issue.
+          </Alert>
         </>
       ) : (
         <Alert severity="success">All checks passed!</Alert>
@@ -100,15 +104,20 @@ function Details({pluginKey}) {
       <h2 id='detailed.information'>Detailed information</h2>
         {Object.keys(value.metadata).length !== 0 ? (
           <>
-            <p>
-              <strong>Author(s)</strong>: {value.metadata.author}
-            </p>
+            {value.metadata.author && (
+              <p>
+                <strong>Author(s)</strong>: {value.metadata.author}
+              </p>
+            )}
             {value.metadata.author_email && (
               <p>
-                <strong>Contact</strong>:{" "}
-                <a href={`mailto:${value.metadata.author_email}`}>
-                  {value.metadata.author_email}
-                </a>
+                <strong>Contact</strong>:
+                  {value.metadata.author_email.split(',').map(email => (
+                    <span key={email}>
+                      <a href={`mailto:${email.trim()}`}>{email.trim()}</a>
+                      {', '}
+                    </span>
+                  ))}
               </p>
             )}
             <p>

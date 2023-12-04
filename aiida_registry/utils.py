@@ -14,7 +14,7 @@ if os.environ.get("CACHE_REQUESTS"):
     requests_cache.install_cache("demo_cache", expire_after=60 * 60 * 24)
 
 
-def fetch_file(file_url: str, file_type: str = "plugin info", warn=True) -> str:
+def fetch_file(file_url: str, warn=True) -> str:
     """Fetch plugin info from a URL to a file."""
     try:
         response = requests.get(file_url, timeout=60)
@@ -22,9 +22,26 @@ def fetch_file(file_url: str, file_type: str = "plugin info", warn=True) -> str:
         response.raise_for_status()
     except Exception:  # pylint: disable=broad-except
         if warn:
-            REPORTER.warn(
-                f"  > WARNING! Unable to retrieve {file_type} from: {file_url}"
+            REPORTER.error(
+                f"Unable to retrieve plugin metadata, retrieve plugin info from '{file_url}' failed."
+                f"<pre>{traceback.format_exc()}</pre>",
+                check_id="E004",
             )
             REPORTER.debug(traceback.format_exc())
         return None
     return response.content.decode(response.encoding or "utf8")
+
+
+def add_registry_checks(metadata):
+    """Add fetch warnings/errors to the data object."""
+    for name, error_list in REPORTER.plugins_errors.items():
+        if "errors" not in metadata[name]:
+            metadata[name]["errors"] = []
+        metadata[name]["errors"] += error_list
+
+    for name, warning_list in REPORTER.plugins_warnings.items():
+        if "warnings" not in metadata[name]:
+            metadata[name]["warnings"] = []
+        metadata[name]["warnings"] += warning_list
+
+    return metadata

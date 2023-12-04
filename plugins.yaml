@@ -15,6 +15,11 @@ aiida-alloy:
   entry_point_prefix: alloy
   pip_url: git+https://github.com/DanielMarchand/aiida-alloy
   plugin_info: https://raw.githubusercontent.com/DanielMarchand/aiida-alloy/master/setup.json
+aiida-amber:
+  code_home: https://github.com/PSDI-Biomolecular-team/aiida-amber
+  entry_point_prefix: amber
+  pip_url: git+https://github.com/PSDI-Biomolecular-team/aiida-amber
+  plugin_info: https://raw.githubusercontent.com/PSDI-Biomolecular-team/aiida-amber/main/pyproject.toml
 aiida-ase:
   code_home: https://github.com/aiidateam/aiida-ase
   documentation_url: https://aiida-ase.readthedocs.io/
@@ -183,11 +188,11 @@ aiida-graphql:
   pip_url: aiida-graphql
   plugin_info: https://raw.github.com/dev-zero/aiida-graphql/develop/pyproject.toml
 aiida-gromacs:
-  code_home: https://github.com/jimboid/aiida-gromacs
+  code_home: https://github.com/PSDI-Biomolecular-team/aiida-gromacs
   documentation_url: https://aiida-gromacs.readthedocs.io/
   entry_point_prefix: gromacs
-  pip_url: git+https://github.com/jimboid/aiida-gromacs
-  plugin_info: https://raw.githubusercontent.com/jimboid/aiida-gromacs/master/pyproject.toml
+  pip_url: aiida-gromacs
+  plugin_info: https://raw.githubusercontent.com/PSDI-Biomolecular-team/aiida-gromacs/master/pyproject.toml
 aiida-gudhi:
   code_home: https://github.com/ltalirz/aiida-gudhi
   development_status: beta
@@ -207,7 +212,7 @@ aiida-kkr:
   documentation_url: https://aiida-kkr.readthedocs.io/
   entry_point_prefix: kkr
   pip_url: aiida-kkr
-  plugin_info: https://raw.github.com/JuDFTteam/aiida-kkr/develop/setup.json
+  plugin_info: https://raw.githubusercontent.com/JuDFTteam/aiida-kkr/master/pyproject.toml
 aiida-lammps:
   code_home: https://github.com/aiidaplugins/aiida-lammps
   development_status: beta
@@ -308,8 +313,12 @@ aiida-pyscf:
   pip_url: aiida-pyscf
   plugin_info: https://raw.githubusercontent.com/microsoft/aiida-pyscf/main/pyproject.toml
 aiida-python:
-  entry_point_prefix: aiidapython
+  entry_point_prefix: aiida-python
+  development_status: beta
   code_home: https://github.com/addman2/aiida-python
+  plugin_info: https://raw.githubusercontent.com/addman2/aiida-python/develop/setup.json
+  pip_url: aiida-python
+  documentation_url: https://aiida-python.readthedocs.io
 aiida-qeq:
   code_home: https://github.com/ltalirz/aiida-qeq
   development_status: stable
@@ -342,7 +351,7 @@ aiida-siesta:
   documentation_url: https://aiida-siesta-plugin.readthedocs.io/
   entry_point_prefix: siesta
   pip_url: aiida-siesta
-  plugin_info: https://raw.github.com/siesta-project/aiida_siesta_plugin/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/siesta-project/aiida_siesta_plugin/master/pyproject.toml
 aiida-spex:
   code_home: https://github.com/JuDFTteam/aiida-spex
   entry_point_prefix: spex
@@ -523,10 +532,19 @@ aiida-ssh2win:
   code_home: https://github.com/edan-bainglass/aiida-ssh2win
   version_file: https://raw.githubusercontent.com/edan-bainglass/aiida-ssh2win/develop/aiida_ssh2win/__init__.py
   pip_url: git+https://github.com/edan-bainglass/aiida-ssh2win
+aiida-bader:
+  entry_point_prefix: bader
+  pip_url: aiida-bader
+  code_home: https://github.com/superstar54/aiida-bader
+  documentation_url: https://aiida-bader.readthedocs.io/en/latest/
+aiida-fhiaims:
+  entry_point_prefix: fhiaims
+  code_home: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
+  pip_url: git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
 aiida-sssp-workflow:
   entry_point_prefix: sssp_workflow
   code_home: https://github.com/aiidateam/aiida-sssp-workflow
   version_file: https://github.com/aiidateam/aiida-sssp-workflow/blob/main/aiida_sssp_workflow/version.py
-  documentation_url: https://github.com/aiidateam/aiida-sssp-workflow#readme
+  documentation_url: https://aiida-sssp-workflow.readthedocs.io/en/latest/
   pip_url: aiida-sssp-workflow
   plugin_info: https://github.com/aiidateam/aiida-sssp-workflow/blob/main/setup.cfg

@@ -10,7 +10,7 @@ import os
 import sys
 from dataclasses import asdict, dataclass
 
-from aiida_registry.fetch_metadata import add_registry_checks
+from aiida_registry.utils import add_registry_checks
 
 from . import PLUGINS_METADATA, REPORTER
 
@@ -69,12 +69,14 @@ def supports_python_version(plugin_info):
     return False
 
 
-def handle_error(process_result, message):
+def handle_error(process_result, message, check_id=None):
     error_message = ""
 
     if process_result.exit_code != 0:
         error_message = process_result.output.decode("utf8")
-        REPORTER.warn(f"{message}\n{error_message}")
+
+        # the error_message is formatted as code block
+        REPORTER.error(f"{message}" f"<pre>{error_message}</pre>", check_id=check_id)
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -82,9 +84,10 @@ def handle_error(process_result, message):
 
 def test_install_one_docker(container_image, plugin):
     """Test installing one plugin in a Docker container."""
-    import docker  # pylint: disable=import-outside-toplevel
+    # pylint: disable=too-many-locals,import-outside-toplevel
+    import docker
 
-    client = docker.from_env(timeout=180)
+    client = docker.from_env(timeout=120)
 
     is_package_installed = False
     is_package_importable = False
@@ -99,17 +102,33 @@ def test_install_one_docker(container_image, plugin):
         volumes={os.getcwd(): {"bind": _DOCKER_WORKDIR, "mode": "rw"}},
     )
 
+    user = container.exec_run("whoami").output.decode("utf8").strip()
+
     try:
         print("   - Installing plugin {}".format(plugin["name"]))
-        install_package = container.exec_run(f'pip install --pre {plugin["pip_url"]}')
-
-        error_message = handle_error(
-            install_package, f"Failed to install plugin {plugin['name']}"
+        aiida_version_output = (
+            container.exec_run(
+                "verdi --version",
+                user=user,
+            )
+            .output.decode("utf8")
+            .strip()
+        )
+        aiida_version = aiida_version_output.split(" ")[-1]
+        container.exec_run(
+            f'sh -c "echo aiida-core=="{aiida_version}" > /tmp/pip-constraint.txt"',
+            user=user,
+        )
+        install_package = container.exec_run(
+            f'pip install --constraint /tmp/pip-constraint.txt --pre {plugin["pip_url"]}',
+            user=user,
         )
 
-        # Should make this depend on the AiiDA version inside the container,
-        # at least after 2.0 is out that removes reentry
-        _reentry_scan = container.exec_run("reentry scan -r aiida")
+        error_message = handle_error(
+            install_package,
+            f"Failed to install plugin {plugin['name']}",
+            check_id="E001",
+        )
 
         is_package_installed = True
 
@@ -118,11 +137,14 @@ def test_install_one_docker(container_image, plugin):
 
         print("   - Importing {}".format(plugin["package_name"]))
         import_package = container.exec_run(
-            "python -c 'import {}'".format(plugin["package_name"])
+            "python -c 'import {}'".format(plugin["package_name"]),
+            user=user,
         )
 
         error_message = handle_error(
-            import_package, f"Failed to import package {plugin['package_name']}"
+            import_package,
+            f"Failed to import package {plugin['package_name']}",
+            check_id="E002",
         )
         is_package_importable = True
 
@@ -132,10 +154,12 @@ def test_install_one_docker(container_image, plugin):
         extract_metadata = container.exec_run(
             workdir=_DOCKER_WORKDIR,
             cmd="python ./bin/analyze_entrypoints.py -o result.json",
+            user=user,
         )
         error_message = handle_error(
             extract_metadata,
             f"Failed to fetch entry point metadata for package {plugin['package_name']}",
+            check_id="E003",
         )
 
         with open("result.json", "r", encoding="utf8") as handle:
@@ -223,9 +247,12 @@ def test_install_all(container_image):
             except KeyError:
                 continue
 
-    data = add_registry_checks(data, include_errors=True)
+    # Add warnings and errors to the data object
+    # This will loop over the plugins and add the warnings/errors to
+    # the data object there for MUST NOT be called in the loop above
+    data["plugins"] = add_registry_checks(data["plugins"])
 
-    print("Dumping plugins.json")
+    print("Dumping plugins_metadata.json")
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
         json.dump(data, handle, indent=2)
     print(json.dumps(data, indent=4))
