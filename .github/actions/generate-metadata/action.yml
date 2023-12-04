@@ -61,8 +61,8 @@ runs:
 
         - name: Check installation of plugins
           if: ${{ inputs.cache == 'false' }}
-          # This step will attach plugin installation inforamtion to the metadata, e.g. if the plugin can be installed or not
-          # Make sure the folder is writable
+          # Attach plugin installation information to the metadata, e.g. if the plugin can be installed or not
+          # Need to make the _DOCKER_WORKDIR writable by (o)thers since the new docker stack has default aiida as system user rather than root.
           run: |
             umask 000 && chmod +w ../aiida-registry
             aiida-registry test-install
