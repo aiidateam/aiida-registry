@@ -1,6 +1,20 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - ready_for_review
+      - reopened
+    paths:
+      - "plugins.yaml"
+    branches:
+      - master
+
+# For development, use the following instead:
+# on: [pull_request]
+
 
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:
@@ -68,7 +82,6 @@ jobs:
 
   preview:
     # This job is triggered by (only) a PR.
-    if: github.event_name == 'pull_request'
     needs: [test-webpage-build]
     runs-on: ubuntu-latest
     strategy:
@@ -116,6 +129,4 @@ jobs:
         umbrella-dir: pr-preview
         action: auto
         custom-url:
-      # preview will failed if the PR is from a forked repo
-      # should be fixed after https://github.com/aiidateam/aiida-registry/issues/272
-      if: (!github.event.pull_request.head.repo.fork)
+        token: ${{ secrets.BOT_COMMENT_TOKEN }} # use aiida-bot token to deploy the preview
