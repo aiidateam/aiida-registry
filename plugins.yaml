@@ -541,3 +541,10 @@ aiida-fhiaims:
   entry_point_prefix: fhiaims
   code_home: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
   pip_url: git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
+aiida-sssp-workflow:
+  entry_point_prefix: sssp_workflow
+  code_home: https://github.com/aiidateam/aiida-sssp-workflow
+  version_file: https://github.com/aiidateam/aiida-sssp-workflow/blob/main/aiida_sssp_workflow/version.py
+  documentation_url: https://aiida-sssp-workflow.readthedocs.io/en/latest/
+  pip_url: aiida-sssp-workflow
+  plugin_info: https://github.com/aiidateam/aiida-sssp-workflow/blob/main/setup.cfg
