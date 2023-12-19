@@ -1,0 +1,1243 @@
+{
+  "plugins": {
+    "aiida-fhiaims": {
+      "entry_point_prefix": "fhiaims",
+      "code_home": "https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims",
+      "pip_url": "git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims",
+      "name": "aiida-fhiaims",
+      "package_name": "aiida_fhiaims",
+      "hosted_on": "gitlab.com",
+      "metadata": {},
+      "aiida_version": null,
+      "entry_points": {},
+      "commits_count": 9,
+      "development_status": "planning",
+      "errors": [],
+      "warnings": [
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Cannot fetch all data from PyPI and missing plugin_info key!",
+        "<a href='https://github.com/aiidateam/aiida-registry#W002'>W002</a>: AiiDA version not found"
+      ],
+      "summaryinfo": [],
+      "pip_install_cmd": "pip install git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims"
+    },
+    "aiida-sssp-workflow": {
+      "entry_point_prefix": "sssp_workflow",
+      "code_home": "https://github.com/aiidateam/aiida-sssp-workflow",
+      "version_file": "https://github.com/aiidateam/aiida-sssp-workflow/blob/main/aiida_sssp_workflow/version.py",
+      "documentation_url": "https://aiida-sssp-workflow.readthedocs.io/en/latest/",
+      "pip_url": "aiida-sssp-workflow",
+      "plugin_info": "https://github.com/aiidateam/aiida-sssp-workflow/blob/main/setup.cfg",
+      "name": "aiida-sssp-workflow",
+      "package_name": "aiida_sssp_workflow",
+      "hosted_on": "github.com",
+      "metadata": {
+        "release_date": "2023-10-09",
+        "description": "Package for the AiiDA SSSP workflow",
+        "author": "Jusong Yu",
+        "author_email": "jusong.yu@psi.ch",
+        "license": "MIT",
+        "home_page": "https://github.com/aiidateam/aiida-sssp-workflow",
+        "classifiers": [
+          "Development Status :: 5 - Production/Stable",
+          "Framework :: AiiDA",
+          "License :: OSI Approved :: MIT License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9"
+        ],
+        "version": "4.2.1"
+      },
+      "aiida_version": ">=2.4.0,<2.5.0",
+      "entry_points": {
+        "aiida.calculations": {
+          "sssp_workflow.birch_murnaghan_fit": {
+            "description": [
+              "doc"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "volume_energy",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "outputs": [],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.calculations.birch_murnaghan_fit:birch_murnaghan_fit"
+          }
+        },
+        "aiida.workflows": {
+          "sssp_workflow.convergence.bands": {
+            "description": [
+              "WorkChain to converge test on cohisive energy of input structure"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "criteria",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "Criteria for convergence measurement to give recommend cutoff pair."
+                },
+                {
+                  "name": "cutoff_control",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The cutoff control list to use for the workchain."
+                },
+                {
+                  "name": "protocol",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The calculation protocol to use for the workchain."
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "configuration",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "options",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Optional `options`."
+                },
+                {
+                  "name": "parallelization",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Parallelization options"
+                },
+                {
+                  "name": "preset_ecutwfc",
+                  "required": false,
+                  "valid_types": "Int, NoneType",
+                  "info": "Preset wavefunction cutoff will be used and skip wavefunction test."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters of two stage convergence test."
+                },
+                {
+                  "name": "output_parameters_rho_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all rho test calculations."
+                },
+                {
+                  "name": "output_parameters_wfc_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all wfc test calculations."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 401,
+                  "message": "The reference calculation failed."
+                },
+                {
+                  "status": 402,
+                  "message": "The sub process for `{label}` did not finish successfully."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.convergence.bands:ConvergenceBandsWorkChain"
+          },
+          "sssp_workflow.convergence.cohesive_energy": {
+            "description": [
+              "WorkChain to converge test on cohisive energy of input structure"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "criteria",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "Criteria for convergence measurement to give recommend cutoff pair."
+                },
+                {
+                  "name": "cutoff_control",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The cutoff control list to use for the workchain."
+                },
+                {
+                  "name": "protocol",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The calculation protocol to use for the workchain."
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "configuration",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "options",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Optional `options`."
+                },
+                {
+                  "name": "parallelization",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Parallelization options"
+                },
+                {
+                  "name": "preset_ecutwfc",
+                  "required": false,
+                  "valid_types": "Int, NoneType",
+                  "info": "Preset wavefunction cutoff will be used and skip wavefunction test."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters of two stage convergence test."
+                },
+                {
+                  "name": "output_parameters_rho_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all rho test calculations."
+                },
+                {
+                  "name": "output_parameters_wfc_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all wfc test calculations."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 401,
+                  "message": "The reference calculation failed."
+                },
+                {
+                  "status": 402,
+                  "message": "The sub process for `{label}` did not finish successfully."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.convergence.cohesive_energy:ConvergenceCohesiveEnergyWorkChain"
+          },
+          "sssp_workflow.convergence.delta": {
+            "description": [
+              "WorkChain to converge test on delta factor of input structure"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "criteria",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "Criteria for convergence measurement to give recommend cutoff pair."
+                },
+                {
+                  "name": "cutoff_control",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The cutoff control list to use for the workchain."
+                },
+                {
+                  "name": "protocol",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The calculation protocol to use for the workchain."
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "configuration",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "options",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Optional `options`."
+                },
+                {
+                  "name": "parallelization",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Parallelization options"
+                },
+                {
+                  "name": "preset_ecutwfc",
+                  "required": false,
+                  "valid_types": "Int, NoneType",
+                  "info": "Preset wavefunction cutoff will be used and skip wavefunction test."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters of two stage convergence test."
+                },
+                {
+                  "name": "output_parameters_rho_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all rho test calculations."
+                },
+                {
+                  "name": "output_parameters_wfc_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all wfc test calculations."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 401,
+                  "message": "The reference calculation failed."
+                },
+                {
+                  "status": 402,
+                  "message": "The sub process for `{label}` did not finish successfully."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.convergence.delta:ConvergenceDeltaWorkChain"
+          },
+          "sssp_workflow.convergence.phonon_frequencies": {
+            "description": [
+              "WorkChain to converge test on cohisive energy of input structure"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "criteria",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "Criteria for convergence measurement to give recommend cutoff pair."
+                },
+                {
+                  "name": "cutoff_control",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The cutoff control list to use for the workchain."
+                },
+                {
+                  "name": "ph_code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `ph.x` code  use for the `PhCalculation`."
+                },
+                {
+                  "name": "protocol",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The calculation protocol to use for the workchain."
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "pw_code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "configuration",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "options",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Optional `options`."
+                },
+                {
+                  "name": "parallelization",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Parallelization options"
+                },
+                {
+                  "name": "preset_ecutwfc",
+                  "required": false,
+                  "valid_types": "Int, NoneType",
+                  "info": "Preset wavefunction cutoff will be used and skip wavefunction test."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters of two stage convergence test."
+                },
+                {
+                  "name": "output_parameters_rho_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all rho test calculations."
+                },
+                {
+                  "name": "output_parameters_wfc_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all wfc test calculations."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 401,
+                  "message": "The reference calculation failed."
+                },
+                {
+                  "status": 402,
+                  "message": "The sub process for `{label}` did not finish successfully."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.convergence.phonon_frequencies:ConvergencePhononFrequenciesWorkChain"
+          },
+          "sssp_workflow.convergence.pressure": {
+            "description": [
+              "WorkChain to converge test on pressure of input structure"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "criteria",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "Criteria for convergence measurement to give recommend cutoff pair."
+                },
+                {
+                  "name": "cutoff_control",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The cutoff control list to use for the workchain."
+                },
+                {
+                  "name": "protocol",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The calculation protocol to use for the workchain."
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "configuration",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "options",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Optional `options`."
+                },
+                {
+                  "name": "parallelization",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Parallelization options"
+                },
+                {
+                  "name": "preset_ecutwfc",
+                  "required": false,
+                  "valid_types": "Int, NoneType",
+                  "info": "Preset wavefunction cutoff will be used and skip wavefunction test."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters of two stage convergence test."
+                },
+                {
+                  "name": "output_parameters_rho_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all rho test calculations."
+                },
+                {
+                  "name": "output_parameters_wfc_test",
+                  "required": false,
+                  "valid_types": "Dict",
+                  "info": "The output parameters include results of all wfc test calculations."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 401,
+                  "message": "The reference calculation failed."
+                },
+                {
+                  "status": 402,
+                  "message": "The sub process for `{label}` did not finish successfully."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.convergence.pressure:ConvergencePressureWorkChain"
+          },
+          "sssp_workflow.measure.bands": {
+            "description": [
+              "WorkChain to run bands measure,",
+              "    run without sym for distance compare and band structure along the path"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "charge_density_cutoff",
+                  "required": true,
+                  "valid_types": "Float",
+                  "info": "The charge density cutoff."
+                },
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "options",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "Optional `options` to use for the `PwCalculations`."
+                },
+                {
+                  "name": "parallelization",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "Parallelization options for the `PwCalculations`."
+                },
+                {
+                  "name": "protocol",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The protocol which define input calculation parameters."
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "wavefunction_cutoff",
+                  "required": true,
+                  "valid_types": "Float",
+                  "info": "The wavefunction cutoff."
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "configurations",
+                  "required": false,
+                  "valid_types": "List, NoneType",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "bands",
+                  "required": true,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "ecutrho",
+                  "required": true,
+                  "valid_types": "Int",
+                  "info": ""
+                },
+                {
+                  "name": "ecutwfc",
+                  "required": true,
+                  "valid_types": "Int",
+                  "info": ""
+                },
+                {
+                  "name": "band_structure",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.measure.bands:BandsMeasureWorkChain"
+          },
+          "sssp_workflow.measure.precision": {
+            "description": [
+              "Workchain to calculate delta factor of specific pseudopotential"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "charge_density_cutoff",
+                  "required": true,
+                  "valid_types": "Float",
+                  "info": "The charge density cutoff."
+                },
+                {
+                  "name": "code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "options",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "Optional `options` to use for the `PwCalculations`."
+                },
+                {
+                  "name": "parallelization",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "Parallelization options for the `PwCalculations`."
+                },
+                {
+                  "name": "protocol",
+                  "required": true,
+                  "valid_types": "Str",
+                  "info": "The protocol which define input calculation parameters."
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "wavefunction_cutoff",
+                  "required": true,
+                  "valid_types": "Float",
+                  "info": "The wavefunction cutoff."
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "configurations",
+                  "required": false,
+                  "valid_types": "List, NoneType",
+                  "info": ""
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output_parameters",
+                  "required": true,
+                  "valid_types": "",
+                  "info": "The summary output parameters of all delta measures to describe the precision of EOS compare  with the AE equation of state."
+                },
+                {
+                  "name": "BCC",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of BCC EOS."
+                },
+                {
+                  "name": "Diamond",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of Diamond EOS."
+                },
+                {
+                  "name": "FCC",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of FCC EOS."
+                },
+                {
+                  "name": "RE",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of RE EOS."
+                },
+                {
+                  "name": "SC",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of SC EOS."
+                },
+                {
+                  "name": "X2O",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of X2O EOS."
+                },
+                {
+                  "name": "X2O3",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of X2O3 EOS."
+                },
+                {
+                  "name": "X2O5",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of X2O5 EOS."
+                },
+                {
+                  "name": "XO",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of XO EOS."
+                },
+                {
+                  "name": "XO2",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of XO2 EOS."
+                },
+                {
+                  "name": "XO3",
+                  "required": false,
+                  "valid_types": "",
+                  "info": "Delta calculation result of XO3 EOS."
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 401,
+                  "message": "The metric workchain of configuration {confs} not finished ok."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.measure.precision:PrecisionMeasureWorkChain"
+          },
+          "sssp_workflow.verification": {
+            "description": [
+              "The verification workflow to run all test for the given pseudopotential"
+            ],
+            "spec": {
+              "inputs": [
+                {
+                  "name": "convergence",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": ""
+                },
+                {
+                  "name": "measure",
+                  "required": true,
+                  "valid_types": "Data",
+                  "info": ""
+                },
+                {
+                  "name": "pseudo",
+                  "required": true,
+                  "valid_types": "UpfData",
+                  "info": "Pseudopotential to be verified"
+                },
+                {
+                  "name": "pw_code",
+                  "required": true,
+                  "valid_types": "AbstractCode",
+                  "info": "The `pw.x` code use for the `PwCalculation`."
+                },
+                {
+                  "name": "charge_density_cutoff",
+                  "required": false,
+                  "valid_types": "Float, NoneType",
+                  "info": "The charge density cutoff for the Measure properties."
+                },
+                {
+                  "name": "clean_workdir",
+                  "required": false,
+                  "valid_types": "Bool",
+                  "info": "If `True`, work directories of all called non-cached calculations will be cleaned at the end of execution, and cached calculations will invalid from cache."
+                },
+                {
+                  "name": "label",
+                  "required": false,
+                  "valid_types": "Str, NoneType",
+                  "info": "label store for display as extra attributes."
+                },
+                {
+                  "name": "metadata",
+                  "required": false,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "options",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Optional `options`"
+                },
+                {
+                  "name": "parallelization",
+                  "required": false,
+                  "valid_types": "Dict, NoneType",
+                  "info": "Parallelization options"
+                },
+                {
+                  "name": "ph_code",
+                  "required": false,
+                  "valid_types": "AbstractCode, NoneType",
+                  "info": "The `ph.x` code use for the `PhCalculation`."
+                },
+                {
+                  "name": "properties_list",
+                  "required": false,
+                  "valid_types": "List",
+                  "info": "The preperties will be calculated, passed as a list."
+                },
+                {
+                  "name": "wavefunction_cutoff",
+                  "required": false,
+                  "valid_types": "Float, NoneType",
+                  "info": "The wavefunction cutoff for the Measure properties."
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "convergence",
+                  "required": true,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "measure",
+                  "required": true,
+                  "valid_types": "",
+                  "info": ""
+                },
+                {
+                  "name": "pseudo_info",
+                  "required": true,
+                  "valid_types": "Dict",
+                  "info": "pseudopotential info"
+                }
+              ],
+              "exit_codes": [
+                {
+                  "status": 1,
+                  "message": "The process has failed with an unspecified error."
+                },
+                {
+                  "status": 2,
+                  "message": "The process failed with legacy failure mode."
+                },
+                {
+                  "status": 10,
+                  "message": "The process returned an invalid output."
+                },
+                {
+                  "status": 11,
+                  "message": "The process did not register a required output."
+                },
+                {
+                  "status": 401,
+                  "message": "The caching is triggered but failed."
+                },
+                {
+                  "status": 811,
+                  "message": "The sub-workflows {processes} is not finished ok."
+                }
+              ]
+            },
+            "class": "aiida_sssp_workflow.workflows.verifications:VerificationWorkChain"
+          }
+        },
+        "console_scripts": {
+          "aiida-sssp-workflow": "aiida_sssp_workflow.cli:cmd_root"
+        }
+      },
+      "commits_count": 85,
+      "development_status": "stable",
+      "errors": [],
+      "warnings": [],
+      "summaryinfo": [
+        {
+          "colorclass": "blue",
+          "text": "Calculations",
+          "count": 1
+        },
+        {
+          "colorclass": "green",
+          "text": "Workflows",
+          "count": 8
+        },
+        {
+          "colorclass": "purple",
+          "text": "Console scripts",
+          "count": 1
+        }
+      ],
+      "pip_install_cmd": "pip install aiida-sssp-workflow",
+      "is_installable": "True"
+    }
+  },
+  "globalsummary": [
+    {
+      "name": "Calculations",
+      "colorclass": "blue",
+      "num_entries": 1,
+      "total_num": 1
+    },
+    {
+      "name": "Parsers",
+      "colorclass": "brown",
+      "num_entries": 0,
+      "total_num": 0
+    },
+    {
+      "name": "Data",
+      "colorclass": "red",
+      "num_entries": 0,
+      "total_num": 0
+    },
+    {
+      "name": "Workflows",
+      "colorclass": "green",
+      "num_entries": 1,
+      "total_num": 8
+    },
+    {
+      "name": "Console scripts",
+      "colorclass": "purple",
+      "num_entries": 1,
+      "total_num": 1
+    },
+    {
+      "name": "Other",
+      "tooltip": "",
+      "colorclass": "orange",
+      "num_entries": 0,
+      "total_num": 0
+    }
+  ],
+  "status_dict": {
+    "planning": [
+      "Not yet ready to use. Developers welcome!",
+      "status-planning-d9644d.svg"
+    ],
+    "pre-alpha": [
+      "Not yet ready to use. Developers welcome!",
+      "status-planning-d9644d.svg"
+    ],
+    "alpha": [
+      "Adds new functionality, not yet ready for production. Testing welcome!",
+      "status-alpha-d6af23.svg"
+    ],
+    "beta": [
+      "Adds new functionality, not yet ready for production. Testing welcome!",
+      "status-beta-d6af23.svg"
+    ],
+    "stable": [
+      "Ready for production calculations. Bug reports welcome!",
+      "status-stable-4cc61e.svg"
+    ],
+    "mature": [
+      "Ready for production calculations. Bug reports welcome!",
+      "status-stable-4cc61e.svg"
+    ],
+    "inactive": [
+      "No longer maintained.",
+      "status-inactive-bbbbbb.svg"
+    ]
+  },
+  "entrypointtypes": {
+    "aiida.calculations": "CalcJobs and calculation functions",
+    "aiida.parsers": "CalcJob parsers",
+    "aiida.data": "Data node types",
+    "aiida.cmdline.data": "verdi data commands",
+    "aiida.groups": "Group types",
+    "aiida.workflows": "WorkChains and work functions",
+    "aiida.schedulers": "Job scheduler support",
+    "aiida.transports": "Data transport protocols",
+    "aiida.tests": "Development test modules",
+    "aiida.tools.dbexporters": "Support for exporting to external databases",
+    "aiida.tools.dbimporters": "Support for importing from external databases",
+    "console_scripts": "Console scripts"
+  }
+}
