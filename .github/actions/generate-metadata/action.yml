@@ -20,7 +20,7 @@ runs:
           # if it is a PR, the cache key should be the PR number
           # if it is a push, the cache key should be the branch name
           run: |
-            if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            if [[ "${{ github.event_name }}" == "pull_request_target" ]]; then
               key_name="${{ github.event.pull_request.number }}"
             else
               key_name="${{ github.head_ref || github.ref_name }}"

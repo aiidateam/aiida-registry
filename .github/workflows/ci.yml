@@ -1,6 +1,20 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - ready_for_review
+      - reopened
+    paths:
+      - "plugins.yaml"
+    branches:
+      - master
+
+# For development, use the following instead:
+# on: [pull_request]
+
 
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:
@@ -9,13 +23,32 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
+  get-pr:
+    # https://dev.to/suzukishunsuke/secure-github-actions-by-pullrequesttarget-641
+    outputs:
+        merge_commit_sha: ${{steps.pr.outputs.merge_commit_sha}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: suzuki-shunsuke/get-pr-action@v0.1.0
+        id: pr
+      - run: echo "$CREATED_AT"
+        env:
+          CREATED_AT: ${{fromJSON(steps.pr.outputs.pull_request).created_at}}
+      - run: echo "$CREATED_AT"
+        env:
+          MERGE_COMMIT_SHA: ${{steps.pr.outputs.merge_commit_sha}}
 
   pre-commit:
     runs-on: ubuntu-latest
-
+    needs:
+      - get-pr
     steps:
     - name: Checkout Repo ⚡️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+      with:
+        ref: ${{needs.get-pr.outputs.merge_commit_sha}}
+    - name: echo merge_commit_sha
+      run: echo ${{needs.get-pr.outputs.merge_commit_sha}}
     - name: Create dev environment
       uses: ./.github/actions/create-dev-env
     - name: Run pre-commit
@@ -24,10 +57,13 @@ jobs:
 
   test-utils:
     runs-on: ubuntu-latest
-
+    needs:
+      - get-pr
     steps:
     - name: Checkout Repo ⚡️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+      with:
+        ref: ${{needs.get-pr.outputs.merge_commit_sha}}
     - name: Create dev environment
       uses: ./.github/actions/create-dev-env
     - name: Run tests
@@ -40,14 +76,20 @@ jobs:
     strategy:
       fail-fast: false
     timeout-minutes: 30
-
+    needs:
+      - get-pr
+    steps:
     # This is a CI job that checks if the webpage can be built
     # We use the plugins metadata from caching since we don't want to
     # fetch it twice and it is not essential for this job to have
     # the latest generated metadata
-    steps:
+    - name: echo merge_commit_sha
+      run: echo ${{needs.get-pr.outputs.merge_commit_sha}}
     - name: Checkout Repo ⚡️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+      with:
+        ref: ${{needs.get-pr.outputs.merge_commit_sha}}
+
     - name: Create dev environment
       uses: ./.github/actions/create-dev-env
 
@@ -68,8 +110,7 @@ jobs:
 
   preview:
     # This job is triggered by (only) a PR.
-    if: github.event_name == 'pull_request'
-    needs: [test-webpage-build]
+    needs: [test-webpage-build, get-pr]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -79,13 +120,11 @@ jobs:
       COMMIT_AUTHOR_EMAIL: action@github.com
       VITE_PR_PREVIEW_PATH: "/aiida-registry/pr-preview/pr-${{ github.event.number }}/"
 
-    # This is a CI job that checks if the webpage can be built
-    # We use the plugins metadata from caching since we don't want to
-    # fetch it twice and it is not essential for this job to have
-    # the latest generated metadata
     steps:
     - name: Checkout Repo ⚡️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+      with:
+        ref: ${{needs.get-pr.outputs.merge_commit_sha}}
     - name: Create dev environment
       uses: ./.github/actions/create-dev-env
 
@@ -116,6 +155,4 @@ jobs:
         umbrella-dir: pr-preview
         action: auto
         custom-url:
-      # preview will failed if the PR is from a forked repo
-      # should be fixed after https://github.com/aiidateam/aiida-registry/issues/272
-      if: (!github.event.pull_request.head.repo.fork)
+        token: ${{ secrets.BOT_COMMENT_TOKEN }} # use aiida-bot token to deploy the preview
