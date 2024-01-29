@@ -539,5 +539,7 @@ aiida-bader:
   documentation_url: https://aiida-bader.readthedocs.io/en/latest/
 aiida-fhiaims:
   entry_point_prefix: fhiaims
+  plugin_info: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims/-/raw/master/pyproject.toml
   code_home: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
   pip_url: git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
+  version_file: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims/-/raw/master/aiida_fhiaims/__init__.py
