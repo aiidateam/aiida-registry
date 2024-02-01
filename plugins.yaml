@@ -543,3 +543,10 @@ aiida-fhiaims:
   code_home: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
   pip_url: git+https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims
   version_file: https://gitlab.com/FHI-aims-club/utilities/aiida-fhiaims/-/raw/master/aiida_fhiaims/__init__.py
+aiida-aimall:
+  entry_point_prefix: aimall
+  code_home: https://github.com/kmlefran/aiida-aimall
+  pip_url: aiida-aimall
+  documentation_url: https://aiida-aimall.readthedocs.io/en/latest/
+  plugin_info: https://raw.githubusercontent.com/kmlefran/aiida-aimall/main/pyproject.toml
+  version_file: https://raw.githubusercontent.com/kmlefran/aiida-aimall/main/aiida_aimall/__init__.py
