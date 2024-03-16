@@ -18,7 +18,7 @@ from . import (
     entrypointtypes,
     main_entrypoints,
     status_dict,
-    status_no_pip_url_allowed,
+    status_no_pip_url_required,
 )
 
 entrypoints_count = defaultdict(list)
@@ -120,11 +120,10 @@ def global_summary():
 
 
 def get_pip_install_cmd(plugin_data):
-    if (
-        "pip_url" not in plugin_data
-        and plugin_data["development_status"] in status_no_pip_url_allowed
-    ):
-        return "See source code repository."
+    if "pip_url" not in plugin_data:
+        if plugin_data["development_status"] in status_no_pip_url_required:
+            return "See source code repository."
+        return "Missing, see source code repository"
 
     pip_url = plugin_data["pip_url"]
 
