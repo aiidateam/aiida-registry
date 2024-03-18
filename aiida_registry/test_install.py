@@ -241,9 +241,9 @@ def test_install_all(container_image):
                     for key, _ in data["plugins"][plugin_name]["entry_points"][
                         ep_group
                     ].items():
-                        data["plugins"][plugin_name]["entry_points"][ep_group][
-                            key
-                        ] = process_metadata[ep_group][key]
+                        data["plugins"][plugin_name]["entry_points"][ep_group][key] = (
+                            process_metadata[ep_group][key]
+                        )
             except KeyError:
                 continue
 

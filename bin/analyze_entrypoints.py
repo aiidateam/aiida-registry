@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-""""
+""" "
 Fetch information about plugins and print it in a human-readable format.
 
 Adapted from `aiida.cmdline.commands.cmd_plugin`.
 
 Note: This script should run inside the aiida-core docker container without requiring additional dependencies.
 """
+
 # pylint: disable=missing-class-docstring,import-outside-toplevel
 import inspect
 import json

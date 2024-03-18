@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """CLI for AiiDA registry."""
+
 import click
 
 from aiida_registry.make_pages import make_pages

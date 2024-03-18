@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module for parsing package build files."""
+
 import ast
 import json
 from configparser import ConfigParser

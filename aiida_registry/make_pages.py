@@ -158,9 +158,9 @@ def make_pages(package=None):
     all_data["plugins"] = plugins_metadata
     all_data["globalsummary"] = global_summary()
     all_data["status_dict"] = status_dict
-    all_data[
-        "entrypointtypes"
-    ] = entrypointtypes  # add a static entrypointtypes dictionary
+    all_data["entrypointtypes"] = (
+        entrypointtypes  # add a static entrypointtypes dictionary
+    )
 
     with open(PLUGINS_METADATA, "w", encoding="utf8") as handle:
         json.dump(all_data, handle, indent=2)
