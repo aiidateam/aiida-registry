@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """Configuration of plugin registry.
 
- * paths to files & folders
- * info on entry points
- * info on development status
+* paths to files & folders
+* info on entry points
+* info on development status
 """
 
 import os

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Parse metadata from PyPI."""
+
 # pylint: disable=too-many-ancestors,too-many-locals,too-many-branches
 import configparser
 import json

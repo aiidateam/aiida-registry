@@ -4,6 +4,7 @@
 Data is primarily sourced from PyPI,
 with a fallback to the repository build file (setup.json, setup.cfg, pyproject.toml).
 """
+
 import json
 
 # pylint: disable=consider-using-f-string
