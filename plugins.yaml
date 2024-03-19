@@ -8,7 +8,7 @@ aiida-abinit:
   code_home: https://github.com/sponce24/aiida-abinit
   entry_point_prefix: abinit
   pip_url: aiida-abinit
-  plugin_info: https://raw.github.com/sponce24/aiida-abinit/master/setup.json
+  plugin_info: https://raw.github.com/sponce24/aiida-abinit/master/pyproject.toml
 aiida-alloy:
   code_home: https://github.com/DanielMarchand/aiida-alloy
   development_status: beta
@@ -25,7 +25,7 @@ aiida-ase:
   documentation_url: https://aiida-ase.readthedocs.io/
   entry_point_prefix: ase
   pip_url: aiida-ase
-  plugin_info: https://raw.github.com/aiidateam/aiida-ase/master/setup.json
+  plugin_info: https://raw.github.com/aiidateam/aiida-ase/master/pyproject.toml
 aiida-bands-inspect:
   code_home: https://github.com/greschd/aiida-bands-inspect
   documentation_url: https://aiida-bands-inspect.readthedocs.io
@@ -37,7 +37,7 @@ aiida-bigdft:
   development_status: beta
   entry_point_prefix: bigdft
   pip_url: aiida-bigdft
-  plugin_info: https://raw.github.com/BigDFT-group/aiida-bigdft-plugin/master/setup.json
+  plugin_info: https://raw.github.com/BigDFT-group/aiida-bigdft-plugin/master/pyproject.toml
 aiida-castep:
   code_home: https://gitlab.com/bz1/aiida-castep
   development_status: stable
@@ -67,7 +67,7 @@ aiida-codtools:
   documentation_url: https://aiida-codtools.readthedocs.io/
   entry_point_prefix: codtools
   pip_url: aiida-codtools
-  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-codtools/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-codtools/master/pyproject.toml
 aiida-core:
   code_home: https://github.com/aiidateam/aiida-core
   development_status: stable
@@ -75,12 +75,12 @@ aiida-core:
   entry_point_prefix: ''
   package_name: aiida
   pip_url: aiida-core
-  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-core/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-core/master/pyproject.toml
 aiida-cp2k:
   code_home: https://github.com/cp2k/aiida-cp2k
   entry_point_prefix: cp2k
   pip_url: aiida-cp2k
-  plugin_info: https://raw.githubusercontent.com/cp2k/aiida-cp2k/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/cp2k/aiida-cp2k/master/pyproject.toml
 aiida-crystal-dft:
   code_home: https://github.com/tilde-lab/aiida-crystal-dft
   development_status: beta
@@ -105,7 +105,7 @@ aiida-ddec:
   code_home: https://github.com/lsmo-epfl/aiida-ddec
   entry_point_prefix: ddec
   pip_url: git+https://github.com/yakutovicha/aiida-ddec
-  plugin_info: https://raw.githubusercontent.com/lsmo-epfl/aiida-ddec/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/lsmo-epfl/aiida-ddec/master/pyproject.toml
 aiida-defects:
   code_home: https://github.com/epfl-theos/aiida-defects
   entry_point_prefix: defects
@@ -129,7 +129,7 @@ aiida-environ:
   code_home: https://github.com/environ-developers/aiida-environ
   entry_point_prefix: environ
   pip_url: git+https://github.com/environ-developers/aiida-environ
-  plugin_info: https://raw.github.com/environ-developers/aiida-environ/master/setup.json
+  plugin_info: https://raw.github.com/environ-developers/aiida-environ/master/pyproject.toml
 aiida-eon:
   code_home: https://github.com/HaoZeke/aiida-eon
   entry_point_prefix: eon
@@ -140,7 +140,7 @@ aiida-fenics:
   code_home: https://github.com/sphuber/aiida-fenics/tree/master
   entry_point_prefix: fenics
   pip_url: git+https://github.com/sphuber/aiida-fenics
-  plugin_info: https://raw.github.com/sphuber/aiida-fenics/master/setup.json
+  plugin_info: https://raw.github.com/sphuber/aiida-fenics/master/pyproject.toml
 aiida-firecrest:
   code_home: https://github.com/aiidateam/aiida-firecrest
   entry_point_prefix: firecrest
@@ -159,12 +159,12 @@ aiida-fleur:
   documentation_url: https://aiida-fleur.readthedocs.io/
   entry_point_prefix: fleur
   pip_url: aiida-fleur
-  plugin_info: https://raw.github.com/JuDFTteam/aiida-fleur/develop/setup.json
+  plugin_info: https://raw.github.com/JuDFTteam/aiida-fleur/develop/pyproject.toml
 aiida-flexpart:
   code_home: https://github.com/aiidaplugins/aiida-flexpart
   entry_point_prefix: flexpart
   pip_url: git+https://github.com/aiidaplugins/aiida-flexpart
-  plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-flexpart/main/setup.json
+  plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-flexpart/main/pyproject.toml
 aiida-gaussian:
   code_home: https://github.com/nanotech-empa/aiida-gaussian
   entry_point_prefix: gaussian
@@ -218,7 +218,7 @@ aiida-lammps:
   development_status: beta
   entry_point_prefix: lammps
   pip_url: git+https://github.com/aiidaplugins/aiida-lammps
-  plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-lammps/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-lammps/master/pyproject.toml
 aiida-lsmo:
   code_home: https://github.com/lsmo-epfl/aiida-lsmo
   development_status: stable
@@ -243,20 +243,20 @@ aiida-nanotech-empa:
   development_status: beta
   entry_point_prefix: nanotech_empa
   pip_url: git+https://github.com/nanotech-empa/aiida-nanotech-empa
-  plugin_info: https://raw.githubusercontent.com/nanotech-empa/aiida-nanotech-empa/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/nanotech-empa/aiida-nanotech-empa/master/pyproject.toml
 aiida-nims-scheduler:
   code_home: https://github.com/atztogo/aiida-nims-scheduler
   development_status: stable
   documentation_url: https://github.com/atztogo/aiida-nims-scheduler
   entry_point_prefix: nims_scheduler
   pip_url: git+https://github.com/atztogo/aiida-nims-scheduler
-  plugin_info: https://raw.githubusercontent.com/atztogo/aiida-nims-scheduler/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/atztogo/aiida-nims-scheduler/master/pyproject.toml
 aiida-nwchem:
   code_home: https://github.com/aiidateam/aiida-nwchem
   documentation_url: https://aiida-nwchem.readthedocs.io/
   entry_point_prefix: nwchem
   pip_url: aiida-nwchem
-  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-nwchem/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-nwchem/master/pyproject.toml
 aiida-open_circuit_voltage:
   entry_point_prefix: quantumespresso.ocv
   plugin_info: https://raw.githubusercontent.com/tsthakur/aiida-open_circuit_voltage/main/setup.json
@@ -279,7 +279,7 @@ aiida-phonopy:
   documentation_url: https://aiida-phonopy.readthedocs.io/
   entry_point_prefix: phonopy
   pip_url: aiida-phonopy
-  plugin_info: https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/master/pyproject.toml
 aiida-phtools:
   code_home: https://github.com/ltalirz/aiida-phtools
   entry_point_prefix: phtools
@@ -300,7 +300,7 @@ aiida-pseudo:
   code_home: https://github.com/aiidateam/aiida-pseudo
   entry_point_prefix: pseudo
   pip_url: aiida-pseudo
-  plugin_info: https://raw.github.com/aiidateam/aiida-pseudo/master/setup.cfg
+  plugin_info: https://raw.github.com/aiidateam/aiida-pseudo/master/pyproject.toml
 aiida-psi4:
   code_home: https://github.com/ltalirz/aiida-psi4/tree/master
   development_status: beta
@@ -330,7 +330,7 @@ aiida-quantumespresso:
   documentation_url: https://aiida-quantumespresso.readthedocs.io/
   entry_point_prefix: quantumespresso
   pip_url: aiida-quantumespresso
-  plugin_info: https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json
+  plugin_info: https://raw.github.com/aiidateam/aiida-quantumespresso/master/pyproject.toml
 aiida-quantumespresso-hp:
   code_home: https://github.com/sphuber/aiida-quantumespresso-hp
   entry_point_prefix: quantumespresso.hp
@@ -340,7 +340,7 @@ aiida-raspa:
   code_home: https://github.com/yakutovicha/aiida-raspa
   entry_point_prefix: raspa
   pip_url: aiida-raspa
-  plugin_info: https://raw.github.com/yakutovicha/aiida-raspa/master/setup.json
+  plugin_info: https://raw.github.com/yakutovicha/aiida-raspa/master/pyproject.toml
 aiida-shell:
   code_home: https://github.com/sphuber/aiida-shell
   entry_point_prefix: core
@@ -424,19 +424,19 @@ aiida-vasp:
   documentation_url: https://aiida-vasp.readthedocs.io/
   entry_point_prefix: vasp
   pip_url: aiida-vasp
-  plugin_info: https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/aiida-vasp/aiida-vasp/master/pyproject.toml
 aiida-wannier90:
   code_home: https://github.com/aiidateam/aiida-wannier90
   documentation_url: https://aiida-wannier90.readthedocs.io/
   entry_point_prefix: wannier90
   pip_url: aiida-wannier90
-  plugin_info: https://raw.github.com/aiidateam/aiida-wannier90/master/setup.json
+  plugin_info: https://raw.github.com/aiidateam/aiida-wannier90/master/pyproject.toml
 aiida-wannier90-workflows:
   code_home: https://github.com/aiidateam/aiida-wannier90-workflows
   development_status: stable
   entry_point_prefix: wannier90_workflows
   pip_url: aiida-wannier90-workflows
-  plugin_info: https://raw.github.com/aiidateam/aiida-wannier90-workflows/master/setup.json
+  plugin_info: https://raw.github.com/aiidateam/aiida-wannier90-workflows/master/pyproject.toml
 aiida-wien2k:
   code_home: https://github.com/rubel75/aiida-wien2k
   entry_point_prefix: wien2k
@@ -445,24 +445,24 @@ aiida-yambo:
   development_status: stable
   entry_point_prefix: yambo
   pip_url: aiida-yambo
-  plugin_info: https://raw.github.com/yambo-code/yambo-aiida/master/setup.json
+  plugin_info: https://raw.github.com/yambo-code/yambo-aiida/master/pyproject.toml
 aiida-yascheduler:
   code_home: https://github.com/tilde-lab/yascheduler
   documentation_url: https://github.com/tilde-lab/yascheduler
   entry_point_prefix: yascheduler
   pip_url: yascheduler
-  plugin_info: https://raw.githubusercontent.com/tilde-lab/yascheduler/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/tilde-lab/yascheduler/master/pyproject.toml
 aiida-z2pack:
   code_home: https://github.com/AntimoMarrazzo/aiida-z2pack
   entry_point_prefix: z2pack
   pip_url: git+https://github.com/AntimoMarrazzo/aiida-z2pack
-  plugin_info: https://raw.githubusercontent.com/antimomarrazzo/aiida-z2pack/master/setup.json
+  plugin_info: https://raw.githubusercontent.com/antimomarrazzo/aiida-z2pack/master/pyproject.toml
 aiida-zeopp:
   code_home: https://github.com/lsmo-epfl/aiida-zeopp
   development_status: stable
   entry_point_prefix: zeopp
   pip_url: aiida-zeopp
-  plugin_info: https://raw.github.com/lsmo-epfl/aiida-zeopp/master/setup.json
+  plugin_info: https://raw.github.com/lsmo-epfl/aiida-zeopp/master/pyproject.toml
 aiida-qp2:
   code_home: https://github.com/TREX-CoE/aiida-qp2
   entry_point_prefix: qp2
