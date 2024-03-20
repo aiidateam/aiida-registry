@@ -1,0 +1,53 @@
+name: CI
+
+# For development, use the following instead:
+on: [pull_request]
+
+
+# https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+    # only cancel in-progress jobs or runs for the current workflow - matches against branch & tags
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+  test-utils:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo ⚡️
+      uses: actions/checkout@v4
+    - name: Create dev environment
+      uses: ./.github/actions/create-dev-env
+    - name: Run tests
+      run: pytest tests/
+
+  test-webpage-build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    timeout-minutes: 30
+    steps:
+    # This is a CI job that checks if the webpage can be built
+    # We use the plugins metadata from caching since we don't want to
+    # fetch it twice and it is not essential for this job to have
+    # the latest generated metadata
+    - name: Checkout Repo ⚡️
+      uses: actions/checkout@v4
+
+    - name: Create dev environment
+      uses: ./.github/actions/create-dev-env
+
+    - name: Generate metadata
+      uses: ./.github/actions/generate-metadata
+      with:
+        gh_token: ${{ secrets.GITHUB_TOKEN }}
+        cache: true
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - name: Install npm dependencies and build
+      run: |
+        npm install
+        npm run build
+      working-directory: ./aiida-registry-app

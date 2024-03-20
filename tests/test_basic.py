@@ -11,6 +11,7 @@ This fetches metadata from plugins defined using different build systems
  * poetry: pyproject.toml
  * flit: pyproject.toml
 """
+
 from pathlib import Path
 
 import yaml

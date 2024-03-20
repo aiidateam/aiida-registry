@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module for parsing package build files."""
+
 import ast
 import json
 from configparser import ConfigParser
@@ -261,9 +262,9 @@ def parse_setup_cfg(content: str, ep_only=False) -> SourceData:
     }
     if config.has_option("metadata", "classifiers"):
         infos["metadata"]["classifiers"] = [
-            l.strip()
-            for l in config.get("metadata", "classifiers").splitlines()
-            if l.strip() and not l.strip().startswith("#")
+            line.strip()
+            for line in config.get("metadata", "classifiers").splitlines()
+            if line.strip() and not line.strip().startswith("#")
         ]
 
     return SourceData(**infos)

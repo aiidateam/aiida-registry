@@ -4,6 +4,7 @@
 Data is primarily sourced from PyPI,
 with a fallback to the repository build file (setup.json, setup.cfg, pyproject.toml).
 """
+
 import json
 
 # pylint: disable=consider-using-f-string
@@ -134,9 +135,7 @@ def get_git_commits_count(repo_name):
     return int(commits_count)
 
 
-def complete_plugin_data(
-    plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=True
-):  # pylint: disable=too-many-branches,too-many-statements
+def complete_plugin_data(plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=True):  # pylint: disable=too-many-branches,too-many-statements
     """Update plugin data dictionary.
 
      * add metadata, aiida_version and entrypoints from plugin_info
