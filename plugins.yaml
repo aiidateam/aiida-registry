@@ -137,9 +137,9 @@ aiida-eonclient:
   code_home: https://github.com/HaoZeke/aiida-eonclient
   entry_point_prefix: eonclient
 aiida-fenics:
-  code_home: https://github.com/sphuber/aiida-fenics/tree/master
+  code_home: https://github.com/broeder-j/aiida-fenics/tree/master
   entry_point_prefix: fenics
-  pip_url: git+https://github.com/sphuber/aiida-fenics
+  pip_url: git+https://github.com/broeder-j/aiida-fenics
  plugin_info: https://raw.github.com/broeder-j/aiida-fenics/master/setup.json
 aiida-firecrest:
   code_home: https://github.com/aiidateam/aiida-firecrest
