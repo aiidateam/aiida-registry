@@ -140,7 +140,7 @@ aiida-fenics:
   code_home: https://github.com/broeder-j/aiida-fenics/tree/master
   entry_point_prefix: fenics
   pip_url: git+https://github.com/broeder-j/aiida-fenics
- plugin_info: https://raw.github.com/broeder-j/aiida-fenics/master/setup.json
+  plugin_info: https://raw.github.com/broeder-j/aiida-fenics/master/setup.json
 aiida-firecrest:
   code_home: https://github.com/aiidateam/aiida-firecrest
   entry_point_prefix: firecrest
