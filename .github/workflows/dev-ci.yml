@@ -110,4 +110,3 @@ jobs:
         action: auto
         custom-url:
         token: ${{ secrets.BOT_COMMENT_TOKEN }} # use aiida-bot token to deploy the preview
-
