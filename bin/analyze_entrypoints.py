@@ -15,6 +15,9 @@ from dataclasses import asdict, dataclass
 from typing import Dict, List
 
 import click
+import aiida
+
+aiida.load_profile()
 
 ENTRY_POINT_GROUPS = [
     "aiida.calculations",
