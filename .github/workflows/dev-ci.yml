@@ -11,15 +11,6 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-  get-pr:
-    # https://dev.to/suzukishunsuke/secure-github-actions-by-pullrequesttarget-641
-    outputs:
-        merge_commit_sha: ${{steps.pr.outputs.merge_commit_sha}}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: suzuki-shunsuke/get-pr-action@v0.1.0
-        id: pr
-
   test-utils:
     runs-on: ubuntu-latest
     steps:
@@ -60,53 +51,3 @@ jobs:
         npm install
         npm run build
       working-directory: ./aiida-registry-app
-
-  preview:
-    # This job is triggered by from PR from the aiida-registry repo, the developer of aiida-registry need to see the preview page of the PR
-    needs: [test-webpage-build, get-pr]
-    if: github.repository == 'aiidateam/aiida-registry'
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    timeout-minutes: 180
-    env:
-      COMMIT_AUTHOR: Deploy Action
-      COMMIT_AUTHOR_EMAIL: action@github.com
-      VITE_PR_PREVIEW_PATH: "/aiida-registry/pr-preview/pr-${{ github.event.number }}/"
-
-    steps:
-    - name: Checkout Repo ⚡️
-      uses: actions/checkout@v4
-      with:
-        ref: ${{needs.get-pr.outputs.merge_commit_sha}}
-    - name: Create dev environment
-      uses: ./.github/actions/create-dev-env
-
-    - name: Generate metadata
-      uses: ./.github/actions/generate-metadata
-      with:
-        gh_token: ${{ secrets.GITHUB_TOKEN }}
-        cache: false
-
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-    - name: Install npm dependencies and build
-      run: |
-        echo $VITE_PR_PREVIEW_PATH
-        npm install
-        npm run build
-      working-directory: ./aiida-registry-app
-
-    - name: Add plugins file to the build folder
-      run: cp plugins_metadata.json aiida-registry-app/dist/
-
-    - name: Deploy preview
-      uses: rossjrw/pr-preview-action@v1
-      with:
-        source-dir: ./aiida-registry-app/dist
-        preview-branch: gh-pages
-        umbrella-dir: pr-preview
-        action: auto
-        custom-url:
-        token: ${{ secrets.BOT_COMMENT_TOKEN }} # use aiida-bot token to deploy the preview
