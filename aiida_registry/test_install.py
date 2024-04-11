@@ -148,24 +148,6 @@ def test_install_one_docker(container_image, plugin):
         )
         is_package_importable = True
 
-        ## While loop to wait for the daemon to be ready timeont 120s
-        ## This is a workaround for the daemon not being ready for the entrypoint analysis
-        ## which require the profile to be loaded
-        # print("   - Waiting for the daemon to be ready")
-        # daemon_ready = False
-        # timeout = 120  # 120s
-        # end_time = time.time() + timeout
-        # while not daemon_ready:
-        #    verdi_status = container.exec_run(
-        #        "verdi status",
-        #        user=user,
-        #    ).output.decode("utf8")
-        #    if "✔" in verdi_status:
-        #        daemon_ready = True
-        #    elif time.time() > end_time:
-        #        print("   >> ERROR: Daemon is not ready after 120s")
-        #        break
-
         print(
             "   - Extracting entry point metadata for {}".format(plugin["package_name"])
         )
