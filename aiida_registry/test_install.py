@@ -154,7 +154,7 @@ def test_install_one_docker(container_image, plugin):
         # which require the profile to be loaded
         print("   - Waiting for the daemon to be ready")
         daemon_ready = False
-        timeout = 120 # 120s
+        timeout = 120  # 120s
         end_time = time.time() + timeout
         while not daemon_ready:
             verdi_status = container.exec_run(
