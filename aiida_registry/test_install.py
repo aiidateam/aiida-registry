@@ -8,7 +8,6 @@ This uses the aiida-core Docker container to test the installation of the plugin
 import json
 import os
 import sys
-import time
 from dataclasses import asdict, dataclass
 
 from aiida_registry.utils import add_registry_checks
@@ -152,11 +151,11 @@ def test_install_one_docker(container_image, plugin):
         ## While loop to wait for the daemon to be ready timeont 120s
         ## This is a workaround for the daemon not being ready for the entrypoint analysis
         ## which require the profile to be loaded
-        #print("   - Waiting for the daemon to be ready")
-        #daemon_ready = False
-        #timeout = 120  # 120s
-        #end_time = time.time() + timeout
-        #while not daemon_ready:
+        # print("   - Waiting for the daemon to be ready")
+        # daemon_ready = False
+        # timeout = 120  # 120s
+        # end_time = time.time() + timeout
+        # while not daemon_ready:
         #    verdi_status = container.exec_run(
         #        "verdi status",
         #        user=user,
