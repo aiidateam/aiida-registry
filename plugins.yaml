@@ -332,10 +332,10 @@ aiida-quantumespresso:
   pip_url: aiida-quantumespresso
   plugin_info: https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json
 aiida-quantumespresso-hp:
-  code_home: https://github.com/sphuber/aiida-quantumespresso-hp
+  code_home: https://github.com/aiidateam/aiida-quantumespresso-hp
   entry_point_prefix: quantumespresso.hp
-  pip_url: git+https://github.com/sphuber/aiida-quantumespresso-hp
-  plugin_info: https://raw.githubusercontent.com/sphuber/aiida-quantumespresso-hp/master/setup.json
+  pip_url: git+https://github.com/aiidateam/aiida-quantumespresso-hp
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-quantumespresso-hp/master/pyproject.toml
 aiida-raspa:
   code_home: https://github.com/yakutovicha/aiida-raspa
   entry_point_prefix: raspa
