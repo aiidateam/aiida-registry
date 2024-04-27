@@ -909,409 +909,8 @@
       "aiida_version": "*",
       "entry_points": {
         "aiida.calculations": {
-          "aimall.aimqb": {
-            "description": [
-              "AiiDA calculation plugin wrapping the aimqb executable.",
-              "",
-              "    Attributes:",
-              "        parameters (AimqbParameters): command line parameters for the AimqbCalculation",
-              "        file (SinglefileData): the wfx, wfn, or fchk file to be run",
-              "        code (Code): code of the AIMQB executable",
-              "        attached_atom_int (Int): the integer label of the atom in the group that is attached to the rest of the molecule",
-              "        group_atoms (List(Int)): integer ids of atoms comprising the group for AimqbGroupParser",
-              "",
-              "    Example:",
-              "        ::",
-              "",
-              "            code = orm.load_code('aimall@localhost')",
-              "            AimqbParameters = DataFactory(\"aimall.aimqb\")",
-              "            aim_params = AimqbParameters(parameter_dict={\"naat\": 2, \"nproc\": 2, \"atlaprhocps\": True})",
-              "            file = SinglefileData(\"/absolute/path/to/file\")",
-              "            # Alternatively, if you have the file as a string, you can build the file with:",
-              "            # file=SinglefileData(io.BytesIO(file_string.encode()))",
-              "            AimqbCalculation = CalculationFactory(\"aimall.aimqb\")",
-              "            builder  = AimqbCalculation.get_builder()",
-              "            builder.parameters = aim_params",
-              "            builder.file = file",
-              "            builder.code = code",
-              "            builder.metadata.options.resources = {\"num_machines\": 1, \"num_mpiprocs_per_machine\": 2}",
-              "            builder.submit()",
-              "",
-              "    Note:",
-              "        By default, the AimqbBaseParser is used, getting atomic, BCP, and (if applicable) LapRhoCps.",
-              "            You can opt to use the AimqbGroupParser, which also returns the integrated group properties model",
-              "            of a group, as well as the atomic graph descriptor of the group. This is done by providing this to the builder:",
-              "",
-              "        ::",
-              "",
-              "            builder.metadata.options.parser_name = \"aimall.group\""
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "file",
-                  "required": true,
-                  "valid_types": "SinglefileData",
-                  "info": "fchk, wfn, or wfx to run AimQB on"
-                },
-                {
-                  "name": "parameters",
-                  "required": true,
-                  "valid_types": "AimqbParameters",
-                  "info": "Command line parameters for aimqb"
-                },
-                {
-                  "name": "attached_atom_int",
-                  "required": false,
-                  "valid_types": "Int",
-                  "info": "id # of attached atom for graph descriptor"
-                },
-                {
-                  "name": "code",
-                  "required": false,
-                  "valid_types": "AbstractCode, NoneType",
-                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
-                },
-                {
-                  "name": "group_atoms",
-                  "required": false,
-                  "valid_types": "List",
-                  "info": "Integer ids of atoms in groups to include"
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "monitors",
-                  "required": false,
-                  "valid_types": "Dict",
-                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
-                },
-                {
-                  "name": "remote_folder",
-                  "required": false,
-                  "valid_types": "RemoteData, NoneType",
-                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "output_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "The computed parameters of an AIMAll calculation"
-                },
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 100,
-                  "message": "The process did not have the required `retrieved` output."
-                },
-                {
-                  "status": 110,
-                  "message": "The job ran out of memory."
-                },
-                {
-                  "status": 120,
-                  "message": "The job ran out of walltime."
-                },
-                {
-                  "status": 131,
-                  "message": "The specified account is invalid."
-                },
-                {
-                  "status": 140,
-                  "message": "The node running the job failed."
-                },
-                {
-                  "status": 150,
-                  "message": "{message}"
-                },
-                {
-                  "status": 210,
-                  "message": "The retrieved folder did not contain the output file."
-                }
-              ]
-            },
-            "class": "aiida_aimall.calculations:AimqbCalculation"
-          },
-          "aimall.gaussianwfx": {
-            "description": [
-              "AiiDA calculation plugin wrapping Gaussian. Adapted from aiida-gaussian",
-              "        https://github.com/nanotech-empa/aiida-gaussian, Copyright (c) 2020 Kristjan Eimre.",
-              "        Additions made to enable providing molecule input as orm.Str,",
-              "        and wfx files are retrieved by default. We further define another input wfxgroup in which you can provide an",
-              "        optional group to store the wfx file in and fragment_label as an optional extra to add on the output.",
-              "",
-              "    Args:",
-              "        structure: StructureData for molecule to be run. Do not provide structure AND structure_str, but provide",
-              "        at least one",
-              "        structure_str: Str for molecule to be run. e.g. orm.Str(H 0.0 0.0 0.0",
-              " H -1.0 0.0 0.0)",
-              "        Do not provide structure AND structure_str, but provide at least one",
-              "        wfxgroup: Str of a group to add the .wfx files to",
-              "        parameters: required: Dict of Gaussian parameters, same as from aiida-gaussian. Note that the options provided should",
-              "        generate a wfx file. See Example",
-              "        settings: optional, additional input parameters",
-              "        fragment_label: Str, optional: an extra to add to the wfx file node. Involved in the controllers,",
-              "        which check extras",
-              "        parent_calc_folder: RemoteData, optional: the folder of a completed gaussian calculation",
-              "",
-              "    Example:",
-              "    ::",
-              "",
-              "        builder = GaussianCalculation.get_builder()",
-              "        builder.structure_str = orm.Str(\"H 0.0 0.0 0.0 -1.0 0.0 0.0\") # needs newline but docs doesn't like",
-              "        builder.parameters = orm.Dict(dict={",
-              "            'link0_parameters': {",
-              "                '%chk':'aiida.chk',",
-              "                \"%mem\": \"3200MB\", # Currently set to use 8000 MB in .sh files",
-              "                \"%nprocshared\": 4,",
-              "            },",
-              "            'functional':'wb97xd',",
-              "            'basis_set':'aug-cc-pvtz',",
-              "            'charge': 0,",
-              "            'multiplicity': 1,",
-              "            'route_parameters': {'opt': None, 'Output':'WFX'},",
-              "            \"input_parameters\": {\"output.wfx\": None},",
-              "        })",
-              "        builder.code = orm.load_code(\"g16@localhost\")",
-              "        builder.metadata.options.resources = {\"num_machines\": 1, \"tot_num_mpiprocs\": 4}",
-              "        builder.metadata.options.max_memory_kb = int(6400 * 1.25) * 1024",
-              "        builder.metadata.options.max_wallclock_seconds = 604800",
-              "        submit(builder)"
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "Input parameters"
-                },
-                {
-                  "name": "code",
-                  "required": false,
-                  "valid_types": "AbstractCode, NoneType",
-                  "info": "The `Code` to use for this job. This input is required, unless the `remote_folder` input is specified, which means an existing job is being imported and no code will actually be run."
-                },
-                {
-                  "name": "fragment_label",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": "smiles of fragment"
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "monitors",
-                  "required": false,
-                  "valid_types": "Dict",
-                  "info": "Add monitoring functions that can inspect output files while the job is running and decide to prematurely terminate the job."
-                },
-                {
-                  "name": "parent_calc_folder",
-                  "required": false,
-                  "valid_types": "RemoteData, NoneType",
-                  "info": "the folder of a completed gaussian calculation"
-                },
-                {
-                  "name": "remote_folder",
-                  "required": false,
-                  "valid_types": "RemoteData, NoneType",
-                  "info": "Remote directory containing the results of an already completed calculation job without AiiDA. The inputs should be passed to the `CalcJob` as normal but instead of launching the actual job, the engine will recreate the input files and then proceed straight to the retrieve step where the files of this `RemoteData` will be retrieved as if it had been actually launched through AiiDA. If a parser is defined in the inputs, the results are parsed and attached as output nodes as usual."
-                },
-                {
-                  "name": "settings",
-                  "required": false,
-                  "valid_types": "Dict, NoneType",
-                  "info": "additional input parameters"
-                },
-                {
-                  "name": "structure",
-                  "required": false,
-                  "valid_types": "StructureData, NoneType",
-                  "info": "Input structure; will be converted to pymatgen object"
-                },
-                {
-                  "name": "structure_str",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "wfxgroup",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": "Group label that output wfx will be a member of"
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "output_parameters",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": "The result parameters of the calculation"
-                },
-                {
-                  "name": "remote_folder",
-                  "required": true,
-                  "valid_types": "RemoteData",
-                  "info": "Input files necessary to run the process will be stored in this folder node."
-                },
-                {
-                  "name": "retrieved",
-                  "required": true,
-                  "valid_types": "FolderData",
-                  "info": "Files that are retrieved by the daemon will be stored in this node. By default the stdout and stderr of the scheduler will be added, but one can add more by specifying them in `CalcInfo.retrieve_list`."
-                },
-                {
-                  "name": "energy_ev",
-                  "required": false,
-                  "valid_types": "Float",
-                  "info": "Final energy in electronvolts"
-                },
-                {
-                  "name": "output_structure",
-                  "required": false,
-                  "valid_types": "StructureData",
-                  "info": "Final optimized structure, if available"
-                },
-                {
-                  "name": "remote_stash",
-                  "required": false,
-                  "valid_types": "RemoteStashData",
-                  "info": "Contents of the `stash.source_list` option are stored in this remote folder after job completion."
-                },
-                {
-                  "name": "wfx",
-                  "required": false,
-                  "valid_types": "SinglefileData",
-                  "info": "wfx file from calculation"
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                },
-                {
-                  "status": 110,
-                  "message": "The job ran out of memory."
-                },
-                {
-                  "status": 120,
-                  "message": "The job ran out of walltime."
-                },
-                {
-                  "status": 131,
-                  "message": "The specified account is invalid."
-                },
-                {
-                  "status": 140,
-                  "message": "The node running the job failed."
-                },
-                {
-                  "status": 150,
-                  "message": "{message}"
-                },
-                {
-                  "status": 200,
-                  "message": "The retrieved folder data node could not be accessed."
-                },
-                {
-                  "status": 210,
-                  "message": "The retrieved folder did not contain the output file."
-                },
-                {
-                  "status": 211,
-                  "message": "The retrieved output log could not be read."
-                },
-                {
-                  "status": 220,
-                  "message": "The output file could not be parsed."
-                },
-                {
-                  "status": 301,
-                  "message": "The SCF did not converge and the calculation was terminated."
-                },
-                {
-                  "status": 302,
-                  "message": "The calculation was terminated due to a logic error in ASyTop."
-                },
-                {
-                  "status": 303,
-                  "message": "The calculation was terminated due to an inaccurate quadrature in CalDSu."
-                },
-                {
-                  "status": 390,
-                  "message": "The calculation was terminated due to an error."
-                },
-                {
-                  "status": 391,
-                  "message": "The log did not contain 'Normal termination' (probably out of time)."
-                },
-                {
-                  "status": 410,
-                  "message": "structure and structure_str were both provided as inputs. provide only one"
-                }
-              ]
-            },
-            "class": "aiida_aimall.calculations:GaussianWFXCalculation"
-          }
+          "aimall.aimqb": "aiida_aimall.calculations:AimqbCalculation",
+          "aimall.gaussianwfx": "aiida_aimall.calculations:GaussianWFXCalculation"
         },
         "aiida.data": {
           "aimall.aimqb": "aiida_aimall.data:AimqbParameters"
@@ -1322,344 +921,17 @@
           "aimall.group": "aiida_aimall.parsers:AimqbGroupParser"
         },
         "aiida.workflows": {
-          "aimall.aimreor": {
-            "description": [
-              "Workchain to run AIM and then reorient the molecule using the results",
-              "",
-              "    Process continues in GaussianSubmissionController"
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "aim_code",
-                  "required": true,
-                  "valid_types": "Code",
-                  "info": ""
-                },
-                {
-                  "name": "aim_params",
-                  "required": true,
-                  "valid_types": "AimqbParameters",
-                  "info": ""
-                },
-                {
-                  "name": "file",
-                  "required": true,
-                  "valid_types": "SinglefileData",
-                  "info": ""
-                },
-                {
-                  "name": "aim_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "frag_label",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "reor_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "rotated_structure",
-                  "required": true,
-                  "valid_types": "Str",
-                  "info": ""
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                }
-              ]
-            },
-            "class": "aiida_aimall.workchains:AIMAllReor"
-          },
-          "aimall.g16opt": {
-            "description": [
-              "Run G16 Calculation on a fragment produced by MultiFragmentWorkChain",
-              "",
-              "    Process continues through the use of AimReorSubmissionController"
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "frag_label",
-                  "required": true,
-                  "valid_types": "Str",
-                  "info": ""
-                },
-                {
-                  "name": "fragment_dict",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "g16_code",
-                  "required": true,
-                  "valid_types": "Code",
-                  "info": ""
-                },
-                {
-                  "name": "g16_opt_params",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "wfxgroup",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "output",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                }
-              ]
-            },
-            "class": "aiida_aimall.workchains:G16OptWorkchain"
-          },
-          "aimall.multifrag": {
-            "description": [
-              "Workchain to fragment a cml file and generate gaussian calculations on each fragment"
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "cml_file_dict",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "frag_params",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "frag_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "frame_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "prev_smi",
-                  "required": false,
-                  "valid_types": "List, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "procs",
-                  "required": false,
-                  "valid_types": "Int",
-                  "info": ""
-                }
-              ],
-              "outputs": [],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                }
-              ]
-            },
-            "class": "aiida_aimall.workchains:MultiFragmentWorkChain"
-          },
-          "aimall.optaimreor": {
-            "description": [
-              "A workchain to perform the full suite of KLG's substituent parameter determining"
-            ],
-            "spec": {
-              "inputs": [
-                {
-                  "name": "aim_code",
-                  "required": true,
-                  "valid_types": "Code",
-                  "info": ""
-                },
-                {
-                  "name": "aim_params",
-                  "required": true,
-                  "valid_types": "AimqbParameters",
-                  "info": ""
-                },
-                {
-                  "name": "g16_code",
-                  "required": true,
-                  "valid_types": "Code",
-                  "info": ""
-                },
-                {
-                  "name": "g16_opt_params",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "g16_sp_params",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                },
-                {
-                  "name": "structure_str",
-                  "required": true,
-                  "valid_types": "Str",
-                  "info": ""
-                },
-                {
-                  "name": "frag_label",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": "Label for substituent fragment, stored as extra"
-                },
-                {
-                  "name": "gaussian_opt_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "gaussian_sp_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "metadata",
-                  "required": false,
-                  "valid_types": "",
-                  "info": ""
-                },
-                {
-                  "name": "opt_wfx_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                },
-                {
-                  "name": "sp_wfx_group",
-                  "required": false,
-                  "valid_types": "Str, NoneType",
-                  "info": ""
-                }
-              ],
-              "outputs": [
-                {
-                  "name": "parameter_dict",
-                  "required": true,
-                  "valid_types": "Dict",
-                  "info": ""
-                }
-              ],
-              "exit_codes": [
-                {
-                  "status": 1,
-                  "message": "The process has failed with an unspecified error."
-                },
-                {
-                  "status": 2,
-                  "message": "The process failed with legacy failure mode."
-                },
-                {
-                  "status": 10,
-                  "message": "The process returned an invalid output."
-                },
-                {
-                  "status": 11,
-                  "message": "The process did not register a required output."
-                }
-              ]
-            },
-            "class": "aiida_aimall.workchains:OptAimReorSPAimWorkChain"
-          }
+          "aimall.aimreor": "aiida_aimall.workchains:AIMAllReor",
+          "aimall.g16opt": "aiida_aimall.workchains:G16OptWorkchain",
+          "aimall.multifrag": "aiida_aimall.workchains:MultiFragmentWorkChain",
+          "aimall.optaimreor": "aiida_aimall.workchains:OptAimReorSPAimWorkChain"
         }
       },
       "commits_count": 297,
       "development_status": "alpha",
-      "errors": [],
+      "errors": [
+        "<a href='https://github.com/aiidateam/aiida-registry#E003'>E003</a>: Failed to fetch entry point metadata for package aiida_aimall<pre>Traceback (most recent call last):\n  File \"/tmp/scripts/./bin/analyze_entrypoints.py\", line 196, in <module>\n    cli()  # pylint: disable=no-value-for-parameter\n  File \"/opt/conda/lib/python3.10/site-packages/click/core.py\", line 1157, in __call__\n    return self.main(*args, **kwargs)\n  File \"/opt/conda/lib/python3.10/site-packages/click/core.py\", line 1078, in main\n    rv = self.invoke(ctx)\n  File \"/opt/conda/lib/python3.10/site-packages/click/core.py\", line 1434, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n  File \"/opt/conda/lib/python3.10/site-packages/click/core.py\", line 783, in invoke\n    return __callback(*args, **kwargs)\n  File \"/tmp/scripts/./bin/analyze_entrypoints.py\", line 186, in cli\n    result[ep_group] = document_entry_point_group(ep_group)\n  File \"/tmp/scripts/./bin/analyze_entrypoints.py\", line 75, in document_entry_point_group\n    process_info = document_entry_point(entry_point_group, entry_point)\n  File \"/tmp/scripts/./bin/analyze_entrypoints.py\", line 94, in document_entry_point\n    plugin = load_entry_point(entry_point_group, entry_point)\n  File \"/opt/conda/lib/python3.10/site-packages/aiida/plugins/entry_point.py\", line 278, in load_entry_point\n    loaded_entry_point = entry_point.load()\n  File \"/opt/conda/lib/python3.10/site-packages/importlib_metadata/__init__.py\", line 211, in load\n    module = import_module(match.group('module'))\n  File \"/opt/conda/lib/python3.10/importlib/__init__.py\", line 126, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n  File \"<frozen importlib._bootstrap>\", line 1050, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1027, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1006, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 688, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 883, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 241, in _call_with_frames_removed\n  File \"/opt/conda/lib/python3.10/site-packages/aiida_aimall/workchains.py\", line 21, in <module>\n    from group_decomposition.fragfunctions import (\n  File \"/opt/conda/lib/python3.10/site-packages/group_decomposition/fragfunctions.py\", line 20, in <module>\n    from rdkit.Chem import AllChem, PandasTools, rdqueries  # pylint:disable=import-error\n  File \"/opt/conda/lib/python3.10/site-packages/rdkit/Chem/PandasTools.py\", line 653, in <module>\n    InstallPandasTools()\n  File \"/opt/conda/lib/python3.10/site-packages/rdkit/Chem/PandasTools.py\", line 622, in InstallPandasTools\n    PandasPatcher.patchPandas()\n  File \"/opt/conda/lib/python3.10/site-packages/rdkit/Chem/PandasPatcher.py\", line 263, in patchPandas\n    if getattr(pandas_formats.format, get_adjustment_name) != patched_get_adjustment:\nAttributeError: module 'pandas.io.formats.format' has no attribute 'get_adjustment'\n</pre>"
+      ],
       "warnings": [],
       "summaryinfo": [
         {
@@ -1711,7 +983,7 @@
       },
       "commits_count": 1,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-alloy<pre>Collecting git+https://github.com/DanielMarchand/aiida-alloy\n  Cloning https://github.com/DanielMarchand/aiida-alloy to /tmp/pip-req-build-dax_5jkg\n  Running command git clone --filter=blob:none --quiet https://github.com/DanielMarchand/aiida-alloy /tmp/pip-req-build-dax_5jkg\n  Resolved https://github.com/DanielMarchand/aiida-alloy to commit dfae54b29291dfe94d4a5ca136738020f447bc1e\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'error'\n  error: subprocess-exited-with-error\n  \n  \u00d7 python setup.py egg_info did not run successfully.\n  \u2502 exit code: 1\n  \u2570\u2500> [6 lines of output]\n      Traceback (most recent call last):\n        File \"<string>\", line 2, in <module>\n        File \"<pip-setuptools-caller>\", line 34, in <module>\n        File \"/tmp/pip-req-build-dax_5jkg/setup.py\", line 20, in <module>\n          long_description=open('README.md').read(),\n      FileNotFoundError: [Errno 2] No such file or directory: 'README.md'\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nerror: metadata-generation-failed\n\n\u00d7 Encountered error while generating package metadata.\n\u2570\u2500> See above for output.\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-alloy<pre>Collecting git+https://github.com/DanielMarchand/aiida-alloy\n  Cloning https://github.com/DanielMarchand/aiida-alloy to /tmp/pip-req-build-m097j785\n  Running command git clone --filter=blob:none --quiet https://github.com/DanielMarchand/aiida-alloy /tmp/pip-req-build-m097j785\n  Resolved https://github.com/DanielMarchand/aiida-alloy to commit dfae54b29291dfe94d4a5ca136738020f447bc1e\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'error'\n  error: subprocess-exited-with-error\n  \n  \u00d7 python setup.py egg_info did not run successfully.\n  \u2502 exit code: 1\n  \u2570\u2500> [6 lines of output]\n      Traceback (most recent call last):\n        File \"<string>\", line 2, in <module>\n        File \"<pip-setuptools-caller>\", line 34, in <module>\n        File \"/tmp/pip-req-build-m097j785/setup.py\", line 20, in <module>\n          long_description=open('README.md').read(),\n      FileNotFoundError: [Errno 2] No such file or directory: 'README.md'\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nerror: metadata-generation-failed\n\n\u00d7 Encountered error while generating package metadata.\n\u2570\u2500> See above for output.\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W003'>W003</a>: Missing classifier 'Framework :: AiiDA'",
@@ -4230,7 +3502,7 @@
       },
       "commits_count": 0,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-ce<pre>Collecting git+https://github.com/unkcpz/aiida-ce\n  Cloning https://github.com/unkcpz/aiida-ce to /tmp/pip-req-build-_ew16ab_\n  Running command git clone --filter=blob:none --quiet https://github.com/unkcpz/aiida-ce /tmp/pip-req-build-_ew16ab_\n  Resolved https://github.com/unkcpz/aiida-ce to commit 84cbc7c1e14af3cac5530e092e529bc84cfcfe6d\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Installing backend dependencies: started\n  Installing backend dependencies: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-ce to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-ce==0.1.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-ce 0.1.0 depends on aiida-core<2.0.0 and >=1.5.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-ce<pre>Collecting git+https://github.com/unkcpz/aiida-ce\n  Cloning https://github.com/unkcpz/aiida-ce to /tmp/pip-req-build-32abms1f\n  Running command git clone --filter=blob:none --quiet https://github.com/unkcpz/aiida-ce /tmp/pip-req-build-32abms1f\n  Resolved https://github.com/unkcpz/aiida-ce to commit 84cbc7c1e14af3cac5530e092e529bc84cfcfe6d\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Installing backend dependencies: started\n  Installing backend dependencies: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-ce to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-ce==0.1.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-ce 0.1.0 depends on aiida-core<2.0.0 and >=1.5.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W006'>W006</a>: 'development_status' key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
@@ -7818,7 +7090,7 @@
       },
       "commits_count": 0,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-crystal17<pre>Collecting aiida-crystal17\n  Downloading aiida_crystal17-0.11.0-py3-none-any.whl.metadata (5.8 kB)\nINFO: pip is looking at multiple versions of aiida-crystal17 to determine which version is compatible with other requirements. This could take a while.\n  Downloading aiida-crystal17-0.4.0.tar.gz (120 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 120.8/120.8 kB 10.9 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nERROR: Cannot install aiida-crystal17==0.11.0 and aiida-crystal17==0.4.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-crystal17 0.11.0 depends on aiida-core<2.0.0 and >=1.4.0\n    aiida-crystal17 0.4.0 depends on aiida-core==0.12.2\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-crystal17<pre>Collecting aiida-crystal17\n  Downloading aiida_crystal17-0.11.0-py3-none-any.whl.metadata (5.8 kB)\nINFO: pip is looking at multiple versions of aiida-crystal17 to determine which version is compatible with other requirements. This could take a while.\n  Downloading aiida-crystal17-0.4.0.tar.gz (120 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 120.8/120.8 kB 11.3 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nERROR: Cannot install aiida-crystal17==0.11.0 and aiida-crystal17==0.4.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-crystal17 0.11.0 depends on aiida-core<2.0.0 and >=1.4.0\n    aiida-crystal17 0.4.0 depends on aiida-core==0.12.2\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W006'>W006</a>: 'development_status' key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
@@ -7911,7 +7183,7 @@
       "commits_count": 0,
       "development_status": "beta",
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-cusp<pre>Collecting https://pypi.org/project/aiida-cusp\n  Downloading https://pypi.org/project/aiida-cusp (46 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 46.4/46.4 kB 9.2 MB/s eta 0:00:00\n  ERROR: Cannot unpack file /tmp/pip-unpack-fyqq85oj/aiida-cusp (downloaded from /tmp/pip-req-build-559kds7d, content-type: text/html; charset=UTF-8); cannot detect archive format\nERROR: Cannot determine archive format of /tmp/pip-req-build-559kds7d\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-cusp<pre>Collecting https://pypi.org/project/aiida-cusp\n  Downloading https://pypi.org/project/aiida-cusp (46 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 46.4/46.4 kB 10.5 MB/s eta 0:00:00\n  ERROR: Cannot unpack file /tmp/pip-unpack-bng44sqp/aiida-cusp (downloaded from /tmp/pip-req-build-jwb_g0u7, content-type: text/html; charset=UTF-8); cannot detect archive format\nERROR: Cannot determine archive format of /tmp/pip-req-build-jwb_g0u7\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W010'>W010</a>: Entry point 'potcar' does not start with prefix 'cusp.'"
@@ -8339,7 +7611,7 @@
       },
       "commits_count": 2,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-diff<pre>Collecting aiida-diff-0.1.0a0\n  Cloning https://github.com/aiidateam/aiida-diff to /tmp/pip-install-8b9hj95s/aiida-diff-0-1-0a0_bc305ff564ab4cfdb59d8290b2e52705\n  Running command git clone --filter=blob:none --quiet https://github.com/aiidateam/aiida-diff /tmp/pip-install-8b9hj95s/aiida-diff-0-1-0a0_bc305ff564ab4cfdb59d8290b2e52705\n  Resolved https://github.com/aiidateam/aiida-diff to commit f9b151e11634b16e6a42d5445da23735415872e0\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\n  WARNING: Generating metadata for package aiida-diff-0.1.0a0 produced metadata for project name aiida-diff. Fix your #egg=aiida-diff-0.1.0a0 fragments.\nDiscarding git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0: Requested aiida-diff from git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0 has inconsistent name: expected 'aiida-diff-0-1-0a0', but metadata has 'aiida-diff'\nERROR: Could not find a version that satisfies the requirement aiida-diff-0-1-0a0 (unavailable) (from versions: none)\nERROR: No matching distribution found for aiida-diff-0-1-0a0 (unavailable)\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-diff<pre>Collecting aiida-diff-0.1.0a0\n  Cloning https://github.com/aiidateam/aiida-diff to /tmp/pip-install-ewa7fmo0/aiida-diff-0-1-0a0_e0356b499b294f0e90e6c8a0d6715d11\n  Running command git clone --filter=blob:none --quiet https://github.com/aiidateam/aiida-diff /tmp/pip-install-ewa7fmo0/aiida-diff-0-1-0a0_e0356b499b294f0e90e6c8a0d6715d11\n  Resolved https://github.com/aiidateam/aiida-diff to commit f9b151e11634b16e6a42d5445da23735415872e0\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\n  WARNING: Generating metadata for package aiida-diff-0.1.0a0 produced metadata for project name aiida-diff. Fix your #egg=aiida-diff-0.1.0a0 fragments.\nDiscarding git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0: Requested aiida-diff from git+https://github.com/aiidateam/aiida-diff#egg=aiida-diff-0.1.0a0 has inconsistent name: expected 'aiida-diff-0-1-0a0', but metadata has 'aiida-diff'\nERROR: Could not find a version that satisfies the requirement aiida-diff-0-1-0a0 (unavailable) (from versions: none)\nERROR: No matching distribution found for aiida-diff-0-1-0a0 (unavailable)\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W005'>W005</a>: Development status in classifiers (alpha) does not match development_status in metadata (stable)",
@@ -8980,7 +8252,7 @@
       "commits_count": 0,
       "development_status": "pre-alpha",
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-fenics<pre>Collecting git+https://github.com/broeder-j/aiida-fenics\n  Cloning https://github.com/broeder-j/aiida-fenics to /tmp/pip-req-build-ubxl6gok\n  Running command git clone --filter=blob:none --quiet https://github.com/broeder-j/aiida-fenics /tmp/pip-req-build-ubxl6gok\n  Resolved https://github.com/broeder-j/aiida-fenics to commit eae053f7c82889a15fe19c3909d303f923fcf79e\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-fenics to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-fenics==0.1.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-fenics 0.1.0 depends on aiida-core~=1.6\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-fenics<pre>Collecting git+https://github.com/broeder-j/aiida-fenics\n  Cloning https://github.com/broeder-j/aiida-fenics to /tmp/pip-req-build-kg2uih06\n  Running command git clone --filter=blob:none --quiet https://github.com/broeder-j/aiida-fenics /tmp/pip-req-build-kg2uih06\n  Resolved https://github.com/broeder-j/aiida-fenics to commit eae053f7c82889a15fe19c3909d303f923fcf79e\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-fenics to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-fenics==0.1.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-fenics 0.1.0 depends on aiida-core~=1.6\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [],
       "summaryinfo": [
@@ -12833,7 +12105,7 @@
       "commits_count": 0,
       "development_status": "alpha",
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-graphql<pre>Collecting aiida-graphql\n  Downloading aiida_graphql-0.0.2-py3-none-any.whl.metadata (3.3 kB)\nCollecting aiida<2.0.0,>=1.0.0b6 (from aiida-graphql)\n  Downloading aiida-1.0.1.tar.gz (2.8 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting strawberry-graphql<0.17.0,>=0.16.7 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.10-py3-none-any.whl.metadata (4.0 kB)\nRequirement already satisfied: aiida-core in /opt/conda/lib/python3.10/site-packages (from aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.5.1)\nCollecting click<8.0,>=7.0 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading click-7.1.2-py2.py3-none-any.whl.metadata (2.9 kB)\nCollecting graphql-core<4.0.0,>=3.0.0a0 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading graphql_core-3.3.0a5-py3-none-any.whl.metadata (11 kB)\nCollecting hupper<2.0,>=1.5 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading hupper-1.12.1-py3-none-any.whl.metadata (3.7 kB)\nRequirement already satisfied: pygments<3.0,>=2.3 in /opt/conda/lib/python3.10/site-packages (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql) (2.17.2)\nCollecting starlette==0.12.10 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading starlette-0.12.10.tar.gz (46 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 46.3/46.3 kB 11.5 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting uvicorn==0.10.0 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvicorn-0.10.0.tar.gz (26 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting h11==0.8.* (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading h11-0.8.1-py2.py3-none-any.whl.metadata (8.0 kB)\nCollecting websockets==8.* (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading websockets-8.1.tar.gz (58 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 58.9/58.9 kB 9.9 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting httptools==0.0.13 (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading httptools-0.0.13.tar.gz (104 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 104.2/104.2 kB 22.9 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting uvloop==0.14.0rc2 (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvloop-0.14.0rc2.tar.gz (2.0 MB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 2.0/2.0 MB 74.0 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nRequirement already satisfied: alembic~=1.2 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.13.1)\nRequirement already satisfied: archive-path~=0.4.2 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.4.2)\nRequirement already satisfied: aio-pika~=6.6 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (6.8.1)\nRequirement already satisfied: circus~=0.18.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.18.0)\nRequirement already satisfied: click-spinner~=0.1.8 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.1.10)\nINFO: pip is looking at multiple versions of aiida-core to determine which version is compatible with other requirements. This could take a while.\nCollecting strawberry-graphql<0.17.0,>=0.16.7 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.9-py3-none-any.whl.metadata (4.0 kB)\nCollecting uvicorn==0.9.1 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvicorn-0.9.1.tar.gz (25 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting uvloop==0.* (from uvicorn==0.9.1->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvloop-0.19.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)\nCollecting strawberry-graphql<0.17.0,>=0.16.7 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.8-py3-none-any.whl.metadata (4.0 kB)\n  Downloading strawberry_graphql-0.16.7-py3-none-any.whl.metadata (4.0 kB)\nCollecting aiida<2.0.0,>=1.0.0b6 (from aiida-graphql)\n  Downloading aiida-1.0.0.tar.gz (1.9 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida to determine which version is compatible with other requirements. This could take a while.\n  Downloading aiida-1.0.0b6.tar.gz (2.6 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting aiida-graphql\n  Downloading aiida_graphql-0.0.1-py3-none-any.whl.metadata (3.4 kB)\nRequirement already satisfied: click~=8.1 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (8.1.7)\nRequirement already satisfied: disk-objectstore~=1.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.0.0)\nRequirement already satisfied: docstring-parser in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.15)\nRequirement already satisfied: graphviz~=0.19 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.20.1)\nRequirement already satisfied: ipython>=7 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (8.21.0)\nRequirement already satisfied: jedi<0.19 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.18.2)\nRequirement already satisfied: jinja2~=3.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (3.1.3)\nRequirement already satisfied: kiwipy~=0.7.7 in /opt/conda/lib/python3.10/site-packages (from kiwipy[rmq]~=0.7.7->aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.7.8)\nRequirement already satisfied: importlib-metadata~=6.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (6.11.0)\nRequirement already satisfied: numpy~=1.21 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.26.3)\nRequirement already satisfied: paramiko>=2.7.2,~=2.7 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.12.0)\nRequirement already satisfied: plumpy~=0.21.6 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.21.10)\nRequirement already satisfied: pgsu~=0.2.1 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.2.4)\nRequirement already satisfied: psutil~=5.6 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (5.9.8)\nRequirement already satisfied: psycopg2-binary~=2.8 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.9.9)\nRequirement already satisfied: pydantic~=2.4 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.6.0)\nRequirement already satisfied: pytz~=2021.1 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2021.3)\nRequirement already satisfied: pyyaml~=6.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (6.0.1)\nRequirement already satisfied: requests~=2.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.31.0)\nRequirement already satisfied: sqlalchemy~=2.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.0.25)\nRequirement already satisfied: tabulate~=0.8.5 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.8.10)\nRequirement already satisfied: tqdm~=4.45 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (4.66.1)\nRequirement already satisfied: upf_to_json~=0.9.2 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.9.5)\nRequirement already satisfied: wrapt~=1.11 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.16.0)\nINFO: pip is looking at multiple versions of strawberry-graphql to determine which version is compatible with other requirements. This could take a while.\nCollecting strawberry-graphql<0.17.0,>=0.16.5 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.6-py3-none-any.whl.metadata (4.0 kB)\n  Downloading strawberry_graphql-0.16.5-py3-none-any.whl.metadata (4.0 kB)\nCollecting aiida-core (from aiida<2.0.0,>=1.0.0b6->aiida-graphql)\n  Downloading aiida_core-2.5.1-py3-none-any.whl.metadata (11 kB)\nINFO: pip is still looking at multiple versions of aiida-core to determine which version is compatible with other requirements. This could take a while.\nCollecting uvicorn==0.9.0 (from strawberry-graphql<0.17.0,>=0.16.5->aiida-graphql)\n  Downloading uvicorn-0.9.0.tar.gz (24 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nERROR: Cannot install aiida-graphql because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida 1.0.0 depends on aiida-core==1.0\n    aiida 1.0.0b6 depends on aiida-core==1.0.0b6\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-graphql<pre>Collecting aiida-graphql\n  Downloading aiida_graphql-0.0.2-py3-none-any.whl.metadata (3.3 kB)\nCollecting aiida<2.0.0,>=1.0.0b6 (from aiida-graphql)\n  Downloading aiida-1.0.1.tar.gz (2.8 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting strawberry-graphql<0.17.0,>=0.16.7 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.10-py3-none-any.whl.metadata (4.0 kB)\nRequirement already satisfied: aiida-core in /opt/conda/lib/python3.10/site-packages (from aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.5.1)\nCollecting click<8.0,>=7.0 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading click-7.1.2-py2.py3-none-any.whl.metadata (2.9 kB)\nCollecting graphql-core<4.0.0,>=3.0.0a0 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading graphql_core-3.3.0a5-py3-none-any.whl.metadata (11 kB)\nCollecting hupper<2.0,>=1.5 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading hupper-1.12.1-py3-none-any.whl.metadata (3.7 kB)\nRequirement already satisfied: pygments<3.0,>=2.3 in /opt/conda/lib/python3.10/site-packages (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql) (2.17.2)\nCollecting starlette==0.12.10 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading starlette-0.12.10.tar.gz (46 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 46.3/46.3 kB 11.0 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting uvicorn==0.10.0 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvicorn-0.10.0.tar.gz (26 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting h11==0.8.* (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading h11-0.8.1-py2.py3-none-any.whl.metadata (8.0 kB)\nCollecting websockets==8.* (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading websockets-8.1.tar.gz (58 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 58.9/58.9 kB 15.5 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting httptools==0.0.13 (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading httptools-0.0.13.tar.gz (104 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 104.2/104.2 kB 24.8 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting uvloop==0.14.0rc2 (from uvicorn==0.10.0->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvloop-0.14.0rc2.tar.gz (2.0 MB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 2.0/2.0 MB 76.5 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nRequirement already satisfied: alembic~=1.2 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.13.1)\nRequirement already satisfied: archive-path~=0.4.2 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.4.2)\nRequirement already satisfied: aio-pika~=6.6 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (6.8.1)\nRequirement already satisfied: circus~=0.18.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.18.0)\nRequirement already satisfied: click-spinner~=0.1.8 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.1.10)\nINFO: pip is looking at multiple versions of aiida-core to determine which version is compatible with other requirements. This could take a while.\nCollecting strawberry-graphql<0.17.0,>=0.16.7 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.9-py3-none-any.whl.metadata (4.0 kB)\nCollecting uvicorn==0.9.1 (from strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvicorn-0.9.1.tar.gz (25 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting uvloop==0.* (from uvicorn==0.9.1->strawberry-graphql<0.17.0,>=0.16.7->aiida-graphql)\n  Downloading uvloop-0.19.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)\nCollecting strawberry-graphql<0.17.0,>=0.16.7 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.8-py3-none-any.whl.metadata (4.0 kB)\n  Downloading strawberry_graphql-0.16.7-py3-none-any.whl.metadata (4.0 kB)\nCollecting aiida<2.0.0,>=1.0.0b6 (from aiida-graphql)\n  Downloading aiida-1.0.0.tar.gz (1.9 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida to determine which version is compatible with other requirements. This could take a while.\n  Downloading aiida-1.0.0b6.tar.gz (2.6 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting aiida-graphql\n  Downloading aiida_graphql-0.0.1-py3-none-any.whl.metadata (3.4 kB)\nRequirement already satisfied: click~=8.1 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (8.1.7)\nRequirement already satisfied: disk-objectstore~=1.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.0.0)\nRequirement already satisfied: docstring-parser in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.15)\nRequirement already satisfied: graphviz~=0.19 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.20.1)\nRequirement already satisfied: ipython>=7 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (8.21.0)\nRequirement already satisfied: jedi<0.19 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.18.2)\nRequirement already satisfied: jinja2~=3.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (3.1.3)\nRequirement already satisfied: kiwipy~=0.7.7 in /opt/conda/lib/python3.10/site-packages (from kiwipy[rmq]~=0.7.7->aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.7.8)\nRequirement already satisfied: importlib-metadata~=6.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (6.11.0)\nRequirement already satisfied: numpy~=1.21 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.26.3)\nRequirement already satisfied: paramiko>=2.7.2,~=2.7 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.12.0)\nRequirement already satisfied: plumpy~=0.21.6 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.21.10)\nRequirement already satisfied: pgsu~=0.2.1 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.2.4)\nRequirement already satisfied: psutil~=5.6 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (5.9.8)\nRequirement already satisfied: psycopg2-binary~=2.8 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.9.9)\nRequirement already satisfied: pydantic~=2.4 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.6.0)\nRequirement already satisfied: pytz~=2021.1 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2021.3)\nRequirement already satisfied: pyyaml~=6.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (6.0.1)\nRequirement already satisfied: requests~=2.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.31.0)\nRequirement already satisfied: sqlalchemy~=2.0 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (2.0.25)\nRequirement already satisfied: tabulate~=0.8.5 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.8.10)\nRequirement already satisfied: tqdm~=4.45 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (4.66.1)\nRequirement already satisfied: upf_to_json~=0.9.2 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (0.9.5)\nRequirement already satisfied: wrapt~=1.11 in /opt/conda/lib/python3.10/site-packages (from aiida-core->aiida<2.0.0,>=1.0.0b6->aiida-graphql) (1.16.0)\nINFO: pip is looking at multiple versions of strawberry-graphql to determine which version is compatible with other requirements. This could take a while.\nCollecting strawberry-graphql<0.17.0,>=0.16.5 (from aiida-graphql)\n  Downloading strawberry_graphql-0.16.6-py3-none-any.whl.metadata (4.0 kB)\n  Downloading strawberry_graphql-0.16.5-py3-none-any.whl.metadata (4.0 kB)\nCollecting aiida-core (from aiida<2.0.0,>=1.0.0b6->aiida-graphql)\n  Downloading aiida_core-2.5.1-py3-none-any.whl.metadata (11 kB)\nINFO: pip is still looking at multiple versions of aiida-core to determine which version is compatible with other requirements. This could take a while.\nCollecting uvicorn==0.9.0 (from strawberry-graphql<0.17.0,>=0.16.5->aiida-graphql)\n  Downloading uvicorn-0.9.0.tar.gz (24 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nERROR: Cannot install aiida-graphql because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida 1.0.0 depends on aiida-core==1.0\n    aiida 1.0.0b6 depends on aiida-core==1.0.0b6\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W020'>W020</a>: Unable to read wheel file from PyPI release: <pre>No entry_points.txt found in wheel</pre>",
@@ -18417,7 +17689,7 @@
       },
       "commits_count": 0,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-lsmo<pre>Collecting git+https://github.com/lsmo-epfl/aiida-lsmo\n  Cloning https://github.com/lsmo-epfl/aiida-lsmo to /tmp/pip-req-build-hmc8yw6l\n  Running command git clone --filter=blob:none --quiet https://github.com/lsmo-epfl/aiida-lsmo /tmp/pip-req-build-hmc8yw6l\n  Resolved https://github.com/lsmo-epfl/aiida-lsmo to commit 6bf08fa42e545dadf889ea8095d7fcdd8d1be15c\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-lsmo to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-lsmo==1.0.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-lsmo 1.0.0 depends on aiida-core~=1.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-lsmo<pre>Collecting git+https://github.com/lsmo-epfl/aiida-lsmo\n  Cloning https://github.com/lsmo-epfl/aiida-lsmo to /tmp/pip-req-build-t7038i0u\n  Running command git clone --filter=blob:none --quiet https://github.com/lsmo-epfl/aiida-lsmo /tmp/pip-req-build-t7038i0u\n  Resolved https://github.com/lsmo-epfl/aiida-lsmo to commit 6bf08fa42e545dadf889ea8095d7fcdd8d1be15c\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-lsmo to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-lsmo==1.0.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-lsmo 1.0.0 depends on aiida-core~=1.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W003'>W003</a>: Missing classifier 'Framework :: AiiDA'",
@@ -18481,7 +17753,7 @@
       },
       "commits_count": 0,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-metavo-scheduler<pre>Collecting git+https://github.com/pzarabadip/aiida-metavo-scheduler\n  Cloning https://github.com/pzarabadip/aiida-metavo-scheduler to /tmp/pip-req-build-wjl5qrs3\n  Running command git clone --filter=blob:none --quiet https://github.com/pzarabadip/aiida-metavo-scheduler /tmp/pip-req-build-wjl5qrs3\n  Resolved https://github.com/pzarabadip/aiida-metavo-scheduler to commit 955697497641ca13e997431a8e925df6ec3a9eea\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-metavo-scheduler to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-metavo-scheduler==1.0.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-metavo-scheduler 1.0.0 depends on aiida_core<1.6 and >=1.0.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-metavo-scheduler<pre>Collecting git+https://github.com/pzarabadip/aiida-metavo-scheduler\n  Cloning https://github.com/pzarabadip/aiida-metavo-scheduler to /tmp/pip-req-build-8l0raa76\n  Running command git clone --filter=blob:none --quiet https://github.com/pzarabadip/aiida-metavo-scheduler /tmp/pip-req-build-8l0raa76\n  Resolved https://github.com/pzarabadip/aiida-metavo-scheduler to commit 955697497641ca13e997431a8e925df6ec3a9eea\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-metavo-scheduler to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-metavo-scheduler==1.0.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-metavo-scheduler 1.0.0 depends on aiida_core<1.6 and >=1.0.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W006'>W006</a>: 'development_status' key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
@@ -18537,7 +17809,7 @@
       },
       "commits_count": 1,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-mpds<pre>Collecting git+https://github.com/mpds-io/mpds-aiida\n  Cloning https://github.com/mpds-io/mpds-aiida to /tmp/pip-req-build-wx75mgh8\n  Running command git clone --filter=blob:none --quiet https://github.com/mpds-io/mpds-aiida /tmp/pip-req-build-wx75mgh8\n  Resolved https://github.com/mpds-io/mpds-aiida to commit a00cdaab14fd25102ce224495256208fca7c00b3\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting mpds-ml-labs@ git+https://github.com/mpds-io/mpds-ml-labs (from mpds-aiida==0.10.0)\n  Cloning https://github.com/mpds-io/mpds-ml-labs to /tmp/pip-install-x61j2qb2/mpds-ml-labs_54f3a120be51485fa698fb23d135b658\n  Running command git clone --filter=blob:none --quiet https://github.com/mpds-io/mpds-ml-labs /tmp/pip-install-x61j2qb2/mpds-ml-labs_54f3a120be51485fa698fb23d135b658\n  Resolved https://github.com/mpds-io/mpds-ml-labs to commit 644c38fb4d81b7736a5424d23b4f4add00838a39\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft (from mpds-aiida==0.10.0)\n  Cloning https://github.com/tilde-lab/aiida-crystal-dft to /tmp/pip-install-x61j2qb2/aiida-crystal-dft_2269ad9c01514a3a8299157b24a7b016\n  Running command git clone --filter=blob:none --quiet https://github.com/tilde-lab/aiida-crystal-dft /tmp/pip-install-x61j2qb2/aiida-crystal-dft_2269ad9c01514a3a8299157b24a7b016\n  Resolved https://github.com/tilde-lab/aiida-crystal-dft to commit cc49b637caeb150a534baacfd8380f47a9aecca2\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nCollecting reentry>=1.3.1 (from mpds-aiida==0.10.0)\n  Using cached reentry-1.3.3-py3-none-any.whl.metadata (10 kB)\nRequirement already satisfied: six>=1.16.0 in /opt/conda/lib/python3.10/site-packages (from mpds-aiida==0.10.0) (1.16.0)\nRequirement already satisfied: numpy>=1.17.5 in /opt/conda/lib/python3.10/site-packages (from mpds-aiida==0.10.0) (1.26.3)\nCollecting ase>=3.19 (from mpds-aiida==0.10.0)\n  Downloading ase-3.22.1-py3-none-any.whl.metadata (3.1 kB)\nCollecting yascheduler>=1.0.12 (from mpds-aiida==0.10.0)\n  Downloading yascheduler-1.2.0-py3-none-any.whl.metadata (12 kB)\nCollecting matplotlib>=3.1.0 (from ase>=3.19->mpds-aiida==0.10.0)\n  Downloading matplotlib-3.8.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.8 kB)\nCollecting scipy>=1.1.0 (from ase>=3.19->mpds-aiida==0.10.0)\n  Downloading scipy-1.13.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 60.6/60.6 kB 8.7 MB/s eta 0:00:00\nRequirement already satisfied: setuptools>=36.2 in /opt/conda/lib/python3.10/site-packages (from reentry>=1.3.1->mpds-aiida==0.10.0) (69.0.3)\nRequirement already satisfied: click in /opt/conda/lib/python3.10/site-packages (from reentry>=1.3.1->mpds-aiida==0.10.0) (8.1.7)\nCollecting aiohttp~=3.8 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading aiohttp-3.9.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.5 kB)\nCollecting asyncssh~=2.11 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading asyncssh-2.14.2-py3-none-any.whl.metadata (9.9 kB)\nCollecting asyncstdlib~=3.10 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading asyncstdlib-3.12.3-py3-none-any.whl.metadata (3.6 kB)\nCollecting attrs~=21.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading attrs-21.4.0-py2.py3-none-any.whl.metadata (9.8 kB)\nCollecting azure-identity~=1.10.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading azure_identity-1.10.0-py3-none-any.whl.metadata (54 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 54.5/54.5 kB 15.0 MB/s eta 0:00:00\nCollecting azure-mgmt-compute~=27.2.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading azure_mgmt_compute-27.2.0-py3-none-any.whl.metadata (53 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 53.1/53.1 kB 14.7 MB/s eta 0:00:00\nCollecting azure-mgmt-network~=20.0.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading azure_mgmt_network-20.0.0-py3-none-any.whl.metadata (63 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 63.9/63.9 kB 16.1 MB/s eta 0:00:00\nCollecting backoff~=2.1.2 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading backoff-2.1.2-py3-none-any.whl.metadata (13 kB)\nCollecting hcloud~=1.17 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading hcloud-1.35.0-py3-none-any.whl.metadata (4.9 kB)\nCollecting pg8000~=1.19 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading pg8000-1.31.1-py3-none-any.whl.metadata (73 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 73.9/73.9 kB 16.0 MB/s eta 0:00:00\nCollecting python-daemon~=2.3 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading python_daemon-2.3.2-py3-none-any.whl.metadata (2.0 kB)\nRequirement already satisfied: typing-extensions>=4.2.0 in /opt/conda/lib/python3.10/site-packages (from yascheduler>=1.0.12->mpds-aiida==0.10.0) (4.9.0)\nCollecting upcloud_api~=2.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading upcloud_api-2.5.1-py3-none-any.whl.metadata (7.8 kB)\nRequirement already satisfied: aiida-core>=2.0.2 in /opt/conda/lib/python3.10/site-packages (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0) (2.5.1)\nCollecting pycrystal>=1.0.10 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading pycrystal-1.0.16.tar.gz (28 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting mpds_client>=0.24 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading mpds_client-0.24.tar.gz (9.7 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting pyparsing>2.3.1 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading pyparsing-3.1.2-py3-none-any.whl.metadata (5.1 kB)\nCollecting spglib>=1.16.0 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading spglib-2.4.0-cp310-cp310-manylinux_2_17_x86_64.whl.metadata (4.2 kB)\nRequirement already satisfied: jinja2>=2.10 in /opt/conda/lib/python3.10/site-packages (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0) (3.1.3)\nCollecting jsonschema>=3.0.1 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading jsonschema-4.21.1-py3-none-any.whl.metadata (7.8 kB)\nRequirement already satisfied: packaging in /opt/conda/lib/python3.10/site-packages (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0) (23.2)\nCollecting seekpath (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading seekpath-2.1.0-py2.py3-none-any.whl.metadata (4.7 kB)\nCollecting pycodcif (from mpds-ml-labs@ git+https://github.com/mpds-io/mpds-ml-labs->mpds-aiida==0.10.0)\n  Downloading pycodcif-3.0.1.tar.gz (79 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 79.6/79.6 kB 22.1 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting sklearn (from mpds-ml-labs@ git+https://github.com/mpds-io/mpds-ml-labs->mpds-aiida==0.10.0)\n  Downloading sklearn-0.0.post12.tar.gz (2.6 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'error'\n  error: subprocess-exited-with-error\n  \n  \u00d7 python setup.py egg_info did not run successfully.\n  \u2502 exit code: 1\n  \u2570\u2500> [15 lines of output]\n      The 'sklearn' PyPI package is deprecated, use 'scikit-learn'\n      rather than 'sklearn' for pip commands.\n      \n      Here is how to fix this error in the main use cases:\n      - use 'pip install scikit-learn' rather than 'pip install sklearn'\n      - replace 'sklearn' by 'scikit-learn' in your pip requirements files\n        (requirements.txt, setup.py, setup.cfg, Pipfile, etc ...)\n      - if the 'sklearn' package is used by one of your dependencies,\n        it would be great if you take some time to track which package uses\n        'sklearn' instead of 'scikit-learn' and report it to their issue tracker\n      - as a last resort, set the environment variable\n        SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True to avoid this error\n      \n      More information is available at\n      https://github.com/scikit-learn/sklearn-pypi-package\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nerror: metadata-generation-failed\n\n\u00d7 Encountered error while generating package metadata.\n\u2570\u2500> See above for output.\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-mpds<pre>Collecting git+https://github.com/mpds-io/mpds-aiida\n  Cloning https://github.com/mpds-io/mpds-aiida to /tmp/pip-req-build-xynj14bu\n  Running command git clone --filter=blob:none --quiet https://github.com/mpds-io/mpds-aiida /tmp/pip-req-build-xynj14bu\n  Resolved https://github.com/mpds-io/mpds-aiida to commit a00cdaab14fd25102ce224495256208fca7c00b3\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting mpds-ml-labs@ git+https://github.com/mpds-io/mpds-ml-labs (from mpds-aiida==0.10.0)\n  Cloning https://github.com/mpds-io/mpds-ml-labs to /tmp/pip-install-66umvuf5/mpds-ml-labs_058f17325df3405bb2f087c17e71876e\n  Running command git clone --filter=blob:none --quiet https://github.com/mpds-io/mpds-ml-labs /tmp/pip-install-66umvuf5/mpds-ml-labs_058f17325df3405bb2f087c17e71876e\n  Resolved https://github.com/mpds-io/mpds-ml-labs to commit 644c38fb4d81b7736a5424d23b4f4add00838a39\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft (from mpds-aiida==0.10.0)\n  Cloning https://github.com/tilde-lab/aiida-crystal-dft to /tmp/pip-install-66umvuf5/aiida-crystal-dft_b05b8fd08d414fac8cf8be254d74f768\n  Running command git clone --filter=blob:none --quiet https://github.com/tilde-lab/aiida-crystal-dft /tmp/pip-install-66umvuf5/aiida-crystal-dft_b05b8fd08d414fac8cf8be254d74f768\n  Resolved https://github.com/tilde-lab/aiida-crystal-dft to commit cc49b637caeb150a534baacfd8380f47a9aecca2\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nCollecting reentry>=1.3.1 (from mpds-aiida==0.10.0)\n  Using cached reentry-1.3.3-py3-none-any.whl.metadata (10 kB)\nRequirement already satisfied: six>=1.16.0 in /opt/conda/lib/python3.10/site-packages (from mpds-aiida==0.10.0) (1.16.0)\nRequirement already satisfied: numpy>=1.17.5 in /opt/conda/lib/python3.10/site-packages (from mpds-aiida==0.10.0) (1.26.3)\nCollecting ase>=3.19 (from mpds-aiida==0.10.0)\n  Downloading ase-3.22.1-py3-none-any.whl.metadata (3.1 kB)\nCollecting yascheduler>=1.0.12 (from mpds-aiida==0.10.0)\n  Downloading yascheduler-1.2.0-py3-none-any.whl.metadata (12 kB)\nCollecting matplotlib>=3.1.0 (from ase>=3.19->mpds-aiida==0.10.0)\n  Downloading matplotlib-3.8.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.8 kB)\nCollecting scipy>=1.1.0 (from ase>=3.19->mpds-aiida==0.10.0)\n  Downloading scipy-1.13.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 60.6/60.6 kB 14.0 MB/s eta 0:00:00\nRequirement already satisfied: setuptools>=36.2 in /opt/conda/lib/python3.10/site-packages (from reentry>=1.3.1->mpds-aiida==0.10.0) (69.0.3)\nRequirement already satisfied: click in /opt/conda/lib/python3.10/site-packages (from reentry>=1.3.1->mpds-aiida==0.10.0) (8.1.7)\nCollecting aiohttp~=3.8 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading aiohttp-3.9.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.5 kB)\nCollecting asyncssh~=2.11 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading asyncssh-2.14.2-py3-none-any.whl.metadata (9.9 kB)\nCollecting asyncstdlib~=3.10 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading asyncstdlib-3.12.3-py3-none-any.whl.metadata (3.6 kB)\nCollecting attrs~=21.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading attrs-21.4.0-py2.py3-none-any.whl.metadata (9.8 kB)\nCollecting azure-identity~=1.10.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading azure_identity-1.10.0-py3-none-any.whl.metadata (54 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 54.5/54.5 kB 17.8 MB/s eta 0:00:00\nCollecting azure-mgmt-compute~=27.2.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading azure_mgmt_compute-27.2.0-py3-none-any.whl.metadata (53 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 53.1/53.1 kB 15.2 MB/s eta 0:00:00\nCollecting azure-mgmt-network~=20.0.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading azure_mgmt_network-20.0.0-py3-none-any.whl.metadata (63 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 63.9/63.9 kB 20.3 MB/s eta 0:00:00\nCollecting backoff~=2.1.2 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading backoff-2.1.2-py3-none-any.whl.metadata (13 kB)\nCollecting hcloud~=1.17 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading hcloud-1.35.0-py3-none-any.whl.metadata (4.9 kB)\nCollecting pg8000~=1.19 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading pg8000-1.31.1-py3-none-any.whl.metadata (73 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 73.9/73.9 kB 22.3 MB/s eta 0:00:00\nCollecting python-daemon~=2.3 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading python_daemon-2.3.2-py3-none-any.whl.metadata (2.0 kB)\nRequirement already satisfied: typing-extensions>=4.2.0 in /opt/conda/lib/python3.10/site-packages (from yascheduler>=1.0.12->mpds-aiida==0.10.0) (4.9.0)\nCollecting upcloud_api~=2.0 (from yascheduler>=1.0.12->mpds-aiida==0.10.0)\n  Downloading upcloud_api-2.5.1-py3-none-any.whl.metadata (7.8 kB)\nRequirement already satisfied: aiida-core>=2.0.2 in /opt/conda/lib/python3.10/site-packages (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0) (2.5.1)\nCollecting pycrystal>=1.0.10 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading pycrystal-1.0.16.tar.gz (28 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting mpds_client>=0.24 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading mpds_client-0.24.tar.gz (9.7 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting pyparsing>2.3.1 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading pyparsing-3.1.2-py3-none-any.whl.metadata (5.1 kB)\nCollecting spglib>=1.16.0 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading spglib-2.4.0-cp310-cp310-manylinux_2_17_x86_64.whl.metadata (4.2 kB)\nRequirement already satisfied: jinja2>=2.10 in /opt/conda/lib/python3.10/site-packages (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0) (3.1.3)\nCollecting jsonschema>=3.0.1 (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading jsonschema-4.21.1-py3-none-any.whl.metadata (7.8 kB)\nRequirement already satisfied: packaging in /opt/conda/lib/python3.10/site-packages (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0) (23.2)\nCollecting seekpath (from aiida-crystal-dft@ git+https://github.com/tilde-lab/aiida-crystal-dft->mpds-aiida==0.10.0)\n  Downloading seekpath-2.1.0-py2.py3-none-any.whl.metadata (4.7 kB)\nCollecting pycodcif (from mpds-ml-labs@ git+https://github.com/mpds-io/mpds-ml-labs->mpds-aiida==0.10.0)\n  Downloading pycodcif-3.0.1.tar.gz (79 kB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 79.6/79.6 kB 16.4 MB/s eta 0:00:00\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nCollecting sklearn (from mpds-ml-labs@ git+https://github.com/mpds-io/mpds-ml-labs->mpds-aiida==0.10.0)\n  Downloading sklearn-0.0.post12.tar.gz (2.6 kB)\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'error'\n  error: subprocess-exited-with-error\n  \n  \u00d7 python setup.py egg_info did not run successfully.\n  \u2502 exit code: 1\n  \u2570\u2500> [15 lines of output]\n      The 'sklearn' PyPI package is deprecated, use 'scikit-learn'\n      rather than 'sklearn' for pip commands.\n      \n      Here is how to fix this error in the main use cases:\n      - use 'pip install scikit-learn' rather than 'pip install sklearn'\n      - replace 'sklearn' by 'scikit-learn' in your pip requirements files\n        (requirements.txt, setup.py, setup.cfg, Pipfile, etc ...)\n      - if the 'sklearn' package is used by one of your dependencies,\n        it would be great if you take some time to track which package uses\n        'sklearn' instead of 'scikit-learn' and report it to their issue tracker\n      - as a last resort, set the environment variable\n        SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True to avoid this error\n      \n      More information is available at\n      https://github.com/scikit-learn/sklearn-pypi-package\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nerror: metadata-generation-failed\n\n\u00d7 Encountered error while generating package metadata.\n\u2570\u2500> See above for output.\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W006'>W006</a>: 'development_status' key is deprecated. Use PyPI Trove classifiers in the plugin repository instead.",
@@ -21843,7 +21115,7 @@
           "slurm_ethz_euler": "aiida_nanotech_empa.schedulers:ETHZEulerSlurmScheduler"
         }
       },
-      "commits_count": 37,
+      "commits_count": 36,
       "errors": [],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W005'>W005</a>: Development status in classifiers (stable) does not match development_status in metadata (beta)",
@@ -21902,7 +21174,7 @@
           "nims_scheduler": "aiida_nims_scheduler.schedulers.pbs_nims:PbsNimsScheduler"
         }
       },
-      "commits_count": 47,
+      "commits_count": 46,
       "errors": [],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W005'>W005</a>: Development status in classifiers (alpha) does not match development_status in metadata (stable)",
@@ -23835,7 +23107,7 @@
       },
       "commits_count": 0,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-psi4<pre>Collecting git+https://github.com/ltalirz/aiida-psi4\n  Cloning https://github.com/ltalirz/aiida-psi4 to /tmp/pip-req-build-j8iqs5d0\n  Running command git clone --filter=blob:none --quiet https://github.com/ltalirz/aiida-psi4 /tmp/pip-req-build-j8iqs5d0\n  Resolved https://github.com/ltalirz/aiida-psi4 to commit 637e6b0b29e724a158014269d55d9091c6af48c7\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Installing backend dependencies: started\n  Installing backend dependencies: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-psi4 to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-psi4==0.1.0a0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-psi4 0.1.0a0 depends on aiida-core<2.0.0 and >=1.6.4\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-psi4<pre>Collecting git+https://github.com/ltalirz/aiida-psi4\n  Cloning https://github.com/ltalirz/aiida-psi4 to /tmp/pip-req-build-c_n4ca_5\n  Running command git clone --filter=blob:none --quiet https://github.com/ltalirz/aiida-psi4 /tmp/pip-req-build-c_n4ca_5\n  Resolved https://github.com/ltalirz/aiida-psi4 to commit 637e6b0b29e724a158014269d55d9091c6af48c7\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Installing backend dependencies: started\n  Installing backend dependencies: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-psi4 to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-psi4==0.1.0a0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-psi4 0.1.0a0 depends on aiida-core<2.0.0 and >=1.6.4\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W006'>W006</a>: 'development_status' key is deprecated. Use PyPI Trove classifiers in the plugin repository instead."
@@ -34003,7 +33275,7 @@
       },
       "commits_count": 0,
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-supercell<pre>Collecting git+https://github.com/pzarabadip/aiida-supercell\n  Cloning https://github.com/pzarabadip/aiida-supercell to /tmp/pip-req-build-8fheorg6\n  Running command git clone --filter=blob:none --quiet https://github.com/pzarabadip/aiida-supercell /tmp/pip-req-build-8fheorg6\n  Resolved https://github.com/pzarabadip/aiida-supercell to commit 24a89f990fcf84584a51f49b53311a5c6db18347\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-supercell to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-supercell==1.0.1 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-supercell 1.0.1 depends on aiida-core<2.0 and >=1.0.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-supercell<pre>Collecting git+https://github.com/pzarabadip/aiida-supercell\n  Cloning https://github.com/pzarabadip/aiida-supercell to /tmp/pip-req-build-w9uwo_o3\n  Running command git clone --filter=blob:none --quiet https://github.com/pzarabadip/aiida-supercell /tmp/pip-req-build-w9uwo_o3\n  Resolved https://github.com/pzarabadip/aiida-supercell to commit 24a89f990fcf84584a51f49b53311a5c6db18347\n  Preparing metadata (setup.py): started\n  Preparing metadata (setup.py): finished with status 'done'\nINFO: pip is looking at multiple versions of aiida-supercell to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-supercell==1.0.1 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-supercell 1.0.1 depends on aiida-core<2.0 and >=1.0.0\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [
         "<a href='https://github.com/aiidateam/aiida-registry#W003'>W003</a>: Missing classifier 'Framework :: AiiDA'",
@@ -41741,7 +41013,7 @@
       "commits_count": 0,
       "development_status": "stable",
       "errors": [
-        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-z2pack<pre>Collecting git+https://github.com/AntimoMarrazzo/aiida-z2pack\n  Cloning https://github.com/AntimoMarrazzo/aiida-z2pack to /tmp/pip-req-build-yy1xzl4e\n  Running command git clone --filter=blob:none --quiet https://github.com/AntimoMarrazzo/aiida-z2pack /tmp/pip-req-build-yy1xzl4e\n  Resolved https://github.com/AntimoMarrazzo/aiida-z2pack to commit 01a06de726c8b3eab7d18d1a36b4631ad8216f8b\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nRequirement already satisfied: numpy in /opt/conda/lib/python3.10/site-packages (from aiida-z2pack==3.0.1) (1.26.3)\nCollecting z2pack==2.1.1 (from aiida-z2pack==3.0.1)\n  Downloading z2pack-2.1.1-py3-none-any.whl.metadata (2.3 kB)\nINFO: pip is looking at multiple versions of aiida-z2pack to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-z2pack==3.0.1 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-z2pack 3.0.1 depends on aiida-core<=2.2.2 and >=2.1.2\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
+        "<a href='https://github.com/aiidateam/aiida-registry#E001'>E001</a>: Failed to install plugin aiida-z2pack<pre>Collecting git+https://github.com/AntimoMarrazzo/aiida-z2pack\n  Cloning https://github.com/AntimoMarrazzo/aiida-z2pack to /tmp/pip-req-build-cj_jzy_0\n  Running command git clone --filter=blob:none --quiet https://github.com/AntimoMarrazzo/aiida-z2pack /tmp/pip-req-build-cj_jzy_0\n  Resolved https://github.com/AntimoMarrazzo/aiida-z2pack to commit 01a06de726c8b3eab7d18d1a36b4631ad8216f8b\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nRequirement already satisfied: numpy in /opt/conda/lib/python3.10/site-packages (from aiida-z2pack==3.0.1) (1.26.3)\nCollecting z2pack==2.1.1 (from aiida-z2pack==3.0.1)\n  Downloading z2pack-2.1.1-py3-none-any.whl.metadata (2.3 kB)\nINFO: pip is looking at multiple versions of aiida-z2pack to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install aiida-z2pack==3.0.1 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    aiida-z2pack 3.0.1 depends on aiida-core<=2.2.2 and >=2.1.2\n    The user requested (constraint) aiida-core==2.5.1\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n</pre>"
       ],
       "warnings": [],
       "summaryinfo": [
