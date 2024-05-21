@@ -64,7 +64,7 @@ jobs:
   preview:
     # This job is triggered by from PR from the aiida-registry repo, the developer of aiida-registry need to see the preview page of the PR
     needs: [test-webpage-build, get-pr]
-    if: github.repository == 'aiidateam/aiida-registry'
+    if: "! github.event.pull_request.head.repo.fork "
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
