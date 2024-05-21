@@ -1,4 +1,4 @@
-name: CI
+name: Dev CI
 
 # For development, use the following instead:
 on: [pull_request]
