@@ -15,6 +15,12 @@ from dataclasses import asdict, dataclass
 from typing import Dict, List
 
 import click
+from aiida import load_profile
+from aiida.storage.sqlite_temp import SqliteTempBackend
+
+# Load AiiDA profile
+temp_profile = SqliteTempBackend.create_profile("temp-profile")
+load_profile(temp_profile, allow_switch=True)
 
 ENTRY_POINT_GROUPS = [
     "aiida.calculations",
