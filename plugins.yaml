@@ -550,3 +550,9 @@ aiida-aimall:
   documentation_url: https://aiida-aimall.readthedocs.io/en/latest/
   plugin_info: https://raw.githubusercontent.com/kmlefran/aiida-aimall/main/pyproject.toml
   version_file: https://raw.githubusercontent.com/kmlefran/aiida-aimall/main/aiida_aimall/__init__.py
+aiida-mlip:
+  entry_point_prefix: janus
+  plugin_info: https://raw.githubusercontent.com/stfc/aiida-mlip/main/pyproject.toml
+  code_home: https://github.com/stfc/aiida-mlip
+  documentation_url: https://stfc.github.io/aiida-mlip
+  pip_url: aiida-mlip
