@@ -555,3 +555,4 @@ aiida-mlip:
   plugin_info: https://raw.githubusercontent.com/stfc/aiida-mlip/main/pyproject.toml
   code_home: https://github.com/stfc/aiida-mlip
   documentation_url: https://stfc.github.io/aiida-mlip/
+  pip_url: aiida-mlip
