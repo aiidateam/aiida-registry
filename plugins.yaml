@@ -556,3 +556,9 @@ aiida-mlip:
   code_home: https://github.com/stfc/aiida-mlip
   documentation_url: https://stfc.github.io/aiida-mlip/
   pip_url: aiida-mlip
+aiida-hyperqueue:
+  entry_point_prefix: hyperqueue
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-hyperqueue/main/pyproject.toml
+  code_home: https://github.com/aiidateam/aiida-hyperqueue
+  documentation_url: http://aiida-hyperqueue.readthedocs.io/
+  pip_url: aiida-hyperqueue
