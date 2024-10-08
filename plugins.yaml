@@ -556,3 +556,8 @@ aiida-mlip:
   code_home: https://github.com/stfc/aiida-mlip
   documentation_url: https://stfc.github.io/aiida-mlip/
   pip_url: aiida-mlip
+aiida-inq:
+  entry_point_prefix: inq
+  plugin_info: https://github.com/LLNL/aiida-inq/blob/main/pyproject.toml
+  code_home: https://github.com/LLNL/aiida-inq
+  pip_url: aiida-inq
