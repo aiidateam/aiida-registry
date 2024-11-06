@@ -561,3 +561,9 @@ aiida-inq:
   plugin_info: https://github.com/LLNL/aiida-inq/blob/main/pyproject.toml
   code_home: https://github.com/LLNL/aiida-inq
   pip_url: aiida-inq
+aiida-icon:
+  entry_point_prefix: icon
+  pip_url: aiida-icon
+  documentation_url: https://aiida-icon.github.io/aiida-icon/
+  code_home: https://github.com/aiida-icon/aiida-icon
+  plugin_info: https://raw.githubusercontent.com/aiida-icon/aiida-icon/main/pyproject.toml
