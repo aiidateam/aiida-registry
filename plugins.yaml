@@ -567,3 +567,8 @@ aiida-icon:
   documentation_url: https://aiida-icon.github.io/aiida-icon/
   code_home: https://github.com/aiida-icon/aiida-icon
   plugin_info: https://raw.githubusercontent.com/aiida-icon/aiida-icon/main/pyproject.toml
+aiida-fans:
+  entry_point_prefix: fans
+  plugin_info: https://raw.githubusercontent.com/ethan-shanahan/aiida-fans/refs/heads/main/pyproject.toml
+  code_home: https://github.com/ethan-shanahan/aiida-fans
+  documentation_url: https://aiida-fans.readthedocs.io/en/latest/
