@@ -572,3 +572,8 @@ aiida-fans:
   plugin_info: https://raw.githubusercontent.com/ethan-shanahan/aiida-fans/refs/heads/main/pyproject.toml
   code_home: https://github.com/ethan-shanahan/aiida-fans
   documentation_url: https://aiida-fans.readthedocs.io/en/latest/
+aiida-pythonjob:
+  code_home: https://github.com/aiidateam/aiida-pythonjob
+  entry_point_prefix: pythonjob
+  pip_url: aiida-pythonjob
+  plugin_info: https://raw.github.com/aiidateam/aiida-pythonjob/master/pyproject.toml
