@@ -4,6 +4,10 @@ aiida-QECpWorkChain:
   entry_point_prefix: qecpworkchain
   pip_url: git+https://github.com/rikigigi/aiida-QECpWorkChain
   plugin_info: https://raw.github.com/rikigigi/aiida-QECpWorkChain/master/setup.json
+aiida-abacus:
+  code_home: https://github.com/MCresearch/aiida-abacus
+  entry_point_prefix: abacus
+  plugin_info: https://raw.githubusercontent.com/MCresearch/aiida-abacus/main/pyproject.toml
 aiida-abinit:
   code_home: https://github.com/sponce24/aiida-abinit
   entry_point_prefix: abinit
