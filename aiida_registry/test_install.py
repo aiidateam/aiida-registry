@@ -76,7 +76,7 @@ def handle_error(process_result, message, check_id=None):
         error_message = process_result.output.decode("utf8")
 
         # the error_message is formatted as code block
-        REPORTER.error(f"{message}" f"<pre>{error_message}</pre>", check_id=check_id)
+        REPORTER.error(f"{message}<pre>{error_message}</pre>", check_id=check_id)
         raise ValueError(f"{message}\n{error_message}")
 
     return error_message
@@ -120,7 +120,7 @@ def test_install_one_docker(container_image, plugin):
             user=user,
         )
         install_package = container.exec_run(
-            f'pip install --constraint /tmp/pip-constraint.txt {plugin["pip_url"]}',
+            f"pip install --constraint /tmp/pip-constraint.txt {plugin['pip_url']}",
             user=user,
         )
 
