@@ -147,7 +147,7 @@ def complete_plugin_data(plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=Tr
     if "package_name" not in list(plugin_data.keys()):
         plugin_data["package_name"] = plugin_data["name"].replace("-", "_")
 
-    REPORTER.info(f'{plugin_data["package_name"]}')
+    REPORTER.info(f"{plugin_data['package_name']}")
 
     plugin_data["hosted_on"] = get_hosted_on(plugin_data["code_home"])
 
@@ -220,7 +220,7 @@ def complete_plugin_data(plugin_data: dict, fetch_pypi=True, fetch_pypi_wheel=Tr
     # run validations
 
     if plugin_data["name"] == "aiida-core" and plugin_data["metadata"].get("version"):
-        plugin_data["aiida_version"] = f'=={plugin_data["metadata"]["version"]}'
+        plugin_data["aiida_version"] = f"=={plugin_data['metadata']['version']}"
     if plugin_data.get("aiida_version") is None:
         REPORTER.warn(
             "AiiDA version not found",
