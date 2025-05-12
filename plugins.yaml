@@ -581,3 +581,8 @@ aiida-pythonjob:
   entry_point_prefix: pythonjob
   pip_url: aiida-pythonjob
   plugin_info: https://raw.github.com/aiidateam/aiida-pythonjob/master/pyproject.toml
+aiida-flux-scheduler:
+  entry_point_prefix: flux
+  plugin_info: https://github.com/LLNL/aiida-flux-scheduler/blob/main/pyproject.toml
+  code_home: https://github.com/LLNL/aiida-flux-scheduler
+  pip_url: aiida-flux-scheduler
