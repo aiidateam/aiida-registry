@@ -581,6 +581,12 @@ aiida-pythonjob:
   entry_point_prefix: pythonjob
   pip_url: aiida-pythonjob
   plugin_info: https://raw.github.com/aiidateam/aiida-pythonjob/master/pyproject.toml
+aiida-skeaf:
+  code_home: https://github.com/aiidaplugins/aiida-skeaf
+  entry_point_prefix: skeaf
+  pip_url: aiida-skeaf
+  plugin_info: https://raw.github.com/aiidaplugins/aiida-skeaf/main/pyproject.toml
+  documentation_url: https://aiida-skeaf.readthedocs.io/en/latest/
 aiida-reoptimize:
   code_home: https://github.com/mpds-io/aiida-reoptimize/
   entry_point_prefix: reoptimize
