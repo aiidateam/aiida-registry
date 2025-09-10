@@ -587,3 +587,9 @@ aiida-skeaf:
   pip_url: aiida-skeaf
   plugin_info: https://raw.github.com/aiidaplugins/aiida-skeaf/main/pyproject.toml
   documentation_url: https://aiida-skeaf.readthedocs.io/en/latest/
+aiida-chemshell:
+  entry_point_prefix: chemshell
+  code_home: https://github.com/stfc/aiida-chemshell
+  plugin_info: https://raw.githubusercontent.com/stfc/aiida-chemshell/refs/heads/main/pyproject.toml
+  pip_url: aiida-chemshell 
+  documentation_url: https://stfc.github.io/aiida-chemshell/ 
