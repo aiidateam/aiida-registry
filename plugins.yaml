@@ -593,3 +593,9 @@ aiida-reoptimize:
   pip_url: git+https://github.com/mpds-io/aiida-reoptimize/
   documentation_url: https://github.com/mpds-io/aiida-reoptimize/
   development_status: alpha
+aiida-chemshell:
+  entry_point_prefix: chemshell
+  code_home: https://github.com/stfc/aiida-chemshell
+  plugin_info: https://raw.githubusercontent.com/stfc/aiida-chemshell/refs/heads/main/pyproject.toml
+  pip_url: aiida-chemshell
+  documentation_url: https://stfc.github.io/aiida-chemshell/
