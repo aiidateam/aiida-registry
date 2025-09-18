@@ -4,6 +4,10 @@ aiida-QECpWorkChain:
   entry_point_prefix: qecpworkchain
   pip_url: git+https://github.com/rikigigi/aiida-QECpWorkChain
   plugin_info: https://raw.github.com/rikigigi/aiida-QECpWorkChain/master/setup.json
+aiida-abacus:
+  code_home: https://github.com/MCresearch/aiida-abacus
+  entry_point_prefix: abacus
+  plugin_info: https://raw.githubusercontent.com/MCresearch/aiida-abacus/main/pyproject.toml
 aiida-abinit:
   code_home: https://github.com/sponce24/aiida-abinit
   entry_point_prefix: abinit
@@ -331,11 +335,11 @@ aiida-quantumespresso:
   entry_point_prefix: quantumespresso
   pip_url: aiida-quantumespresso
   plugin_info: https://raw.github.com/aiidateam/aiida-quantumespresso/master/setup.json
-aiida-quantumespresso-hp:
-  code_home: https://github.com/aiidateam/aiida-quantumespresso-hp
+aiida-hubbard:
+  code_home: https://github.com/aiidateam/aiida-hubbard
   entry_point_prefix: quantumespresso.hp
-  pip_url: git+https://github.com/aiidateam/aiida-quantumespresso-hp
-  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-quantumespresso-hp/master/pyproject.toml
+  pip_url: aiida-hubbard
+  plugin_info: https://raw.github.com/aiidateam/aiida-hubbard/master/pyproject.toml
 aiida-raspa:
   code_home: https://github.com/yakutovicha/aiida-raspa
   entry_point_prefix: raspa
@@ -562,3 +566,36 @@ aiida-hyperqueue:
   code_home: https://github.com/aiidateam/aiida-hyperqueue
   documentation_url: http://aiida-hyperqueue.readthedocs.io/
   pip_url: aiida-hyperqueue
+aiida-inq:
+  entry_point_prefix: inq
+  plugin_info: https://github.com/LLNL/aiida-inq/blob/main/pyproject.toml
+  code_home: https://github.com/LLNL/aiida-inq
+  pip_url: aiida-inq
+aiida-icon:
+  entry_point_prefix: icon
+  pip_url: aiida-icon
+  documentation_url: https://aiida-icon.github.io/aiida-icon/
+  code_home: https://github.com/aiida-icon/aiida-icon
+  plugin_info: https://raw.githubusercontent.com/aiida-icon/aiida-icon/main/pyproject.toml
+aiida-fans:
+  entry_point_prefix: fans
+  plugin_info: https://raw.githubusercontent.com/ethan-shanahan/aiida-fans/refs/heads/main/pyproject.toml
+  code_home: https://github.com/ethan-shanahan/aiida-fans
+  documentation_url: https://aiida-fans.readthedocs.io/en/latest/
+aiida-pythonjob:
+  code_home: https://github.com/aiidateam/aiida-pythonjob
+  entry_point_prefix: pythonjob
+  pip_url: aiida-pythonjob
+  plugin_info: https://raw.github.com/aiidateam/aiida-pythonjob/master/pyproject.toml
+aiida-skeaf:
+  code_home: https://github.com/aiidaplugins/aiida-skeaf
+  entry_point_prefix: skeaf
+  pip_url: aiida-skeaf
+  plugin_info: https://raw.github.com/aiidaplugins/aiida-skeaf/main/pyproject.toml
+  documentation_url: https://aiida-skeaf.readthedocs.io/en/latest/
+aiida-chemshell:
+  entry_point_prefix: chemshell
+  code_home: https://github.com/stfc/aiida-chemshell
+  plugin_info: https://raw.githubusercontent.com/stfc/aiida-chemshell/refs/heads/main/pyproject.toml
+  pip_url: aiida-chemshell
+  documentation_url: https://stfc.github.io/aiida-chemshell/

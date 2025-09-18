@@ -120,7 +120,7 @@ def get_pypi_metadata(package_name: str, parse_wheel=True) -> Optional[PypiData]
 
     except Exception as err:  # pylint: disable=broad-except
         REPORTER.warn(
-            "Unable to read wheel file from PyPI release: " f"<pre>{err}</pre>",
+            f"Unable to read wheel file from PyPI release: <pre>{err}</pre>",
             check_id="W020",
         )
 
