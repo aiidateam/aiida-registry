@@ -587,6 +587,11 @@ aiida-skeaf:
   pip_url: aiida-skeaf
   plugin_info: https://raw.github.com/aiidaplugins/aiida-skeaf/main/pyproject.toml
   documentation_url: https://aiida-skeaf.readthedocs.io/en/latest/
+aiida-reoptimize:
+  code_home: https://github.com/mpds-io/aiida-reoptimize/
+  entry_point_prefix: reoptimize
+  pip_url: git+https://github.com/mpds-io/aiida-reoptimize/
+  documentation_url: https://github.com/mpds-io/aiida-reoptimize/
 aiida-chemshell:
   entry_point_prefix: chemshell
   code_home: https://github.com/stfc/aiida-chemshell
