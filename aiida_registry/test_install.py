@@ -120,7 +120,7 @@ def test_install_one_docker(container_image, plugin):
             user=user,
         )
         install_package = container.exec_run(
-            f"pip install --constraint /tmp/pip-constraint.txt {plugin['pip_url']}",
+            f"pip install --force-reinstall --constraint /tmp/pip-constraint.txt {plugin['pip_url']}",
             user=user,
         )
 
