@@ -156,11 +156,12 @@ def test_install_one_docker(container_image, plugin):
             cmd="python ./bin/analyze_entrypoints.py -o result.json",
             user=user,
         )
-        error_message = handle_error(
-            extract_metadata,
-            f"Failed to fetch entry point metadata for package {plugin['package_name']}",
-            check_id="E003",
-        )
+        if extract_metadata.exit_code != 0:
+            error_message = handle_error(
+                extract_metadata.output.decode(),
+                f"Failed to fetch entry point metadata for package {plugin['package_name']}",
+                check_id="E003",
+            )
 
         with open("result.json", "r", encoding="utf8") as handle:
             process_metadata = json.load(handle)
