@@ -116,6 +116,10 @@ aiida-defects:
   entry_point_prefix: defects
   pip_url: aiida-defects
   plugin_info: https://raw.githubusercontent.com/epfl-theos/aiida-defects/master/pyproject.toml
+aiida-dftk:
+  code_home: https://github.com/aiidaplugins/aiida-dftk
+  entry_point_prefix: dftk
+  plugin_info: https://raw.githubusercontent.com/aiidaplugins/aiida-dftk/main/pyproject.toml
 aiida-diff:
   code_home: https://github.com/aiidateam/aiida-diff
   development_status: stable
