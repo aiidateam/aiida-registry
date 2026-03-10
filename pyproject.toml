@@ -36,7 +36,7 @@ dependencies = [
     # https://github.com/aws/aws-sam-cli/issues/3661
     "markupsafe~=2.0.1",
     # dev dependencies
-    "pre-commit~=2.2",
+    "pre-commit~=4.0",
     "pytest~=6.2.2",
     "pytest-regressions~=2.5.0",
 ]
