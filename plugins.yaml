@@ -596,6 +596,7 @@ aiida-reoptimize:
   code_home: https://github.com/mpds-io/aiida-reoptimize/
   entry_point_prefix: reoptimize
   pip_url: git+https://github.com/mpds-io/aiida-reoptimize/
+  plugin_info: https://raw.githubusercontent.com/mpds-io/aiida-reoptimize/master/pyproject.toml
   documentation_url: https://github.com/mpds-io/aiida-reoptimize/
 aiida-chemshell:
   entry_point_prefix: chemshell
