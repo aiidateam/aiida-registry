@@ -604,3 +604,8 @@ aiida-chemshell:
   plugin_info: https://raw.githubusercontent.com/stfc/aiida-chemshell/refs/heads/main/pyproject.toml
   pip_url: aiida-chemshell
   documentation_url: https://stfc.github.io/aiida-chemshell/
+aiida-octopus:
+  code_home: https://gitlab.com/octopus-code/aiida-octopus
+  entry_point_prefix: octopus
+  pip_url: aiida-octopus
+  plugin_info: https://gitlab.com/octopus-code/aiida-octopus/-/raw/main/pyproject.toml
