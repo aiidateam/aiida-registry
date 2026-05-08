@@ -207,11 +207,27 @@ def filter_entry_points(process_metadata, entrypoints):
     return filtered_metadata
 
 
-def test_install_all(container_image):
+def test_install_all(container_image, packages=None):
+    """Test-install plugins.
+
+    If `packages` is given, only those plugin keys are tested; entries not in
+    the filter are left untouched. Unknown keys raise a clear error.
+    """
     with open(PLUGINS_METADATA, "r", encoding="utf8") as handle:
         data = json.load(handle)
+
+    if packages:
+        unknown = [p for p in packages if p not in data["plugins"]]
+        if unknown:
+            raise SystemExit("Unknown plugin key(s): {}".format(", ".join(unknown)))
+        selected = set(packages)
+    else:
+        selected = None
+
     print("[test installing plugins]")
     for plugin_name, plugin in data["plugins"].items():
+        if selected is not None and plugin_name not in selected:
+            continue
         print(" - {}".format(plugin["name"]))
 
         # this currently checks for the wrong python version
