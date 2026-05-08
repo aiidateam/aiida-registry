@@ -67,7 +67,3 @@ runs:
             umask 000 && chmod +w ../aiida-registry
             aiida-registry test-install
           shell: bash
-
-        - name: Move JSON file to the React project
-          run: cp plugins_metadata.json aiida-registry-app/src/
-          shell: bash

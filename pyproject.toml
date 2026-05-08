@@ -42,9 +42,9 @@ dependencies = [
 ]
 
 [project.urls]
-Home = "https://aiida-registry.github.io/"
+Home = "https://aiida.net/plugin-registry/"
 Documentation = "https://github.com/aiidateam/aiida-registry/wiki"
-Source = "https://github.com/aiidateam/aiida-core"
+Source = "https://github.com/aiidateam/aiida-registry"
 
 [project.scripts]
 aiida-registry = "aiida_registry.cli:cli"

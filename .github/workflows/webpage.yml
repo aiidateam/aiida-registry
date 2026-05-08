@@ -1,5 +1,7 @@
 ---
-# Updates web page on pushes to `master` as well as daily
+# Publishes plugins_metadata.json to gh-pages on pushes to `master` and daily.
+# The presentation layer (browser UI) is hosted on aiida.net/plugin-registry/,
+# which fetches this JSON at build time.
 name: webpage
 
 on:
@@ -12,6 +14,9 @@ on:
     - master
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   webpage:
     timeout-minutes: 90
@@ -23,7 +28,7 @@ jobs:
       COMMIT_AUTHOR_EMAIL: action@github.com
     steps:
     - name: Checkout Repo ⚡️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Create dev environment
       uses: ./.github/actions/create-dev-env
 
@@ -33,21 +38,14 @@ jobs:
         gh_token: ${{ secrets.GITHUB_TOKEN }}
         cache: false
 
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-    - name: Install npm dependencies and build
+    - name: Stage JSON for deploy
       run: |
-        npm install
-        npm run build
-      working-directory: ./aiida-registry-app
-
-    - name: Add plugins file to the build folder
-      run: cp aiida-registry-app/src/plugins_metadata.json aiida-registry-app/dist/
+        mkdir -p public
+        cp plugins_metadata.json public/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./aiida-registry-app/dist
+        publish_dir: ./public
         keep_files: true
