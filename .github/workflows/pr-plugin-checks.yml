@@ -1,0 +1,185 @@
+---
+# Surfaces W001-W020 and E001-E004 for plugin entries added or modified in a PR.
+# Two stages: warnings-check (fast, automatic) and install-check (slow, gated
+# behind the `plugin-install-test` Environment so a maintainer must click
+# "Approve and run" before the workflow does any pip install of PR-supplied
+# code).
+name: PR plugin checks
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - master
+
+permissions:
+  pull-requests: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  get-pr:
+    # https://dev.to/suzukishunsuke/secure-github-actions-by-pullrequesttarget-641
+    outputs:
+      merge_commit_sha: ${{ steps.pr.outputs.merge_commit_sha }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: suzuki-shunsuke/get-pr-action@v0.1.0
+        id: pr
+
+  diff-changed:
+    needs: get-pr
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
+      changed_count: ${{ steps.diff.outputs.changed_count }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.get-pr.outputs.merge_commit_sha }}
+          fetch-depth: 0
+      - run: git fetch --no-tags --depth=1 origin master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyyaml
+      - id: diff
+        run: python .github/scripts/diff_changed_plugins.py
+
+  warnings-check:
+    needs: [get-pr, diff-changed]
+    runs-on: ubuntu-latest
+    env:
+      CHANGED: ${{ needs.diff-changed.outputs.changed }}
+      HAS_CHANGES: ${{ needs.diff-changed.outputs.changed_count != '0' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.get-pr.outputs.merge_commit_sha }}
+
+      - if: env.HAS_CHANGES == 'true'
+        uses: ./.github/actions/create-dev-env
+
+      - name: Fetch metadata for changed plugins
+        if: env.HAS_CHANGES == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: aiida-registry fetch $CHANGED
+
+      - id: extract
+        run: python .github/scripts/extract_pr_findings.py --stage warnings $CHANGED
+
+      - name: Post or update sticky comment
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          BODY: ${{ steps.extract.outputs.body }}
+        with:
+          script: |
+            const body = process.env.BODY;
+            if (!body) return;
+            const marker = "<!-- pr-plugin-checks -->";
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(
+              (c) => (c.body || "").includes(marker),
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Fail if findings
+        if: steps.extract.outputs.has_findings == 'true'
+        run: |
+          echo "::error::Warnings detected on changed plugin entries."
+          exit 1
+
+  install-check:
+    # NOTE: this job is gated by the `plugin-install-test` Environment, which
+    # MUST be configured in repo settings with required reviewers BEFORE this
+    # workflow can serve as a real gate. If the environment is missing GitHub
+    # auto-creates one with no protection rules and the gate is open.
+    needs: [get-pr, diff-changed, warnings-check]
+    if: needs.diff-changed.outputs.changed_count != '0'
+    runs-on: ubuntu-latest
+    environment: plugin-install-test
+    env:
+      CHANGED: ${{ needs.diff-changed.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.get-pr.outputs.merge_commit_sha }}
+
+      - uses: ./.github/actions/create-dev-env
+
+      - name: Fetch metadata for changed plugins
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: aiida-registry fetch $CHANGED
+
+      - name: Test-install changed plugins
+        run: aiida-registry test-install $CHANGED
+
+      - id: extract
+        run: python .github/scripts/extract_pr_findings.py --stage install $CHANGED
+
+      - name: Post or update sticky comment
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          BODY: ${{ steps.extract.outputs.body }}
+        with:
+          script: |
+            const body = process.env.BODY;
+            if (!body) return;
+            const marker = "<!-- pr-plugin-checks -->";
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(
+              (c) => (c.body || "").includes(marker),
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Fail if findings
+        if: steps.extract.outputs.has_findings == 'true'
+        run: |
+          echo "::error::Errors detected on changed plugin entries."
+          exit 1
