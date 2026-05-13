@@ -38,10 +38,14 @@ jobs:
         gh_token: ${{ secrets.GITHUB_TOKEN }}
         cache: false
 
-    - name: Stage JSON for deploy
+    - name: Stage JSON and redirect stubs for deploy
       run: |
         mkdir -p public
         cp plugins_metadata.json public/
+        # Ship pre-generated redirect stubs (root index, per-plugin pages,
+        # smart 404) that forward visitors from this GitHub Pages site to
+        # the canonical home at aiida.net/plugin-registry/.
+        cp -a redirects/. public/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3

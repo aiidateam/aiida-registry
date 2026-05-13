@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting to aiida.net/plugin-registry/</title>
+<meta name="robots" content="noindex">
+<script>
+(function () {
+  var base = "/aiida-registry/";
+  var target = "https://aiida.net/plugin-registry/";
+  var path = location.pathname;
+  if (path.indexOf(base) === 0) {
+    var rest = path.slice(base.length).replace(/^\/+|\/+$/g, "");
+    if (rest) {
+      var seg = rest.split("/")[0];
+      try {
+        target += encodeURIComponent(decodeURIComponent(seg)) + "/";
+      } catch (e) {
+        // malformed percent-encoding — fall back to registry root
+      }
+    }
+  }
+  location.replace(target);
+})();
+</script>
+<meta http-equiv="refresh" content="0; url=https://aiida.net/plugin-registry/">
+</head>
+<body>
+<p>This page has moved. You will be redirected to <a href="https://aiida.net/plugin-registry/">https://aiida.net/plugin-registry/</a>.</p>
+</body>
+</html>
