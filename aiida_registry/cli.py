@@ -3,7 +3,7 @@
 
 import click
 
-from aiida_registry.make_pages import make_pages
+from aiida_registry.build_metadata import build_metadata
 from aiida_registry.test_install import test_install_all
 
 
@@ -16,7 +16,7 @@ def cli():
 @click.argument("package", nargs=-1, required=False)
 def fetch(package):
     """Fetch data from PyPI and write to JSON file."""
-    make_pages(package)
+    build_metadata(package)
 
 
 @cli.command()

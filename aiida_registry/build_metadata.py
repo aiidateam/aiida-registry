@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Generate HTML pages for plugin registry.
+"""Build the consolidated plugin metadata JSON consumed by aiida.net/plugin-registry/.
 
-Reads plugin-metadata.json produced by fetch_metadata.
+Wraps fetch_metadata to enrich each plugin entry with summary info and a
+pip install command, then writes the result to plugins_metadata.json.
 """
 # pylint: disable=missing-function-docstring,invalid-name,global-statement,consider-using-f-string
 
@@ -141,7 +142,7 @@ def get_pip_install_cmd(plugin_data):
         return "pip install {}".format(pip_url)
 
 
-def make_pages(package=None):
+def build_metadata(package=None):
     """
     Add additional information to the JSON data like plugins summary,
     global summary, pip install command, and static data.

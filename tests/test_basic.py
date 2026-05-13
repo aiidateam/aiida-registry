@@ -17,7 +17,7 @@ from pathlib import Path
 import yaml
 
 from aiida_registry.fetch_metadata import validate_plugin_entry_points
-from aiida_registry.make_pages import get_pip_install_cmd
+from aiida_registry.build_metadata import get_pip_install_cmd
 from aiida_registry.parse_build_file import (
     get_version_from_module,
     parse_flit_old,
