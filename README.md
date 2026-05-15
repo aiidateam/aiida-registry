@@ -20,6 +20,9 @@ community of your ongoing work.
 By default, the list of plugins is now sorted by the latest release, so plugins that are under active development automatically bubble up to the top.
 The release date is determined by the date of the latest [PyPI](https://pypi.org/) release. Plugins not released to PyPI will have no release date.
 
+## Note for maintaner of this repo:
+github-pages currently serves as redirects to https://aiida.net/plugin-registry/. In order to keep the SEO scores we'll have to keep it this way for a while.
+
 ## How to register a plugin
 
 1. Fork this repository
