@@ -609,3 +609,9 @@ aiida-octopus:
   entry_point_prefix: octopus
   pip_url: aiida-octopus
   plugin_info: https://gitlab.com/octopus-code/aiida-octopus/-/raw/main/pyproject.toml
+aiida-dlpoly:
+  entry_point_prefix: dlpoly
+  code_home: https://github.com/stfc/aiida-dlpoly
+  plugin_info: https://raw.githubusercontent.com/stfc/aiida-dlpoly/refs/heads/main/pyproject.toml
+  pip_url: aiida-dlpoly
+  documentation_url: https://stfc.github.io/aiida-dlpoly/
