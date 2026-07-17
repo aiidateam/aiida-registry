@@ -446,6 +446,13 @@ aiida-wannier90-workflows:
   entry_point_prefix: wannier90_workflows
   pip_url: aiida-wannier90-workflows
   plugin_info: https://raw.github.com/aiidateam/aiida-wannier90-workflows/master/setup.json
+aiida-wannierjl:
+  code_home: https://github.com/elinscott/aiida-wannierjl
+  development_status: alpha
+  documentation_url: https://aiida-wannierjl.readthedocs.io/
+  entry_point_prefix: wannierjl
+  pip_url: git+https://github.com/elinscott/aiida-wannierjl
+  plugin_info: https://raw.githubusercontent.com/elinscott/aiida-wannierjl/main/pyproject.toml
 aiida-wien2k:
   code_home: https://github.com/rubel75/aiida-wien2k
   entry_point_prefix: wien2k
