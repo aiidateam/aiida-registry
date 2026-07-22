@@ -609,3 +609,9 @@ aiida-octopus:
   entry_point_prefix: octopus
   pip_url: aiida-octopus
   plugin_info: https://gitlab.com/octopus-code/aiida-octopus/-/raw/main/pyproject.toml
+aiida-hyperqueue:
+  code_home: https://github.com/aiidateam/aiida-hyperqueue
+  entry_point_prefix: hyperqueue
+  pip_url: aiida-hyperqueue
+  plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-hyperqueue/main/pyproject.toml
+  documentation_url: https://aiida-hyperqueue.readthedocs.io/en/latest/
