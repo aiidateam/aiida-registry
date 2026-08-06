@@ -613,5 +613,5 @@ aiida-dftbplus:
   code_home: https://github.com/Quantum-ARISE-Acad/aiida-dftbplus
   documentation_url: https://shrill-morning-67e8.sitouamu510.workers.dev/
   entry_point_prefix: dftbplus
-  pip_url: https://pypi.org/project/aiida-dftbplus/
+  pip_url: aiida-dftbplus
   plugin_info: https://raw.githubusercontent.com/Quantum-ARISE-Acad/aiida-dftbplus/main/pyproject.toml
