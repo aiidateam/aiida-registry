@@ -609,3 +609,9 @@ aiida-octopus:
   entry_point_prefix: octopus
   pip_url: aiida-octopus
   plugin_info: https://gitlab.com/octopus-code/aiida-octopus/-/raw/main/pyproject.toml
+aiida-dftbplus:
+  code_home: https://github.com/Quantum-ARISE-Acad/aiida-dftbplus
+  documentation_url: https://shrill-morning-67e8.sitouamu510.workers.dev/
+  entry_point_prefix: dftbplus
+  pip_url: aiida-dftbplus
+  plugin_info: https://raw.githubusercontent.com/Quantum-ARISE-Acad/aiida-dftbplus/main/pyproject.toml
