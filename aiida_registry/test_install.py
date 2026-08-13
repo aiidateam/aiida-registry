@@ -16,6 +16,11 @@ from . import PLUGINS_METADATA, REPORTER
 
 # Where to mount the workdir inside the Docker container
 _DOCKER_WORKDIR = "/tmp/scripts"
+# Where `analyze_entrypoints.py` writes its output inside the container. This must be
+# outside `_DOCKER_WORKDIR`: that is a bind mount of the host checkout, owned by the
+# host user (uid 1001 on GitHub runners), while the container runs as `aiida` (uid
+# 1000), so the container cannot create files in it.
+_DOCKER_RESULT_PATH = "/tmp/result.json"
 ENTRY_POINT_GROUPS = [
     "aiida.calculations",
     "aiida.workflows",
@@ -99,7 +104,7 @@ def test_install_one_docker(container_image, plugin):
     container = client.containers.run(
         container_image,
         detach=True,
-        volumes={os.getcwd(): {"bind": _DOCKER_WORKDIR, "mode": "rw"}},
+        volumes={os.getcwd(): {"bind": _DOCKER_WORKDIR, "mode": "ro"}},
     )
 
     user = container.exec_run("whoami").output.decode("utf8").strip()
@@ -153,7 +158,7 @@ def test_install_one_docker(container_image, plugin):
         )
         extract_metadata = container.exec_run(
             workdir=_DOCKER_WORKDIR,
-            cmd="python ./bin/analyze_entrypoints.py -o result.json",
+            cmd=f"python ./bin/analyze_entrypoints.py -o {_DOCKER_RESULT_PATH}",
             user=user,
         )
         error_message = handle_error(
@@ -162,8 +167,13 @@ def test_install_one_docker(container_image, plugin):
             check_id="E003",
         )
 
-        with open("result.json", "r", encoding="utf8") as handle:
-            process_metadata = json.load(handle)
+        read_metadata = container.exec_run(f"cat {_DOCKER_RESULT_PATH}", user=user)
+        error_message = handle_error(
+            read_metadata,
+            f"Failed to read entry point metadata for package {plugin['package_name']}",
+            check_id="E003",
+        )
+        process_metadata = json.loads(read_metadata.output.decode("utf8"))
 
         process_metadata = filter_entry_points(process_metadata, plugin["entry_points"])
 
