@@ -544,7 +544,7 @@ aiida-ssh2win:
 aiida-bader:
   entry_point_prefix: bader
   pip_url: aiida-bader
-  code_home: https://github.com/superstar54/aiida-bader
+  code_home: https://github.com/aiidaplugins/aiida-bader
   documentation_url: https://aiida-bader.readthedocs.io/en/latest/
 aiida-fhiaims:
   entry_point_prefix: fhiaims
