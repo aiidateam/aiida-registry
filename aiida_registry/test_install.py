@@ -16,6 +16,9 @@ from . import PLUGINS_METADATA, REPORTER
 
 # Where to mount the workdir inside the Docker container
 _DOCKER_WORKDIR = "/tmp/scripts"
+# Where the entry-point report is written *inside* the container. It must not
+# be on the bind mount: that is the host checkout, owned by a different uid.
+_CONTAINER_RESULT = "/tmp/result.json"
 ENTRY_POINT_GROUPS = [
     "aiida.calculations",
     "aiida.workflows",
@@ -151,9 +154,15 @@ def test_install_one_docker(container_image, plugin):
         print(
             "   - Extracting entry point metadata for {}".format(plugin["package_name"])
         )
+        # Write the report to a container-local path, not to `result.json` in
+        # the bind-mounted workdir. That mount is the runner's checkout, owned
+        # by the host user; the container's non-root user cannot create files
+        # in it and the script died with `PermissionError: [Errno 13]`. Reading
+        # the report back over `cat` also removes the stale-file hazard of the
+        # previous plugin's `result.json` being picked up when a write fails.
         extract_metadata = container.exec_run(
             workdir=_DOCKER_WORKDIR,
-            cmd="python ./bin/analyze_entrypoints.py -o result.json",
+            cmd=f"python ./bin/analyze_entrypoints.py -o {_CONTAINER_RESULT}",
             user=user,
         )
         error_message = handle_error(
@@ -162,8 +171,16 @@ def test_install_one_docker(container_image, plugin):
             check_id="E003",
         )
 
-        with open("result.json", "r", encoding="utf8") as handle:
-            process_metadata = json.load(handle)
+        read_metadata = container.exec_run(
+            cmd=f"cat {_CONTAINER_RESULT}",
+            user=user,
+        )
+        error_message = handle_error(
+            read_metadata,
+            f"Failed to read entry point metadata for package {plugin['package_name']}",
+            check_id="E003",
+        )
+        process_metadata = json.loads(read_metadata.output.decode("utf8"))
 
         process_metadata = filter_entry_points(process_metadata, plugin["entry_points"])
 
