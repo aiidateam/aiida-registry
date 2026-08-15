@@ -143,6 +143,7 @@ aiida-eon:
   code_home: https://github.com/HaoZeke/aiida-eon
   entry_point_prefix: eon
   plugin_info: https://raw.githubusercontent.com/HaoZeke/aiida-eon/main/pyproject.toml
+  pip_url: aiida-eon
 aiida-eonclient:
   code_home: https://github.com/HaoZeke/aiida-eonclient
   entry_point_prefix: eonclient
