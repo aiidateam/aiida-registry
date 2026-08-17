@@ -615,3 +615,9 @@ aiida-hyperqueue:
   pip_url: aiida-hyperqueue
   plugin_info: https://raw.githubusercontent.com/aiidateam/aiida-hyperqueue/main/pyproject.toml
   documentation_url: https://aiida-hyperqueue.readthedocs.io/en/latest/
+aiida-dftbplus:
+  code_home: https://github.com/Quantum-ARISE-Acad/aiida-dftbplus
+  documentation_url: https://aiida-dftbplus.readthedocs.io/
+  entry_point_prefix: dftbplus
+  pip_url: aiida-dftbplus
+  plugin_info: https://raw.githubusercontent.com/Quantum-ARISE-Acad/aiida-dftbplus/main/pyproject.toml
