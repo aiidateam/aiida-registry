@@ -161,11 +161,12 @@ def test_install_one_docker(container_image, plugin):
             cmd=f"python ./bin/analyze_entrypoints.py -o {_DOCKER_RESULT_PATH}",
             user=user,
         )
-        error_message = handle_error(
-            extract_metadata,
-            f"Failed to fetch entry point metadata for package {plugin['package_name']}",
-            check_id="E003",
-        )
+        if extract_metadata.exit_code != 0:
+            error_message = handle_error(
+                extract_metadata.output.decode(),
+                f"Failed to fetch entry point metadata for package {plugin['package_name']}",
+                check_id="E003",
+            )
 
         read_metadata = container.exec_run(f"cat {_DOCKER_RESULT_PATH}", user=user)
         error_message = handle_error(
