@@ -1,0 +1,27 @@
+---
+name: Fetch PR plugins.yaml
+description: >
+  Replace the checked-out plugins.yaml with the one this pull request would
+  merge, and export REGISTRY_BASE_REF pointing at the base that merge sits on.
+  Lets a pull_request_target job run entirely on base-branch code and still
+  judge the PR's proposed entries: aiida-registry and
+  .github/scripts/diff_changed_plugins.py both read the working-tree file.
+
+runs:
+  using: composite
+  steps:
+    - name: Overwrite plugins.yaml from the PR merge ref
+      shell: bash
+      env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+      run: |
+        set -euo pipefail
+        : "${PR_NUMBER:?only set on pull_request/pull_request_target events}"
+        # `pull/N/merge`, not `pull/N/head`, so that a branch merely behind
+        # master does not report every entry master has changed since it
+        # forked. Depth 2 makes the merge's first parent a real object, so it
+        # can serve as the baseline to diff against.
+        git fetch --no-tags --depth=2 origin \
+          "pull/${PR_NUMBER}/merge:refs/pr/merge"
+        git show refs/pr/merge:plugins.yaml > plugins.yaml
+        echo "REGISTRY_BASE_REF=refs/pr/merge^1" >> "$GITHUB_ENV"

@@ -28,7 +28,7 @@ jobs:
       COMMIT_AUTHOR_EMAIL: action@github.com
     steps:
     - name: Checkout Repo ⚡️
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
     - name: Create dev environment
       uses: ./.github/actions/create-dev-env
 
