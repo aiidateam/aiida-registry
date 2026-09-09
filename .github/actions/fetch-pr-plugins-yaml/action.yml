@@ -7,21 +7,47 @@ description: >
   judge the PR's proposed entries: aiida-registry and
   .github/scripts/diff_changed_plugins.py both read the working-tree file.
 
+inputs:
+  expected_sha:
+    description: >
+      Refuse to run unless pull/N/merge still resolves to this commit. GitHub
+      recomputes the merge as the pull request moves, so without it a later job
+      can judge a different merge than the one that decided what to check.
+    required: false
+    default: ""
+
+outputs:
+  merge_sha:
+    description: The commit pull/N/merge resolved to.
+    value: ${{ steps.fetch.outputs.merge_sha }}
+
 runs:
   using: composite
   steps:
     - name: Overwrite plugins.yaml from the PR merge ref
+      id: fetch
       shell: bash
       env:
         PR_NUMBER: ${{ github.event.pull_request.number }}
+        EXPECTED_SHA: ${{ inputs.expected_sha }}
       run: |
         set -euo pipefail
         : "${PR_NUMBER:?only set on pull_request/pull_request_target events}"
-        # `pull/N/merge`, not `pull/N/head`, so that a branch merely behind
-        # master does not report every entry master has changed since it
-        # forked. Depth 2 makes the merge's first parent a real object, so it
-        # can serve as the baseline to diff against.
+        # The merge ref carries both sides in one object: the entries the PR
+        # proposes, and at `^1` the base that merge sits on. Depth 2 is what
+        # makes that first parent a real object to diff against.
         git fetch --no-tags --depth=2 origin \
           "pull/${PR_NUMBER}/merge:refs/pr/merge"
-        git show refs/pr/merge:plugins.yaml > plugins.yaml
+        merge_sha="$(git rev-parse refs/pr/merge)"
+        if [[ -n "${EXPECTED_SHA}" && "${merge_sha}" != "${EXPECTED_SHA}" ]]; then
+          echo "::error::pull/${PR_NUMBER}/merge is now ${merge_sha}; this run" \
+            "was set up for ${EXPECTED_SHA}. Re-run the whole workflow to" \
+            "check the current merge."
+          exit 1
+        fi
+        echo "merge_sha=${merge_sha}" >> "$GITHUB_OUTPUT"
+        # Through a temporary file: redirecting straight onto plugins.yaml
+        # empties it before git show decides whether it can fill it.
+        git show refs/pr/merge:plugins.yaml > plugins.yaml.pr
+        mv plugins.yaml.pr plugins.yaml
         echo "REGISTRY_BASE_REF=refs/pr/merge^1" >> "$GITHUB_ENV"

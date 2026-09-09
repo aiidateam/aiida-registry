@@ -3,6 +3,9 @@ name: Dev CI
 # For development, use the following instead:
 on: [pull_request]
 
+permissions:
+  contents: read
+
 
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
 concurrency:

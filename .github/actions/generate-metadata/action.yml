@@ -31,7 +31,7 @@ runs:
         - name: Caching plugins metadata
           # if it is a PR, we want to cache the metadata
           id: cache-plugins-metadata
-          uses: actions/cache@v3
+          uses: actions/cache@v6
           with:
             path: plugins_metadata.json
             key: |
