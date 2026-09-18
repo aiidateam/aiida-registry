@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Parse metadata from PyPI."""
 
 # pylint: disable=too-many-ancestors,too-many-locals,too-many-branches
@@ -100,8 +99,7 @@ def get_pypi_metadata(package_name: str, parse_wheel=True) -> Optional[PypiData]
             download.raise_for_status()
             with tempfile.TemporaryDirectory() as tmpdirname:
                 with Path(tmpdirname, "wheel.whl").open("wb") as handle:
-                    for chunk in download.iter_content(chunk_size=8192):
-                        handle.write(chunk)
+                    handle.writelines(download.iter_content(chunk_size=8192))
                 with zipfile.ZipFile(Path(tmpdirname, "wheel.whl")) as whl:
                     # see https://packaging.python.org/en/latest/specifications/entry-points/#file-format
                     entry_points_content = None
@@ -109,7 +107,7 @@ def get_pypi_metadata(package_name: str, parse_wheel=True) -> Optional[PypiData]
                         if name.endswith(".dist-info/entry_points.txt"):
                             entry_points_content = whl.read(name).decode("utf-8")
                     if entry_points_content is None:
-                        raise IOError("No entry_points.txt found in wheel")
+                        raise OSError("No entry_points.txt found in wheel")
                     parser = CaseSensitiveConfigParser()
                     parser.read_string(entry_points_content)
                     entry_points = {}
