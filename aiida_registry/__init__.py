@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Configuration of plugin registry.
 
 * paths to files & folders
