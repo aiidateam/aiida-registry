@@ -635,3 +635,9 @@ aiida-dftbplus:
   entry_point_prefix: dftbplus
   pip_url: aiida-dftbplus
   plugin_info: https://raw.githubusercontent.com/Quantum-ARISE-Acad/aiida-dftbplus/main/pyproject.toml
+aiida-spice:
+  code_home: https://github.com/infinitymdm/aiida-spice
+  documentation_url: https://aiida-spice.readthedocs.io/
+  entry_point_prefix: spice
+  pip_url: aiida-spice
+  plugin_info: https://raw.githubusercontent.com/infinitymdm/aiida-spice/main/pyproject.toml
