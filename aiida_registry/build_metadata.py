@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Build the consolidated plugin metadata JSON consumed by aiida.net/plugin-registry/.
 
 Wraps fetch_metadata to enrich each plugin entry with summary info and a
@@ -74,7 +73,7 @@ def get_summary_info(entry_points):
         summary_info.append(
             {
                 "colorclass": OTHERCOLORCLASS,
-                "text": "Other ({})".format(format_entry_points_list(other_elements)),
+                "text": f"Other ({format_entry_points_list(other_elements)})",
                 "count": total_count,
             }
         )
@@ -129,17 +128,17 @@ def get_pip_install_cmd(plugin_data):
     pip_url = plugin_data["pip_url"]
 
     if pip_url.startswith("http") or pip_url.startswith("git"):
-        return "pip install {}".format(pip_url)
+        return f"pip install {pip_url}"
 
     # else, we assume it's a PyPI package and we would like to add the version
     try:
         version = plugin_data["metadata"]["version"]
         pre_releases = ["a", "b", "rc"]
         if any(version.find(p_id) != -1 for p_id in pre_releases):
-            return "pip install --pre {}".format(pip_url)
-        return "pip install {}".format(pip_url)
+            return f"pip install --pre {pip_url}"
+        return f"pip install {pip_url}"
     except (KeyError, TypeError):
-        return "pip install {}".format(pip_url)
+        return f"pip install {pip_url}"
 
 
 def build_metadata(package=None):
@@ -150,7 +149,7 @@ def build_metadata(package=None):
     plugins_metadata = fetch_metadata(filter_list=list(package))
 
     for plugin_name, plugin_data in plugins_metadata.items():
-        print("  - {}".format(plugin_name))
+        print(f"  - {plugin_name}")
 
         plugin_data["summaryinfo"] = get_summary_info(plugin_data["entry_points"])
         plugin_data["pip_install_cmd"] = get_pip_install_cmd(plugin_data)
