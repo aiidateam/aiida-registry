@@ -641,3 +641,9 @@ aiida-spice:
   entry_point_prefix: spice
   pip_url: aiida-spice
   plugin_info: https://raw.githubusercontent.com/infinitymdm/aiida-spice/main/pyproject.toml
+aiida-alc-ins:
+  code_home: https://github.com/stfc/aiida-alc-ins
+  documentation_url: https://stfc.github.io/aiida-alc-ins
+  entry_point_prefix: alc_ins
+  pip_url: aiida-alc-ins
+  plugin_info: https://raw.githubusercontent.com/stfc/aiida-alc-ins/refs/heads/main/pyproject.toml
