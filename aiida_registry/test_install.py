@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Test installing registered plugins.
 
 This uses the aiida-core Docker container to test the installation of the plugins.
@@ -59,17 +58,15 @@ def supports_python_version(plugin_info):
         return True
 
     python_version = sys.version_info
-    classifier = "Programming Language :: Python :: {}.{}".format(
-        python_version[0], python_version[1]
+    classifier = (
+        f"Programming Language :: Python :: {python_version[0]}.{python_version[1]}"
     )
 
     if classifier in plugin_info["metadata"]["classifiers"]:
         return True
 
     print(
-        "   >> SKIPPING - python version {}.{} not supported".format(
-            python_version[0], python_version[1]
-        )
+        f"   >> SKIPPING - python version {python_version[0]}.{python_version[1]} not supported"
     )
     return False
 
@@ -178,7 +175,7 @@ def test_install_one_docker(container_image, plugin):
         process_metadata = filter_entry_points(process_metadata, plugin["entry_points"])
 
     except ValueError as exc:
-        print(f"   >> ERROR: {str(exc)}")
+        print(f"   >> ERROR: {exc!s}")
 
     finally:
         container.remove(force=True)
