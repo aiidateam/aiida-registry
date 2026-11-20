@@ -7,7 +7,7 @@
 name: PR plugin checks
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
@@ -76,7 +76,7 @@ jobs:
         run: python .github/scripts/extract_pr_findings.py --stage warnings $CHANGED
 
       - name: Post or update sticky comment
-        if: always()
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository
         uses: actions/github-script@v7
         env:
           BODY: ${{ steps.extract.outputs.body }}
@@ -145,7 +145,7 @@ jobs:
         run: python .github/scripts/extract_pr_findings.py --stage install $CHANGED
 
       - name: Post or update sticky comment
-        if: always()
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository
         uses: actions/github-script@v7
         env:
           BODY: ${{ steps.extract.outputs.body }}
