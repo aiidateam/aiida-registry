@@ -641,3 +641,9 @@ aiida-spice:
   entry_point_prefix: spice
   pip_url: aiida-spice
   plugin_info: https://raw.githubusercontent.com/infinitymdm/aiida-spice/main/pyproject.toml
+aiida-jqmc:
+  code_home: https://github.com/jqmc-project/aiida-jQMC
+  documentation_url: https://jqmc-project.github.io/aiida-jQMC/
+  entry_point_prefix: jqmc
+  pip_url: aiida-jqmc
+  plugin_info: https://raw.githubusercontent.com/jqmc-project/aiida-jQMC/main/pyproject.toml
