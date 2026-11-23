@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Fetch metadata from plugins and dump it to temporary JSON file.
 
 Data is primarily sourced from PyPI,
@@ -16,7 +15,7 @@ import traceback
 import urllib
 from collections import OrderedDict
 from datetime import datetime, timedelta
-from functools import lru_cache
+from functools import cache
 from typing import Optional
 
 import requests
@@ -36,7 +35,7 @@ from .utils import add_registry_checks, fetch_file
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 
 
-@lru_cache(maxsize=None)
+@cache
 def load_plugins_metadata(json_file_path):
     """Load the plugins file."""
     try:
@@ -52,7 +51,7 @@ def get_hosted_on(url):
     try:
         requests.get(url, timeout=30)
     except Exception as exc:
-        raise ValueError("Unable to open 'code_home' url: '{}'".format(url)) from exc
+        raise ValueError(f"Unable to open 'code_home' url: '{url}'") from exc
 
     netloc = urllib.parse.urlparse(url).netloc
 
