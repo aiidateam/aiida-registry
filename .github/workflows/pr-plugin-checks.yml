@@ -24,17 +24,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  get-pr:
-    # https://dev.to/suzukishunsuke/secure-github-actions-by-pullrequesttarget-641
-    outputs:
-      merge_commit_sha: ${{ steps.pr.outputs.merge_commit_sha }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: suzuki-shunsuke/get-pr-action@v0.1.0
-        id: pr
-
   diff-changed:
-    needs: get-pr
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.diff.outputs.changed }}
@@ -42,7 +32,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.get-pr.outputs.merge_commit_sha }}
           fetch-depth: 0
       - run: git fetch --no-tags --depth=1 origin master
       - uses: actions/setup-python@v5
@@ -53,15 +42,13 @@ jobs:
         run: python .github/scripts/diff_changed_plugins.py
 
   warnings-check:
-    needs: [get-pr, diff-changed]
+    needs: diff-changed
     runs-on: ubuntu-latest
     env:
       CHANGED: ${{ needs.diff-changed.outputs.changed }}
       HAS_CHANGES: ${{ needs.diff-changed.outputs.changed_count != '0' }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.get-pr.outputs.merge_commit_sha }}
 
       - if: env.HAS_CHANGES == 'true'
         uses: ./.github/actions/create-dev-env
@@ -120,7 +107,7 @@ jobs:
     # MUST be configured in repo settings with required reviewers BEFORE this
     # workflow can serve as a real gate. If the environment is missing GitHub
     # auto-creates one with no protection rules and the gate is open.
-    needs: [get-pr, diff-changed, warnings-check]
+    needs: [diff-changed, warnings-check]
     if: needs.diff-changed.outputs.changed_count != '0'
     runs-on: ubuntu-latest
     environment: plugin-install-test
@@ -128,8 +115,6 @@ jobs:
       CHANGED: ${{ needs.diff-changed.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.get-pr.outputs.merge_commit_sha }}
 
       - uses: ./.github/actions/create-dev-env
 
